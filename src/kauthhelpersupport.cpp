@@ -34,7 +34,6 @@
 
 #include "BackendsManager.h"
 
-
 namespace KAuth
 {
 
@@ -50,12 +49,13 @@ static void fixEnvironment()
 {
     //try correct HOME
     const char *home = "HOME";
-    if(getenv(home)==NULL)
-    {
+    if (getenv(home) == NULL) {
         struct passwd *pw = getpwuid(getuid());
         int overwrite = 0;
 
-        if (pw!=NULL) setenv(home, pw->pw_dir, overwrite);
+        if (pw != NULL) {
+            setenv(home, pw->pw_dir, overwrite);
+        }
     }
 }
 #endif

@@ -19,10 +19,11 @@
 
 #include "FakeHelperProxy.h"
 
-namespace KAuth {
+namespace KAuth
+{
 
 FakeHelperProxy::FakeHelperProxy()
-        : HelperProxy()
+    : HelperProxy()
 {
 
 }
@@ -32,7 +33,7 @@ FakeHelperProxy::~FakeHelperProxy()
 
 }
 
-void FakeHelperProxy::sendProgressStep(const QVariantMap& step)
+void FakeHelperProxy::sendProgressStep(const QVariantMap &step)
 {
     Q_UNUSED(step)
 }
@@ -42,7 +43,7 @@ void FakeHelperProxy::sendProgressStep(int step)
     Q_UNUSED(step)
 }
 
-void FakeHelperProxy::sendDebugMessage(int level, const char* msg)
+void FakeHelperProxy::sendDebugMessage(int level, const char *msg)
 {
     Q_UNUSED(level)
     Q_UNUSED(msg)
@@ -53,31 +54,31 @@ bool FakeHelperProxy::hasToStopAction()
     return false;
 }
 
-void FakeHelperProxy::setHelperResponder(QObject* o)
+void FakeHelperProxy::setHelperResponder(QObject *o)
 {
     Q_UNUSED(o)
 }
 
-bool FakeHelperProxy::initHelper(const QString& name)
+bool FakeHelperProxy::initHelper(const QString &name)
 {
     Q_UNUSED(name)
     return false;
 }
 
-void FakeHelperProxy::stopAction(const QString& action, const QString& helperID)
+void FakeHelperProxy::stopAction(const QString &action, const QString &helperID)
 {
     Q_UNUSED(action)
     Q_UNUSED(helperID)
 }
 
-void FakeHelperProxy::executeAction(const QString& action, const QString& helperID, const QVariantMap& arguments)
+void FakeHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments)
 {
     Q_UNUSED(helperID)
     Q_UNUSED(arguments)
     emit actionPerformed(action, KAuth::ActionReply::NoSuchActionReply());
 }
 
-Action::AuthStatus FakeHelperProxy::authorizeAction(const QString& action, const QString& helperID)
+Action::AuthStatus FakeHelperProxy::authorizeAction(const QString &action, const QString &helperID)
 {
     Q_UNUSED(action)
     Q_UNUSED(helperID)

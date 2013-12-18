@@ -45,7 +45,7 @@ public:
      *
      * @param parent The parent object this decorator will be attached to
      */
-    explicit ObjectDecorator( QObject *parent );
+    explicit ObjectDecorator(QObject *parent);
 
     /**
      * Destructs the decorator
@@ -57,7 +57,7 @@ public:
      *
      * @returns the KAuth::Action associated with this decorator.
      */
-     KAuth::Action authAction() const;
+    KAuth::Action authAction() const;
 
     /**
      * Sets the action object associated with this decorator
@@ -69,16 +69,16 @@ public:
      *
      * @param action the KAuth::Action to associate with this decorator.
      */
-     void setAuthAction(const KAuth::Action &action);
+    void setAuthAction(const KAuth::Action &action);
 
-     /**
-     * Sets the action object associated with this decorator
-     *
-     * Overloaded member to allow creating the action by name
-     *
-     * @param actionName the name of the action to associate
-     */
-     void setAuthAction(const QString &actionName);
+    /**
+    * Sets the action object associated with this decorator
+    *
+    * Overloaded member to allow creating the action by name
+    *
+    * @param actionName the name of the action to associate
+    */
+    void setAuthAction(const QString &actionName);
 
 Q_SIGNALS:
     /**
@@ -100,7 +100,7 @@ Q_SIGNALS:
 
 private:
     friend class ObjectDecoratorPrivate;
-    ObjectDecoratorPrivate * const d;
+    ObjectDecoratorPrivate *const d;
 
     Q_PRIVATE_SLOT(d, void slotActivated())
     Q_PRIVATE_SLOT(d, void authStatusChanged(KAuth::Action::AuthStatus))

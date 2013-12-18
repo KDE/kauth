@@ -24,7 +24,6 @@
 #include "AuthBackend.h"
 #include <QHash>
 
-
 class QByteArray;
 
 namespace KAuth
@@ -37,9 +36,9 @@ class PolicyKitBackend : public AuthBackend
     Q_INTERFACES(KAuth::AuthBackend)
 public:
     PolicyKitBackend();
-    virtual void setupAction(const QString&);
-    virtual Action::AuthStatus authorizeAction(const QString&);
-    virtual Action::AuthStatus actionStatus(const QString&);
+    virtual void setupAction(const QString &);
+    virtual Action::AuthStatus authorizeAction(const QString &);
+    virtual Action::AuthStatus actionStatus(const QString &);
     virtual QByteArray callerID() const;
     virtual bool isCallerAuthorized(const QString &action, QByteArray callerID);
 

@@ -84,10 +84,10 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
             out << '>' << description << "</description>\n";
         }
 
-            QHash< QString, QString >::const_iterator i;
+        QHash< QString, QString >::const_iterator i;
         for (QHash< QString, QString >::const_iterator i = action.descriptions.constBegin();
-             i != action.descriptions.constEnd();
-             ++i) {
+                i != action.descriptions.constEnd();
+                ++i) {
             out << dent << dent << "<message";
             if (i.key() != QLatin1String("en")) {
                 out << " xml:lang=\"" << i.key() << '"';

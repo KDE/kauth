@@ -44,7 +44,7 @@ AuthServicesBackend::AuthServicesBackend()
     setCapabilities(AuthorizeFromHelperCapability | CheckActionExistenceCapability);
 }
 
-void AuthServicesBackend::setupAction(const QString&)
+void AuthServicesBackend::setupAction(const QString &)
 {
     // Nothing to do here...
 }
@@ -101,8 +101,9 @@ bool AuthServicesBackend::isCallerAuthorized(const QString &action, QByteArray c
 
     AuthorizationRef auth;
 
-    if (AuthorizationCreateFromExternalForm(&ext, &auth) != noErr)
+    if (AuthorizationCreateFromExternalForm(&ext, &auth) != noErr) {
         return false;
+    }
 
     AuthorizationItem item;
     item.name = action.toUtf8();
@@ -125,7 +126,7 @@ bool AuthServicesBackend::isCallerAuthorized(const QString &action, QByteArray c
     return result == errAuthorizationSuccess;
 }
 
-bool AuthServicesBackend::actionExists(const QString& action)
+bool AuthServicesBackend::actionExists(const QString &action)
 {
     OSStatus exists = AuthorizationRightGet(action.toUtf8(), NULL);
 

@@ -25,7 +25,6 @@
 #include <unistd.h>
 #include <QEventLoop>
 
-
 ActionReply TestHelper::echoaction(QVariantMap args)
 {
     qDebug() << "Echo action running";
@@ -51,12 +50,13 @@ ActionReply TestHelper::longaction(QVariantMap args)
     qDebug() << "Long action running. Don't be scared, this action takes 2 seconds to complete";
 
     for (int i = 1; i <= 100; i++) {
-        if (HelperSupport::isStopped())
+        if (HelperSupport::isStopped()) {
             break;
+        }
         if (i == 50) {
-             QVariantMap map;
-             map.insert(QLatin1String("Answer"), 42);
-             HelperSupport::progressStep(map);
+            QVariantMap map;
+            map.insert(QLatin1String("Answer"), 42);
+            HelperSupport::progressStep(map);
         }
         HelperSupport::progressStep(i);
         usleep(20000);

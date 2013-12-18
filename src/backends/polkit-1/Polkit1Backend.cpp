@@ -38,7 +38,7 @@
 namespace KAuth
 {
 
-PolkitResultEventLoop::PolkitResultEventLoop(QObject* parent)
+PolkitResultEventLoop::PolkitResultEventLoop(QObject *parent)
     : QEventLoop(parent)
 {
 }
@@ -47,7 +47,7 @@ PolkitResultEventLoop::~PolkitResultEventLoop()
 {
 }
 
-void PolkitResultEventLoop::requestQuit(const PolkitQt1::Authority::Result& result)
+void PolkitResultEventLoop::requestQuit(const PolkitQt1::Authority::Result &result)
 {
     m_result = result;
     quit();
@@ -82,7 +82,7 @@ Polkit1Backend::~Polkit1Backend()
 
 }
 
-void Polkit1Backend::preAuthAction(const QString& action, QWidget* parent)
+void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
 {
     // If a parent was not specified, skip this
     if (!parent) {
@@ -102,8 +102,8 @@ void Polkit1Backend::preAuthAction(const QString& action, QWidget* parent)
 
         // Send it over the bus to our agent
         QDBusMessage methodCall =
-                QDBusMessage::createMethodCall(QLatin1String("org.kde.Polkit1AuthAgent"), QLatin1String("/org/kde/Polkit1AuthAgent"), QLatin1String("org.kde.Polkit1AuthAgent"),
-                                               QLatin1String("setWIdForAction"));
+            QDBusMessage::createMethodCall(QLatin1String("org.kde.Polkit1AuthAgent"), QLatin1String("/org/kde/Polkit1AuthAgent"), QLatin1String("org.kde.Polkit1AuthAgent"),
+                                           QLatin1String("setWIdForAction"));
 
         methodCall << action;
         methodCall << wId;
@@ -119,10 +119,10 @@ void Polkit1Backend::preAuthAction(const QString& action, QWidget* parent)
     }
 }
 
-void Polkit1Backend::updateCachedActions(const PolkitQt1::ActionDescription::List& actions)
+void Polkit1Backend::updateCachedActions(const PolkitQt1::ActionDescription::List &actions)
 {
     m_knownActions.clear();
-    Q_FOREACH (const PolkitQt1::ActionDescription& action, actions) {
+    Q_FOREACH (const PolkitQt1::ActionDescription &action, actions) {
         m_knownActions << action.actionId();
     }
     m_flyingActions = false;
@@ -144,7 +144,7 @@ Action::AuthStatus Polkit1Backend::actionStatus(const QString &action)
 {
     PolkitQt1::UnixProcessSubject subject(QCoreApplication::applicationPid());
     PolkitQt1::Authority::Result r = PolkitQt1::Authority::instance()->checkAuthorizationSync(action, subject,
-                                                                                              PolkitQt1::Authority::None);
+                                     PolkitQt1::Authority::None);
     switch (r) {
     case PolkitQt1::Authority::Yes:
         return Action::AuthorizedStatus;
@@ -193,7 +193,7 @@ bool Polkit1Backend::isCallerAuthorized(const QString &action, QByteArray caller
 
 void Polkit1Backend::checkForResultChanged()
 {
-    Q_FOREACH(const QString &action, m_cachedResults.keys()) {
+    Q_FOREACH (const QString &action, m_cachedResults.keys()) {
         if (m_cachedResults[action] != actionStatus(action)) {
             m_cachedResults[action] = actionStatus(action);
             emit actionStatusChanged(action, m_cachedResults[action]);
@@ -205,7 +205,7 @@ void Polkit1Backend::checkForResultChanged()
     m_flyingActions = true;
 }
 
-bool Polkit1Backend::actionExists(const QString& action)
+bool Polkit1Backend::actionExists(const QString &action)
 {
     // Any flying actions?
     if (m_flyingActions) {

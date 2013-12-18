@@ -84,7 +84,6 @@ KAUTH_EXPORT void progressStep(const QVariantMap &data);
  */
 KAUTH_EXPORT bool isStopped();
 
-
 /**
  * @brief Method that implements the main function of the helper tool. Do not call directly
  *

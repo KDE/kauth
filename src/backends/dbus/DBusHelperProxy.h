@@ -27,7 +27,6 @@
 #include <QDBusConnection>
 #include <QVariant>
 
-
 namespace KAuth
 {
 
@@ -57,8 +56,8 @@ public:
     DBusHelperProxy(const QDBusConnection &busConnection);
 
     virtual void executeAction(const QString &action, const QString &helperID,
-            const QVariantMap &arguments);
-    virtual Action::AuthStatus authorizeAction(const QString& action, const QString& helperID);
+                               const QVariantMap &arguments);
+    virtual Action::AuthStatus authorizeAction(const QString &action, const QString &helperID);
     virtual void stopAction(const QString &action, const QString &helperID);
 
     virtual bool initHelper(const QString &name);

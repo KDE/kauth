@@ -35,9 +35,9 @@ class FakeBackend : public AuthBackend
 
 public:
     FakeBackend();
-    virtual void setupAction(const QString&);
-    virtual Action::AuthStatus authorizeAction(const QString&);
-    virtual Action::AuthStatus actionStatus(const QString&);
+    virtual void setupAction(const QString &);
+    virtual Action::AuthStatus authorizeAction(const QString &);
+    virtual Action::AuthStatus actionStatus(const QString &);
     virtual QByteArray callerID() const;
     virtual bool isCallerAuthorized(const QString &action, QByteArray callerID);
 };

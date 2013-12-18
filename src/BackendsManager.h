@@ -40,7 +40,7 @@ public:
 
 private:
     static void init();
-    static QList<QObject*> retrieveInstancesIn(const QString &path);
+    static QList<QObject *> retrieveInstancesIn(const QString &path);
 };
 
 } // namespace Auth

@@ -124,7 +124,7 @@ void HelperTest::initTestCase()
             KAuth::BackendsManager::authBackend(), SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
 
     qRegisterMetaType<KAuth::Action::AuthStatus>();
-    qRegisterMetaType<KJob*>();
+    qRegisterMetaType<KJob *>();
 
     // Set up our HelperHandler
     m_handler = new HelperHandler;
@@ -163,19 +163,19 @@ void HelperTest::testExecuteJobSignals()
 
     QSignalSpy finishedSpy(job, SIGNAL(result(KJob*)));
     QSignalSpy newDataSpy(job, SIGNAL(newData(QVariantMap)));
-    QSignalSpy percentSpy(job, SIGNAL(percent(KJob*,unsigned long)));
+    QSignalSpy percentSpy(job, SIGNAL(percent(KJob*,ulong)));
     QSignalSpy statusChangedSpy(job, SIGNAL(statusChanged(KAuth::Action::AuthStatus)));
 
     QVERIFY(job->exec());
 
     QCOMPARE(finishedSpy.size(), 1);
-    QCOMPARE(qobject_cast<KAuth::ExecuteJob*>(finishedSpy.first().first().value<KJob*>()), job);
+    QCOMPARE(qobject_cast<KAuth::ExecuteJob *>(finishedSpy.first().first().value<KJob *>()), job);
     QCOMPARE(statusChangedSpy.size(), 1);
     QCOMPARE(statusChangedSpy.first().first().value<KAuth::Action::AuthStatus>(), KAuth::Action::AuthorizedStatus);
     QCOMPARE(percentSpy.size(), 100);
     for (ulong i = 1; i <= 100; ++i) {
-        QCOMPARE((unsigned long)percentSpy.at(i-1).last().toLongLong(), i);
-        QCOMPARE(qobject_cast<KAuth::ExecuteJob*>(percentSpy.at(i-1).first().value<KJob*>()), job);
+        QCOMPARE((unsigned long)percentSpy.at(i - 1).last().toLongLong(), i);
+        QCOMPARE(qobject_cast<KAuth::ExecuteJob *>(percentSpy.at(i - 1).first().value<KJob *>()), job);
     }
     QCOMPARE(newDataSpy.size(), 1);
     QCOMPARE(newDataSpy.first().first().value<QVariantMap>().value(QLatin1String("Answer")).toInt(), 42);

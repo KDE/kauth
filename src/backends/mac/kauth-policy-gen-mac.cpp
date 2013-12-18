@@ -31,7 +31,7 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
 
     OSStatus err;
 
-    foreach(const Action &action, actions) {
+    foreach (const Action &action, actions) {
 
         err = AuthorizationRightGet(action.name.toLatin1(), NULL);
 
@@ -39,14 +39,15 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
 
             QString rule;
 
-            if (action.policy == QLatin1String("yes"))
+            if (action.policy == QLatin1String("yes")) {
                 rule = QString::fromLatin1(kAuthorizationRuleClassAllow);
-            else if (action.policy == QLatin1String("no"))
+            } else if (action.policy == QLatin1String("no")) {
                 rule = QString::fromLatin1(kAuthorizationRuleClassDeny);
-            else if (action.policy == QLatin1String("auth_self"))
+            } else if (action.policy == QLatin1String("auth_self")) {
                 rule = QString::fromLatin1(kAuthorizationRuleAuthenticateAsSessionUser);
-            else if (action.policy == QLatin1String("auth_admin"))
+            } else if (action.policy == QLatin1String("auth_admin")) {
                 rule = QString::fromLatin1(kAuthorizationRuleAuthenticateAsAdmin);
+            }
 
             CFStringRef cfRule = CFStringCreateWithCString(NULL, rule.toLatin1(), kCFStringEncodingASCII);
             CFStringRef cfPrompt = CFStringCreateWithCString(NULL, action.descriptions.value(QLatin1String("en")).toLatin1(), kCFStringEncodingASCII);

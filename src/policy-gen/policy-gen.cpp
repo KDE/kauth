@@ -78,7 +78,7 @@ QList<Action> parse(QSettings &ini)
     descriptionExp.setCaseSensitivity(Qt::CaseInsensitive);
     nameExp.setCaseSensitivity(Qt::CaseInsensitive);
 
-    Q_FOREACH(const QString &name, ini.childGroups()) {
+    Q_FOREACH (const QString &name, ini.childGroups()) {
         Action action;
 
         if (name == QLatin1String("Domain")) {
@@ -93,20 +93,22 @@ QList<Action> parse(QSettings &ini)
         action.name = name;
         ini.beginGroup(name);
 
-        Q_FOREACH(const QString &key, ini.childKeys()) {
+        Q_FOREACH (const QString &key, ini.childKeys()) {
             if (descriptionExp.exactMatch(key)) {
                 QString lang = descriptionExp.capturedTexts().at(1);
 
-                if (lang.isEmpty())
+                if (lang.isEmpty()) {
                     lang = QString::fromLatin1("en");
+                }
 
                 action.descriptions.insert(lang, ini.value(key).toString());
 
             } else if (nameExp.exactMatch(key)) {
                 QString lang = nameExp.capturedTexts().at(1);
 
-                if (lang.isEmpty())
+                if (lang.isEmpty()) {
                     lang = QString::fromLatin1("en");
+                }
 
                 action.messages.insert(lang, ini.value(key).toString());
 
@@ -148,8 +150,7 @@ QList<Action> parse(QSettings &ini)
     return actions;
 }
 
-
-QHash<QString, QString> parseDomain(QSettings& ini)
+QHash<QString, QString> parseDomain(QSettings &ini)
 {
     QHash<QString, QString> rethash;
 
@@ -167,5 +168,4 @@ QHash<QString, QString> parseDomain(QSettings& ini)
 
     return rethash;
 }
-
 

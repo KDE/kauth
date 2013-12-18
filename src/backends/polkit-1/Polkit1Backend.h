@@ -30,7 +30,6 @@
 
 #include <PolkitQt1/Authority>
 
-
 class QByteArray;
 
 namespace KAuth
@@ -45,13 +44,13 @@ class Polkit1Backend : public AuthBackend
 public:
     Polkit1Backend();
     virtual ~Polkit1Backend();
-    virtual void setupAction(const QString&);
-    virtual void preAuthAction(const QString& action, QWidget* parent);
-    virtual Action::AuthStatus authorizeAction(const QString&);
-    virtual Action::AuthStatus actionStatus(const QString&);
+    virtual void setupAction(const QString &);
+    virtual void preAuthAction(const QString &action, QWidget *parent);
+    virtual Action::AuthStatus authorizeAction(const QString &);
+    virtual Action::AuthStatus actionStatus(const QString &);
     virtual QByteArray callerID() const;
     virtual bool isCallerAuthorized(const QString &action, QByteArray callerID);
-    virtual bool actionExists(const QString& action);
+    virtual bool actionExists(const QString &action);
 
 private Q_SLOTS:
     void checkForResultChanged();
@@ -67,7 +66,7 @@ class PolkitResultEventLoop : public QEventLoop
 {
     Q_OBJECT
 public:
-    PolkitResultEventLoop(QObject* parent = 0);
+    PolkitResultEventLoop(QObject *parent = 0);
     virtual ~PolkitResultEventLoop();
 
     PolkitQt1::Authority::Result result() const;

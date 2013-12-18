@@ -34,7 +34,7 @@ namespace KAuth
 {
 
 AuthBackend *BackendsManager::auth = 0;
-QHash< QThread*, HelperProxy* > proxiesForThreads = QHash< QThread*, HelperProxy* >();
+QHash< QThread *, HelperProxy * > proxiesForThreads = QHash< QThread *, HelperProxy * >();
 
 BackendsManager::BackendsManager()
 {

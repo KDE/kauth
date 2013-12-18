@@ -38,5 +38,4 @@ struct Action {
 
 extern void output(QList<Action> actions, QHash<QString, QString> domain);
 
-
 #endif

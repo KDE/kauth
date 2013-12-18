@@ -47,7 +47,6 @@
  The KDE Authorization library uses different backends depending on the system where it's built. As far as the user authorization is concerned, it currently uses PolicyKit on linux and Authorization Services
  on Mac OSX, and a Windows backend will eventually be written, too. At the communication layer, the library uses D-Bus on every supported platform.
 
-
  @section kauth_concepts Concepts
  There are a few concepts to understand when using the library. Much of those are carried from underlying APIs such as PolicyKit, so if you know something about them there shouldn't be problems.
 
@@ -231,7 +230,6 @@
  a helper, and also because KAuth actions may be used without a helper attached (the default). In this case, action.execute() will return ActionSuccess if the authentication went well. This is quite useful
  if you want your user to authenticate before doing something, which however needs no privileged permissions implementation-wise.
 
-
  @section kauth_async Asynchronous calls, data reporting, and action termination
 
  For a more advanced example, we look at the action "org.kde.auth.example.longaction" in the example helper. This is an action that takes a long time to execute, so we need some features:
@@ -326,8 +324,6 @@
  @endverbatim
 
  Remember that the debug level is preserved, so if you use qFatal() you won't only abort the helper (which isn't suggested anyway), but also the application.
-
-
 
  */
 namespace KAuth

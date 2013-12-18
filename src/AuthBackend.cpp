@@ -54,13 +54,13 @@ void AuthBackend::setCapabilities(AuthBackend::Capabilities capabilities)
     d->capabilities = capabilities;
 }
 
-bool AuthBackend::actionExists(const QString& action)
+bool AuthBackend::actionExists(const QString &action)
 {
     Q_UNUSED(action);
     return false;
 }
 
-void AuthBackend::preAuthAction(const QString& action, QWidget* parent)
+void AuthBackend::preAuthAction(const QString &action, QWidget *parent)
 {
     Q_UNUSED(action)
     Q_UNUSED(parent)

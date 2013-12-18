@@ -65,14 +65,14 @@ Action::Action(const Action &action)
 }
 
 Action::Action(const QString &name)
-        : d(new ActionData())
+    : d(new ActionData())
 {
     setName(name);
     BackendsManager::authBackend()->setupAction(d->name);
 }
 
 Action::Action(const QString &name, const QString &details)
-        : d(new ActionData())
+    : d(new ActionData())
 {
     setName(name);
     setDetails(details);
@@ -167,12 +167,12 @@ void Action::setHelperId(const QString &id)
     d->helperId = id;
 }
 
-void Action::setParentWidget(QWidget* parent)
+void Action::setParentWidget(QWidget *parent)
 {
     d->parent = parent;
 }
 
-QWidget* Action::parentWidget() const
+QWidget *Action::parentWidget() const
 {
     return d->parent;
 }

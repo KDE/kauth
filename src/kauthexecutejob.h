@@ -40,7 +40,7 @@ class KAUTH_EXPORT ExecuteJob : public KJob
     friend class Action;
 
     class Private;
-    Private * const d;
+    Private *const d;
 
     Q_PRIVATE_SLOT(d, void doExecuteAction())
     Q_PRIVATE_SLOT(d, void doAuthorizeAction())

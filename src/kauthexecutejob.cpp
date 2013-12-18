@@ -50,8 +50,8 @@ public:
 static QHash<QString, ExecuteJob *> s_watchers;
 
 ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject *parent)
-        : KJob(parent)
-        , d(new Private(this))
+    : KJob(parent)
+    , d(new Private(this))
 {
     d->action = action;
     d->mode = mode;
@@ -97,13 +97,12 @@ void ExecuteJob::start()
     case Action::AuthorizeOnlyMode:
         QTimer::singleShot(0, this, SLOT(doAuthorizeAction()));
         break;
-    default:
-        {
-            ActionReply reply(ActionReply::InvalidActionError);
-            reply.setErrorDescription(tr("Unknown execution mode chosen"));
-            d->actionPerformedSlot(d->action.name(), reply);
-        }
-        break;
+    default: {
+        ActionReply reply(ActionReply::InvalidActionError);
+        reply.setErrorDescription(tr("Unknown execution mode chosen"));
+        d->actionPerformedSlot(d->action.name(), reply);
+    }
+    break;
     }
 }
 
@@ -136,13 +135,12 @@ void ExecuteJob::Private::doExecuteAction()
             case Action::UserCancelledStatus:
                 actionPerformedSlot(action.name(), ActionReply::UserCancelledReply());
                 break;
-            default:
-                {
-                    ActionReply r(ActionReply::BackendError);
-                    r.setErrorDescription(tr("Unknown status for the authentication procedure"));
-                    actionPerformedSlot(action.name(), r);
-                }
-                break;
+            default: {
+                ActionReply r(ActionReply::BackendError);
+                r.setErrorDescription(tr("Unknown status for the authentication procedure"));
+                actionPerformedSlot(action.name(), r);
+            }
+            break;
             }
         }
     } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {

@@ -39,9 +39,9 @@ public:
     {
     }
 
-    ObjectDecorator * const q;
+    ObjectDecorator *const q;
 
-    QObject * const decoratedObject;
+    QObject *const decoratedObject;
     KAuth::Action authAction;
     // TODO: Remove whenever QIcon overlays will get fixed
     QIcon oldIcon;
@@ -54,13 +54,13 @@ public:
 
 void ObjectDecoratorPrivate::connectDecorated()
 {
-    if (qobject_cast<QAbstractButton*>(decoratedObject)) {
+    if (qobject_cast<QAbstractButton *>(decoratedObject)) {
         q->connect(decoratedObject, SIGNAL(clicked()),
                    q, SLOT(slotActivated()));
         return;
     }
 
-    if (qobject_cast<QAction*>(decoratedObject)) {
+    if (qobject_cast<QAction *>(decoratedObject)) {
         q->connect(decoratedObject, SIGNAL(triggered(bool)),
                    q, SLOT(slotActivated()));
         return;
@@ -71,13 +71,13 @@ void ObjectDecoratorPrivate::connectDecorated()
 
 void ObjectDecoratorPrivate::linkActionToWidget()
 {
-    QWidget *widget = qobject_cast<QWidget*>(decoratedObject);
+    QWidget *widget = qobject_cast<QWidget *>(decoratedObject);
     if (widget) {
         authAction.setParentWidget(widget);
         return;
     }
 
-    QAction *action = qobject_cast<QAction*>(decoratedObject);
+    QAction *action = qobject_cast<QAction *>(decoratedObject);
     if (action) {
         authAction.setParentWidget(action->parentWidget());
         return;
@@ -105,7 +105,7 @@ void ObjectDecoratorPrivate::authStatusChanged(KAuth::Action::AuthStatus status)
     switch (status) {
     case KAuth::Action::AuthorizedStatus:
         decoratedObject->setProperty("enabled", true);
-        if(!oldIcon.isNull()) {
+        if (!oldIcon.isNull()) {
             decoratedObject->setProperty("icon", QVariant::fromValue(oldIcon));
             oldIcon = QIcon();
         }
@@ -117,16 +117,15 @@ void ObjectDecoratorPrivate::authStatusChanged(KAuth::Action::AuthStatus status)
         break;
     default:
         decoratedObject->setProperty("enabled", false);
-        if(!oldIcon.isNull()) {
+        if (!oldIcon.isNull()) {
             decoratedObject->setProperty("icon", QVariant::fromValue(oldIcon));
             oldIcon = QIcon();
         }
     }
 }
 
-
-ObjectDecorator::ObjectDecorator( QObject *parent )
-    : QObject( parent ), d( new ObjectDecoratorPrivate(this) )
+ObjectDecorator::ObjectDecorator(QObject *parent)
+    : QObject(parent), d(new ObjectDecoratorPrivate(this))
 {
     d->connectDecorated();
 }

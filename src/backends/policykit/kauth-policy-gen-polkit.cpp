@@ -84,8 +84,8 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
         }
 
         for (QHash< QString, QString>::const_iterator i = action.descriptions.constBegin();
-             i != action.descriptions.constEnd();
-             ++i) {
+                i != action.descriptions.constEnd();
+                ++i) {
             out << dent << dent << "<message";
             if (i.key() != QLatin1String("en")) {
                 out << " xml:lang=\"" << i.key() << '"';
@@ -106,7 +106,7 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
             policy += QLatin1String("_keep_") + action.persistence;
         }
         if (!action.persistence.isEmpty() && policyInactive != QLatin1String("yes") &&
-            policyInactive != QLatin1String("no")) {
+                policyInactive != QLatin1String("no")) {
             policyInactive += QLatin1String("_keep_") + action.persistence;
         }
 

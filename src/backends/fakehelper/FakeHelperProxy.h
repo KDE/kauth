@@ -22,26 +22,27 @@
 
 #include "HelperProxy.h"
 
-namespace KAuth {
+namespace KAuth
+{
 
 class FakeHelperProxy : public HelperProxy
 {
     Q_OBJECT
     Q_INTERFACES(KAuth::HelperProxy)
 
-    public:
-        FakeHelperProxy();
-        virtual ~FakeHelperProxy();
+public:
+    FakeHelperProxy();
+    virtual ~FakeHelperProxy();
 
-        virtual void sendProgressStep(const QVariantMap& step);
-        virtual void sendProgressStep(int step);
-        virtual void sendDebugMessage(int level, const char* msg);
-        virtual bool hasToStopAction();
-        virtual void setHelperResponder(QObject* o);
-        virtual bool initHelper(const QString& name);
-        virtual void stopAction(const QString& action, const QString& helperID);
-        virtual void executeAction(const QString& action, const QString& helperID, const QVariantMap& arguments);
-        virtual Action::AuthStatus authorizeAction(const QString& action, const QString& helperID);
+    virtual void sendProgressStep(const QVariantMap &step);
+    virtual void sendProgressStep(int step);
+    virtual void sendDebugMessage(int level, const char *msg);
+    virtual bool hasToStopAction();
+    virtual void setHelperResponder(QObject *o);
+    virtual bool initHelper(const QString &name);
+    virtual void stopAction(const QString &action, const QString &helperID);
+    virtual void executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments);
+    virtual Action::AuthStatus authorizeAction(const QString &action, const QString &helperID);
 };
 
 }

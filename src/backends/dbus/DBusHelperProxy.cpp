@@ -33,7 +33,6 @@
 #include "BackendsManager.h"
 #include "authadaptor.h"
 
-
 namespace KAuth
 {
 
@@ -77,7 +76,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     if (!m_busConnection.connect(helperID, QLatin1String("/"), QLatin1String("org.kde.auth"), QLatin1String("remoteSignal"), this, SLOT(remoteSignalReceived(int,QString,QByteArray)))) {
         ActionReply errorReply = ActionReply::DBusErrorReply();
         errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. ")
-				       + m_busConnection.lastError().message());
+                                       + m_busConnection.lastError().message());
         emit actionPerformed(action, errorReply);
     }
 
@@ -95,14 +94,14 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     if (pendingCall.reply().type() == QDBusMessage::ErrorMessage) {
         ActionReply r = ActionReply::DBusErrorReply();
         r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
-                "Connection error: ") + m_busConnection.lastError().message() + tr(". Message error: ") + pendingCall.reply().errorMessage());
+                                 "Connection error: ") + m_busConnection.lastError().message() + tr(". Message error: ") + pendingCall.reply().errorMessage());
         qDebug() << pendingCall.reply().errorMessage();
 
         emit actionPerformed(action, r);
     }
 }
 
-Action::AuthStatus DBusHelperProxy::authorizeAction(const QString& action, const QString& helperID)
+Action::AuthStatus DBusHelperProxy::authorizeAction(const QString &action, const QString &helperID)
 {
     if (!m_actionsInProgress.isEmpty()) {
         return Action::ErrorStatus;
@@ -226,7 +225,7 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
 
     ActionReply retVal;
 
-    QTimer *timer = responder->property("__KAuth_Helper_Shutdown_Timer").value<QTimer*>();
+    QTimer *timer = responder->property("__KAuth_Helper_Shutdown_Timer").value<QTimer *>();
     timer->stop();
 
     if (BackendsManager::authBackend()->isCallerAuthorized(action, callerID)) {
@@ -238,7 +237,7 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
         slotname.replace(QLatin1Char('.'), QLatin1Char('_'));
 
         bool success = QMetaObject::invokeMethod(responder, slotname.toLatin1().data(), Qt::DirectConnection,
-                                                 Q_RETURN_ARG(ActionReply, retVal), Q_ARG(QVariantMap, args));
+                       Q_RETURN_ARG(ActionReply, retVal), Q_ARG(QVariantMap, args));
 
         if (!success) {
             retVal = ActionReply::NoSuchActionReply();
@@ -258,8 +257,7 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
     return retVal.serialized();
 }
 
-
-uint DBusHelperProxy::authorizeAction(const QString& action, const QByteArray& callerID)
+uint DBusHelperProxy::authorizeAction(const QString &action, const QByteArray &callerID)
 {
     if (!m_currentAction.isEmpty()) {
         return static_cast<uint>(Action::ErrorStatus);
@@ -269,7 +267,7 @@ uint DBusHelperProxy::authorizeAction(const QString& action, const QByteArray& c
 
     uint retVal;
 
-    QTimer *timer = responder->property("__KAuth_Helper_Shutdown_Timer").value<QTimer*>();
+    QTimer *timer = responder->property("__KAuth_Helper_Shutdown_Timer").value<QTimer *>();
     timer->stop();
 
     if (BackendsManager::authBackend()->isCallerAuthorized(action, callerID)) {
@@ -283,7 +281,6 @@ uint DBusHelperProxy::authorizeAction(const QString& action, const QByteArray& c
 
     return retVal;
 }
-
 
 void DBusHelperProxy::sendDebugMessage(int level, const char *msg)
 {

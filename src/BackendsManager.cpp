@@ -39,27 +39,27 @@ BackendsManager::BackendsManager()
 {
 }
 
-QList< QObject* > BackendsManager::retrieveInstancesIn(const QString& path)
+QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &path)
 {
     QDir pluginPath(path);
 
     if (!pluginPath.exists()) {
-        return QList< QObject* >();
+        return QList< QObject * >();
     }
 
     const QFileInfoList entryList = pluginPath.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
 
     if (entryList.isEmpty()) {
-        return QList< QObject* >();
+        return QList< QObject * >();
     }
 
-    QList< QObject* > retlist;
+    QList< QObject * > retlist;
 
-    Q_FOREACH(const QFileInfo &fi, entryList) {
+    Q_FOREACH (const QFileInfo &fi, entryList) {
         QString filePath = fi.filePath(); // file name with path
         QString fileName = fi.fileName(); // just file name
 
-        if(!QLibrary::isLibrary(filePath)) {
+        if (!QLibrary::isLibrary(filePath)) {
             continue;
         }
 
@@ -77,20 +77,20 @@ QList< QObject* > BackendsManager::retrieveInstancesIn(const QString& path)
 void BackendsManager::init()
 {
     // Backend plugin
-    const QList< QObject* > backends = retrieveInstancesIn(QFile::decodeName(KAUTH_BACKEND_PLUGIN_DIR));
+    const QList< QObject * > backends = retrieveInstancesIn(QFile::decodeName(KAUTH_BACKEND_PLUGIN_DIR));
 
     Q_FOREACH (QObject *instance, backends) {
-        auth = qobject_cast< KAuth::AuthBackend* >(instance);
+        auth = qobject_cast< KAuth::AuthBackend * >(instance);
         if (auth) {
             break;
         }
     }
 
     // Helper plugin
-    const QList< QObject* > helpers = retrieveInstancesIn(QFile::decodeName(KAUTH_HELPER_PLUGIN_DIR));
+    const QList< QObject * > helpers = retrieveInstancesIn(QFile::decodeName(KAUTH_HELPER_PLUGIN_DIR));
 
     Q_FOREACH (QObject *instance, helpers) {
-        helper = qobject_cast< KAuth::HelperProxy* >(instance);
+        helper = qobject_cast< KAuth::HelperProxy * >(instance);
         if (helper) {
             break;
         }
@@ -111,7 +111,7 @@ void BackendsManager::init()
 #if !KAUTH_COMPILING_FAKE_BACKEND
         // Spit a fat warning
         qWarning() << "WARNING: KAuth was compiled with a working helper backend, but was unable to load it! "
-                      "Check your installation!";
+                   "Check your installation!";
 #endif
     }
 }

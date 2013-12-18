@@ -44,16 +44,46 @@ public:
 };
 
 // Predefined replies
-const ActionReply ActionReply::SuccessReply() { return ActionReply(); }
-const ActionReply ActionReply::HelperErrorReply() { return ActionReply(ActionReply::HelperErrorType); }
-const ActionReply ActionReply::NoResponderReply() { return ActionReply(ActionReply::NoResponderError); }
-const ActionReply ActionReply::NoSuchActionReply() { return ActionReply(ActionReply::NoSuchActionError); }
-const ActionReply ActionReply::InvalidActionReply() { return ActionReply(ActionReply::InvalidActionError); }
-const ActionReply ActionReply::AuthorizationDeniedReply() { return ActionReply(ActionReply::AuthorizationDeniedError); }
-const ActionReply ActionReply::UserCancelledReply() { return ActionReply(ActionReply::UserCancelledError); }
-const ActionReply ActionReply::HelperBusyReply() { return ActionReply(ActionReply::HelperBusyError); }
-const ActionReply ActionReply::AlreadyStartedReply() { return ActionReply(ActionReply::AlreadyStartedError); }
-const ActionReply ActionReply::DBusErrorReply() { return ActionReply(ActionReply::DBusError); }
+const ActionReply ActionReply::SuccessReply()
+{
+    return ActionReply();
+}
+const ActionReply ActionReply::HelperErrorReply()
+{
+    return ActionReply(ActionReply::HelperErrorType);
+}
+const ActionReply ActionReply::NoResponderReply()
+{
+    return ActionReply(ActionReply::NoResponderError);
+}
+const ActionReply ActionReply::NoSuchActionReply()
+{
+    return ActionReply(ActionReply::NoSuchActionError);
+}
+const ActionReply ActionReply::InvalidActionReply()
+{
+    return ActionReply(ActionReply::InvalidActionError);
+}
+const ActionReply ActionReply::AuthorizationDeniedReply()
+{
+    return ActionReply(ActionReply::AuthorizationDeniedError);
+}
+const ActionReply ActionReply::UserCancelledReply()
+{
+    return ActionReply(ActionReply::UserCancelledError);
+}
+const ActionReply ActionReply::HelperBusyReply()
+{
+    return ActionReply(ActionReply::HelperBusyError);
+}
+const ActionReply ActionReply::AlreadyStartedReply()
+{
+    return ActionReply(ActionReply::AlreadyStartedError);
+}
+const ActionReply ActionReply::DBusErrorReply()
+{
+    return ActionReply(ActionReply::DBusError);
+}
 
 // Constructors
 ActionReply::ActionReply(const ActionReply &reply)
@@ -62,21 +92,21 @@ ActionReply::ActionReply(const ActionReply &reply)
 }
 
 ActionReply::ActionReply()
-        : d(new ActionReplyData())
+    : d(new ActionReplyData())
 {
     d->errorCode = 0;
     d->type = SuccessType;
 }
 
 ActionReply::ActionReply(ActionReply::Type type)
-        : d(new ActionReplyData())
+    : d(new ActionReplyData())
 {
     d->errorCode = 0;
     d->type = type;
 }
 
 ActionReply::ActionReply(int error)
-        : d(new ActionReplyData())
+    : d(new ActionReplyData())
 {
     d->errorCode = error;
     d->type = KAuthErrorType;
