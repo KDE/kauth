@@ -24,12 +24,27 @@ add_library(KF5Auth ${libkauth_SRCS})
 generate_export_header(KF5Auth BASE_NAME KAuth)
 add_library(KF5::Auth ALIAS KF5Auth)
 
+target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/kauth>" "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KAuth>")
+
 target_link_libraries(KF5Auth PUBLIC Qt5::Core KF5::CoreAddons)
 target_link_libraries(KF5Auth PRIVATE Qt5::Widgets Qt5::DBus)
 set_target_properties(KF5Auth PROPERTIES VERSION   ${KAUTH_VERSION_STRING}
                                          SOVERSION ${KAUTH_SOVERSION}
                                          EXPORT_NAME Auth
 )
+
+ecm_generate_headers(
+  KAuth
+  KAuthHelperSupport
+  KAuthAction
+  KAuthActionReply
+  KAuthExecuteJob
+  KAuthObjectDecorator
+
+  MODULE_NAME KAuth
+  REQUIRED_HEADERS KAuth_HEADERS
+)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KAuth DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 # KAuth policy generator executable
 
@@ -54,6 +69,7 @@ if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp)
     target_link_libraries(kauth_backend_plugin PRIVATE ${KAUTH_BACKEND_LIBS})
     set_target_properties(kauth_backend_plugin PROPERTIES PREFIX "")
+
     install(TARGETS kauth_backend_plugin
             LIBRARY DESTINATION ${KAUTH_BACKEND_PLUGIN_DIR}
             ARCHIVE DESTINATION ${KAUTH_BACKEND_PLUGIN_DIR}
@@ -78,14 +94,9 @@ endif ()
 install(TARGETS KF5Auth EXPORT KF5AuthTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
-    kauthaction.h
-    kauthactionreply.h
-    kauthexecutejob.h
-    kauthhelpersupport.h
-    kauthobjectdecorator.h
-    kauth.h
-    ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
-    DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel
+  ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
+  ${KAuth_HEADERS}
+  DESTINATION ${INCLUDE_INSTALL_DIR}/kauth COMPONENT Devel
 )
 
 # TODO: Remove once we depend on polkit-qt1 > 0.99.0
