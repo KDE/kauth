@@ -1,5 +1,10 @@
 
-find_package(Qt5 5.2.0 CONFIG REQUIRED DBus Test)
+find_package(Qt5Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
+
+if(NOT Qt5Test_FOUND)
+    message(STATUS "Qt5Test not found, autotests will not be built.")
+    return()
+endif()
 
 qt5_add_dbus_adaptor(kauth_dbus_adaptor_tests_SRCS
                      ../src/backends/dbus/org.kde.auth.xml
