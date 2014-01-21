@@ -28,8 +28,6 @@
 #include <QDebug>
 #include <QTimer>
 
-#include <syslog.h>
-
 #include "BackendsManager.h"
 #include "authadaptor.h"
 

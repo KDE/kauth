@@ -28,6 +28,8 @@ set(libkauth_tests_static_SRCS
 )
 
 add_library(kauth_tests_static STATIC ${libkauth_tests_static_SRCS})
+# make sure all executables using this library have the define set to make sure it builds on MSVC
+target_compile_definitions(kauth_tests_static PUBLIC KAUTH_STATIC_DEFINE=1)
 ecm_mark_as_test(kauth_tests_static)
 
 target_include_directories(kauth_tests_static

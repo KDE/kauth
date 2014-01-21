@@ -21,12 +21,23 @@
 #include "kauthhelpersupport.h"
 
 #include <cstdlib>
-#include <syslog.h>
 
-#ifdef Q_OS_UNIX
+#ifndef Q_OS_WIN
+#include <syslog.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <pwd.h>
+#else
+// Quick hack to replace syslog (just write to stderr)
+// TODO: should probably use ReportEvent
+#define	LOG_ERR		4
+#define	LOG_WARNING	5
+#define	LOG_DEBUG	6
+#define	LOG_USER	(1<<3)
+static inline void openlog(const char*, int, int) {}
+static inline void closelog() {}
+#define syslog(level, ...) fprintf(stderr, __VA_ARGS__)
+
 #endif
 
 #include <QCoreApplication>

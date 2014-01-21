@@ -22,7 +22,8 @@
 #include <QtDebug>
 #include <QFile>
 #include <QTextStream>
-#include <unistd.h>
+#include <QThread>
+#include <qplatformdefs.h>
 #include <QEventLoop>
 
 ActionReply TestHelper::echoaction(QVariantMap args)
@@ -59,7 +60,7 @@ ActionReply TestHelper::longaction(QVariantMap args)
             HelperSupport::progressStep(map);
         }
         HelperSupport::progressStep(i);
-        usleep(20000);
+        QThread::usleep(20000);
     }
 
     return ActionReply::SuccessReply();
