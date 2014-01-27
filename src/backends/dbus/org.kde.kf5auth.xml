@@ -1,0 +1,25 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="org.kde.kf5auth">
+        <method name="performAction" >
+            <arg name="action" type="s" direction="in" />
+            <arg name="callerID" type="ay" direction="in" />
+            <arg name="arguments" type="ay" direction="in" />
+            <arg name="r" type="ay" direction="out" />
+        </method>
+        <method name="authorizeAction" >
+            <arg name="action" type="s" direction="in" />
+            <arg name="callerID" type="ay" direction="in" />
+            <arg name="r" type="u" direction="out" />
+        </method>
+        <method name="stopAction" >
+            <arg name="action" type="s" direction="in" />
+            <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
+        </method>
+        <signal name="remoteSignal" >
+            <arg name="type" type="i" />
+            <arg name="action" type="s" />
+            <arg name="blob" type="ay" />
+        </signal>
+    </interface>
+</node>
