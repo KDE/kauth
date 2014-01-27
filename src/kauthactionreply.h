@@ -102,8 +102,8 @@
  };
  @endcode
 
- The slot names are the last part of the action name, without the helper's ID if it's a prefix, with all the dots replaced by underscores. In this case, the helper ID is "org.kde.auth.example", so those
- three slots implement the actions "org.kde.auth.example.read", "org.kde.auth.example.write" and "org.kde.auth.example.longaction". The helper ID doesn't have to appear at the beginning of the action
+ The slot names are the last part of the action name, without the helper's ID if it's a prefix, with all the dots replaced by underscores. In this case, the helper ID is "org.kde.kf5auth.example", so those
+ three slots implement the actions "org.kde.kf5auth.example.read", "org.kde.kf5auth.example.write" and "org.kde.kf5auth.example.longaction". The helper ID doesn't have to appear at the beginning of the action
  name, but it's good practice. If you want to extend MyHelper to implement also a different action like "org.kde.datetime.changetime", since the helper ID doesn't match you'll have to implement a
  slot called org_kde_datetime_changetime().
 
@@ -144,7 +144,7 @@
  KAUTH_HELPER_MAIN() macro that will take care of everything. It's used like this:
 
  @code
- KAUTH_HELPER_MAIN("org.kde.auth.example", MyHelper)
+ KAUTH_HELPER_MAIN("org.kde.kf5auth.example", MyHelper)
  @endcode
 
  The first parameter is the string containing the helper identifier. Please note that you need to use this same string in the application's code to tell the library which helper to call, so please
@@ -177,7 +177,7 @@
  each action and some parameters. The definition for the read action is:
 
  @verbatim
- [org.kde.auth.example.read]
+ [org.kde.kf5auth.example.read]
  Name=Read action
  Description=Read action description
  Policy=auth_admin
@@ -212,8 +212,8 @@
  @code
  QVariantMap args;
  args["filename"] = filename;
- Action readAction = "org.kde.auth.example.read";
- readAction.setHelperID("org.kde.auth.example");
+ Action readAction = "org.kde.kf5auth.example.read";
+ readAction.setHelperID("org.kde.kf5auth.example");
  readAction.setArguments(args);
 
  ActionReply reply = readAction.execute();
@@ -232,7 +232,7 @@
 
  @section kauth_async Asynchronous calls, data reporting, and action termination
 
- For a more advanced example, we look at the action "org.kde.auth.example.longaction" in the example helper. This is an action that takes a long time to execute, so we need some features:
+ For a more advanced example, we look at the action "org.kde.kf5auth.example.longaction" in the example helper. This is an action that takes a long time to execute, so we need some features:
  - The helper needs to regularly send data to the application, to inform about the execution status.
  - The application needs to be able to stop the action execution if the user stops it or close the application.
  The example code follows:
@@ -263,7 +263,7 @@
  @code
  void MainWindow::on_longAction_triggered()
  {
-    Action longAction = "org.kde.auth.example.longaction";
+    Action longAction = "org.kde.kf5auth.example.longaction";
     connect(longAction.watcher(), SIGNAL(progressStep(int)),
             progressBar,          SLOT(setValue(int)));
     connect(longAction.watcher(), SIGNAL(actionPerformed(ActionReply)),
@@ -278,7 +278,7 @@
 
  void MainWindow::stopLongAction()
  {
-     Action("org.kde.auth.example.longaction").stop();
+     Action("org.kde.kf5auth.example.longaction").stop();
  }
 
  void MainWindow::longActionPerformed(ActionReply reply)

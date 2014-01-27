@@ -210,7 +210,7 @@ set(KAUTH_HELPER_BACKEND_NAME ${KAUTH_HELPER_BACKEND} CACHE STRING "Specifies th
 # Add the correct libraries/files depending on the backend
 if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
     qt5_add_dbus_adaptor(kauth_dbus_adaptor_SRCS
-                        backends/dbus/org.kde.auth.xml
+                        backends/dbus/org.kde.kf5auth.xml
                         backends/dbus/DBusHelperProxy.h
                         KAuth::DBusHelperProxy)
 
@@ -222,7 +222,7 @@ if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
     set(KAUTH_HELPER_BACKEND_LIBS Qt5::DBus KF5::Auth)
 
     # Install some files as well
-    install( FILES backends/dbus/org.kde.auth.conf
+    install( FILES backends/dbus/org.kde.kf5auth.conf
              DESTINATION ${SYSCONF_INSTALL_DIR}/dbus-1/system.d )
 
     install( FILES backends/dbus/dbus_policy.stub

@@ -29,7 +29,7 @@
 #include <QTimer>
 
 #include "BackendsManager.h"
-#include "authadaptor.h"
+#include "kf5authadaptor.h"
 
 namespace KAuth
 {
@@ -53,7 +53,7 @@ DBusHelperProxy::DBusHelperProxy(const QDBusConnection &busConnection)
 void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
 {
     QDBusMessage message;
-    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.auth"), QLatin1String("stopAction"));
+    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("stopAction"));
 
     QList<QVariant> args;
     args << action;
@@ -71,7 +71,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
     m_busConnection.interface()->startService(helperID);
 
-    if (!m_busConnection.connect(helperID, QLatin1String("/"), QLatin1String("org.kde.auth"), QLatin1String("remoteSignal"), this, SLOT(remoteSignalReceived(int,QString,QByteArray)))) {
+    if (!m_busConnection.connect(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("remoteSignal"), this, SLOT(remoteSignalReceived(int,QString,QByteArray)))) {
         ActionReply errorReply = ActionReply::DBusErrorReply();
         errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. ")
                                        + m_busConnection.lastError().message());
@@ -79,7 +79,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     }
 
     QDBusMessage message;
-    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.auth"), QLatin1String("performAction"));
+    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("performAction"));
 
     QList<QVariant> args;
     args << action << BackendsManager::authBackend()->callerID() << blob;
@@ -108,7 +108,7 @@ Action::AuthStatus DBusHelperProxy::authorizeAction(const QString &action, const
     m_busConnection.interface()->startService(helperID);
 
     QDBusMessage message;
-    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.auth"), QLatin1String("authorizeAction"));
+    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("authorizeAction"));
 
     QList<QVariant> args;
     args << action << BackendsManager::authBackend()->callerID();
@@ -135,7 +135,7 @@ Action::AuthStatus DBusHelperProxy::authorizeAction(const QString &action, const
 
 bool DBusHelperProxy::initHelper(const QString &name)
 {
-    new AuthAdaptor(this);
+    new Kf5authAdaptor(this);
 
     if (!m_busConnection.registerService(name)) {
         return false;

@@ -54,7 +54,7 @@ void TestBackend::setupAction(const QString &action)
         m_actionStatuses.insert(action, Action::AuthRequiredStatus);
     } else if (action == QLatin1String("always.authorized")) {
         m_actionStatuses.insert(action, Action::AuthorizedStatus);
-    } else if (action.startsWith(QLatin1String("org.kde.auth.autotest"))) {
+    } else if (action.startsWith(QLatin1String("org.kde.kf5auth.autotest"))) {
         m_actionStatuses.insert(action, Action::AuthRequiredStatus);
     }
 }
@@ -87,7 +87,7 @@ bool TestBackend::isCallerAuthorized(const QString &action, QByteArray callerId)
         return false;
     } else if (action == QLatin1String("always.authorized")) {
         return true;
-    } else if (action.startsWith(QLatin1String("org.kde.auth.autotest"))) {
+    } else if (action.startsWith(QLatin1String("org.kde.kf5auth.autotest"))) {
         qDebug() << "Caller ID:" << callerId;
         if (callerId == callerID()) {
             m_actionStatuses.insert(action, Action::AuthorizedStatus);
@@ -110,7 +110,7 @@ bool TestBackend::actionExists(const QString &action)
             action != QLatin1String("generates.error") &&
             action != QLatin1String("always.authorized") &&
             action != QLatin1String("/safinvalid124%$&") &&
-            !action.startsWith(QLatin1String("org.kde.auth.autotest"))) {
+            !action.startsWith(QLatin1String("org.kde.kf5auth.autotest"))) {
         return false;
     }
 

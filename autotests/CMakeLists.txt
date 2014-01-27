@@ -7,7 +7,7 @@ if(NOT Qt5Test_FOUND)
 endif()
 
 qt5_add_dbus_adaptor(kauth_dbus_adaptor_tests_SRCS
-                     ../src/backends/dbus/org.kde.auth.xml
+                     ../src/backends/dbus/org.kde.kf5auth.xml
                      ../src/backends/dbus/DBusHelperProxy.h
                      KAuth::DBusHelperProxy)
 
