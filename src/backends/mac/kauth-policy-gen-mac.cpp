@@ -17,7 +17,7 @@
 *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .
 */
 
-#include <auth/policy-gen/policy-gen.h>
+#include "../../policy-gen/policy-gen.h"
 
 #include <iostream>
 #include <Security/Security.h>
@@ -33,7 +33,7 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
 
     foreach (const Action &action, actions) {
 
-        err = AuthorizationRightGet(action.name.toLatin1(), NULL);
+        err = AuthorizationRightGet(action.name.toLatin1().constData(), NULL);
 
         if (err == errAuthorizationDenied) {
 
@@ -49,10 +49,10 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
                 rule = QString::fromLatin1(kAuthorizationRuleAuthenticateAsAdmin);
             }
 
-            CFStringRef cfRule = CFStringCreateWithCString(NULL, rule.toLatin1(), kCFStringEncodingASCII);
-            CFStringRef cfPrompt = CFStringCreateWithCString(NULL, action.descriptions.value(QLatin1String("en")).toLatin1(), kCFStringEncodingASCII);
+            CFStringRef cfRule = CFStringCreateWithCString(NULL, rule.toLatin1().constData(), kCFStringEncodingASCII);
+            CFStringRef cfPrompt = CFStringCreateWithCString(NULL, action.descriptions.value(QLatin1String("en")).toLatin1().constData(), kCFStringEncodingASCII);
 
-            err = AuthorizationRightSet(auth, action.name.toLatin1(), cfRule, cfPrompt, NULL, NULL);
+            err = AuthorizationRightSet(auth, action.name.toLatin1().constData(), cfRule, cfPrompt, NULL, NULL);
             if (err != noErr) {
                 cerr << "You don't have the right to edit the security database (try to run cmake with sudo): " << err << endl;
                 exit(1);

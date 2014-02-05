@@ -58,8 +58,10 @@ Action::AuthStatus AuthServicesBackend::authorizeAction(const QString &action)
 
 Action::AuthStatus AuthServicesBackend::actionStatus(const QString &action)
 {
+    const QByteArray actionName = action.toUtf8();
+
     AuthorizationItem item;
-    item.name = action.toUtf8();
+    item.name = actionName.constData();
     item.valueLength = 0;
     item.value = NULL;
     item.flags = 0;
@@ -105,8 +107,10 @@ bool AuthServicesBackend::isCallerAuthorized(const QString &action, QByteArray c
         return false;
     }
 
+    const QByteArray actionName = action.toUtf8();
+
     AuthorizationItem item;
-    item.name = action.toUtf8();
+    item.name = actionName.constData();
     item.valueLength = 0;
     item.value = NULL;
     item.flags = 0;
@@ -128,7 +132,7 @@ bool AuthServicesBackend::isCallerAuthorized(const QString &action, QByteArray c
 
 bool AuthServicesBackend::actionExists(const QString &action)
 {
-    OSStatus exists = AuthorizationRightGet(action.toUtf8(), NULL);
+    OSStatus exists = AuthorizationRightGet(action.toUtf8().constData(), NULL);
 
     return exists == errAuthorizationSuccess;
 }
