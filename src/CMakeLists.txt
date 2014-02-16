@@ -33,7 +33,8 @@ set_target_properties(KF5Auth PROPERTIES VERSION   ${KAUTH_VERSION_STRING}
                                          EXPORT_NAME Auth
 )
 
-ecm_generate_headers(
+ecm_generate_headers(KAuth_HEADERS
+  HEADER_NAMES
   KAuth
   KAuthHelperSupport
   KAuthAction
@@ -41,10 +42,8 @@ ecm_generate_headers(
   KAuthExecuteJob
   KAuthObjectDecorator
 
-  MODULE_NAME KAuth
   REQUIRED_HEADERS KAuth_HEADERS
 )
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KAuth DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 # KAuth policy generator executable
 
