@@ -40,5 +40,5 @@ detailed tutorial on how to use KAuth.
 
 - Home page: <https://projects.kde.org/projects/frameworks/kauth>
 - Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: #kde-devel on Freenode
+- IRC channel: \#kde-devel on Freenode
 - Git repository: <https://projects.kde.org/projects/frameworks/kauth/repository>

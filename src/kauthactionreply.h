@@ -286,7 +286,7 @@
  - A synchronous call, using the Action::execute() method, will start the
    helper, execute the action and return the reply.
  - An asynchronous call, by setting Action::setExecutesAsync(true) and calling
-   ::execute(), will start the helper and return immediately.
+   Action::execute(), will start the helper and return immediately.
 
  The asynchronous call is the most flexible alternative, but you need a way to
  obtain the reply. This is done by connecting to a signal, but the Action class
