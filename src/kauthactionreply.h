@@ -221,7 +221,7 @@
  kauth_install_helper_files(). Use it in your cmake file like this:
 
  @code
- kde4_add_executable(<helper_target> your sources...)
+ add_executable(<helper_target> your sources...)
  target_link_libraries(<helper_target> your libraries...)
  install(TARGETS <helper_target> DESTINATION ${LIBEXEC_INSTALL_DIR})
 
@@ -244,7 +244,7 @@
  database. To do this in a cross-platform way, we provide a cmake macro. It
  looks like:
  @code
- kde4_install_auth_actions(<helper_id> <actions definition file>)
+ kauth_install_actions(<helper_id> <actions definition file>)
  @endcode
 
  The action definition file describes which actions are implemented by your code
