@@ -146,7 +146,7 @@ void ExecuteJob::Private::doExecuteAction()
     } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
         if (!action.hasHelper()) {
             ActionReply r(ActionReply::InvalidActionReply());
-            r.setErrorDescription(tr("The current backend only allows helper authorization, but this action does not have an helper."));
+            r.setErrorDescription(tr("The current backend only allows helper authorization, but this action does not have a helper."));
             actionPerformedSlot(action.name(), r);
             return;
         }
