@@ -18,6 +18,7 @@ set(libkauth_SRCS
     kauthhelpersupport.cpp
     backends/fake/FakeBackend.cpp
     backends/fakehelper/FakeHelperProxy.cpp
+    ${KAuth_QM_LOADER}
 )
 
 add_library(KF5Auth ${libkauth_SRCS})
