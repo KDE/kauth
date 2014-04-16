@@ -7,6 +7,8 @@ include(ConfigureChecks.cmake)
 # Configure a small file to tell BackendsManager what to use
 configure_file(BackendsConfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/BackendsConfig.h)
 
+ecm_create_qm_loader(KAuth_QM_LOADER kauth5)
+
 set(libkauth_SRCS
     kauthaction.cpp
     kauthactionreply.cpp
