@@ -1,1 +1,10 @@
+maintainer:
+description: Abstraction to system policy and authentication features
 tier: 2
+type: integration
+platforms:
+    - name: MacOSX
+    - name: Linux
+portingAid: false
+deprecated: false
+release: true
