@@ -27,7 +27,7 @@ add_library(KF5Auth ${libkauth_SRCS})
 generate_export_header(KF5Auth BASE_NAME KAuth)
 add_library(KF5::Auth ALIAS KF5Auth)
 
-target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KAuth>")
+target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KAuth>")
 
 target_link_libraries(KF5Auth PUBLIC Qt5::Core KF5::CoreAddons)
 target_link_libraries(KF5Auth PRIVATE Qt5::Widgets Qt5::DBus)
@@ -93,12 +93,12 @@ if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE")
     )
 endif ()
 
-install(TARGETS KF5Auth EXPORT KF5AuthTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5Auth EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
   ${KAuth_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/KAuth COMPONENT Devel
+  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KAuth COMPONENT Devel
 )
 
 # TODO: Remove once we depend on polkit-qt1 > 0.99.0
