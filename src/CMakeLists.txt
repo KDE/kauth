@@ -60,7 +60,7 @@ if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     # KAUTH_POLICY_GEN_LIBRARIES has been generated from ConfigureChecks.cmake
     target_link_libraries( kauth-policy-gen PRIVATE ${KAUTH_POLICY_GEN_LIBRARIES} )
 
-    install( TARGETS kauth-policy-gen EXPORT KF5AuthTargets DESTINATION ${LIBEXEC_INSTALL_DIR})
+    install( TARGETS kauth-policy-gen EXPORT KF5AuthTargets DESTINATION ${KF5_LIBEXEC_INSTALL_DIR})
 endif ()
 
 # KAuth backend plugin

@@ -10,7 +10,7 @@
 # This macro takes care of generate the needed files, and install them in the right location. This boils down
 # to a DBus policy to let the helper register on the system bus, and a service file for letting the helper
 # being automatically activated by the system bus.
-# *WARNING* You have to install the helper in ${LIBEXEC_INSTALL_DIR} to make sure everything will work.
+# *WARNING* You have to install the helper in ${KF5_LIBEXEC_INSTALL_DIR} to make sure everything will work.
 function(KAUTH_INSTALL_HELPER_FILES HELPER_TARGET HELPER_ID HELPER_USER)
     if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
         configure_file(${KAUTH_STUB_FILES_DIR}/dbus_policy.stub
