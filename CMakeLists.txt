@@ -29,6 +29,9 @@ ecm_setup_version(${KF5_VERSION} VARIABLE_PREFIX KAUTH
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfigVersion.cmake"
                         SOVERSION 5)
 
+
+set(KAUTH_HELPER_INSTALL_DIR "${LIBEXEC_INSTALL_DIR}/kauth")
+
 file(GLOB PO_FILES "po/*.po")
 if (PO_FILES)
   ecm_create_qm_from_po_files(PO_FILES ${PO_FILES} CATALOG_NAME kauth5_qt)

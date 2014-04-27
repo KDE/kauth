@@ -223,14 +223,14 @@
  @code
  add_executable(<helper_target> your sources...)
  target_link_libraries(<helper_target> your libraries...)
- install(TARGETS <helper_target> DESTINATION ${KF5_LIBEXEC_INSTALL_DIR})
+ install(TARGETS <helper_target> DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
 
  kauth_install_helper_files(<helper_target> <helper_id> <user>)
  @endcode
 
  The first argument is the cmake target name for the helper executable, which
  you have to build and install separately. Make sure to INSTALL THE HELPER IN
- ${KF5_LIBEXEC_INSTALL_DIR}, otherwise kauth_install_helper_files will not work. The
+ ${KAUTH_HELPER_INSTALL_DIR}, otherwise kauth_install_helper_files will not work. The
  second argument is the helper id. Please be sure to don't misspell it, and to
  not quote it. The user parameter is the user that the helper has to be run as.
  It usually is root, but some actions could require less strict permissions, so
