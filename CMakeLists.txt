@@ -18,7 +18,7 @@ include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 
-include(ECMCreateQmFromPoFiles)
+include(ECMPoQmTools)
 
 set(KF5_VERSION "4.99.0") # handled by release scripts
 set(KF5_DEP_VERSION "4.99.0") # handled by release scripts
@@ -32,9 +32,8 @@ find_package(KF5CoreAddons ${KF5_DEP_VERSION} REQUIRED)
 
 set(KAUTH_HELPER_INSTALL_DIR "${LIBEXEC_INSTALL_DIR}/kauth")
 
-file(GLOB PO_FILES "po/*.po")
-if (PO_FILES)
-  ecm_create_qm_from_po_files(PO_FILES ${PO_FILES} CATALOG_NAME kauth5_qt)
+if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
+    ecm_install_po_files_as_qm(po)
 endif()
 
 add_subdirectory(src)
