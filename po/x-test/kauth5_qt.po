@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kauth5_qt\n"
+"PO-Revision-Date: 2014-04-28 09:02+0000\n"
+"Last-Translator: transxx.py program <null@kde.org>\n"
+"Language-Team: KDE Test Language <kde-i18n-doc@kde.org>\n"
+"Language: x-test\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/backends/dbus/DBusHelperProxy.cpp:76
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr "xxDBus Backend error: connection to helper failed. xx"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/backends/dbus/DBusHelperProxy.cpp:94
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+"xxDBus Backend error: could not contact the helper. Connection error: xx"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/backends/dbus/DBusHelperProxy.cpp:95
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr "xx. Message error: xx"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "xxTried to start an invalid actionxx"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:102
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "xxUnknown execution mode chosenxx"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "xxUnknown status for the authentication procedurexx"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:149
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"xxThe current backend only allows helper authorization, but this action does "
+"not have a helper.xx"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:157
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:181
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "xxThe backend does not specify how to authorizexx"

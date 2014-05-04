@@ -1,0 +1,60 @@
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2014-04-18 09:22+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.4\n"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/backends/dbus/DBusHelperProxy.cpp:76
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr "Fel i D-Bus gränssnitt: Anslutning till hjälpprogram misslyckades. "
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/backends/dbus/DBusHelperProxy.cpp:94
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+"Fel i D-Bus gränssnitt: Kunde inte kontakta hjälpprogram. Anslutningsfel: "
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/backends/dbus/DBusHelperProxy.cpp:95
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr ", Meddelande fel: "
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "Försökte utföra en ogiltig åtgärd"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:102
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Okänt exekveringsläge valt"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "Okänd status för behörighetskontrollproceduren"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:149
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"Nuvarande gränssnitt tillåter bara behörighetskontroll med hjälpprogram, men "
+"den här åtgärden saknar hjälpprogram."
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:157
+#: ../../home/scripty/prod/git-unstable/frameworks_kauth/src/kauthexecutejob.cpp:181
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "Gränssnittet anger inte hur behörighetskontroll ska gå till"
