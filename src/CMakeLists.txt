@@ -29,7 +29,7 @@ add_library(KF5::Auth ALIAS KF5Auth)
 
 target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KAuth>")
 
-target_link_libraries(KF5Auth PUBLIC Qt5::Core KF5::CoreAddons)
+target_link_libraries(KF5Auth PUBLIC Qt5::Core KF5::CoreAddons)  # for KJob
 target_link_libraries(KF5Auth PRIVATE Qt5::Widgets Qt5::DBus)
 set_target_properties(KF5Auth PROPERTIES VERSION   ${KAUTH_VERSION_STRING}
                                          SOVERSION ${KAUTH_SOVERSION}
