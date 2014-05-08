@@ -11,7 +11,7 @@ qt5_add_dbus_adaptor(kauth_dbus_adaptor_tests_SRCS
                      ../src/backends/dbus/DBusHelperProxy.h
                      KAuth::DBusHelperProxy)
 
-include(ECMMarkAsTest)
+include(ECMAddTests)
 
 set(libkauth_tests_static_SRCS
     ../src/kauthaction.cpp
@@ -43,19 +43,15 @@ target_link_libraries(kauth_tests_static PUBLIC Qt5::DBus KF5::CoreAddons)
 ########### next target ###############
 
 set(SetupActionTest_SRCS SetupActionTest.cpp)
-
-add_executable(KAuthSetupActionTest ${SetupActionTest_SRCS})
-add_test(KAuthSetupActionTest KAuthSetupActionTest)
-ecm_mark_as_test(KAuthSetupActionTest)
-
-target_link_libraries(KAuthSetupActionTest Qt5::Test kauth_tests_static)
+ecm_add_test(${SetupActionTest_SRCS}
+    TEST_NAME KAuthSetupActionTest
+    LINK_LIBRARIES Qt5::Test kauth_tests_static
+)
 
 ########### next target ###############
 
 set(HelperTest_SRCS HelperTest.cpp TestHelper.cpp)
-
-add_executable(KAuthHelperTest ${HelperTest_SRCS})
-add_test(KAuthHelperTest KAuthHelperTest)
-ecm_mark_as_test(KAuthHelperTest)
-
-target_link_libraries(KAuthHelperTest Qt5::Test kauth_tests_static)
+ecm_add_test(${HelperTest_SRCS}
+    TEST_NAME KAuthHelperTest
+    LINK_LIBRARIES Qt5::Test kauth_tests_static
+)
