@@ -63,6 +63,8 @@ QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &subdir)
             QObject *instance = loader.instance();
             if (instance) {
                 retlist.append(instance);
+            } else {
+                qWarning() << "Couldn't load" << filePath << "error:" << loader.errorString();
             }
         }
     }
