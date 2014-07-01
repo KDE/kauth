@@ -28,6 +28,7 @@
 #include <QPluginLoader>
 #include <QDir>
 #include <QDebug>
+#include <QCoreApplication>
 
 namespace KAuth
 {
@@ -39,35 +40,30 @@ BackendsManager::BackendsManager()
 {
 }
 
-QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &path)
+QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &subdir)
 {
-    QDir pluginPath(path);
-
-    if (!pluginPath.exists()) {
-        return QList< QObject * >();
-    }
-
-    const QFileInfoList entryList = pluginPath.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
-
-    if (entryList.isEmpty()) {
-        return QList< QObject * >();
-    }
-
-    QList< QObject * > retlist;
-
-    Q_FOREACH (const QFileInfo &fi, entryList) {
-        QString filePath = fi.filePath(); // file name with path
-        QString fileName = fi.fileName(); // just file name
-
-        if (!QLibrary::isLibrary(filePath)) {
+    QList<QObject *> retlist;
+    foreach (const QString& pPath, QCoreApplication::libraryPaths()) {
+        QDir pluginPath(pPath + subdir);
+        if (!pluginPath.exists() || pPath.isEmpty()) {
             continue;
         }
 
-        QString errstr;
-        QPluginLoader loader(filePath);
-        QObject *instance = loader.instance();
-        if (instance) {
-            retlist.append(instance);
+        const QFileInfoList entryList = pluginPath.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
+
+        Q_FOREACH (const QFileInfo &fi, entryList) {
+            QString filePath = fi.filePath(); // file name with path
+            QString fileName = fi.fileName(); // just file name
+
+            if (!QLibrary::isLibrary(filePath)) {
+                continue;
+            }
+
+            QPluginLoader loader(filePath);
+            QObject *instance = loader.instance();
+            if (instance) {
+                retlist.append(instance);
+            }
         }
     }
 
