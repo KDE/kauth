@@ -44,7 +44,7 @@ QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &subdir)
 {
     QList<QObject *> retlist;
     foreach (const QString& pPath, QCoreApplication::libraryPaths()) {
-        QDir pluginPath(pPath + subdir);
+        QDir pluginPath(pPath + QLatin1Char('/') + subdir);
         if (!pluginPath.exists() || pPath.isEmpty()) {
             continue;
         }
