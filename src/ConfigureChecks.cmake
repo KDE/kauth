@@ -101,11 +101,11 @@ else(NOT KAUTH_BACKEND)
           TYPE RECOMMENDED
           PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt is required to make KAuth work, and hence enable certain workspace functionalities"
         )
-        if (NOT POLKITQT5-1_FOUND)
+        if (NOT PolkitQt5-1_FOUND)
             message ("WARNING: You chose the PolkitQt5-1 KAuth backend but you don't have PolkitQt5-1 installed.
                       Falling back to Fake backend")
             set (KAUTH_BACKEND "FAKE")
-        endif (NOT POLKITQT5-1_FOUND)
+        endif (NOT PolkitQt5-1_FOUND)
     endif (KAUTH_BACKEND STREQUAL "POLKITQT5-1")
 endif(NOT KAUTH_BACKEND)
 
