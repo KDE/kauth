@@ -1,7 +1,7 @@
 ####### checks for kdecore/kauth ###############
 
 set(KAUTH_BACKEND_NAME "" CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt, PolkitQt-1, Fake, Apple. Not setting this variable will build the most
+                                   PolkitQt, PolkitQt5-1, Fake, Apple. Not setting this variable will build the most
                                    appropriate backend for your system")
 
 set(KAUTH_BACKEND ${KAUTH_BACKEND_NAME})
@@ -14,19 +14,19 @@ if(NOT KAUTH_BACKEND)
     if (APPLE)
         set (KAUTH_BACKEND "OSX")
     elseif (UNIX)
-        find_package(PolkitQt-1 0.99.0)
+        find_package(PolkitQt5-1 0.99.0)
 
-        if (PolkitQt-1_FOUND)
-            set (KAUTH_BACKEND "PolkitQt-1")
+        if (PolkitQt5-1_FOUND)
+            set (KAUTH_BACKEND "PolkitQt5-1")
 
-            set_package_properties(PolkitQt-1 PROPERTIES
+            set_package_properties(PolkitQt5-1 PROPERTIES
               URL "http://techbase.kde.org/Polkit-Qt-1"
               DESCRIPTION "PolicyKit API for Qt"
               TYPE RECOMMENDED
               PURPOSE "Support for executing priviledged actions in a controlled way (KAuth)"
             )
 
-        else (PolkitQt-1_FOUND)
+        else (PolkitQt5-1_FOUND)
             find_package(PolkitQt)
 
             if (POLKITQT_FOUND)
@@ -40,7 +40,7 @@ if(NOT KAUTH_BACKEND)
 
             else (POLKITQT_FOUND)
                 # Nothing was found: notify and log the missing features
-                set_package_properties(PolkitQt-1 PROPERTIES
+                set_package_properties(PolkitQt5-1 PROPERTIES
                   URL "http://techbase.kde.org/Polkit-Qt-1"
                   DESCRIPTION "PolicyKit API for Qt"
                   TYPE RECOMMENDED
@@ -50,11 +50,11 @@ if(NOT KAUTH_BACKEND)
                   URL "http://api.kde.org/polkit-qt"
                   DESCRIPTION "PolicyKit API for Qt"
                   TYPE RECOMMENDED
-                  PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt-1 is required to make KAuth work, and hence enable certain workspace functionalities"
+                  PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt5-1 is required to make KAuth work, and hence enable certain workspace functionalities"
                 )
                 set (KAUTH_BACKEND "Fake")
             endif (POLKITQT_FOUND)
-        endif (PolkitQt-1_FOUND)
+        endif (PolkitQt5-1_FOUND)
     else(UNIX)
         set (KAUTH_BACKEND "Fake")
     endif(APPLE)
@@ -68,10 +68,10 @@ else(NOT KAUTH_BACKEND)
     set (KAUTH_BACKEND ${KAUTH_BACKEND_UPPER})
 
     # Check if the specified backend is valid. If it is not, we fall back to the Fake one
-    if (NOT KAUTH_BACKEND STREQUAL "OSX" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT-1" AND NOT KAUTH_BACKEND STREQUAL "FAKE")
+    if (NOT KAUTH_BACKEND STREQUAL "OSX" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT5-1" AND NOT KAUTH_BACKEND STREQUAL "FAKE")
         message ("WARNING: The KAuth Backend ${KAUTH_BACKEND} you specified does not exist. Falling back to Fake backend")
         set (KAUTH_BACKEND "FAKE")
-    endif (NOT KAUTH_BACKEND STREQUAL "OSX" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT-1" AND NOT KAUTH_BACKEND STREQUAL "FAKE")
+    endif (NOT KAUTH_BACKEND STREQUAL "OSX" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT5-1" AND NOT KAUTH_BACKEND STREQUAL "FAKE")
 
     # Check requirements for each backend. If not, fall back to the fake one
     if (KAUTH_BACKEND STREQUAL "OSX" AND NOT APPLE)
@@ -85,7 +85,7 @@ else(NOT KAUTH_BACKEND)
           URL "http://api.kde.org/polkit-qt"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
-          PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt-1 is required to make KAuth work, and hence enable certain workspace functionalities"
+          PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt5-1 is required to make KAuth work, and hence enable certain workspace functionalities"
         )
         if (NOT POLKITQT_FOUND)
             message ("WARNING: You chose the PolkitQt KAuth backend but you don't have PolkitQt installed.
@@ -93,24 +93,24 @@ else(NOT KAUTH_BACKEND)
             set (KAUTH_BACKEND "FAKE")
         endif (NOT POLKITQT_FOUND)
     endif (KAUTH_BACKEND STREQUAL "POLKITQT")
-    if (KAUTH_BACKEND STREQUAL "POLKITQT-1")
-        find_package(PolkitQt-1 0.99.0)
-        set_package_properties(PolkitQt-1 PROPERTIES
+    if (KAUTH_BACKEND STREQUAL "POLKITQT5-1")
+        find_package(PolkitQt5-1 0.99.0)
+        set_package_properties(PolkitQt5-1 PROPERTIES
           URL "http://techbase.kde.org/Polkit-Qt-1"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
           PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt is required to make KAuth work, and hence enable certain workspace functionalities"
         )
-        if (NOT POLKITQT-1_FOUND)
-            message ("WARNING: You chose the PolkitQt-1 KAuth backend but you don't have PolkitQt-1 installed.
+        if (NOT POLKITQT5-1_FOUND)
+            message ("WARNING: You chose the PolkitQt5-1 KAuth backend but you don't have PolkitQt5-1 installed.
                       Falling back to Fake backend")
             set (KAUTH_BACKEND "FAKE")
-        endif (NOT POLKITQT-1_FOUND)
-    endif (KAUTH_BACKEND STREQUAL "POLKITQT-1")
+        endif (NOT POLKITQT5-1_FOUND)
+    endif (KAUTH_BACKEND STREQUAL "POLKITQT5-1")
 endif(NOT KAUTH_BACKEND)
 
 set(KAUTH_BACKEND_NAME ${KAUTH_BACKEND} CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt, PolkitQt-1, Fake, Apple. Not setting this variable will build the most
+                                   PolkitQt, PolkitQt5-1, Fake, Apple. Not setting this variable will build the most
                                    appropriate backend for your system" FORCE)
 
 # Add the correct libraries depending on the backend, and eventually set the policy files install location
@@ -139,16 +139,14 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT")
 
     set(KAUTH_POLICY_FILES_INSTALL_DIR ${POLKITQT_POLICY_FILES_INSTALL_DIR} CACHE STRING
         "Where policy files generated by KAuth will be installed" FORCE)
-elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT-1")
-    message(STATUS "Building PolkitQt-1 KAuth backend")
-
-    include_directories(${POLKITQT-1_INCLUDE_DIR})
+elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
+    message(STATUS "Building PolkitQt5-1 KAuth backend")
 
     set(KAUTH_BACKEND_SRCS
         backends/polkit-1/Polkit1Backend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt5::DBus Qt5::Widgets)
+    set(KAUTH_BACKEND_LIBS PolkitQt5-1::Core Qt5::DBus Qt5::Widgets)
 
     # POLKITQT-1_POLICY_FILES_INSTALL_DIR has an absolute pathname, fix that.
     string(REPLACE ${POLKITQT-1_INSTALL_DIR}
@@ -177,7 +175,7 @@ if(KAUTH_BACKEND_NAME STREQUAL "OSX")
 elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT")
    set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
        backends/policykit/kauth-policy-gen-polkit.cpp )
-elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT-1")
+elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
   set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
       backends/polkit-1/kauth-policy-gen-polkit1.cpp )
   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES}
