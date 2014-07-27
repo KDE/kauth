@@ -50,6 +50,10 @@ DBusHelperProxy::DBusHelperProxy(const QDBusConnection &busConnection)
 {
 }
 
+DBusHelperProxy::~DBusHelperProxy()
+{
+}
+
 void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
 {
     QDBusMessage message;
@@ -330,4 +334,3 @@ void debugMessageReceived(int t, const QString &message)
 }
 
 } // namespace Auth
-

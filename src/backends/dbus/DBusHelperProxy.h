@@ -55,6 +55,8 @@ public:
     DBusHelperProxy();
     DBusHelperProxy(const QDBusConnection &busConnection);
 
+    virtual ~DBusHelperProxy();
+
     virtual void executeAction(const QString &action, const QString &helperID,
                                const QVariantMap &arguments);
     virtual Action::AuthStatus authorizeAction(const QString &action, const QString &helperID);
