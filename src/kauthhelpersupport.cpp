@@ -80,6 +80,10 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     openlog(id, 0, LOG_USER);
     qInstallMessageHandler(&HelperSupport::helperDebugHandler);
 
+    // NOTE: The helper proxy might use dbus, and we should have the qapp
+    //       before using dbus.
+    QCoreApplication app(argc, argv);
+
     if (!BackendsManager::helperProxy()->initHelper(QString::fromLatin1(id))) {
         syslog(LOG_DEBUG, "Helper initialization failed");
         return -1;
@@ -90,7 +94,6 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
 
     BackendsManager::helperProxy()->setHelperResponder(responder);
 
-    QCoreApplication app(argc, argv);
     // Attach the timer
     QTimer *timer = new QTimer(0);
     responder->setProperty("__KAuth_Helper_Shutdown_Timer", QVariant::fromValue(timer));
