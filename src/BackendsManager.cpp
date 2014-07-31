@@ -40,35 +40,32 @@ BackendsManager::BackendsManager()
 {
 }
 
-QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &subdir)
+QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &path)
 {
     QList<QObject *> retlist;
-    foreach (const QString& pPath, QCoreApplication::libraryPaths()) {
-        QDir pluginPath(pPath + QLatin1Char('/') + subdir);
-        if (!pluginPath.exists() || pPath.isEmpty()) {
+    QDir pluginPath(path);
+    if (!pluginPath.exists() || path.isEmpty()) {
+        return retlist;
+    }
+
+    const QFileInfoList entryList = pluginPath.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
+
+    Q_FOREACH (const QFileInfo &fi, entryList) {
+        QString filePath = fi.filePath(); // file name with path
+        QString fileName = fi.fileName(); // just file name
+
+        if (!QLibrary::isLibrary(filePath)) {
             continue;
         }
 
-        const QFileInfoList entryList = pluginPath.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
-
-        Q_FOREACH (const QFileInfo &fi, entryList) {
-            QString filePath = fi.filePath(); // file name with path
-            QString fileName = fi.fileName(); // just file name
-
-            if (!QLibrary::isLibrary(filePath)) {
-                continue;
-            }
-
-            QPluginLoader loader(filePath);
-            QObject *instance = loader.instance();
-            if (instance) {
-                retlist.append(instance);
-            } else {
-                qWarning() << "Couldn't load" << filePath << "error:" << loader.errorString();
-            }
+        QPluginLoader loader(filePath);
+        QObject *instance = loader.instance();
+        if (instance) {
+            retlist.append(instance);
+        } else {
+            qWarning() << "Couldn't load" << filePath << "error:" << loader.errorString();
         }
     }
-
     return retlist;
 }
 
