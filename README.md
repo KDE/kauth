@@ -36,9 +36,3 @@ CMakeLists.txt.
 See <http://techbase.kde.org/Development/Tutorials/KAuth/KAuth_Basics> for a
 detailed tutorial on how to use KAuth.
 
-## Links
-
-- Home page: <https://projects.kde.org/projects/frameworks/kauth>
-- Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: \#kde-devel on Freenode
-- Git repository: <https://projects.kde.org/projects/frameworks/kauth/repository>
