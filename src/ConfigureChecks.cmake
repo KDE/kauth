@@ -25,8 +25,9 @@ if(NOT KAUTH_BACKEND)
               TYPE RECOMMENDED
               PURPOSE "Support for executing priviledged actions in a controlled way (KAuth)"
             )
+            include_directories(${POLKITQT-1_INCLUDE_DIR})
 
-        else (PolkitQt5-1_FOUND)
+		else (PolkitQt5-1_FOUND)
             find_package(PolkitQt)
 
             if (POLKITQT_FOUND)
@@ -146,7 +147,7 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
         backends/polkit-1/Polkit1Backend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS PolkitQt5-1::Core Qt5::DBus Qt5::Widgets)
+    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt5::DBus Qt5::Widgets)
 
     # POLKITQT-1_POLICY_FILES_INSTALL_DIR has an absolute pathname, fix that.
     string(REPLACE ${POLKITQT-1_INSTALL_DIR}
