@@ -58,16 +58,16 @@ public:
     virtual ~DBusHelperProxy();
 
     virtual void executeAction(const QString &action, const QString &helperID,
-                               const QVariantMap &arguments);
-    virtual Action::AuthStatus authorizeAction(const QString &action, const QString &helperID);
-    virtual void stopAction(const QString &action, const QString &helperID);
+                               const QVariantMap &arguments) Q_DECL_OVERRIDE;
+    Action::AuthStatus authorizeAction(const QString &action, const QString &helperID) Q_DECL_OVERRIDE;
+    void stopAction(const QString &action, const QString &helperID) Q_DECL_OVERRIDE;
 
-    virtual bool initHelper(const QString &name);
-    virtual void setHelperResponder(QObject *o);
-    virtual bool hasToStopAction();
-    virtual void sendDebugMessage(int level, const char *msg);
-    virtual void sendProgressStep(int step);
-    virtual void sendProgressStep(const QVariantMap &data);
+    bool initHelper(const QString &name) Q_DECL_OVERRIDE;
+    void setHelperResponder(QObject *o) Q_DECL_OVERRIDE;
+    bool hasToStopAction() Q_DECL_OVERRIDE;
+    void sendDebugMessage(int level, const char *msg) Q_DECL_OVERRIDE;
+    void sendProgressStep(int step) Q_DECL_OVERRIDE;
+    void sendProgressStep(const QVariantMap &data) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     void stopAction(const QString &action);

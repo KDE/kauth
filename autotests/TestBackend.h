@@ -35,12 +35,12 @@ class TestBackend : public AuthBackend
 
 public:
     TestBackend();
-    virtual void setupAction(const QString &);
-    virtual Action::AuthStatus authorizeAction(const QString &);
-    virtual Action::AuthStatus actionStatus(const QString &);
-    virtual QByteArray callerID() const;
-    virtual bool isCallerAuthorized(const QString &action, QByteArray callerID);
-    virtual bool actionExists(const QString &action);
+    void setupAction(const QString &) Q_DECL_OVERRIDE;
+    Action::AuthStatus authorizeAction(const QString &) Q_DECL_OVERRIDE;
+    Action::AuthStatus actionStatus(const QString &) Q_DECL_OVERRIDE;
+    QByteArray callerID() const Q_DECL_OVERRIDE;
+    bool isCallerAuthorized(const QString &action, QByteArray callerID) Q_DECL_OVERRIDE;
+    bool actionExists(const QString &action) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     void setNewCapabilities(KAuth::AuthBackend::Capabilities capabilities);

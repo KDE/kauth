@@ -53,7 +53,7 @@ public:
     /// Virtual destructor
     virtual ~ExecuteJob();
 
-    void start();
+    void start() Q_DECL_OVERRIDE;
 
     /// Returns the action associated with this job
     Action action() const;
