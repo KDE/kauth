@@ -44,10 +44,12 @@ set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5Auth")
 
 include(ECMPackageConfigHelpers)
 
-ecm_configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF5AuthConfig.cmake.in"
-                              "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfig.cmake"
-                              INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
-                              )
+ecm_configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/KF5AuthConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfig.cmake"
+    PATH_VARS KDE_INSTALL_DATADIR_KF5
+    INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
+)
 
 install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfig.cmake"
                "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfigVersion.cmake"
