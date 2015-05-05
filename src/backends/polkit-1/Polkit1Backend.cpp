@@ -23,7 +23,6 @@
 
 #include <QtCore/qplugin.h>
 #include <QtCore/QCoreApplication>
-#include <QtCore/QDebug>
 #include <QtCore/QTimer>
 
 #include <QApplication>
@@ -34,6 +33,8 @@
 
 #include <PolkitQt1/Authority>
 #include <PolkitQt1/Subject>
+
+#include "kauthdebug.h"
 
 namespace KAuth
 {
@@ -86,7 +87,7 @@ void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
 {
     // If a parent was not specified, skip this
     if (!parent) {
-        qDebug() << "Parent widget does not exist, skipping";
+        qCDebug(KAUTH) << "Parent widget does not exist, skipping";
         return;
     }
 
@@ -94,7 +95,7 @@ void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
     if (QDBusConnection::sessionBus().interface()->isServiceRegistered(QLatin1String("org.kde.Polkit1AuthAgent"))) {
         // Check if we actually are entitled to use GUI capabilities
         if (qApp == 0 || !qobject_cast<QApplication *>(qApp)) {
-            qDebug() << "Not streaming parent as we are on a TTY application";
+            qCDebug(KAUTH) << "Not streaming parent as we are on a TTY application";
         }
 
         // Retrieve the dialog root window Id
@@ -112,10 +113,10 @@ void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
         call.waitForFinished();
 
         if (call.isError()) {
-            qWarning() << "ERROR while streaming the parent!!" << call.error();
+            qCWarning(KAUTH) << "ERROR while streaming the parent!!" << call.error();
         }
     } else {
-        qDebug() << "KDE polkit agent appears too old or not registered on the bus";
+        qCDebug(KAUTH) << "KDE polkit agent appears too old or not registered on the bus";
     }
 }
 

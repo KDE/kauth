@@ -18,6 +18,7 @@ set(libkauth_tests_static_SRCS
     ../src/kauthactionreply.cpp
     ../src/kauthexecutejob.cpp
     ../src/AuthBackend.cpp
+    ../src/kauthdebug.cpp
     # Use our "special" backends manager
     BackendsManager.cpp
     ../src/HelperProxy.cpp

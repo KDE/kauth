@@ -18,6 +18,7 @@ set(libkauth_SRCS
     BackendsManager.cpp
     HelperProxy.cpp
     kauthhelpersupport.cpp
+    kauthdebug.cpp
     backends/fake/FakeBackend.cpp
     backends/fakehelper/FakeHelperProxy.cpp
     ${KAuth_QM_LOADER}
@@ -68,7 +69,7 @@ endif ()
 if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     set(KAUTH_BACKEND_SRCS ${KAUTH_BACKEND_SRCS})
     # KAuth::AuthBackend is not exported
-    add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp)
+    add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp kauthdebug.cpp)
     target_link_libraries(kauth_backend_plugin PRIVATE ${KAUTH_BACKEND_LIBS})
     set_target_properties(kauth_backend_plugin PROPERTIES PREFIX "")
 
@@ -83,7 +84,7 @@ endif ()
 
 if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE")
     # KAuth::HelperProxy is not exported
-    add_library(kauth_helper_plugin MODULE ${KAUTH_HELPER_BACKEND_SRCS} HelperProxy.cpp)
+    add_library(kauth_helper_plugin MODULE ${KAUTH_HELPER_BACKEND_SRCS} HelperProxy.cpp kauthdebug.cpp)
     target_link_libraries(kauth_helper_plugin PRIVATE ${KAUTH_HELPER_BACKEND_LIBS})
     set_target_properties(kauth_helper_plugin PROPERTIES PREFIX "")
     install(TARGETS kauth_helper_plugin

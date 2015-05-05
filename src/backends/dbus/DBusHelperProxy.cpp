@@ -25,11 +25,11 @@
 #include <QMap>
 #include <QtDBus/QDBusMessage>
 #include <QtDBus/QDBusConnection>
-#include <QDebug>
 #include <QTimer>
 
 #include "BackendsManager.h"
 #include "kf5authadaptor.h"
+#include "kauthdebug.h"
 
 namespace KAuth
 {
@@ -97,7 +97,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
         ActionReply r = ActionReply::DBusErrorReply();
         r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
                                  "Connection error: ") + m_busConnection.lastError().message() + tr(". Message error: ") + pendingCall.reply().errorMessage());
-        qDebug() << pendingCall.reply().errorMessage();
+        qCDebug(KAUTH) << pendingCall.reply().errorMessage();
 
         emit actionPerformed(action, r);
     }

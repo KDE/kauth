@@ -21,10 +21,10 @@
 
 #include "kauthaction.h"
 #include "kauthexecutejob.h"
+#include "kauthdebug.h"
 
 #include <QAbstractButton>
 #include <QAction>
-#include <QDebug>
 #include <QIcon>
 
 namespace KAuth
@@ -66,7 +66,7 @@ void ObjectDecoratorPrivate::connectDecorated()
         return;
     }
 
-    qWarning() << Q_FUNC_INFO << "We're not decorating an action or a button";
+    qCWarning(KAUTH) << Q_FUNC_INFO << "We're not decorating an action or a button";
 }
 
 void ObjectDecoratorPrivate::linkActionToWidget()
@@ -83,7 +83,7 @@ void ObjectDecoratorPrivate::linkActionToWidget()
         return;
     }
 
-    qWarning() << Q_FUNC_INFO << "We're not decorating an action or a widget";
+    qCWarning(KAUTH) << Q_FUNC_INFO << "We're not decorating an action or a widget";
 }
 
 void ObjectDecoratorPrivate::slotActivated()

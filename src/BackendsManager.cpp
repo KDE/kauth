@@ -24,10 +24,10 @@
 // Include fake backends
 #include "backends/fake/FakeBackend.h"
 #include "backends/fakehelper/FakeHelperProxy.h"
+#include "kauthdebug.h"
 
 #include <QPluginLoader>
 #include <QDir>
-#include <QDebug>
 #include <QCoreApplication>
 
 namespace KAuth
@@ -63,7 +63,7 @@ QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &path)
         if (instance) {
             retlist.append(instance);
         } else {
-            qWarning() << "Couldn't load" << filePath << "error:" << loader.errorString();
+            qCWarning(KAUTH) << "Couldn't load" << filePath << "error:" << loader.errorString();
         }
     }
     return retlist;
@@ -96,7 +96,7 @@ void BackendsManager::init()
         auth = new FakeBackend;
 #if !KAUTH_COMPILING_FAKE_BACKEND
         // Spit a fat warning
-        qWarning() << "WARNING: KAuth was compiled with a working backend, but was unable to load it! Check your installation!";
+        qCWarning(KAUTH) << "WARNING: KAuth was compiled with a working backend, but was unable to load it! Check your installation!";
 #endif
     }
 
@@ -105,7 +105,7 @@ void BackendsManager::init()
         helper = new FakeHelperProxy;
 #if !KAUTH_COMPILING_FAKE_BACKEND
         // Spit a fat warning
-        qWarning() << "WARNING: KAuth was compiled with a working helper backend, but was unable to load it! "
+        qCWarning(KAUTH) << "WARNING: KAuth was compiled with a working helper backend, but was unable to load it! "
                    "Check your installation!";
 #endif
     }
