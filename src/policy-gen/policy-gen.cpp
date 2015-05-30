@@ -33,7 +33,7 @@
 using namespace std;
 
 QList<Action> parse(QSettings &ini);
-QHash<QString, QString> parseDomain(QSettings &ini);
+QMap<QString, QString> parseDomain(QSettings &ini);
 
 int main(int argc, char **argv)
 {
@@ -151,9 +151,9 @@ QList<Action> parse(QSettings &ini)
     return actions;
 }
 
-QHash<QString, QString> parseDomain(QSettings &ini)
+QMap<QString, QString> parseDomain(QSettings &ini)
 {
-    QHash<QString, QString> rethash;
+    QMap<QString, QString> rethash;
 
     if (ini.childGroups().contains(QString::fromLatin1("Domain"))) {
         if (ini.contains(QString::fromLatin1("Domain/Name"))) {

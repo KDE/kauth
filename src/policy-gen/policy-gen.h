@@ -28,14 +28,14 @@
 struct Action {
     QString name;
 
-    QHash<QString, QString> descriptions;
-    QHash<QString, QString> messages;
+    QMap<QString, QString> descriptions;
+    QMap<QString, QString> messages;
 
     QString policy;
     QString policyInactive;
     QString persistence;
 };
 
-extern void output(QList<Action> actions, QHash<QString, QString> domain);
+extern void output(QList<Action> actions, QMap<QString, QString> domain);
 
 #endif

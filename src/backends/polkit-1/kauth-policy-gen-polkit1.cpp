@@ -39,7 +39,7 @@ const char policy_tag[] = ""
 
 const char dent[] = "   ";
 
-void output(QList<Action> actions, QHash<QString, QString> domain)
+void output(QList<Action> actions, QMap<QString, QString> domain)
 {
     QTextStream out(stdout);
     out.setCodec("UTF-8");
@@ -47,11 +47,11 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
     out << header;
 
     // Blacklisted characters + replacements
-    QHash< QChar, QString > blacklist;
+    QMap< QChar, QString > blacklist;
     blacklist.insert(QLatin1Char('&'), QLatin1String("&amp;"));
 
     if (domain.contains(QLatin1String("vendor"))) {
-        QHash< QChar, QString >::const_iterator blI;
+        QMap< QChar, QString >::const_iterator blI;
         QString vendor = domain[QLatin1String("vendor")];
         for (blI = blacklist.constBegin(); blI != blacklist.constEnd(); ++blI) {
             vendor.replace(blI.key(), blI.value());
@@ -69,13 +69,13 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
         out << dent << "<action id=\"" << action.name << "\" >\n";
 
         // Not a typo, messages and descriptions are actually inverted
-        for (QHash< QString, QString >::const_iterator i = action.messages.constBegin(); i != action.messages.constEnd(); ++i) {
+        for (QMap< QString, QString >::const_iterator i = action.messages.constBegin(); i != action.messages.constEnd(); ++i) {
             out << dent << dent << "<description";
             if (i.key() != QLatin1String("en")) {
                 out << " xml:lang=\"" << i.key() << '"';
             }
 
-            QHash< QChar, QString >::const_iterator blI;
+            QMap< QChar, QString >::const_iterator blI;
             QString description = i.value();
             for (blI = blacklist.constBegin(); blI != blacklist.constEnd(); ++blI) {
                 description.replace(blI.key(), blI.value());
@@ -84,8 +84,8 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
             out << '>' << description << "</description>\n";
         }
 
-        QHash< QString, QString >::const_iterator i;
-        for (QHash< QString, QString >::const_iterator i = action.descriptions.constBegin();
+        QMap< QString, QString >::const_iterator i;
+        for (QMap< QString, QString >::const_iterator i = action.descriptions.constBegin();
                 i != action.descriptions.constEnd();
                 ++i) {
             out << dent << dent << "<message";
@@ -93,7 +93,7 @@ void output(QList<Action> actions, QHash<QString, QString> domain)
                 out << " xml:lang=\"" << i.key() << '"';
             }
 
-            QHash< QChar, QString >::const_iterator blI;
+            QMap< QChar, QString >::const_iterator blI;
             QString message = i.value();
             for (blI = blacklist.constBegin(); blI != blacklist.constEnd(); ++blI) {
                 message.replace(blI.key(), blI.value());
