@@ -39,11 +39,6 @@ function(KAUTH_INSTALL_HELPER_FILES HELPER_TARGET HELPER_ID HELPER_USER)
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${HELPER_ID}.conf
                 DESTINATION ${SYSCONF_INSTALL_DIR}/dbus-1/system.d/)
 
-        if(IS_ABSOLUTE ${KAUTH_HELPER_INSTALL_DIR})
-            set(KAUTH_HELPER_INSTALL_ABSOLUTE_DIR ${KAUTH_HELPER_INSTALL_DIR})
-        else()
-            set(KAUTH_HELPER_INSTALL_ABSOLUTE_DIR "${CMAKE_INSTALL_PREFIX}/${KAUTH_HELPER_INSTALL_DIR}")
-        endif()
         configure_file(${KAUTH_STUB_FILES_DIR}/dbus_service.stub
                         ${CMAKE_CURRENT_BINARY_DIR}/${HELPER_ID}.service)
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${HELPER_ID}.service
