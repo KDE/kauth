@@ -38,7 +38,7 @@ const char policy_tag[] = ""
 
 const char dent[] = "   ";
 
-void output(QList<Action> actions, QHash<QString, QString> domain)
+void output(QList<Action> actions, QMap<QString, QString> domain)
 {
     Q_UNUSED(domain)
 
