@@ -68,7 +68,7 @@ function(KAUTH_INSTALL_ACTIONS HELPER_ID ACTIONS_FILE)
                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                        COMMENT "Generating ${HELPER_ID}.policy"
                        DEPENDS KF5::kauth-policy-gen)
-    add_custom_target(${HELPER_ID}.policy ALL COMMENT "actions for ${HELPER_ID}" DEPENDS ${_output})
+    add_custom_target(${HELPER_ID}.policy-customtarget ALL COMMENT "actions for ${HELPER_ID}" DEPENDS ${_output})
 
     install(FILES ${_output} DESTINATION ${KAUTH_POLICY_FILES_INSTALL_DIR})
   endif()
