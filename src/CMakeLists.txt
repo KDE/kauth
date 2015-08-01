@@ -1,5 +1,5 @@
 
-find_package(Qt5 5.2.0 CONFIG REQUIRED Widgets DBus)
+find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Widgets DBus)
 
 # This file handles all the logic for compiling KAuth's backends
 include(ConfigureChecks.cmake)
