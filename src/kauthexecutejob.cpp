@@ -28,7 +28,7 @@
 namespace KAuth
 {
 
-class ExecuteJob::Private
+class Q_DECL_HIDDEN ExecuteJob::Private
 {
 public:
     Private(ExecuteJob *parent) : q(parent) {}
