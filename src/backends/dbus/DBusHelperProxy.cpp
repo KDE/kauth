@@ -93,14 +93,22 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
     QDBusPendingCall pendingCall = m_busConnection.asyncCall(message);
 
-    if (pendingCall.reply().type() == QDBusMessage::ErrorMessage) {
-        ActionReply r = ActionReply::DBusErrorReply();
-        r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
-                                 "Connection error: ") + m_busConnection.lastError().message() + tr(". Message error: ") + pendingCall.reply().errorMessage());
-        qCDebug(KAUTH) << pendingCall.reply().errorMessage();
+    auto watcher = new QDBusPendingCallWatcher(pendingCall, this);
 
-        emit actionPerformed(action, r);
-    }
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, [this, action, watcher]() {
+        watcher->deleteLater();
+
+        const QDBusMessage reply = watcher->reply();
+
+        if (reply.type() == QDBusMessage::ErrorMessage) {
+            ActionReply r = ActionReply::DBusErrorReply();
+            r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
+                                    "Connection error: ") + m_busConnection.lastError().message() + tr(". Message error: ") + reply.errorMessage());
+            qCDebug(KAUTH) << reply.errorMessage();
+
+            emit actionPerformed(action, r);
+        }
+    });
 }
 
 Action::AuthStatus DBusHelperProxy::authorizeAction(const QString &action, const QString &helperID)
