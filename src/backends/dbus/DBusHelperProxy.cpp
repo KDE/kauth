@@ -329,6 +329,9 @@ void debugMessageReceived(int t, const QString &message)
     case QtDebugMsg:
         qDebug("Debug message from helper: %s", message.toLatin1().data());
         break;
+    case QtInfoMsg:
+        qInfo("Info message from helper: %s", message.toLatin1().data());
+        break;
     case QtWarningMsg:
         qWarning("Warning from helper: %s", message.toLatin1().data());
         break;
