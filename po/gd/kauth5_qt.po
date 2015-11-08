@@ -1,0 +1,62 @@
+# GunChleoc <fios@foramnagaidhlig.net>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-11-04 15:11+0000\n"
+"Last-Translator: Michael Bauer <fios@akerbeltz.org>\n"
+"Language-Team: Fòram na Gàidhlig\n"
+"Language: gd\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:80
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr "Mearachd a' backend DBus: dh'fhàillig le ceangal ris an inneal-taic. "
+
+#: backends/dbus/DBusHelperProxy.cpp:105
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+"Mearachd a' backend DBus: dh'fhàillig le consltradh ris an inneal-taic. "
+"Mearachd a' cheangail: "
+
+#: backends/dbus/DBusHelperProxy.cpp:106
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr ". Mearachd na teachdaireachd: "
+
+#: kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "Dh'fheuchadh ri gnìomh mì-dhligheach a thòiseachadh"
+
+#: kauthexecutejob.cpp:102
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Chan aithne dhuinn modh a' ghnìomhaidh a chaidh a thaghadh"
+
+#: kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "Chan aithne duinn an staid airson an dearbhaidh"
+
+#: kauthexecutejob.cpp:149
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"Cha cheadaich am backend làithreach ach dearbhadh inneal-taice ach chan eil "
+"inneal-taice aig a' ghnìomh seo."
+
+#: kauthexecutejob.cpp:157 kauthexecutejob.cpp:181
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "Cha do shònraich am backend dòigh an dearbhaidh"
