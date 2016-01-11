@@ -144,6 +144,9 @@ void ExecuteJob::Private::doExecuteAction()
             }
         }
     } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
+        if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
+            BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWidget());
+        }
         if (!action.hasHelper()) {
             ActionReply r(ActionReply::InvalidActionReply());
             r.setErrorDescription(tr("The current backend only allows helper authorization, but this action does not have a helper."));
