@@ -1,0 +1,59 @@
+# Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-28 15:38+0300\n"
+"PO-Revision-Date: 2014-06-06 11:21+0300\n"
+"Last-Translator: Safa Alfulaij <safa1996alfulaij@gmail.com>\n"
+"Language-Team: Arabic <kde-i18n-doc@kde.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Lokalize 1.5\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:80
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr ""
+
+#: backends/dbus/DBusHelperProxy.cpp:105
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+
+#: backends/dbus/DBusHelperProxy.cpp:106
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr ""
+
+#: kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "حاول بدء إجراء غير صالح"
+
+#: kauthexecutejob.cpp:102
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr ""
+
+#: kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr ""
+
+#: kauthexecutejob.cpp:152
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+
+#: kauthexecutejob.cpp:160 kauthexecutejob.cpp:184
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr ""

@@ -1,0 +1,68 @@
+# Translation of kauth5_qt to Northern Sami
+#
+# Børre Gaup <boerre@skolelinux.no>, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-02-28 03:44+0000\n"
+"PO-Revision-Date: 2012-05-30 23:19+0200\n"
+"Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
+"Language-Team: Northern Sami <i18n-sme@lister.ping.uio.no>\n"
+"Language: se\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: qtrich\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:80
+#, fuzzy
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr "Meattáhus DBus-duogášmohtoris: ii ožžon oktavuođa veahkeheddjiin. %1"
+
+#: backends/dbus/DBusHelperProxy.cpp:105
+#, fuzzy
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+"Meattáhus DBus-duogášmohtoris: ii ožžon oktavuođa veahkeheddjiin. "
+"Laktinmeattáhus: %1. Meattáhusdiehtu: %2"
+
+#: backends/dbus/DBusHelperProxy.cpp:106
+#, fuzzy
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr "Vuogádatmeattáhus: %1"
+
+#: kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr ""
+
+#: kauthexecutejob.cpp:102
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr ""
+
+#: kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr ""
+
+#: kauthexecutejob.cpp:149
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+
+#: kauthexecutejob.cpp:157 kauthexecutejob.cpp:181
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr ""
