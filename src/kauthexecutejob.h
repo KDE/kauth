@@ -30,6 +30,10 @@
 namespace KAuth
 {
 
+/**
+ * @brief Job executing an Action
+ * @since 5.0
+ */
 class KAUTH_EXPORT ExecuteJob : public KJob
 {
     Q_OBJECT
@@ -53,11 +57,22 @@ public:
     /// Virtual destructor
     virtual ~ExecuteJob();
 
+    /**
+     * Starts the job asynchronously.
+     * @see KJob::result
+     * @see newData
+     * @see statusChanged
+     */
     void start() Q_DECL_OVERRIDE;
 
-    /// Returns the action associated with this job
+    /**
+     * @returns the action associated with this job
+     */
     Action action() const;
 
+    /**
+     * @returns the data sent by the helper
+     */
     QVariantMap data() const;
 
 Q_SIGNALS:
@@ -76,6 +91,10 @@ Q_SIGNALS:
     */
     void newData(const QVariantMap &data);
 
+    /**
+     * @brief Signal emitted when the authentication status changes
+     * @param status the the new authentication status
+     */
     void statusChanged(KAuth::Action::AuthStatus status);
 };
 

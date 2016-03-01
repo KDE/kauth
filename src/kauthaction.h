@@ -42,27 +42,40 @@ class ActionData;
  * of the Action class with the same name refers to the same action.
  *
  * Once you have an action object you can tell the helper to execute it
- * (asking the user to authenticate if needed) with one of the execute*() methods.
+ * (asking the user to authenticate if needed) with the execute() method.
  * The simplest thing to do is to execute a single action synchronously
- * blocking for the reply, using the execute() method.
+ * blocking for the reply by callin exec() on the job object returned by
+ * execute().
  *
- * For asynchronous calls, use the executeAsync() method. It sends the request
- * to the helper and returns immediately. You can optionally provide an object
- * and a slot. This will be connected to the actionPerformed() signal of the
- * action's ActionWatcher object.
- * By calling the watcher() method, you obtain an object that emits some useful
- * signals that you can receive while the action is in progress. Those signals
- * are emitted also with the synchronous calls.
- * To execute a bunch of actions with a single call, you can use the executeActions()
- * static method. This is not the same as calling executeAsync() for each action,
- * because the actions are execute with a single request to the helper.
- * To use any of the execute*() methods you have to set the default helper's ID using
+ * For asynchronous calls, use KAuth::ExecuteJob::start() instead.
+ * It sends the request
+ * to the helper and returns immediately. Before doing so you should however
+ * connect to at least the KJob::result(KJob *) signal to receive a slot call
+ * once the action is done executing.
+ *
+ * To use the execute() method you have to set the default helper's ID using
  * the setHelperID() static method. Alternatively, you can specify the helperID using
  * the overloaded version of the methods that takes it as a parameter.
  *
  * Each action object contains a QVariantMap object that is passed directly to the
  * helper when the action is executed. You can access this map using the arguments()
  * method. You can insert into it any kind of custom data you need to pass to the helper.
+ *
+ * @code
+ * void MyApp::runAction()
+ * {
+ *     action = KAuth::Action("org.kde.myapp.action");
+ *     KAuth::ExecuteJob *job = action.execute();
+ *     connect(job, &KAuth::ExecuteJob::result, this, &MyApp::actionResult);
+ *     job->start();
+ * }
+ *
+ * void MyApp::actionResult(KJob *kjob)
+ * {
+ *     auto job = qobject_cast<KAuth::ExecuteJob *>(kjob);
+ *     qDebug() << job.error() << job.data();
+ * }
+ * @endcode
  *
  * @since 4.4
  */
