@@ -1,0 +1,65 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# enolp <enolp@softastur.org>, 2015, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4-1\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2016-02-04 23:45+0100\n"
+"Last-Translator: enolp <enolp@sofastur.org>\n"
+"Language-Team: Asturian <>\n"
+"Language: ast_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: asturian\n"
+"X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:85
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr "Fallu de backend de D-Bus: falló la conexón col ayudante."
+
+#: backends/dbus/DBusHelperProxy.cpp:110
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+"Fallu de backend de D-Bus: falló la conexón col ayudante. Fallu de conexón: "
+
+#: backends/dbus/DBusHelperProxy.cpp:111
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr ". Mensaxe de fallu: %1"
+
+#: kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "Intentóse aniciar una aición non válida"
+
+#: kauthexecutejob.cpp:102
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Escoyóse un mou d'execución desconocíu"
+
+#: kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "Desconozse l'estáu pal procedimientu d'autenticación"
+
+#: kauthexecutejob.cpp:152
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"El backend actual namái permite l'autorización del ayudante pero esta aición "
+"nun lu tien."
+
+#: kauthexecutejob.cpp:160 kauthexecutejob.cpp:184
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "El backend nun especifica cómo autorizar"

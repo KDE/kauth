@@ -1,0 +1,64 @@
+# Indonesian translations for kdelibs4 package.
+# Copyright (C) 2010 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kdelibs4 package.
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2010-2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2014-06-08 12:24+0700\n"
+"Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
+"Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:85
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr "Galat Ujung Belakang DBus: koneksi ke pembantu gagal. "
+
+#: backends/dbus/DBusHelperProxy.cpp:110
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+"Galat Ujung Belakang DBus: tak dapat menghubungi pembantu. Galat koneksi: "
+
+#: backends/dbus/DBusHelperProxy.cpp:111
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr ". Pesan galat: "
+
+#: kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "Mencoba menjalankan aksi tidak valid"
+
+#: kauthexecutejob.cpp:102
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Mode eksekusi tak diketahui telah dipilih"
+
+#: kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "Status tak diketahui untuk prosedur otentikasi"
+
+#: kauthexecutejob.cpp:152
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"Ujung belakang saat ini hanya memungkinkan otorisasi pembantu, tapi aksi ini "
+"tidak mempunyai pembantu."
+
+#: kauthexecutejob.cpp:160 kauthexecutejob.cpp:184
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "Ujung belakang tidak menentukan cara otorisasi"
