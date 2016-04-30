@@ -49,6 +49,29 @@ ecm_generate_headers(KAuth_HEADERS
   REQUIRED_HEADERS KAuth_HEADERS
 )
 
+find_package(PythonModuleGeneration)
+
+if (PythonModuleGeneration_FOUND)
+  ecm_generate_python_binding(
+    TARGET KF5::Auth
+    PYTHONNAMESPACE PyKF5
+    MODULENAME KAuth
+    RULES_FILE "${CMAKE_SOURCE_DIR}/cmake/rules_PyKF5.py"
+    INSTALL_DIR_SUFFIX ${KDE_INSTALL_PYTHONBINDINGSDIR}
+    SIP_INCLUDES $<TARGET_PROPERTY:Qt5::Widgets,INTERFACE_INCLUDE_DIRECTORIES>
+    SIP_DEPENDS
+      QtWidgets/QtWidgetsmod.sip
+      PyKF5/KCoreAddons/KCoreAddonsmod.sip
+    HEADERS
+      kauth.h
+      kauthhelpersupport.h
+      kauthaction.h
+      kauthactionreply.h
+      kauthexecutejob.h
+      kauthobjectdecorator.h
+  )
+endif()
+
 # KAuth policy generator executable
 
 # Compile only if fake backend has not been selected
