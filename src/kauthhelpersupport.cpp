@@ -30,10 +30,11 @@
 #else
 // Quick hack to replace syslog (just write to stderr)
 // TODO: should probably use ReportEvent
-#define	LOG_ERR		4
-#define	LOG_WARNING	5
-#define	LOG_DEBUG	6
-#define	LOG_USER	(1<<3)
+#define LOG_ERR         3
+#define LOG_WARNING     4
+#define LOG_DEBUG       7
+#define LOG_INFO        6
+#define LOG_USER        (1<<3)
 static inline void openlog(const char*, int, int) {}
 static inline void closelog() {}
 #define syslog(level, ...) fprintf(stderr, __VA_ARGS__)
@@ -121,6 +122,9 @@ void HelperSupport::helperDebugHandler(QtMsgType type, const QMessageLogContext 
         case QtCriticalMsg:
         case QtFatalMsg:
             level = LOG_ERR;
+            break;
+        case QtInfoMsg:
+            level = LOG_INFO;
             break;
         }
         syslog(level, "%s", msg.constData());
