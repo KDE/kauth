@@ -37,7 +37,6 @@ namespace KAuth
 class KAUTH_EXPORT ExecuteJob : public KJob
 {
     Q_OBJECT
-    Q_DISABLE_COPY(ExecuteJob)
 
     ExecuteJob(const KAuth::Action &action, KAuth::Action::ExecutionMode mode, QObject *parent);
 
@@ -96,6 +95,9 @@ Q_SIGNALS:
      * @param status the the new authentication status
      */
     void statusChanged(KAuth::Action::AuthStatus status);
+
+private:
+  Q_DISABLE_COPY(ExecuteJob)
 };
 
 } // namespace Auth
