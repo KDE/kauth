@@ -12,3 +12,7 @@ libraries:
  - qmake: KAuth
    cmake: "KF5::Auth"
 cmakename: KF5Auth
+
+public_lib: true
+group: Frameworks
+subgroup: Tier 2
