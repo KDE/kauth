@@ -123,9 +123,11 @@ void HelperSupport::helperDebugHandler(QtMsgType type, const QMessageLogContext 
         case QtFatalMsg:
             level = LOG_ERR;
             break;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
         case QtInfoMsg:
             level = LOG_INFO;
             break;
+#endif
         }
         syslog(level, "%s", msg.constData());
     } else {
