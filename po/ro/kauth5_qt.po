@@ -1,0 +1,67 @@
+# Traducerea kdelibs4.po în Română
+# Laurenţiu Buzdugan <lbuz@rolix.org>, 2008, 2009.
+# Sergiu Bivol <sergiu@ase.md>, 2008, 2009, 2010.
+# Sergiu Bivol <sergiu@ase.md>, 2010, 2012, 2013, 2014.
+# Cristian Oneț <onet.cristian@gmail.com>, 2010, 2011, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2014-08-16 14:37+0300\n"
+"Last-Translator: Sergiu Bivol <sergiu@ase.md>\n"
+"Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:85
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: connection to helper failed. "
+msgstr "Eroare de platformă DBus: conexiunea la ajutător a eșuat. "
+
+#: backends/dbus/DBusHelperProxy.cpp:110
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: could not contact the helper. Connection error: "
+msgstr ""
+"Eroare de platformă DBus: nu am putut contacta ajutătorul. Eroare de "
+"conexiune: "
+
+#: backends/dbus/DBusHelperProxy.cpp:111
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ". Message error: "
+msgstr ". Eroare mesaj: "
+
+#: kauthexecutejob.cpp:88
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "S-a încercat pornirea unei acțiuni nevalide"
+
+#: kauthexecutejob.cpp:102
+#, fuzzy
+#| msgid "Unknown encryption scheme."
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Schemă de criptare necunoscută."
+
+#: kauthexecutejob.cpp:140
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr ""
+
+#: kauthexecutejob.cpp:152
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+
+#: kauthexecutejob.cpp:160 kauthexecutejob.cpp:184
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr ""
