@@ -162,10 +162,12 @@ bool DBusHelperProxy::initHelper(const QString &name)
     new Kf5authAdaptor(this);
 
     if (!m_busConnection.registerService(name)) {
+        qDebug() << "couldn't register service" << m_busConnection.lastError();
         return false;
     }
 
     if (!m_busConnection.registerObject(QLatin1String("/"), this)) {
+        qDebug() << "couldn't register object" << m_busConnection.lastError();
         return false;
     }
 
