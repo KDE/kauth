@@ -74,24 +74,17 @@ void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
 void DBusHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments)
 {
     QByteArray blob;
-    {
-        QDataStream stream(&blob, QIODevice::WriteOnly);
-        stream << arguments;
-    }
+    QDataStream stream(&blob, QIODevice::WriteOnly);
 
-    auto reply = m_busConnection.interface()->startService(helperID);
-    if (!reply.isValid()) {
-        ActionReply errorReply = ActionReply::DBusErrorReply();
-        errorReply.setErrorDescription(tr("DBus Backend error: service start %1 failed: %2").arg(helperID, reply.error().message()));
-        emit actionPerformed(action, errorReply);
-        return;
-    }
+    stream << arguments;
+
+    m_busConnection.interface()->startService(helperID);
 
     if (!m_busConnection.connect(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("remoteSignal"), this, SLOT(remoteSignalReceived(int,QString,QByteArray)))) {
         ActionReply errorReply = ActionReply::DBusErrorReply();
-        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. %1").arg(m_busConnection.lastError().message()));
+        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. ")
+                                       + m_busConnection.lastError().message());
         emit actionPerformed(action, errorReply);
-        return;
     }
 
     QDBusMessage message;
@@ -115,8 +108,8 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
         if (reply.type() == QDBusMessage::ErrorMessage) {
             ActionReply r = ActionReply::DBusErrorReply();
             r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
-                                    "Connection error: %1. Message error: %2").arg(reply.errorMessage(), m_busConnection.lastError().message()));
-            qCWarning(KAUTH) << reply.errorMessage();
+                                    "Connection error: ") + m_busConnection.lastError().message() + tr(". Message error: ") + reply.errorMessage());
+            qCDebug(KAUTH) << reply.errorMessage();
 
             emit actionPerformed(action, r);
         }
