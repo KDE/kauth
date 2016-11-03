@@ -74,17 +74,28 @@ void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
 void DBusHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments)
 {
     QByteArray blob;
-    QDataStream stream(&blob, QIODevice::WriteOnly);
+    {
+        QDataStream stream(&blob, QIODevice::WriteOnly);
+        stream << arguments;
+    }
 
-    stream << arguments;
-
-    m_busConnection.interface()->startService(helperID);
-
-    if (!m_busConnection.connect(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("remoteSignal"), this, SLOT(remoteSignalReceived(int,QString,QByteArray)))) {
+    //on unit tests we won't have a service, but the service will already be running
+    const auto reply = m_busConnection.interface()->startService(helperID);
+    if (!reply.isValid() && !m_busConnection.interface()->isServiceRegistered(helperID)) {
         ActionReply errorReply = ActionReply::DBusErrorReply();
-        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. ")
-                                       + m_busConnection.lastError().message());
+        errorReply.setErrorDescription(tr("DBus Backend error: service start %1 failed: %2").arg(helperID, reply.error().message()));
         emit actionPerformed(action, errorReply);
+        return;
+    }
+
+    const bool connected = m_busConnection.connect(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("remoteSignal"), this, SLOT(remoteSignalReceived(int,QString,QByteArray)));
+
+    //if already connected reply will be false but we won't have an error or a reason to fail
+    if (!connected && m_busConnection.lastError().isValid()) {
+        ActionReply errorReply = ActionReply::DBusErrorReply();
+        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. %1").arg(m_busConnection.lastError().message()));
+        emit actionPerformed(action, errorReply);
+        return;
     }
 
     QDBusMessage message;
@@ -108,8 +119,8 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
         if (reply.type() == QDBusMessage::ErrorMessage) {
             ActionReply r = ActionReply::DBusErrorReply();
             r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
-                                    "Connection error: ") + m_busConnection.lastError().message() + tr(". Message error: ") + reply.errorMessage());
-            qCDebug(KAUTH) << reply.errorMessage();
+                                    "Connection error: %1. Message error: %2").arg(reply.errorMessage(), m_busConnection.lastError().message()));
+            qCWarning(KAUTH) << reply.errorMessage();
 
             emit actionPerformed(action, r);
         }

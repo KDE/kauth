@@ -81,6 +81,7 @@ class ActionData;
  */
 class KAUTH_EXPORT Action
 {
+Q_GADGET
 public:
     /**
      * The three values returned by authorization methods
@@ -93,11 +94,13 @@ public:
         AuthRequiredStatus, ///< The user could obtain the authorization after authentication
         UserCancelledStatus ///< The user pressed Cancel the authentication dialog. Currently used only on the mac
     };
+    Q_ENUM(AuthStatus)
 
     enum ExecutionMode {
         ExecuteMode,
         AuthorizeOnlyMode
     };
+    Q_ENUM(ExecutionMode)
 
     /**
      * @brief Default constructor
