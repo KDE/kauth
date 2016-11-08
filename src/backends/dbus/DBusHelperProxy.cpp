@@ -71,7 +71,7 @@ void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
     m_busConnection.asyncCall(message);
 }
 
-void DBusHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments)
+void DBusHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments, int timeout)
 {
     QByteArray blob;
     {
@@ -107,7 +107,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
     m_actionsInProgress.push_back(action);
 
-    QDBusPendingCall pendingCall = m_busConnection.asyncCall(message);
+    QDBusPendingCall pendingCall = m_busConnection.asyncCall(message, timeout);
 
     auto watcher = new QDBusPendingCallWatcher(pendingCall, this);
 

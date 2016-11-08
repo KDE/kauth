@@ -179,6 +179,29 @@ public:
     void setName(const QString &name);
 
     /**
+     * @brief Gets the action's timeout.
+     *
+     * The timeout of the action in milliseconds
+     * -1 means the default DBus timeout (usually 25 seconds)
+     *
+     * @since 5.29
+     *
+     * @return The action timeouts
+     */
+    int timeout() const;
+
+    /**
+     * @brief Sets the action's timeout.
+     *
+     * The timeout of the action in milliseconds
+     * -1 means the default DBus timeout (usually 25 seconds)
+     *
+     * @since 5.29
+     *
+     */
+    void setTimeout(int timeout);
+
+    /**
      * @brief Sets the action's details
      *
      * You can use this function to provide the user more details

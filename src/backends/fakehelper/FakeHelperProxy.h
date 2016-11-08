@@ -41,7 +41,7 @@ public:
     void setHelperResponder(QObject *o) Q_DECL_OVERRIDE;
     bool initHelper(const QString &name) Q_DECL_OVERRIDE;
     void stopAction(const QString &action, const QString &helperID) Q_DECL_OVERRIDE;
-    void executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments) Q_DECL_OVERRIDE;
+    void executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments, int timeout = -1) Q_DECL_OVERRIDE;
     Action::AuthStatus authorizeAction(const QString &action, const QString &helperID) Q_DECL_OVERRIDE;
 };
 

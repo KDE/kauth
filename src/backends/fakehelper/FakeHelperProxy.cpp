@@ -71,10 +71,11 @@ void FakeHelperProxy::stopAction(const QString &action, const QString &helperID)
     Q_UNUSED(helperID)
 }
 
-void FakeHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments)
+void FakeHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments, int timeout)
 {
     Q_UNUSED(helperID)
     Q_UNUSED(arguments)
+    Q_UNUSED(timeout)
     emit actionPerformed(action, KAuth::ActionReply::NoSuchActionReply());
 }
 

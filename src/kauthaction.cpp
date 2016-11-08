@@ -34,7 +34,7 @@ namespace KAuth
 class ActionData : public QSharedData
 {
 public:
-    ActionData() : valid(false), parent(0) {}
+    ActionData() : valid(false), parent(0), timeout(-1) {}
     ActionData(const ActionData &other)
         : QSharedData(other)
         , name(other.name)
@@ -42,7 +42,8 @@ public:
         , helperId(other.helperId)
         , args(other.args)
         , valid(other.valid)
-        , parent(other.parent) {}
+        , parent(other.parent)
+        , timeout(other.timeout) {}
     ~ActionData() {}
 
     QString name;
@@ -51,6 +52,7 @@ public:
     QVariantMap args;
     bool valid;
     QWidget *parent;
+    int timeout;
 };
 
 // Constructors
@@ -124,6 +126,17 @@ void Action::setName(const QString &name)
         QRegExp exp(QLatin1String("[0-z]+(\\.[0-z]+)*"));
         d->valid = exp.exactMatch(name);
     }
+}
+
+// Accessors
+int Action::timeout() const
+{
+    return d->timeout;
+}
+
+void Action::setTimeout(int timeout)
+{
+    d->timeout = timeout;
 }
 
 QString Action::details() const
