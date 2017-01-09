@@ -50,7 +50,15 @@ const ActionReply ActionReply::SuccessReply()
 }
 const ActionReply ActionReply::HelperErrorReply()
 {
-    return ActionReply(ActionReply::HelperErrorType);
+    ActionReply reply(ActionReply::HelperErrorType);
+    reply.setError(-1);
+    return reply;
+}
+const ActionReply ActionReply::HelperErrorReply(int error)
+{
+    ActionReply reply(ActionReply::HelperErrorType);
+    reply.setError(error);
+    return reply;
 }
 const ActionReply ActionReply::NoResponderReply()
 {
@@ -162,6 +170,16 @@ void ActionReply::setErrorCode(Error errorCode)
     if (d->type != HelperErrorType) {
         d->type = KAuthErrorType;
     }
+}
+
+int ActionReply::error() const
+{
+    return d->errorCode;
+}
+
+void ActionReply::setError(int error)
+{
+    d->errorCode = error;
 }
 
 QString ActionReply::errorDescription() const

@@ -34,6 +34,7 @@ public Q_SLOTS:
     ActionReply echoaction(QVariantMap args);
     ActionReply standardaction(QVariantMap args);
     ActionReply longaction(QVariantMap args);
+    ActionReply failingaction(QVariantMap args);
 };
 
 #endif

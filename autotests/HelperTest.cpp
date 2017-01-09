@@ -62,6 +62,7 @@ private Q_SLOTS:
     void testExecuteJobSignals();
     void testTwoCalls();
     void testActionData();
+    void testHelperFailure();
 
     void cleanup() {}
     void cleanupTestCase() {}
@@ -221,6 +222,17 @@ void HelperTest::testActionData()
 
     QVERIFY(!job->error());
     QCOMPARE(job->data(), args);
+}
+
+void HelperTest::testHelperFailure()
+{
+    KAuth::Action action(QLatin1String("org.kde.kf5auth.autotest.failingaction"));
+    action.setHelperId(QLatin1String("org.kde.kf5auth.autotest"));
+    QVERIFY(action.isValid());
+    QCOMPARE(action.status(), KAuth::Action::AuthRequiredStatus);
+    KAuth::ExecuteJob *job = action.execute();
+    QVERIFY(!job->exec());
+    QVERIFY(job->error());
 }
 
 QTEST_MAIN(HelperTest)

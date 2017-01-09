@@ -65,3 +65,9 @@ ActionReply TestHelper::longaction(QVariantMap args)
 
     return ActionReply::SuccessReply();
 }
+
+ActionReply TestHelper::failingaction(QVariantMap args)
+{
+    Q_UNUSED(args)
+    return ActionReply::HelperErrorReply();
+}

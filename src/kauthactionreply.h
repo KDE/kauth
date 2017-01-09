@@ -517,7 +517,8 @@ public:
     };
 
     static const ActionReply SuccessReply(); ///< An empty successful reply. Same as using the default constructor
-    static const ActionReply HelperErrorReply(); ///< An empty reply with type() == HelperError.
+    static const ActionReply HelperErrorReply(); ///< An empty reply with type() == HelperError and errorCode() == -1
+    static const ActionReply HelperErrorReply(int error); ///< An empty reply with type() == HelperError and error is set to the passed value
 
     static const ActionReply NoResponderReply(); ///< errorCode() == NoResponder
     static const ActionReply NoSuchActionReply(); ///< errorCode() == NoSuchAction
@@ -647,6 +648,17 @@ public:
      *
      * @return The reply error code
      */
+    int error() const;
+
+    /**
+     * @brief Returns the error code of an error reply
+     *
+     * The error code returned is one of the values in the ActionReply::Error
+     * enumeration if type() == KAuthError.
+     * Result is only valid if the type() == HelperError
+     *
+     * @return The reply error code
+     */
     Error errorCode() const;
 
     /**
@@ -656,6 +668,18 @@ public:
      * you need to return an error to the application, please make sure
      * you already have set the type to HelperError, either by calling
      * setType() or by creating the reply in the right way.
+     *
+     * If the type is Success when you call this method, it will become KAuthError
+     *
+     * @param error The new reply error code
+     */
+    void setError(int error);
+
+    /**
+     * @brief Sets the error code of an error reply
+     *
+     * @see
+     * If you're setting the error code in the helper, use setError(int)
      *
      * If the type is Success when you call this method, it will become KAuthError
      *
