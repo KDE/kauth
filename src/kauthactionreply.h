@@ -215,7 +215,7 @@
  library which helper to call, so please stay away from typos, because we don't
  have any way to detect them. The second parameter is the name of the helper's
  class.  Your helper, if complex, can be composed of a lot of source files, but
- the important thing is to include this macro in one at least one of them.
+ the important thing is to include this macro in at least one of them.
 
  To build the helper, KDE macros provide a function named
  kauth_install_helper_files(). Use it in your cmake file like this:
@@ -236,7 +236,7 @@
  It usually is root, but some actions could require less strict permissions, so
  you should use the right user where possible (for example the user apache if
  you have to mess with apache settings). Note that the target created by this
- macro already links to libkauth and QtCore
+ macro already links to libkauth and QtCore.
 
  @section kauth_actions Action registration
 
