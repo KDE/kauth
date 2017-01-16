@@ -61,11 +61,11 @@ static void fixEnvironment()
 {
     //try correct HOME
     const char *home = "HOME";
-    if (getenv(home) == NULL) {
+    if (getenv(home) == nullptr) {
         struct passwd *pw = getpwuid(getuid());
         int overwrite = 0;
 
-        if (pw != NULL) {
+        if (pw != nullptr) {
             setenv(home, pw->pw_dir, overwrite);
         }
     }
@@ -96,7 +96,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     BackendsManager::helperProxy()->setHelperResponder(responder);
 
     // Attach the timer
-    QTimer *timer = new QTimer(0);
+    QTimer *timer = new QTimer(nullptr);
     responder->setProperty("__KAuth_Helper_Shutdown_Timer", QVariant::fromValue(timer));
     timer->setInterval(10000);
     timer->start();

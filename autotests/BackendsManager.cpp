@@ -33,7 +33,7 @@
 namespace KAuth
 {
 
-AuthBackend *BackendsManager::auth = 0;
+AuthBackend *BackendsManager::auth = nullptr;
 QHash< QThread *, HelperProxy * > proxiesForThreads = QHash< QThread *, HelperProxy * >();
 
 BackendsManager::BackendsManager()

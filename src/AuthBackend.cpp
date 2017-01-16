@@ -33,7 +33,7 @@ public:
 };
 
 AuthBackend::AuthBackend()
-    : QObject(0)
+    : QObject(nullptr)
     , d(new Private)
 {
 

@@ -34,7 +34,7 @@ namespace KAuth
 class ActionData : public QSharedData
 {
 public:
-    ActionData() : valid(false), parent(0), timeout(-1) {}
+    ActionData() : valid(false), parent(nullptr), timeout(-1) {}
     ActionData(const ActionData &other)
         : QSharedData(other)
         , name(other.name)
@@ -201,7 +201,7 @@ Action::AuthStatus Action::status() const
 
 ExecuteJob *Action::execute(ExecutionMode mode)
 {
-    return new ExecuteJob(*this, mode, 0);
+    return new ExecuteJob(*this, mode, nullptr);
 }
 
 bool Action::hasHelper() const

@@ -51,7 +51,7 @@ class HelperTest : public QObject
     Q_OBJECT
 
 public:
-    HelperTest(QObject *parent = 0) : QObject(parent)
+    HelperTest(QObject *parent = nullptr) : QObject(parent)
     { }
 
 private Q_SLOTS:
@@ -75,7 +75,7 @@ private:
 };
 
 HelperHandler::HelperHandler()
-    : QObject(0)
+    : QObject(nullptr)
 {
     /* Hello adventurer. What you see here might hurt your eyes, but let me explain why you don't want
        to touch this code. We are dealing with same-process async DBus requests, and if this seems obscure
@@ -104,7 +104,7 @@ void HelperHandler::init()
     m_helperProxy = new DBusHelperProxy(QDBusConnection::sessionBus());
     m_helper = new TestHelper;
     // The timer is here just to prevent the app from crashing.
-    QTimer *timer = new QTimer(0);
+    QTimer *timer = new QTimer(nullptr);
 
     QVERIFY(m_helperProxy->initHelper(QLatin1String("org.kde.kf5auth.autotest")));
 

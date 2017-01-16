@@ -37,14 +37,14 @@ namespace KAuth
 static void debugMessageReceived(int t, const QString &message);
 
 DBusHelperProxy::DBusHelperProxy()
-    : responder(0)
+    : responder(nullptr)
     , m_stopRequest(false)
     , m_busConnection(QDBusConnection::systemBus())
 {
 }
 
 DBusHelperProxy::DBusHelperProxy(const QDBusConnection &busConnection)
-    : responder(0)
+    : responder(nullptr)
     , m_stopRequest(false)
     , m_busConnection(busConnection)
 {

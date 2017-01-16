@@ -33,8 +33,8 @@
 namespace KAuth
 {
 
-AuthBackend *BackendsManager::auth = 0;
-HelperProxy *BackendsManager::helper = 0;
+AuthBackend *BackendsManager::auth = nullptr;
+HelperProxy *BackendsManager::helper = nullptr;
 
 BackendsManager::BackendsManager()
 {
