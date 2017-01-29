@@ -17,3 +17,4 @@ cmakename: KF5Auth
 public_lib: true
 group: Frameworks
 subgroup: Tier 2
+public_example_dir: examples/

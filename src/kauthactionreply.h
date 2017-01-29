@@ -134,21 +134,7 @@
  source code tree you find a complete example.  Let's look at that.  The
  helper.h file declares the class that implements the helper. It looks like:
 
- @code
- #include <kauth.h>
-
- using namespace KAuth;
-
- class MyHelper : public QObject
- {
-     Q_OBJECT
-
-     public Q_SLOTS:
-         ActionReply read(const QVariantMap& args);
-         ActionReply write(const QVariantMap& args);
-         ActionReply longaction(const QVariantMap& args);
- };
- @endcode
+ @snippet helper.h helper_declaration
 
  The slot names are the last part of the action name, without the helper's ID if
  it's a prefix, with all the dots replaced by underscores. In this case, the
@@ -170,27 +156,7 @@
 
  Let's look at the read action implementation. Its purpose is to read files:
 
- @code
- ActionReply MyHelper::read(QVariantMap args)
- {
-     ActionReply reply;
-     QString filename = args["filename"].toString();
-     QFile file(filename);
-     if (!file.open(QIODevice::ReadOnly)) {
-        reply = ActionReply::HelperErrorReply;
-        reply.setErrorCode(file.error());
-
-        return reply;
-     }
-
-     QTextStream stream(&file);
-     QString contents;
-     stream >> contents;
-     reply.data()["contents"] = contents;
-
-     return reply;
- }
- @endcode
+ @snippet helper.cpp helper_read_action
 
  First, the code creates a default reply object. The default constructor creates
  a reply that reports success. Then it gets the filename parameter from the
@@ -206,9 +172,7 @@
  it. Instead, you use the KAUTH_HELPER_MAIN() macro that will take care of
  everything. It's used like this:
 
- @code
- KAUTH_HELPER_MAIN("org.kde.kf5auth.example", MyHelper)
- @endcode
+ @snippet helper.cpp helper_main
 
  The first parameter is the string containing the helper identifier. Please note
  that you need to use this same string in the application's code to tell the
@@ -277,62 +241,28 @@
 
  @section kauth_app Calling the helper from the application
 
- Once the helper is ready, we need to call it from the main application. In the
- example's mainwindow.cpp you can see how this is done. To create a reference to
+ Once the helper is ready, we need to call it from the main application.
+ In examples/client.cpp you can see how this is done. To create a reference to
  an action, an object of type Action has to be created. Every Action object
  refers to an action by its action id. Two objects with the same action id will
  act on the same action.  With an Action object, you can authorize and execute
- the action. To execute an action you have a couple of choices:
- - A synchronous call, using the Action::execute() method, will start the
-   helper, execute the action and return the reply.
- - An asynchronous call, by setting Action::setExecutesAsync(true) and calling
-   Action::execute(), will start the helper and return immediately.
+ the action. To execute an action you need to retrieve an ExecuteJob, which is
+ a standard KJob that you can run synchronously or asynchronously.
+ See the KJob documentation (from KCoreAddons) for more details.
 
- The asynchronous call is the most flexible alternative, but you need a way to
- obtain the reply. This is done by connecting to a signal, but the Action class
- is not a QObject subclass. Instead, you connect to signals exposed by the
- ActionWatcher class. For every action id you use, there is one ActionWatcher
- object. You can retrieve it using the Action::watcher() method. If you execute
- an action using Action::executeAsync(), you can connect to the
- actionPerformed(ActionReply) signal to be notified when the action has been
- completed (or failed). As a parameter, you'll get a reply object containing all
- the data you need. As a convenience, you can also pass an object and a slot to
- the executeAsync() method to directly connect them to the signal, if you don't
- want to mess with watchers.
+ The piece of code that calls the action of the previous example is:
 
- The piece of code that calls the action of the previous example is located in
- example/mainwindow.cpp in the on_readAction_triggered() slot. It looks like
- this:
- @code
- QVariantMap args;
- args["filename"] = filename;
- Action readAction = "org.kde.kf5auth.example.read";
- readAction.setHelperID("org.kde.kf5auth.example");
- readAction.setArguments(args);
-
- ActionReply reply = readAction.execute();
- if (reply.failed())
-    QMessageBox::information(this, "Error", QString("KAuth returned an error code: %1").arg(reply.errorCode()));
- else
-    contents = reply.data()["contents"].toString();
- @endcode
+ @snippet client.cpp client_how_to_call_helper
 
  First of all, it creates the action object specifying the action id. Then it
  loads the filename (we want to read a forbidden file) into the arguments()
  QVariantMap, which will be directly passed to the helper in the read() slot's
  parameter. This example code uses a synchronous call to execute the action and
  retrieve the reply. If the reply succeeded, the reply data is retrieved from
- the returned QVariantMap object. Please note that, although the execute()
- method will return only when the action is completed, the GUI will remain
- responsive because an internal event loop is entered. This means you should be
- prepared to receive other events in the meanwhile. Also, notice that you have
+ the returned QVariantMap object. Please note that you have
  to explicitly set the helper ID to the action: this is done for added safety,
  to prevent the caller from accidentally invoking a helper, and also because
- KAuth actions may be used without a helper attached (the default).  In this
- case, action.execute() will return ActionSuccess if the authentication went
- well. This is quite useful if you want your user to authenticate before doing
- something, which however needs no privileged permissions implementation-wise.
-
+ KAuth actions may be used without a helper attached (the default).
 
  @section kauth_async Asynchronous calls, data reporting, and action termination
 
@@ -344,23 +274,13 @@
  - The application needs to be able to stop the action execution if the user
    stops it or close the application.
  The example code follows:
- @code
- ActionReply MyHelper::longaction(QVariantMap args)
- {
-     for (int i = 1; i <= 100; i++) {
-        if (HelperSupport::isStopped())
-           break;
-        HelperSupport::progressStep(i);
-        usleep(250000);
-     }
-     return ActionReply::SuccessReply;
- }
- @endcode
+
+ @snippet helper.cpp helper_longaction
 
  In this example, the action is only waiting a "long" time using a loop, but we
  can see some interesting line. The progress status is sent to the application
  using the HelperSupport::progressStep() method.  When this method is called,
- the ActionWatcher associated with this action will emit the progressStep()
+ the HelperProxy associated with this action will emit the progressStep()
  signal, reporting back the data to the application. There are two overloads of
  these methods and corresponding signals. The one used here takes an integer.
  Its meaning is application dependent, so you can use it as a sort of
@@ -369,75 +289,13 @@
  custom data you want.
 
  In this example code, the loop exits when the HelperSupport::isStopped()
- returns true. This happens when the application calls the stop() method on the
- correponding action object. The stop() method, this way, asks the helper to
+ returns true. This happens when the application calls the HelperProxy::stopAction()
+ method on the correponding action object.
+ The stopAction() method, this way, asks the helper to
  stop the action execution. It's up to the helper to obbey to this request, and
  if it does so, it should return from the slot, _not_ exit.
 
- The code that calls the action in the application connects a slot to the
- actionPerformed() signal and then call executeAsync(). The progressStep()
- signal is directly connected to a QProgressBar, and the Stop button in the UI
- is connected to a slot that calls the Action::stop() method.
-
- @code
- void MainWindow::on_longAction_triggered()
- {
-    Action longAction = "org.kde.kf5auth.example.longaction";
-    connect(longAction.watcher(), SIGNAL(progressStep(int)),
-            progressBar,          SLOT(setValue(int)));
-    connect(longAction.watcher(), SIGNAL(actionPerformed(ActionReply)),
-            this,                 SLOT(longActionPerformed(ActionReply)));
-
-    longAction.setExecutesAsync(true);
-    if (longAction.execute() != Action::Authorized)
-        this->statusBar()->showMessage("Could not execute the long action");
-
-    //...
- }
-
- void MainWindow::stopLongAction()
- {
-     Action("org.kde.kf5auth.example.longaction").stop();
- }
-
- void MainWindow::longActionPerformed(ActionReply reply)
- {
-     //...
-
-     if (reply.succeeded())
-        this->statusBar()->showMessage("Action succeeded", 10000);
-     else
-        this->statusBar()->showMessage(QString("Could not execute the long action: %1").arg(reply.errorCode()), 10000);
- }
- @endcode
-
- Please pay attention that when you call an action, the helper will be busy
- executing that action. Therefore, you can't call two execute() methods in
- sequence like that:
-
- @code
- action1.execute();
- action2.execute();
- @endcode
-
- If you do, you'll get a HelperBusy reply from the second action.  A solution
- would be to launch the second action from the slot connected to the first's
- actionPerformed signal, but this would be very ugly. Read further to know how
- to solve this problem.
-
  @section kauth_other Other features
-
- To allow to easily execute several actions in sequence, you can execute them in
- a group. This means using the Action::executeActions() static method, which
- takes a list of actions and asks the helper to execute them with a single
- request. The helper will execute the actions in the specified order. All the
- signals will be emitted from the watchers associated with each action.
-
- Sometimes the application needs to know when a particular action has started to
- execute. For this purpose, you can connect to the actionStarted() signal. It is
- emitted immediately before the helper's slot is called. This isn't very useful
- if you call execute(), but if you use executeActions() it lets you know when
- individual actions in the group are started.
 
  It doesn't happen very frequently that you code something that doesn't require
  some debugging, and you'll need some tool, even a basic one, to debug your
