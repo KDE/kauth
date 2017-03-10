@@ -17,8 +17,8 @@
 *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .
 */
 
-#ifndef ASYNC_ACTION_H
-#define ASYNC_ACTION_H
+#ifndef EXECUTE_JOB_H
+#define EXECUTE_JOB_H
 
 #include <kjob.h>
 
@@ -31,7 +31,19 @@ namespace KAuth
 {
 
 /**
- * @brief Job executing an Action
+ * @brief Job for executing an Action
+ *
+ * To run the action synchonously use KJob::exec() and check the return code for
+ * success.
+ *
+ * For longer tasks connect KJob::result(KJob*) and any other signals such as
+ * percent(KJob*, unsigned long) and newData(const QVariantMap &) then run start().
+ *
+ * To check for authentiation success or problems connect to
+ * statusChanged(KAuth::Action::AuthStatus status) signal.
+ *
+ * Use data() to get the return result of the action.
+ *
  * @since 5.0
  */
 class KAUTH_EXPORT ExecuteJob : public KJob
@@ -70,7 +82,15 @@ public:
     Action action() const;
 
     /**
-     * @returns the data sent by the helper
+     * Use this to get the data set in the action by
+     * HelperSupport::progressStep(QVariant) or returned at the end of the
+     * action.
+     *
+     * This function is particularly useful once the job has completed. During
+     * execution, simply read the data in the newData signal.
+     *
+     * @see ExecuteJob::newData
+     * @returns the data set by the helper
      */
     QVariantMap data() const;
 

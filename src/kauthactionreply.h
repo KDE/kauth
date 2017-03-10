@@ -323,45 +323,15 @@ namespace KAuth
 class ActionReplyData;
 
 /**
-* @brief Class that encapsulates a reply coming from the helper after executing
-* an action
-*
-* An instance of ActionReply is returned every time you execute an action with
-* the Action class. You get the reply directly from the Action::execute() method
-* or indirectly as a parameter of the ActionWatcher::actionPerformed() signal.
-*
-* ActionReply objects can contain both data from a successful action or an error
-* indicator.  In case of success, the errorCode() is ActionReply::NoError (zero)
-* and the type() is ActionReply::Success. The data() method returns a
-* QVariantMap object that may contain custom data sent back by the helper.
-*
-* In case of errors coming from the library, the type() is
-* ActionReply::KAuthError. In this case, errorCode() will always be one of the
-* predefined errors from the ActionReply::Error enum.  An error reply of
-* KAuthError type always contains an empty data() object. For some kind of
-* errors you could get a human-readable description with errorDescription().
-*
-* If, instead, the helper itself has to report some errors occurred during the
-* action execution, the type() will be (and has to be) ActionReply::HelperError.
-* In this case the data() object can contain custom data from the helper, and
-* the errorCode() and errorDescription() values are application-dependent.
-*
-* In the helper, to create an action reply object you have two choices: using
-* the constructor, or the predefined replies. For example, to create a
-* successful reply you can use the default constructor but to create a helper
-* error reply, instead of writing <i>ActionReply(ActionReply::HelperError)</i>
-* you could use the more convenient <i>ActionReply::HelperErrorReply</i>
-* constant.
-*
-* You should not use the predefined error replies to create and return new
-* errors. Replies with the KAuthError type are intended to be returned by the
-* library only. However, you can use them for comparisons.
-*
-* To quickly check for success or failure of an action, you can use succeeded()
-* or failed().
-*
-* @since 4.4
-*/
+ * @brief Class that encapsulates a reply coming from the helper after executing
+ * an action
+ *
+ * Helper applications will return this to describe the result of the action.
+ *
+ * Callers should access the reply though the KAuth::ExecuteJob job.
+ *
+ * @since 4.4
+ */
 class KAUTH_EXPORT ActionReply
 {
 public:

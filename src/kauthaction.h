@@ -84,7 +84,7 @@ class KAUTH_EXPORT Action
 Q_GADGET
 public:
     /**
-     * The three values returned by authorization methods
+     * The three values set by authorization methods
      */
     enum AuthStatus {
         DeniedStatus, ///< The authorization has been denied by the authorization backend
@@ -344,34 +344,9 @@ public:
     AuthStatus status() const;
 
     /**
-     * @brief Synchronously executes the action
+     * @brief Get the job object used to execute the action
      *
-     * This is the simpler of all the action execution methods. It sends an execution request to the
-     * caller, and returns the reply directly to the caller. The ActionReply object will contain the
-     * custom data coming from the helper.
-     *
-     * The method blocks the execution, and will
-     * return only when the action has been completed (or failed). Take note, however, that with the D-Bus
-     * helper proxy (currently the only one implemented on all the supported platforms), the request is
-     * sent using the QDBus::BlockWithGui flag.
-     *
-     * This means the method will enter a local eventloop to wait
-     * for the reply. This allows the application GUI to stay responsive, but you have to be prepared to
-     * receive other events in the meantime.
-     *
-     * All the signals from the ActionWatcher class are emitted also with this method (although they're more
-     * useful with the asynchronous calls)
-     *
-     * The method checks for authorization before to execute the action. If the user is not authorized, the
-     * return value will be ActionReply::AuthorizationDeniedReply.
-     * If the user cancels the authentication, the return value should be ActionReply::UserCancelledReply.
-     * Due to policykit limitations, this currently only with the Mac OS X backend.
-     *
-     * If the helper is busy executing another action (or action group) the reply will be ActionReply::HelperBusyReply
-     *
-     * If the request cannot be sent for bus errors, the method returns ActionReply::DBusErrorReply.
-     *
-     * @return The reply from the helper, or an error reply if something's wrong.
+     * @return The KJob::ExecuteJob object to be used to run the action.
      */
     ExecuteJob *execute(ExecutionMode mode = ExecuteMode);
 

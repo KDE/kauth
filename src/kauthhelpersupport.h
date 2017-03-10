@@ -48,8 +48,8 @@ namespace HelperSupport
  * @brief Send a progressStep signal to the caller application
  *
  * You can use this method to notify progress information about the
- * action execution. When you call this method, the ActionWatcher
- * object associated with the current action will emit the progressStep(int)
+ * action execution. When you call this method, the KAuth::ExecuteJob
+ * object associated with the current action will emit the KJob::percent(KJob*, unsigned long)
  * signal. The meaning of the integer passed here is totally application dependent,
  * but you'll want to use it as a sort of percentage.
  * If you need to be more expressive, use the other overload which takes a QVariantMap
@@ -62,9 +62,10 @@ KAUTH_EXPORT void progressStep(int step);
 * @brief Send a progressStep signal to the caller application
 *
 * You can use this method to notify progress information about the
-* action execution. When you call this method, the ActionWatcher
+* action execution. When you call this method, the KAuth::ExecuteJob
 * object associated with the current action will emit the progressStep(QVariantMap)
 * signal. The meaning of the data passed here is totally application dependent.
+*
 * If you only need a simple percentage value, use the other overload which takes an int.
 *
 * @param data The progress data
@@ -78,6 +79,7 @@ KAUTH_EXPORT void progressStep(const QVariantMap &data);
  * execution of the current action. If this happens, your helper should
  * return (NOT exit). The meaning of the data you return in this case is
  * application-dependent.
+ *
  * It's good practice to check it regularly if you have a long-running action
  *
  * @see ExecuteJob::kill
