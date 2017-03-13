@@ -80,6 +80,7 @@ KAUTH_EXPORT void progressStep(const QVariantMap &data);
  * application-dependent.
  * It's good practice to check it regularly if you have a long-running action
  *
+ * @see ExecuteJob::kill
  * @return true if the helper has been asked to stop, false otherwise
  */
 KAUTH_EXPORT bool isStopped();

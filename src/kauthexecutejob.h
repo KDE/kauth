@@ -74,6 +74,19 @@ public:
      */
     QVariantMap data() const;
 
+public Q_SLOTS:
+    /**
+     * Attempts to halt the execution of the action associated with this job.
+     * You should listen to the finished and result signals to work out whether
+     * halting was successful (as long running operations can also take time
+     * to shut down cleanly).
+     * @see HelperSupport::isStopped()
+     * @see KJob::result
+     * @see KJob::finished
+     * @return Always returns true
+     */
+    bool kill(KillVerbosity verbosity = Quietly);
+
 Q_SIGNALS:
     /**
     * @brief Signal emitted by the helper to notify the action's progress

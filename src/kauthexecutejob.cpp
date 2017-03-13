@@ -106,6 +106,13 @@ void ExecuteJob::start()
     }
 }
 
+bool ExecuteJob::kill(KillVerbosity verbosity)
+{
+    BackendsManager::helperProxy()->stopAction(d->action.name(), d->action.helperId());
+    KJob::kill(verbosity);
+    return true;
+}
+
 void ExecuteJob::Private::doExecuteAction()
 {
     // If this action authorizes from the client, let's do it now
