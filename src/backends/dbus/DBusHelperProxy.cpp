@@ -93,7 +93,10 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     //if already connected reply will be false but we won't have an error or a reason to fail
     if (!connected && m_busConnection.lastError().isValid()) {
         ActionReply errorReply = ActionReply::DBusErrorReply();
-        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. %1").arg(m_busConnection.lastError().message()));
+        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. %1\n(application: %2 helper: %3)").arg(
+                m_busConnection.lastError().message(),
+                qApp->applicationName(),
+                helperID));
         emit actionPerformed(action, errorReply);
         return;
     }
@@ -166,12 +169,12 @@ bool DBusHelperProxy::initHelper(const QString &name)
     new Kf5authAdaptor(this);
 
     if (!m_busConnection.registerService(name)) {
-        qDebug() << "couldn't register service" << m_busConnection.lastError();
+        qCWarning(KAUTH) << "Error registering helper DBus service" << name << m_busConnection.lastError().message();
         return false;
     }
 
     if (!m_busConnection.registerObject(QLatin1String("/"), this)) {
-        qDebug() << "couldn't register object" << m_busConnection.lastError();
+        qCWarning(KAUTH) << "Error registering helper DBus object:" << m_busConnection.lastError().message();
         return false;
     }
 

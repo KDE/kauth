@@ -80,6 +80,10 @@ if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     # KAUTH_POLICY_GEN_SRCS has been generated from ConfigureChecks.cmake
     add_executable(kauth-policy-gen ${KAUTH_POLICY_GEN_SRCS})
     add_executable(KF5::kauth-policy-gen ALIAS kauth-policy-gen)
+    if (APPLE)
+        include(ECMMarkNonGuiExecutable)
+        ecm_mark_nongui_executable(kauth-policy-gen)
+    endif ()
 
     # KAUTH_POLICY_GEN_LIBRARIES has been generated from ConfigureChecks.cmake
     target_link_libraries( kauth-policy-gen PRIVATE ${KAUTH_POLICY_GEN_LIBRARIES} )

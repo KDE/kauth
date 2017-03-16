@@ -78,7 +78,13 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     fixEnvironment();
 #endif
 
+#ifdef Q_OS_OSX
+    openlog(id, LOG_CONS|LOG_PID, LOG_USER);
+    int logLevel = LOG_WARNING;
+#else
     openlog(id, 0, LOG_USER);
+    int logLevel = LOG_DEBUG;
+#endif
     qInstallMessageHandler(&HelperSupport::helperDebugHandler);
 
     // NOTE: The helper proxy might use dbus, and we should have the qapp
@@ -86,7 +92,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     QCoreApplication app(argc, argv);
 
     if (!BackendsManager::helperProxy()->initHelper(QString::fromLatin1(id))) {
-        syslog(LOG_DEBUG, "Helper initialization failed");
+        syslog(logLevel, "Helper initialization failed");
         return -1;
     }
 

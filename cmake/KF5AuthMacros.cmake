@@ -55,9 +55,10 @@ endfunction()
 # the install phase
 function(KAUTH_INSTALL_ACTIONS HELPER_ID ACTIONS_FILE)
 
-  if(KAUTH_BACKEND_NAME STREQUAL "APPLE")
+  if(KAUTH_BACKEND_NAME STREQUAL "APPLE" OR KAUTH_BACKEND_NAME STREQUAL "OSX")
     get_target_property(kauth_policy_gen KF5::kauth-policy-gen LOCATION)
     install(CODE "execute_process(COMMAND ${kauth_policy_gen} ${ACTIONS_FILE} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})")
+    message(STATUS "installation will execute ${kauth_policy_gen} ${ACTIONS_FILE} in ${CMAKE_CURRENT_SOURCE_DIR}")
   elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT" OR KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
     set(_output ${CMAKE_CURRENT_BINARY_DIR}/${HELPER_ID}.policy)
     get_filename_component(_input ${ACTIONS_FILE} ABSOLUTE)

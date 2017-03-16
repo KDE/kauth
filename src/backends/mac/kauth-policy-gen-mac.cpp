@@ -22,12 +22,14 @@
 #include <iostream>
 #include <Security/Security.h>
 
+#include <QDebug>
+
 using namespace std;
 
 void output(QList<Action> actions, QMap<QString, QString> domain)
 {
     AuthorizationRef auth;
-    AuthorizationCreate(NULL, NULL, kAuthorizationFlagDefaults, &auth);
+    AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &auth);
 
     OSStatus err;
 
@@ -35,7 +37,7 @@ void output(QList<Action> actions, QMap<QString, QString> domain)
 
         err = AuthorizationRightGet(action.name.toLatin1().constData(), NULL);
 
-        if (err == errAuthorizationDenied) {
+        if (err != errAuthorizationSuccess) {
 
             QString rule;
 
@@ -56,6 +58,8 @@ void output(QList<Action> actions, QMap<QString, QString> domain)
             if (err != noErr) {
                 cerr << "You don't have the right to edit the security database (try to run cmake with sudo): " << err << endl;
                 exit(1);
+            } else {
+                qInfo() << "Created or updated rule" << rule << "for right entry" << action.name << "policy" << action.policy << "; domain=" << domain;
             }
         }
     }
