@@ -235,6 +235,29 @@ bool DBusHelperProxy::hasToStopAction()
     return m_stopRequest;
 }
 
+bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray &callerID)
+{
+    // Check the caller is really who it says it is
+    switch (BackendsManager::authBackend()->extraCallerIDVerificationMethod()) {
+        case AuthBackend::NoExtraCallerIDVerificationMethod:
+        break;
+
+        case AuthBackend::VerifyAgainstDBusServiceName:
+            if (message().service().toUtf8() != callerID) {
+                return false;
+            }
+        break;
+
+        case AuthBackend::VerifyAgainstDBusServicePid:
+            if (connection().interface()->servicePid(message().service()).value() != callerID.toUInt()) {
+                return false;
+            }
+        break;
+    }
+
+    return BackendsManager::authBackend()->isCallerAuthorized(action, callerID);
+}
+
 QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArray &callerID, QByteArray arguments)
 {
     if (!responder) {
@@ -259,7 +282,7 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
     QTimer *timer = responder->property("__KAuth_Helper_Shutdown_Timer").value<QTimer *>();
     timer->stop();
 
-    if (BackendsManager::authBackend()->isCallerAuthorized(action, callerID)) {
+    if (isCallerAuthorized(action, callerID)) {
         QString slotname = action;
         if (slotname.startsWith(m_name + QLatin1Char('.'))) {
             slotname = slotname.right(slotname.length() - m_name.length() - 1);
@@ -301,7 +324,7 @@ uint DBusHelperProxy::authorizeAction(const QString &action, const QByteArray &c
     QTimer *timer = responder->property("__KAuth_Helper_Shutdown_Timer").value<QTimer *>();
     timer->stop();
 
-    if (BackendsManager::authBackend()->isCallerAuthorized(action, callerID)) {
+    if (isCallerAuthorized(action, callerID)) {
         retVal = static_cast<uint>(Action::AuthorizedStatus);
     } else {
         retVal = static_cast<uint>(Action::DeniedStatus);
