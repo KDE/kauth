@@ -25,12 +25,13 @@
 #include "kauthactionreply.h"
 
 #include <QDBusConnection>
+#include <QDBusContext>
 #include <QVariant>
 
 namespace KAuth
 {
 
-class DBusHelperProxy : public HelperProxy
+class DBusHelperProxy : public HelperProxy, protected QDBusContext
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.kde.DBusHelperProxy")
@@ -79,6 +80,9 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void remoteSignalReceived(int type, const QString &action, QByteArray blob);
+
+private:
+    bool isCallerAuthorized(const QString &action, const QByteArray &callerID);
 };
 
 } // namespace Auth
