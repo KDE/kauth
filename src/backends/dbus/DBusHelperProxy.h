@@ -60,7 +60,6 @@ public:
 
     virtual void executeAction(const QString &action, const QString &helperID,
                                const QVariantMap &arguments, int timeout = -1) Q_DECL_OVERRIDE;
-    Action::AuthStatus authorizeAction(const QString &action, const QString &helperID) Q_DECL_OVERRIDE;
     void stopAction(const QString &action, const QString &helperID) Q_DECL_OVERRIDE;
 
     bool initHelper(const QString &name) Q_DECL_OVERRIDE;
@@ -73,7 +72,6 @@ public:
 public Q_SLOTS:
     void stopAction(const QString &action);
     QByteArray performAction(const QString &action, const QByteArray &callerID, QByteArray arguments);
-    uint authorizeAction(const QString &action, const QByteArray &callerID);
 
 Q_SIGNALS:
     void remoteSignal(int type, const QString &action, const QByteArray &blob); // This signal is sent from the helper to the app

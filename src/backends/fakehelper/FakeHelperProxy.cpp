@@ -79,12 +79,5 @@ void FakeHelperProxy::executeAction(const QString &action, const QString &helper
     emit actionPerformed(action, KAuth::ActionReply::NoSuchActionReply());
 }
 
-Action::AuthStatus FakeHelperProxy::authorizeAction(const QString &action, const QString &helperID)
-{
-    Q_UNUSED(action)
-    Q_UNUSED(helperID)
-    return Action::DeniedStatus;
-}
-
 }
 

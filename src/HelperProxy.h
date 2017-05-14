@@ -41,7 +41,6 @@ public:
     // Application-side methods
     virtual void executeAction(const QString &action, const QString &helperID,
                                const QVariantMap &arguments, int timeout) = 0;
-    virtual Action::AuthStatus authorizeAction(const QString &action, const QString &helperID) = 0;
     virtual void stopAction(const QString &action, const QString &helperID) = 0;
 
     // Helper-side methods
