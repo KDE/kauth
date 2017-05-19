@@ -129,6 +129,29 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth COMPONENT Devel
 )
 
+if(BUILD_QCH)
+    ecm_add_qch(
+        KF5Auth_QCH
+        NAME KAuth
+        BASE_NAME KF5Auth
+        VERSION ${KF5_VERSION}
+        ORG_DOMAIN org.kde
+        SOURCES # using only public headers, to cover only public API
+            ${KAuth_HEADERS}
+        MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
+        LINK_QCHS
+            Qt5Core_QCH
+            KF5CoreAddons_QCH
+        BLANK_MACROS
+            KAUTH_EXPORT
+            KAUTH_DEPRECATED
+            KAUTH_DEPRECATED_EXPORT
+        TAGFILE_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
+        QCH_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
+        COMPONENT Devel
+    )
+endif()
+
 # TODO: Remove once we depend on polkit-qt1 > 0.99.0
 # core/polkitqt1-actiondescription.h from polkit currently fails when built with -pedantic
 string(REPLACE "--pedantic-errors" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
