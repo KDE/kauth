@@ -144,8 +144,15 @@ void Polkit1Backend::setupAction(const QString &action)
 Action::AuthStatus Polkit1Backend::actionStatus(const QString &action)
 {
     PolkitQt1::SystemBusNameSubject subject(QString::fromUtf8(callerID()));
-    PolkitQt1::Authority::Result r = PolkitQt1::Authority::instance()->checkAuthorizationSync(action, subject,
+    auto authority = PolkitQt1::Authority::instance();
+    PolkitQt1::Authority::Result r = authority->checkAuthorizationSync(action, subject,
                                      PolkitQt1::Authority::None);
+
+    if (authority->hasError()) {
+        qCDebug(KAUTH) << "Encountered error while checking action status, error code:" << authority->lastError() << authority->errorDetails();
+        authority->clearError();
+    }
+
     switch (r) {
     case PolkitQt1::Authority::Yes:
         return Action::AuthorizedStatus;
@@ -178,6 +185,11 @@ bool Polkit1Backend::isCallerAuthorized(const QString &action, QByteArray caller
     authority->checkAuthorization(action, subject, PolkitQt1::Authority::AllowUserInteraction);
     e.exec();
 
+    if (authority->hasError()) {
+        qCDebug(KAUTH) << "Encountered error while checking authorization, error code:" << authority->lastError() << authority->errorDetails();
+        authority->clearError();
+    }
+
     switch (e.result()) {
     case PolkitQt1::Authority::Yes:
         return true;
@@ -204,6 +216,14 @@ void Polkit1Backend::checkForResultChanged()
 
 bool Polkit1Backend::actionExists(const QString &action)
 {
+    auto authority = PolkitQt1::Authority::instance();
+    if (m_flyingActions && authority->hasError()) {
+            // This can happen if enumerateActions call failed
+            qWarning() << "Encountered error while enumerating actions, error code:" << authority->lastError() << authority->errorDetails();
+            authority->clearError();
+            m_flyingActions = false;
+    }
+
     // Any flying actions?
     if (m_flyingActions) {
         int tries = 0;
