@@ -66,7 +66,7 @@ void SetupActionTest::testNonExistentAction()
     QVERIFY(action.isValid());
 
     // Now with regexp check
-    emit changeCapabilities(nullptr);
+    emit changeCapabilities(KAuth::AuthBackend::NoCapability);
 
     action = KAuth::Action(QLatin1String("/safinvalid124%$&"));
     QVERIFY(!action.isValid());
@@ -93,7 +93,7 @@ void SetupActionTest::testBasicActionProperties()
     action.setName(QLatin1String("i.do.not.exist"));
     QVERIFY(!action.isValid());
 
-    emit changeCapabilities(nullptr);
+    emit changeCapabilities(KAuth::AuthBackend::NoCapability);
 
     action = KAuth::Action(QLatin1String("i.do.not.exist"), QLatin1String("details"));
 
