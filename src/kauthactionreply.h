@@ -62,7 +62,7 @@
 
  The KDE Authorization library uses different backends depending on the system
  where it's built. As far as the user authorization is concerned, it currently
- uses PolicyKit on linux and Authorization Services on Mac OSX, and a Windows
+ uses polkit-1 on linux and Authorization Services on Mac OSX, and a Windows
  backend will eventually be written, too. At the communication layer, the
  library uses D-Bus on every supported platform.
 
@@ -70,7 +70,7 @@
  @section kauth_concepts Concepts
 
  There are a few concepts to understand when using the library. Much of those
- are carried from underlying APIs such as PolicyKit, so if you know something
+ are carried from underlying APIs such as polkit-1, so if you know something
  about them there shouldn't be problems.
 
  An <i>action</i> is a single task that needs to be done by the application. You
@@ -238,6 +238,11 @@
  be retained for that action. The values could be:
  - session: the authorization persists until the user logs-out
  - always: the authorization will persist indefinitely
+ If this attribute is missing, the authorization will be queried every time.
+
+ @note Only the PolicyKit and polkit-1 backends use this attribute.
+ @warning With the polkit-1 backend, 'session' and 'always' have the same meaning.
+          They just make the authorization persists for a few minutes.
 
  @section kauth_app Calling the helper from the application
 
