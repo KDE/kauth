@@ -238,6 +238,7 @@
  be retained for that action. The values could be:
  - session: the authorization persists until the user logs-out
  - always: the authorization will persist indefinitely
+
  If this attribute is missing, the authorization will be queried every time.
 
  @note Only the PolicyKit and polkit-1 backends use this attribute.
