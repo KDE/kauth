@@ -182,7 +182,7 @@ public:
      * @brief Gets the action's timeout.
      *
      * The timeout of the action in milliseconds
-     * -1 means the default DBus timeout (usually 25 seconds)
+     * -1 means the default D-Bus timeout (usually 25 seconds)
      *
      * @since 5.29
      *
@@ -194,7 +194,7 @@ public:
      * @brief Sets the action's timeout.
      *
      * The timeout of the action in milliseconds
-     * -1 means the default DBus timeout (usually 25 seconds)
+     * -1 means the default D-Bus timeout (usually 25 seconds)
      *
      * @since 5.29
      *

@@ -102,7 +102,7 @@
  - The application uses some system-provided mechanism to execute the helper's
    code as the root user. Previously, you had to set the setuid bit to do this,
    but we have something cool called
-   "dbus activation" that doesn't require the setuid bit and is much more flexible.
+   "D-Bus activation" that doesn't require the setuid bit and is much more flexible.
  - The helper code, immediately after starting, checks if the caller is
    authorized to do what it asks. If not the helper immediately exits!
  - If the caller is authorized, the helper executes the task and exits.
