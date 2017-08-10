@@ -12,7 +12,11 @@ feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKA
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 set(REQUIRED_QT_VERSION 5.7.0)
-find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Widgets DBus)
+find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
+option(KAUTH_BUILD_CODEGENERATOR_ONLY "Only build the kauth-policy-gen code generator." OFF)
+if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
+    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Widgets)
+endif()
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
@@ -50,8 +54,10 @@ if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
 endif()
 
 add_subdirectory(src)
-add_subdirectory(autotests)
-add_subdirectory(examples)
+if(TARGET Qt5::Widgets)
+    add_subdirectory(autotests)
+    add_subdirectory(examples)
+endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5Auth")
@@ -82,8 +88,10 @@ install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfig.cmake"
         COMPONENT Devel )
 
 
-install(EXPORT KF5AuthTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+if(TARGET KF5Auth)
+    install(EXPORT KF5AuthTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KF5AuthTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
+endif()
 
 if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     install(EXPORT KF5AuthToolsTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"

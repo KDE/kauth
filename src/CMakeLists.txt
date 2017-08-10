@@ -1,6 +1,3 @@
-
-find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Widgets DBus)
-
 # This file handles all the logic for compiling KAuth's backends
 include(ConfigureChecks.cmake)
 
@@ -9,45 +6,54 @@ configure_file(BackendsConfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/BackendsConfig
 
 ecm_create_qm_loader(KAuth_QM_LOADER kauth5_qt)
 
-set(libkauth_SRCS
-    kauthaction.cpp
-    kauthactionreply.cpp
-    kauthexecutejob.cpp
-    kauthobjectdecorator.cpp
-    AuthBackend.cpp
-    BackendsManager.cpp
-    HelperProxy.cpp
-    kauthhelpersupport.cpp
-    kauthdebug.cpp
-    backends/fake/FakeBackend.cpp
-    backends/fakehelper/FakeHelperProxy.cpp
-    ${KAuth_QM_LOADER}
-)
+if(TARGET Qt5::Widgets)
+    set(libkauth_SRCS
+        kauthaction.cpp
+        kauthactionreply.cpp
+        kauthexecutejob.cpp
+        kauthobjectdecorator.cpp
+        AuthBackend.cpp
+        BackendsManager.cpp
+        HelperProxy.cpp
+        kauthhelpersupport.cpp
+        kauthdebug.cpp
+        backends/fake/FakeBackend.cpp
+        backends/fakehelper/FakeHelperProxy.cpp
+        ${KAuth_QM_LOADER}
+    )
 
-add_library(KF5Auth ${libkauth_SRCS})
-generate_export_header(KF5Auth BASE_NAME KAuth)
-add_library(KF5::Auth ALIAS KF5Auth)
+    add_library(KF5Auth ${libkauth_SRCS})
+    generate_export_header(KF5Auth BASE_NAME KAuth)
+    add_library(KF5::Auth ALIAS KF5Auth)
 
-target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
+    target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
 
-target_link_libraries(KF5Auth PUBLIC Qt5::Core KF5::CoreAddons)  # for KJob
-target_link_libraries(KF5Auth PRIVATE Qt5::Widgets Qt5::DBus)
-set_target_properties(KF5Auth PROPERTIES VERSION   ${KAUTH_VERSION_STRING}
-                                         SOVERSION ${KAUTH_SOVERSION}
-                                         EXPORT_NAME Auth
-)
+    target_link_libraries(KF5Auth PUBLIC Qt5::Core KF5::CoreAddons)  # for KJob
+    target_link_libraries(KF5Auth PRIVATE Qt5::Widgets Qt5::DBus)
+    set_target_properties(KF5Auth PROPERTIES VERSION   ${KAUTH_VERSION_STRING}
+                                            SOVERSION ${KAUTH_SOVERSION}
+                                            EXPORT_NAME Auth
+    )
 
-ecm_generate_headers(KAuth_HEADERS
-  HEADER_NAMES
-  KAuth
-  KAuthHelperSupport
-  KAuthAction
-  KAuthActionReply
-  KAuthExecuteJob
-  KAuthObjectDecorator
+    ecm_generate_headers(KAuth_HEADERS
+        HEADER_NAMES
+        KAuth
+        KAuthHelperSupport
+        KAuthAction
+        KAuthActionReply
+        KAuthExecuteJob
+        KAuthObjectDecorator
 
-  REQUIRED_HEADERS KAuth_HEADERS
-)
+        REQUIRED_HEADERS KAuth_HEADERS
+    )
+
+    install(TARGETS KF5Auth EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
+        ${KAuth_HEADERS}
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth COMPONENT Devel
+    )
+endif()
 
 find_package(PythonModuleGeneration)
 
@@ -93,7 +99,7 @@ endif ()
 
 # KAuth backend plugin
 
-if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
+if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
     set(KAUTH_BACKEND_SRCS ${KAUTH_BACKEND_SRCS})
     # KAuth::AuthBackend is not exported
     add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp kauthdebug.cpp)
@@ -109,7 +115,7 @@ endif ()
 
 # KAuth helper plugin
 
-if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE")
+if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
     # KAuth::HelperProxy is not exported
     add_library(kauth_helper_plugin MODULE ${KAUTH_HELPER_BACKEND_SRCS} HelperProxy.cpp kauthdebug.cpp)
     target_link_libraries(kauth_helper_plugin PRIVATE ${KAUTH_HELPER_BACKEND_LIBS})
@@ -120,14 +126,6 @@ if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE")
             RUNTIME DESTINATION "${KDE_INSTALL_PLUGINDIR}/${KAUTH_HELPER_PLUGIN_DIR}"
     )
 endif ()
-
-install(TARGETS KF5Auth EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
-
-install(FILES
-  ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
-  ${KAuth_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth COMPONENT Devel
-)
 
 if(BUILD_QCH)
     ecm_add_qch(
