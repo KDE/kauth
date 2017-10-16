@@ -63,9 +63,9 @@ static void fixEnvironment()
     const char *home = "HOME";
     if (getenv(home) == nullptr) {
         struct passwd *pw = getpwuid(getuid());
-        int overwrite = 0;
 
         if (pw != nullptr) {
+            int overwrite = 0;
             setenv(home, pw->pw_dir, overwrite);
         }
     }
