@@ -270,6 +270,9 @@
  to prevent the caller from accidentally invoking a helper, and also because
  KAuth actions may be used without a helper attached (the default).
 
+ Please note that if your application is calling the helper multiple times it
+ must do so from the same thread.
+
  @section kauth_async Asynchronous calls, data reporting, and action termination
 
  For a more advanced example, we look at the action
