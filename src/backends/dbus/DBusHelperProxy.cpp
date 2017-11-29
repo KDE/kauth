@@ -52,11 +52,6 @@ DBusHelperProxy::DBusHelperProxy(const QDBusConnection &busConnection)
 
 DBusHelperProxy::~DBusHelperProxy()
 {
-    // workaround for Qt 5.6.0 bug which leads to kded5 deadlocking when a program using kauth exits
-    // See: https://bugreports.qt.io/browse/QTBUG-51648
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0) && QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
-    disconnect();
-#endif
 }
 
 void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
