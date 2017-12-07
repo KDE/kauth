@@ -6,6 +6,9 @@ configure_file(BackendsConfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/BackendsConfig
 
 ecm_create_qm_loader(KAuth_QM_LOADER kauth5_qt)
 
+set(kauthdebug_SRCS)
+ecm_qt_declare_logging_category(kauthdebug_SRCS HEADER kauthdebug.h IDENTIFIER KAUTH CATEGORY_NAME kf5.kauth)
+
 if(TARGET Qt5::Widgets)
     set(libkauth_SRCS
         kauthaction.cpp
@@ -16,7 +19,7 @@ if(TARGET Qt5::Widgets)
         BackendsManager.cpp
         HelperProxy.cpp
         kauthhelpersupport.cpp
-        kauthdebug.cpp
+        ${kauthdebug_SRCS}
         backends/fake/FakeBackend.cpp
         backends/fakehelper/FakeHelperProxy.cpp
         ${KAuth_QM_LOADER}
@@ -102,7 +105,7 @@ endif ()
 if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
     set(KAUTH_BACKEND_SRCS ${KAUTH_BACKEND_SRCS})
     # KAuth::AuthBackend is not exported
-    add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp kauthdebug.cpp)
+    add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp ${kauthdebug_SRCS})
     target_link_libraries(kauth_backend_plugin PRIVATE ${KAUTH_BACKEND_LIBS})
     set_target_properties(kauth_backend_plugin PROPERTIES PREFIX "")
 
@@ -117,7 +120,7 @@ endif ()
 
 if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
     # KAuth::HelperProxy is not exported
-    add_library(kauth_helper_plugin MODULE ${KAUTH_HELPER_BACKEND_SRCS} HelperProxy.cpp kauthdebug.cpp)
+    add_library(kauth_helper_plugin MODULE ${KAUTH_HELPER_BACKEND_SRCS} HelperProxy.cpp ${kauthdebug_SRCS})
     target_link_libraries(kauth_helper_plugin PRIVATE ${KAUTH_HELPER_BACKEND_LIBS})
     set_target_properties(kauth_helper_plugin PROPERTIES PREFIX "")
     install(TARGETS kauth_helper_plugin

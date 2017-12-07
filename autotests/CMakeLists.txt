@@ -13,12 +13,15 @@ qt5_add_dbus_adaptor(kauth_dbus_adaptor_tests_SRCS
 
 include(ECMAddTests)
 
+set(kauthdebug_SRCS)
+ecm_qt_declare_logging_category(kauthdebug_tests_SRCS HEADER kauthdebug.h IDENTIFIER KAUTH CATEGORY_NAME kf5.kauth)
+
+
 set(libkauth_tests_static_SRCS
     ../src/kauthaction.cpp
     ../src/kauthactionreply.cpp
     ../src/kauthexecutejob.cpp
     ../src/AuthBackend.cpp
-    ../src/kauthdebug.cpp
     # Use our "special" backends manager
     BackendsManager.cpp
     ../src/HelperProxy.cpp
@@ -26,6 +29,7 @@ set(libkauth_tests_static_SRCS
     TestBackend.cpp
     ../src/backends/dbus/DBusHelperProxy.cpp
     ${kauth_dbus_adaptor_tests_SRCS}
+    ${kauthdebug_tests_SRCS}
 )
 
 add_library(kauth_tests_static STATIC ${libkauth_tests_static_SRCS})

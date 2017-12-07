@@ -27,6 +27,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
+include(ECMQtDeclareLoggingCategory)
 
 include(ECMPoQmTools)
 include(ECMAddQch)
@@ -101,5 +102,5 @@ endif()
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kauth_version.h
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel )
 
-
+install(FILES kauth.categories DESTINATION ${KDE_INSTALL_CONFDIR})
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
