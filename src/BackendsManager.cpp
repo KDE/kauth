@@ -50,9 +50,9 @@ QList< QObject * > BackendsManager::retrieveInstancesIn(const QString &path)
 
     const QFileInfoList entryList = pluginPath.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
 
-    Q_FOREACH (const QFileInfo &fi, entryList) {
-        QString filePath = fi.filePath(); // file name with path
-        QString fileName = fi.fileName(); // just file name
+    for (const QFileInfo &fi : entryList) {
+        const QString filePath = fi.filePath(); // file name with path
+        //QString fileName = fi.fileName(); // just file name
 
         if (!QLibrary::isLibrary(filePath)) {
             continue;

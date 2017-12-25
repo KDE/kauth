@@ -92,10 +92,10 @@ void ExecuteJob::start()
 
     switch (d->mode) {
     case Action::ExecuteMode:
-        QTimer::singleShot(0, this, SLOT(doExecuteAction()));
+        QTimer::singleShot(0, this, [this]() {d->doExecuteAction();});
         break;
     case Action::AuthorizeOnlyMode:
-        QTimer::singleShot(0, this, SLOT(doAuthorizeAction()));
+        QTimer::singleShot(0, this, [this]() {d->doAuthorizeAction();});
         break;
     default: {
         ActionReply reply(ActionReply::InvalidActionError);

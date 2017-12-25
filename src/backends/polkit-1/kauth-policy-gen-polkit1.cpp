@@ -39,7 +39,7 @@ const char policy_tag[] = ""
 
 const char dent[] = "   ";
 
-void output(QList<Action> actions, QMap<QString, QString> domain)
+void output(QList<Action> actions, const QMap<QString, QString> &domain)
 {
     QTextStream out(stdout);
     out.setCodec("UTF-8");
@@ -51,9 +51,8 @@ void output(QList<Action> actions, QMap<QString, QString> domain)
     blacklist.insert(QLatin1Char('&'), QLatin1String("&amp;"));
 
     if (domain.contains(QLatin1String("vendor"))) {
-        QMap< QChar, QString >::const_iterator blI;
         QString vendor = domain[QLatin1String("vendor")];
-        for (blI = blacklist.constBegin(); blI != blacklist.constEnd(); ++blI) {
+        for (QMap< QChar, QString >::const_iterator blI = blacklist.constBegin(), total = blacklist.constEnd(); blI != total; ++blI) {
             vendor.replace(blI.key(), blI.value());
         }
         out << "<vendor>" << vendor << "</vendor>\n";

@@ -51,7 +51,7 @@ public:
     QString helperId;
     QVariantMap args;
     bool valid;
-    QWidget *parent;
+    QWidget *parent = nullptr;
     int timeout;
 };
 
