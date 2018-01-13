@@ -26,7 +26,7 @@
 
 using namespace std;
 
-void output(QList<Action> actions, QMap<QString, QString> domain)
+void output(QList<Action> actions, const QMap<QString, QString> &domain)
 {
     AuthorizationRef auth;
     AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &auth);
