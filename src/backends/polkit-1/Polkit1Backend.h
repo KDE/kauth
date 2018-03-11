@@ -24,9 +24,9 @@
 
 #include "AuthBackend.h"
 
-#include <QtCore/QHash>
-#include <QtCore/QEventLoop>
-#include <QtCore/QStringList>
+#include <QHash>
+#include <QEventLoop>
+#include <QStringList>
 
 #include <PolkitQt1/Authority>
 

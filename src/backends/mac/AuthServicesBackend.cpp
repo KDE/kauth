@@ -20,7 +20,7 @@
 
 #include "AuthServicesBackend.h"
 
-#include <QtCore/qplugin.h>
+#include <qplugin.h>
 
 #include <QLoggingCategory>
 #include <QDebug>

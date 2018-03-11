@@ -20,7 +20,7 @@
 
 #include "PolicyKitBackend.h"
 
-#include <QtCore/qplugin.h>
+#include <qplugin.h>
 #include <syslog.h>
 #include <polkit-qt/context.h>
 #include <polkit-qt/auth.h>

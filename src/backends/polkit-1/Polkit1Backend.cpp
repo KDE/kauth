@@ -21,15 +21,15 @@
 
 #include "Polkit1Backend.h"
 
-#include <QtCore/qplugin.h>
-#include <QtCore/QCoreApplication>
-#include <QtCore/QTimer>
+#include <qplugin.h>
+#include <QCoreApplication>
+#include <QTimer>
 
 #include <QApplication>
 #include <QWidget>
 
-#include <QtDBus/QDBusConnection>
-#include <QtDBus/QDBusConnectionInterface>
+#include <QDBusConnection>
+#include <QDBusConnectionInterface>
 
 #include <PolkitQt1/Authority>
 #include <PolkitQt1/Subject>

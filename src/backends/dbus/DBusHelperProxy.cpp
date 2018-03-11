@@ -20,11 +20,11 @@
 
 #include "DBusHelperProxy.h"
 
-#include <QtCore/qplugin.h>
+#include <qplugin.h>
 #include <QObject>
 #include <QMap>
-#include <QtDBus/QDBusMessage>
-#include <QtDBus/QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusConnection>
 #include <QTimer>
 
 #include "BackendsManager.h"

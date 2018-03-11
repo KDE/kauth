@@ -21,10 +21,10 @@
 #ifndef ACTION_H
 #define ACTION_H
 
-#include <QtCore/QString>
-#include <QtCore/QVariant>
-#include <QtCore/QHash>
-#include <QtCore/QSharedDataPointer>
+#include <QString>
+#include <QVariant>
+#include <QHash>
+#include <QSharedDataPointer>
 
 #include <kauth_export.h>
 

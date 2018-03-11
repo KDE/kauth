@@ -21,11 +21,11 @@
 #ifndef ACTION_REPLY_H
 #define ACTION_REPLY_H
 
-#include <QtCore/QString>
-#include <QtCore/QVariant>
-#include <QtCore/QMap>
-#include <QtCore/QDataStream>
-#include <QtCore/QSharedDataPointer>
+#include <QString>
+#include <QVariant>
+#include <QMap>
+#include <QDataStream>
+#include <QSharedDataPointer>
 
 #include <kauth_export.h>
 /**
