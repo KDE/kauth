@@ -26,12 +26,8 @@
 #include <QDebug>
 
 Q_DECLARE_LOGGING_CATEGORY(KAUTH_OSX)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
 // logging category for this backend, default: log stuff >= warning
 Q_LOGGING_CATEGORY(KAUTH_OSX, "kf5.kauth.apple", QtWarningMsg)
-#else
-Q_LOGGING_CATEGORY(KAUTH_OSX, "kf5.kauth.apple")
-#endif
 
 namespace KAuth
 {
