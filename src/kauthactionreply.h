@@ -164,8 +164,7 @@
  calling the helper. If it fails to open the file, it creates an ActionReply
  object that notifies that some error has happened in the helper, then set the
  error code to that returned by QFile and returns. If there is no error, it
- reads the file. The contents are put into the reply.data() object, which is
- another QVariantMap. It will be sent back to the application with the reply.
+ reads the file. The contents are added to the reply.
 
  Because this class will be compiled into a standalone executable, we need a
  main() function and some code to initialize everything: you don't have to write
