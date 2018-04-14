@@ -237,14 +237,14 @@ bool ActionReply::operator!=(const ActionReply &reply) const
 
 QDataStream &operator<<(QDataStream &d, const ActionReply &reply)
 {
-    return d << reply.d->data << reply.d->errorCode << (quint32)reply.d->type << reply.d->errorDescription;
+    return d << reply.d->data << reply.d->errorCode << static_cast<quint32>(reply.d->type) << reply.d->errorDescription;
 }
 
 QDataStream &operator>>(QDataStream &stream, ActionReply &reply)
 {
     quint32 i;
     stream >> reply.d->data >> reply.d->errorCode >> i >> reply.d->errorDescription;
-    reply.d->type = (ActionReply::Type) i;
+    reply.d->type = static_cast<ActionReply::Type>(i);
 
     return stream;
 }

@@ -304,7 +304,7 @@ void DBusHelperProxy::sendProgressStep(const QVariantMap &data)
 
 void debugMessageReceived(int t, const QString &message)
 {
-    QtMsgType type = (QtMsgType)t;
+    QtMsgType type = static_cast<QtMsgType>(t);
     switch (type) {
     case QtDebugMsg:
         qDebug("Debug message from helper: %s", message.toLatin1().data());
