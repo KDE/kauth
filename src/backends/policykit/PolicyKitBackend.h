@@ -40,7 +40,7 @@ public:
     virtual Action::AuthStatus authorizeAction(const QString &);
     virtual Action::AuthStatus actionStatus(const QString &);
     virtual QByteArray callerID() const;
-    ExtraCallerIDVerificationMethod extraCallerIDVerificationMethod() const Q_DECL_OVERRIDE;
+    ExtraCallerIDVerificationMethod extraCallerIDVerificationMethod() const override;
     virtual bool isCallerAuthorized(const QString &action, QByteArray callerID);
 
 private Q_SLOTS:

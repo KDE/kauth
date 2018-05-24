@@ -34,14 +34,14 @@ public:
     FakeHelperProxy();
     virtual ~FakeHelperProxy();
 
-    void sendProgressStep(const QVariantMap &step) Q_DECL_OVERRIDE;
-    void sendProgressStep(int step) Q_DECL_OVERRIDE;
-    void sendDebugMessage(int level, const char *msg) Q_DECL_OVERRIDE;
-    bool hasToStopAction() Q_DECL_OVERRIDE;
-    void setHelperResponder(QObject *o) Q_DECL_OVERRIDE;
-    bool initHelper(const QString &name) Q_DECL_OVERRIDE;
-    void stopAction(const QString &action, const QString &helperID) Q_DECL_OVERRIDE;
-    void executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments, int timeout = -1) Q_DECL_OVERRIDE;
+    void sendProgressStep(const QVariantMap &step) override;
+    void sendProgressStep(int step) override;
+    void sendDebugMessage(int level, const char *msg) override;
+    bool hasToStopAction() override;
+    void setHelperResponder(QObject *o) override;
+    bool initHelper(const QString &name) override;
+    void stopAction(const QString &action, const QString &helperID) override;
+    void executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments, int timeout = -1) override;
 };
 
 }

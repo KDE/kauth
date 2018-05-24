@@ -74,7 +74,7 @@ public:
      * @see newData
      * @see statusChanged
      */
-    void start() Q_DECL_OVERRIDE;
+    void start() override;
 
     /**
      * @returns the action associated with this job

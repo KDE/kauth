@@ -151,7 +151,7 @@ void DBusHelperProxy::setHelperResponder(QObject *o)
 
 void DBusHelperProxy::remoteSignalReceived(int t, const QString &action, QByteArray blob)
 {
-    SignalType type = (SignalType)t;
+    SignalType type = static_cast<SignalType>(t);
     QDataStream stream(&blob, QIODevice::ReadOnly);
 
     if (type == ActionStarted) {
