@@ -141,7 +141,7 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT")
 elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
     message(STATUS "Building PolkitQt5-1 KAuth backend")
 
-    include_directories(${POLKITQT-1_INCLUDE_DIR})
+    include_directories(SYSTEM ${POLKITQT-1_INCLUDE_DIR})
 
     set(KAUTH_BACKEND_SRCS
         backends/polkit-1/Polkit1Backend.cpp
