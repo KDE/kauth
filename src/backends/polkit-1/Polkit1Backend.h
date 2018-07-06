@@ -67,7 +67,7 @@ class PolkitResultEventLoop : public QEventLoop
 {
     Q_OBJECT
 public:
-    PolkitResultEventLoop(QObject *parent = 0);
+    PolkitResultEventLoop(QObject *parent = nullptr);
     virtual ~PolkitResultEventLoop();
 
     PolkitQt1::Authority::Result result() const;
