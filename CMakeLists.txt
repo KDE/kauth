@@ -56,7 +56,9 @@ endif()
 
 add_subdirectory(src)
 if(TARGET Qt5::Widgets)
-    add_subdirectory(autotests)
+    if (BUILD_TESTING)
+        add_subdirectory(autotests)
+    endif()
     add_subdirectory(examples)
 endif()
 
