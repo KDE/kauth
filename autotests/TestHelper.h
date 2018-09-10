@@ -17,8 +17,8 @@
 *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .
 */
 
-#ifndef HELPER_CLASS_H
-#define HELPER_CLASS_H
+#ifndef TEST_HELPER_H
+#define TEST_HELPER_H
 
 #include <QObject>
 

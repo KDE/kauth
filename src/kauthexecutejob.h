@@ -125,7 +125,7 @@ Q_SIGNALS:
 
     /**
      * @brief Signal emitted when the authentication status changes
-     * @param status the the new authentication status
+     * @param status the new authentication status
      */
     void statusChanged(KAuth::Action::AuthStatus status);
 
