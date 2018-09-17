@@ -83,7 +83,6 @@ void output(QList<Action> actions, const QMap<QString, QString> &domain)
             out << '>' << description << "</description>\n";
         }
 
-        QMap< QString, QString >::const_iterator i;
         for (QMap< QString, QString >::const_iterator i = action.descriptions.constBegin();
                 i != action.descriptions.constEnd();
                 ++i) {
