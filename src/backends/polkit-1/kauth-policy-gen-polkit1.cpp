@@ -112,7 +112,7 @@ void output(QList<Action> actions, const QMap<QString, QString> &domain)
             policyInactive += QLatin1String("_keep");
         }
 
-        out << QString(QLatin1String(policy_tag)).arg(policyInactive).arg(policy);
+        out << QString(QLatin1String(policy_tag)).arg(policyInactive, policy);
 
         out << dent << "</action>\n";
     }
