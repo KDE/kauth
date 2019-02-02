@@ -31,6 +31,8 @@
 #include "kf5authadaptor.h"
 #include "kauthdebug.h"
 
+extern Q_CORE_EXPORT const QMetaTypeInterface *qMetaTypeGuiHelper;
+
 namespace KAuth
 {
 
@@ -229,9 +231,16 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
         return ActionReply::HelperBusyReply().serialized();
     }
 
+    // Make sure we don't try restoring gui variants, in particular QImage/QPixmap/QIcon are super dangerous
+    // since they end up calling the image loaders and thus are a vector for crashing → executing code
+    auto origMetaTypeGuiHelper = qMetaTypeGuiHelper;
+    qMetaTypeGuiHelper = nullptr;
+
     QVariantMap args;
     QDataStream s(&arguments, QIODevice::ReadOnly);
     s >> args;
+
+    qMetaTypeGuiHelper = origMetaTypeGuiHelper;
 
     m_currentAction = action;
     emit remoteSignal(ActionStarted, action, QByteArray());

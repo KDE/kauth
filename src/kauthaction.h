@@ -298,6 +298,8 @@ public:
      * This method sets the variant map that the application
      * can use to pass arbitrary data to the helper when executing the action.
      *
+     * Only non-gui variants are supported.
+     *
      * @param arguments The new arguments map
      */
     void setArguments(const QVariantMap &arguments);
