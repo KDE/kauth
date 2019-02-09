@@ -26,7 +26,7 @@
 #include <QHash>
 #include <QSharedDataPointer>
 
-#include <kauth_export.h>
+#include <kauthcore_export.h>
 
 namespace KAuth
 {
@@ -79,7 +79,7 @@ class ActionData;
  *
  * @since 4.4
  */
-class KAUTH_EXPORT Action
+class KAUTHCORE_EXPORT Action
 {
 Q_GADGET
 public:

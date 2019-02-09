@@ -22,7 +22,7 @@
 
 #include <kjob.h>
 
-#include <kauth_export.h>
+#include <kauthcore_export.h>
 
 #include "kauthaction.h"
 #include "kauthactionreply.h"
@@ -46,7 +46,7 @@ namespace KAuth
  *
  * @since 5.0
  */
-class KAUTH_EXPORT ExecuteJob : public KJob
+class KAUTHCORE_EXPORT ExecuteJob : public KJob
 {
     Q_OBJECT
 

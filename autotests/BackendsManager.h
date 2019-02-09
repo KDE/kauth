@@ -22,12 +22,11 @@
 
 #include "AuthBackend.h"
 #include "HelperProxy.h"
-#include <kauth_export.h>
 
 namespace KAuth
 {
 
-class KAUTH_EXPORT BackendsManager
+class BackendsManager
 {
     static AuthBackend *auth;
     static HelperProxy *helper;

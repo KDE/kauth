@@ -27,6 +27,7 @@ if(TARGET Qt5::Widgets)
     )
 
     add_library(KF5AuthCore ${libkauth_core_SRCS})
+    generate_export_header(KF5AuthCore BASE_NAME KAuthCore)
     target_link_libraries(KF5AuthCore PUBLIC Qt5::Core KF5::CoreAddons)  # for KJob
     target_link_libraries(KF5AuthCore PRIVATE Qt5::DBus)
     target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
@@ -68,6 +69,7 @@ if(TARGET Qt5::Widgets)
     install(TARGETS KF5Auth EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
     install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
+        ${CMAKE_CURRENT_BINARY_DIR}/kauthcore_export.h
         ${KAuth_HEADERS}
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth COMPONENT Devel
     )
@@ -158,6 +160,7 @@ if(BUILD_QCH)
             Qt5Core_QCH
             KF5CoreAddons_QCH
         BLANK_MACROS
+            KAUTHCORE_EXPORT
             KAUTH_EXPORT
             KAUTH_DEPRECATED
             KAUTH_DEPRECATED_EXPORT

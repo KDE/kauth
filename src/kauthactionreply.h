@@ -27,7 +27,7 @@
 #include <QDataStream>
 #include <QSharedDataPointer>
 
-#include <kauth_export.h>
+#include <kauthcore_export.h>
 /**
  @namespace KAuth
 
@@ -340,7 +340,7 @@ class ActionReplyData;
  *
  * @since 4.4
  */
-class KAUTH_EXPORT ActionReply
+class KAUTHCORE_EXPORT ActionReply
 {
 public:
     /**
