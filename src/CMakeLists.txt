@@ -28,6 +28,7 @@ if(TARGET Qt5::Widgets)
 
     add_library(KF5AuthCore ${libkauth_core_SRCS})
     generate_export_header(KF5AuthCore BASE_NAME KAuthCore)
+    add_library(KF5::AuthCore ALIAS KF5AuthCore)
     target_link_libraries(KF5AuthCore PUBLIC Qt5::Core KF5::CoreAddons)  # for KJob
     target_link_libraries(KF5AuthCore PRIVATE Qt5::DBus)
     target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
