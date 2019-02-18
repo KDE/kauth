@@ -14,8 +14,8 @@ If you are using CMake, you need to have
 
     find_package(KF5Auth NO_MODULE)
 
-(or find KF5 with the Auth component) in your CMakeLists.txt file, and you need
-to link to KF5::Auth.
+(or find KF5 with the Auth component) in your CMakeLists.txt file. You need
+to link to KF5::AuthCore, or KF5::Auth if you need KAuth::ObjectDecorator.
 
 Executing privileged actions typically involves having a minimal helper utility
 that does the actual work, and calling that utility with escalated privileges if
