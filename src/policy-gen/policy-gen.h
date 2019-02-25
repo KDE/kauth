@@ -36,6 +36,6 @@ struct Action {
     QString persistence;
 };
 
-extern void output(QList<Action> actions, const QMap<QString, QString> &domain);
+extern void output(const QList<Action> &actions, const QMap<QString, QString> &domain);
 
 #endif

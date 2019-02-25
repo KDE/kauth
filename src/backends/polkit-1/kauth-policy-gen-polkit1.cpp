@@ -39,7 +39,7 @@ const char policy_tag[] = ""
 
 const char dent[] = "   ";
 
-void output(QList<Action> actions, const QMap<QString, QString> &domain)
+void output(const QList<Action> &actions, const QMap<QString, QString> &domain)
 {
     QTextStream out(stdout);
     out.setCodec("UTF-8");
@@ -64,7 +64,7 @@ void output(QList<Action> actions, const QMap<QString, QString> &domain)
         out << "<icon_name>" << domain[QLatin1String("icon")] << "</icon_name>\n";
     }
 
-    Q_FOREACH (const Action &action, actions) {
+    for (const Action &action : actions) {
         out << dent << "<action id=\"" << action.name << "\" >\n";
 
         // Not a typo, messages and descriptions are actually inverted

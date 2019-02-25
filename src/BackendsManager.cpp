@@ -74,7 +74,7 @@ void BackendsManager::init()
     // Backend plugin
     const QList< QObject * > backends = retrieveInstancesIn(QFile::decodeName(KAUTH_BACKEND_PLUGIN_DIR));
 
-    Q_FOREACH (QObject *instance, backends) {
+    for (QObject *instance : backends) {
         auth = qobject_cast< KAuth::AuthBackend * >(instance);
         if (auth) {
             break;
@@ -84,7 +84,7 @@ void BackendsManager::init()
     // Helper plugin
     const QList< QObject * > helpers = retrieveInstancesIn(QFile::decodeName(KAUTH_HELPER_PLUGIN_DIR));
 
-    Q_FOREACH (QObject *instance, helpers) {
+    for (QObject *instance : helpers) {
         helper = qobject_cast< KAuth::HelperProxy * >(instance);
         if (helper) {
             break;

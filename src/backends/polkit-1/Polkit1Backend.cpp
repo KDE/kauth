@@ -123,7 +123,7 @@ void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
 void Polkit1Backend::updateCachedActions(const PolkitQt1::ActionDescription::List &actions)
 {
     m_knownActions.clear();
-    Q_FOREACH (const PolkitQt1::ActionDescription &action, actions) {
+    for (const PolkitQt1::ActionDescription &action : actions) {
         m_knownActions << action.actionId();
     }
     m_flyingActions = false;
@@ -200,7 +200,8 @@ bool Polkit1Backend::isCallerAuthorized(const QString &action, QByteArray caller
 
 void Polkit1Backend::checkForResultChanged()
 {
-    Q_FOREACH (const QString &action, m_cachedResults.keys()) {
+    const auto listKeys = m_cachedResults.keys();
+    for (const QString &action : listKeys) {
         if (m_cachedResults[action] != actionStatus(action)) {
             m_cachedResults[action] = actionStatus(action);
             emit actionStatusChanged(action, m_cachedResults[action]);
