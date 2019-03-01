@@ -43,6 +43,9 @@ static inline void closelog() {}
 
 #include <QCoreApplication>
 #include <QTimer>
+#ifdef Q_OS_UNIX
+#include <QTextCodec>
+#endif
 
 #include "BackendsManager.h"
 
@@ -76,6 +79,11 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
 {
 #ifdef Q_OS_UNIX
     fixEnvironment();
+    //As we don't inherit lang, the locale could be something that doesn't support UTF-8. Force it
+    auto utf8Codec = QTextCodec::codecForName("UTF-8");
+    if (utf8Codec) {
+        QTextCodec::setCodecForLocale(utf8Codec);
+    }
 #endif
 
 #ifdef Q_OS_OSX

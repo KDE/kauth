@@ -191,6 +191,9 @@
  kauth_install_helper_files(<helper_target> <helper_id> <user>)
  @endcode
 
+ As locale is not inherited, the auth helper will have the text codec explicitly set
+ to use UTF-8.
+
  The first argument is the cmake target name for the helper executable, which
  you have to build and install separately. Make sure to INSTALL THE HELPER IN
  ${KAUTH_HELPER_INSTALL_DIR}, otherwise kauth_install_helper_files will not work. The
