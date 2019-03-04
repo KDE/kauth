@@ -200,11 +200,11 @@ bool Polkit1Backend::isCallerAuthorized(const QString &action, QByteArray caller
 
 void Polkit1Backend::checkForResultChanged()
 {
-    const auto listKeys = m_cachedResults.keys();
-    for (const QString &action : listKeys) {
-        if (m_cachedResults[action] != actionStatus(action)) {
-            m_cachedResults[action] = actionStatus(action);
-            emit actionStatusChanged(action, m_cachedResults[action]);
+    for (auto it = m_cachedResults.begin(); it != m_cachedResults.end(); ++it) {
+        const QString action = it.key();
+        if (it.value() != actionStatus(action)) {
+            *it = actionStatus(action);
+            emit actionStatusChanged(action, *it);
         }
     }
 
