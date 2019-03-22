@@ -39,7 +39,7 @@ const char policy_tag[] = ""
 
 const char dent[] = "   ";
 
-void output(QList<Action> actions, const QMap<QString, QString> &domain)
+void output(const QList<Action> &actions, const QMap<QString, QString> &domain)
 {
     QTextStream out(stdout);
     out.setCodec("UTF-8");
