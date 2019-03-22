@@ -47,10 +47,11 @@ void output(QList<Action> actions, const QMap<QString, QString> &domain)
 
     out << header;
 
-    foreach (const Action &action, actions) {
+    for (const Action &action : qAsConst(actions)) {
         out << dent << "<action id=\"" << action.name << "\" >\n";
 
-        foreach (const QString &lang, action.descriptions.keys()) {
+        const auto lstKeys = action.descriptions.keys();
+        for (const QString &lang : lstKeys) {
             out << dent << dent << "<description";
             if (lang != "en") {
                 out << " xml:lang=\"" << lang << '"';
@@ -58,7 +59,8 @@ void output(QList<Action> actions, const QMap<QString, QString> &domain)
             out << '>' << action.messages.value(lang) << "</description>\n";
         }
 
-        foreach (const QString &lang, action.messages.keys()) {
+        const auto lstMessagesKeys = action.messages.keys();
+        for (const QString &lang : lstMessagesKeys) {
             out << dent << dent << "<message";
             if (lang != "en") {
                 out << " xml:lang=\"" << lang << '"';

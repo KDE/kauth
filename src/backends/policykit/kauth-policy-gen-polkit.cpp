@@ -65,7 +65,7 @@ void output(QList<Action> actions, const QMap<QString, QString> &domain)
         out << "<icon_name>" << domain[QLatin1String("icon")] << "</icon_name>\n";
     }
 
-    foreach (const Action &action, actions) {
+    for (const Action &action : qAsConst(actions)) {
         out << dent << "<action id=\"" << action.name << "\" >\n";
 
         for (QHash< QString, QString >::const_iterator i = action.messages.constBegin(); i != action.messages.constEnd(); ++i) {

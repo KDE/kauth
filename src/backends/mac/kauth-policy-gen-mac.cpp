@@ -33,7 +33,7 @@ void output(QList<Action> actions, const QMap<QString, QString> &domain)
 
     OSStatus err;
 
-    foreach (const Action &action, actions) {
+    for (const Action &action : qAsConst(actions)) {
 
         err = AuthorizationRightGet(action.name.toLatin1().constData(), NULL);
 
