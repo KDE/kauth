@@ -224,7 +224,7 @@ if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
 
     # Install some files as well
     install( FILES backends/dbus/org.kde.kf5auth.conf
-             DESTINATION ${SYSCONF_INSTALL_DIR}/dbus-1/system.d )
+             DESTINATION ${KDE_INSTALL_DBUSDIR}/system.d )
 
     install( FILES backends/dbus/dbus_policy.stub
                    backends/dbus/dbus_service.stub
