@@ -1,25 +1,44 @@
 from conans import ConanFile, CMake
+import yaml
+import re
+import os.path
 
 
-class KAuthConan(ConanFile):
-    name = "kauth"
-    version = "5.50.0"
-    license = "GPLv2"
-    url = "https://api.kde.org/frameworks/kauth/html/index.html"
-    description = "Library that helps execute actions as privileged user."
+def getVersion():
+    if(os.path.exists("CMakeLists.txt")):
+        regx = re.compile(r"^set\(.*VERSION\s(\"|')[0-9.]+(\"|')\)")
+        with open("CMakeLists.txt") as f:
+            for line in f:
+                if regx.match(line):
+                    version = re.search("\"[0-9\.]+\"", line)
+                    version = version.group().replace("\"", "")
+                    return version
+    return None
+
+
+def getMetaField(field):
+    if(os.path.exists("metainfo.yaml")):
+        with open("metainfo.yaml") as f:
+            metainfo = yaml.load(f.read())
+        return metainfo[field]
+    return None
+
+
+class KauthConan(ConanFile):
+    name = getMetaField('name')
+    version = getVersion()
+    license = getMetaField('license')
+    url = getMetaField('url')
+    description = getMetaField('description')
 
     settings = "os", "compiler", "build_type", "arch"
 
     requires = (
-        "extra-cmake-modules/5.50.0@kde/testing",
+        "qt/[>=5.11.3]@bincrafters/stable",
+        "extra-cmake-modules/[>=5.60.0]@kde/testing",
 
-        "Qt/5.11.1@bincrafters/stable",
-        # "qt-core/5.8.0@qt/testing",
-        # "qt-widgets/5.8.0@qt/testing",
-        # "qt-dbus/5.8.0@qt/testing",
-        # "qt-test/5.8.0@qt/testing",
-
-        "kcoreaddons/5.50.0@kde/testing",
+        "kcoreaddons/[>=5.60.0]@kde/testing",
+        "polkit-qt-1/[>=0.99.0]@kde/testing"
     )
 
     generators = "cmake"
@@ -27,7 +46,7 @@ class KAuthConan(ConanFile):
         "type": "git",
         "url": "auto",
         "revision": "auto"
-     }
+    }
 
     def build(self):
         cmake = CMake(self)
