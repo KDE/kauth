@@ -160,6 +160,8 @@ if(BUILD_QCH)
         LINK_QCHS
             Qt5Core_QCH
             KF5CoreAddons_QCH
+        INCLUDE_DIRS
+            ${CMAKE_CURRENT_BINARY_DIR}
         BLANK_MACROS
             KAUTHCORE_EXPORT
             KAUTH_EXPORT
