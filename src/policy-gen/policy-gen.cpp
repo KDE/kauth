@@ -23,7 +23,7 @@
 
 #include <QCoreApplication>
 #include <QSettings>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QDebug>
 
@@ -71,13 +71,15 @@ int main(int argc, char **argv)
 QList<Action> parse(QSettings &ini)
 {
     QList<Action> actions;
-    QRegExp actionExp(QLatin1String("[0-9a-z]+(\\.[0-9a-z]+)*"));
-    QRegExp descriptionExp(QLatin1String("description(?:\\[(\\w+)\\])?"));
-    QRegExp nameExp(QLatin1String("name(?:\\[(\\w+)\\])?"));
-    QRegExp policyExp(QLatin1String("yes|no|auth_self|auth_admin"));
+    const QRegularExpression actionExp(QRegularExpression::anchoredPattern(QStringLiteral("[0-9a-z]+(\\.[0-9a-z]+)*")));
 
-    descriptionExp.setCaseSensitivity(Qt::CaseInsensitive);
-    nameExp.setCaseSensitivity(Qt::CaseInsensitive);
+    const QRegularExpression descriptionExp(QRegularExpression::anchoredPattern(QStringLiteral("description(?:\\[(\\w+)\\])?"))
+                                      , QRegularExpression::CaseInsensitiveOption);
+
+    const QRegularExpression nameExp(QRegularExpression::anchoredPattern(QStringLiteral("name(?:\\[(\\w+)\\])?"))
+                               , QRegularExpression::CaseInsensitiveOption);
+
+    const QRegularExpression policyExp(QRegularExpression::anchoredPattern(QStringLiteral("(?:yes|no|auth_self|auth_admin)")));
 
     const auto listChilds = ini.childGroups();
     for (const QString &name : listChilds) {
@@ -87,7 +89,7 @@ QList<Action> parse(QSettings &ini)
             continue;
         }
 
-        if (!actionExp.exactMatch(name)) {
+        if (!actionExp.match(name).hasMatch()) {
             qCritical("Wrong action syntax: %s\n", name.toLatin1().data());
             exit(1);
         }
@@ -97,8 +99,9 @@ QList<Action> parse(QSettings &ini)
 
         const auto listChildKeys = ini.childKeys();
         for (const QString &key : listChildKeys) {
-            if (descriptionExp.exactMatch(key)) {
-                QString lang = descriptionExp.capturedTexts().at(1);
+            QRegularExpressionMatch match;
+            if ((match = descriptionExp.match(key)).hasMatch()) {
+                QString lang = match.captured();
 
                 if (lang.isEmpty()) {
                     lang = QString::fromLatin1("en");
@@ -106,8 +109,8 @@ QList<Action> parse(QSettings &ini)
 
                 action.descriptions.insert(lang, ini.value(key).toString());
 
-            } else if (nameExp.exactMatch(key)) {
-                QString lang = nameExp.capturedTexts().at(1);
+            } else if ((match = nameExp.match(key)).hasMatch()) {
+                QString lang = match.captured();
 
                 if (lang.isEmpty()) {
                     lang = QString::fromLatin1("en");
@@ -117,7 +120,7 @@ QList<Action> parse(QSettings &ini)
 
             } else if (key.toLower() == QLatin1String("policy")) {
                 QString policy = ini.value(key).toString();
-                if (!policyExp.exactMatch(policy)) {
+                if (!policyExp.match(policy).hasMatch()) {
                     qCritical("Wrong policy: %s", policy.toLatin1().data());
                     exit(1);
                 }
@@ -125,7 +128,7 @@ QList<Action> parse(QSettings &ini)
 
             } else if (key.toLower() == QLatin1String("policyinactive")) {
                 QString policyInactive = ini.value(key).toString();
-                if (!policyExp.exactMatch(policyInactive)) {
+                if (!policyExp.match(policyInactive).hasMatch()) {
                     qCritical("Wrong policy: %s", policyInactive.toLatin1().data());
                     exit(1);
                 }

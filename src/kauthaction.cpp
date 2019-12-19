@@ -20,7 +20,7 @@
 #include "kauthaction.h"
 
 #include <QtGlobal>
-#include <QRegExp>
+#include <QRegularExpression>
 
 class QWidget;
 
@@ -123,8 +123,8 @@ void Action::setName(const QString &name)
         d->valid = BackendsManager::authBackend()->actionExists(name);
     } else {
         // Otherwise, check through a regexp
-        QRegExp exp(QLatin1String("[0-z]+(\\.[0-z]+)*"));
-        d->valid = exp.exactMatch(name);
+        const QRegularExpression re(QRegularExpression::anchoredPattern(QStringLiteral("[0-z]+(\\.[0-z]+)*")));
+        d->valid = re.match(name).hasMatch();
     }
 }
 
