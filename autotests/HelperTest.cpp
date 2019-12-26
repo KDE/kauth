@@ -21,6 +21,7 @@
 #include <QSignalSpy>
 #include <QTimer>
 #include <QThread>
+#include <QRandomGenerator>
 #include <kauth.h>
 #include <kauthactionreply.h>
 #include <kauthexecutejob.h>
@@ -211,8 +212,9 @@ void HelperTest::testActionData()
 
     QVariantMap args;
     // Fill with random data (and test heavy structures while we're at it)
+    auto *generator = QRandomGenerator::global();
     for (int i = 0; i < 150; ++i) {
-        args.insert(QUuid::createUuid().toString(), qrand());
+        args.insert(QUuid::createUuid().toString(), generator->generate());
     }
     action.setArguments(args);
 
