@@ -26,6 +26,7 @@
 #include <QDBusMessage>
 #include <QDBusConnection>
 #include <QTimer>
+#include <QMetaMethod>
 
 #include "BackendsManager.h"
 #include "kf5authadaptor.h"
@@ -269,13 +270,32 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
 
         slotname.replace(QLatin1Char('.'), QLatin1Char('_'));
 
-        bool success = QMetaObject::invokeMethod(responder, slotname.toLatin1().data(), Qt::DirectConnection,
-                       Q_RETURN_ARG(ActionReply, retVal), Q_ARG(QVariantMap, args));
-
-        if (!success) {
+        // For legacy reasons we could be dealing with ActionReply types (i.e.
+        // `using namespace KAuth`). Since Qt type names are verbatim this would
+        // mismatch a return type that is called 'KAuth::ActionReply' and
+        // vice versa. This effectively required client code to always 'use' the
+        // namespace as otherwise we'd not be able to call into it.
+        // To support both scenarios we now dynamically determine what kind of return type
+        // we deal with and call Q_RETURN_ARG either with or without namespace.
+        const auto metaObj = responder->metaObject();
+        const QString slotSignature(slotname + QStringLiteral("(QVariantMap)"));
+        const QMetaMethod method = metaObj->method(metaObj->indexOfMethod(qPrintable(slotSignature)));
+        if (method.isValid()) {
+            const auto needle = "KAuth::";
+            bool success = false;
+            if (strncmp(needle, method.typeName(), strlen(needle)) == 0) {
+                success = method.invoke(responder, Qt::DirectConnection,
+                                        Q_RETURN_ARG(KAuth::ActionReply, retVal), Q_ARG(QVariantMap, args));
+            } else {
+                success = method.invoke(responder, Qt::DirectConnection,
+                                        Q_RETURN_ARG(ActionReply, retVal), Q_ARG(QVariantMap, args));
+            }
+            if (!success) {
+                retVal = ActionReply::NoSuchActionReply();
+            }
+        } else {
             retVal = ActionReply::NoSuchActionReply();
         }
-
     } else {
         retVal = ActionReply::AuthorizationDeniedReply();
     }

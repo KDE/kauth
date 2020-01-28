@@ -148,11 +148,7 @@
 
  The slot's signature is fixed: the return type is ActionReply, a class that
  allows you to return results, error codes and custom data to the application
- when your action has finished to run.  Please note that due to QMetaObject
- being picky about namespaces, you NEED to declare the return type as
- ActionReply and not KAuth::ActionReply. So the using declaration is compulsory
- The QVariantMap object that comes as argument contains custom data coming from
- the application.
+ when your action has finished to run.
 
  Let's look at the read action implementation. Its purpose is to read files:
 
