@@ -83,7 +83,7 @@ QVariantMap ExecuteJob::data() const
 void ExecuteJob::start()
 {
     if (!d->action.isValid()) {
-        qCWarning(KAUTH) << "Tried to start an invalid action";
+        qCWarning(KAUTH) << "Tried to start an invalid action: " << d->action.name();
         ActionReply reply(ActionReply::InvalidActionError);
         reply.setErrorDescription(tr("Tried to start an invalid action"));
         d->actionPerformedSlot(d->action.name(), reply);
