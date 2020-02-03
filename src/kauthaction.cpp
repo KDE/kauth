@@ -34,14 +34,13 @@ namespace KAuth
 class ActionData : public QSharedData
 {
 public:
-    ActionData() : valid(false), parent(nullptr), timeout(-1) {}
+    ActionData() : parent(nullptr), timeout(-1) {}
     ActionData(const ActionData &other)
         : QSharedData(other)
         , name(other.name)
         , details(other.details)
         , helperId(other.helperId)
         , args(other.args)
-        , valid(other.valid)
         , parent(other.parent)
         , timeout(other.timeout) {}
     ~ActionData() {}
@@ -50,7 +49,6 @@ public:
     QString details;
     QString helperId;
     QVariantMap args;
-    bool valid;
     QWidget *parent = nullptr;
     int timeout;
 };
@@ -116,16 +114,6 @@ QString Action::name() const
 void Action::setName(const QString &name)
 {
     d->name = name;
-
-    // Does the backend support checking for known actions?
-    if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::CheckActionExistenceCapability) {
-        // In this case, just ask the backend
-        d->valid = BackendsManager::authBackend()->actionExists(name);
-    } else {
-        // Otherwise, check through a regexp
-        const QRegularExpression re(QRegularExpression::anchoredPattern(QStringLiteral("[0-z]+(\\.[0-z]+)*")));
-        d->valid = re.match(name).hasMatch();
-    }
 }
 
 // Accessors
@@ -151,7 +139,19 @@ void Action::setDetails(const QString &details)
 
 bool Action::isValid() const
 {
-    return d->valid;
+    if (d->name.isEmpty()) {
+        return false;
+    }
+
+    // Does the backend support checking for known actions?
+    if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::CheckActionExistenceCapability) {
+        // In this case, just ask the backend
+        return BackendsManager::authBackend()->actionExists(name());
+    } else {
+        // Otherwise, check through a regexp
+        const QRegularExpression re(QRegularExpression::anchoredPattern(QStringLiteral("[0-z]+(\\.[0-z]+)*")));
+        return re.match(name()).hasMatch();
+    }
 }
 
 void Action::setArguments(const QVariantMap &arguments)
