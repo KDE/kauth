@@ -2,6 +2,7 @@
 *   Copyright (C) 2008 Nicola Gigante <nicola.gigante@gmail.com>
 *   Copyright (C) 2009 Radek Novacek <rnovacek@redhat.com>
 *   Copyright (C) 2009-2010 Dario Freddi <drf@kde.org>
+*   Copyright (C) 2020 David Edmundson <davidedmundson@kde.org>
 *
 *   This program is free software; you can redistribute it and/or modify
 *   it under the terms of the GNU Lesser General Public License as published by
@@ -61,7 +62,6 @@ PolkitQt1::Authority::Result PolkitResultEventLoop::result() const
 
 Polkit1Backend::Polkit1Backend()
     : AuthBackend()
-    , m_flyingActions(false)
 {
     setCapabilities(AuthorizeFromHelperCapability | CheckActionExistenceCapability | PreAuthActionCapability);
 
@@ -70,12 +70,6 @@ Polkit1Backend::Polkit1Backend()
             this, SLOT(checkForResultChanged()));
     connect(PolkitQt1::Authority::instance(), SIGNAL(consoleKitDBChanged()),
             this, SLOT(checkForResultChanged()));
-    connect(PolkitQt1::Authority::instance(), SIGNAL(enumerateActionsFinished(PolkitQt1::ActionDescription::List)),
-            this, SLOT(updateCachedActions(PolkitQt1::ActionDescription::List)));
-
-    // Cache existing action IDs as soon as possible
-    m_flyingActions = true;
-    PolkitQt1::Authority::instance()->enumerateActions();
 }
 
 Polkit1Backend::~Polkit1Backend()
@@ -118,15 +112,6 @@ void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
     } else {
         qCDebug(KAUTH) << "KDE polkit agent appears too old or not registered on the bus";
     }
-}
-
-void Polkit1Backend::updateCachedActions(const PolkitQt1::ActionDescription::List &actions)
-{
-    m_knownActions.clear();
-    for (const PolkitQt1::ActionDescription &action : actions) {
-        m_knownActions << action.actionId();
-    }
-    m_flyingActions = false;
 }
 
 Action::AuthStatus Polkit1Backend::authorizeAction(const QString &action)
@@ -208,35 +193,11 @@ void Polkit1Backend::checkForResultChanged()
             emit actionStatusChanged(action, *it);
         }
     }
-
-    // Force updating known actions
-    PolkitQt1::Authority::instance()->enumerateActions();
-    m_flyingActions = true;
 }
 
 bool Polkit1Backend::actionExists(const QString &action)
 {
-    auto authority = PolkitQt1::Authority::instance();
-    if (m_flyingActions && authority->hasError()) {
-            // This can happen if enumerateActions call failed
-            qWarning() << "Encountered error while enumerating actions, error code:" << authority->lastError() << authority->errorDetails();
-            authority->clearError();
-            m_flyingActions = false;
-    }
-
-    // Any flying actions?
-    if (m_flyingActions) {
-        int tries = 0;
-        while (m_flyingActions && tries < 10) {
-            // Wait max 2 seconds
-            QEventLoop e;
-            QTimer::singleShot(200, &e, SLOT(quit()));
-            e.exec();
-            ++tries;
-        }
-    }
-
-    return m_knownActions.contains(action);
+    return m_cachedResults.value(action) != Action::InvalidStatus;
 }
 
 } // namespace Auth

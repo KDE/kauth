@@ -55,12 +55,9 @@ public:
 
 private Q_SLOTS:
     void checkForResultChanged();
-    void updateCachedActions(const PolkitQt1::ActionDescription::List &actions);
 
 private:
     QHash<QString, Action::AuthStatus> m_cachedResults;
-    QStringList m_knownActions;
-    bool m_flyingActions;
 };
 
 class PolkitResultEventLoop : public QEventLoop
