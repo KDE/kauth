@@ -63,3 +63,11 @@ ecm_add_test(${HelperTest_SRCS}
     TEST_NAME KAuthHelperTest
     LINK_LIBRARIES Qt5::Test kauth_tests_static
 )
+
+########### test kauth-policy-gen ###############
+add_test(NAME KAuthPolicyGenTest
+         COMMAND kauth-policy-gen ${CMAKE_SOURCE_DIR}/autotests/foo_actions.actions
+                                  ${CMAKE_BINARY_DIR}/generated-foo.policy)
+add_test(KAuthPolicyGenTestCompare ${CMAKE_COMMAND} -E compare_files
+         ${CMAKE_BINARY_DIR}/generated-foo.policy ${CMAKE_SOURCE_DIR}/autotests/foo.policy)
+

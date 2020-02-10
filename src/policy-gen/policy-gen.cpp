@@ -71,14 +71,19 @@ int main(int argc, char **argv)
 QList<Action> parse(QSettings &ini)
 {
     QList<Action> actions;
+
+    // example: [org.kde.kcontrol.kcmfoo.save]
     const QRegularExpression actionExp(QRegularExpression::anchoredPattern(QStringLiteral("[0-9a-z]+(\\.[0-9a-z]+)*")));
 
-    const QRegularExpression descriptionExp(QRegularExpression::anchoredPattern(QStringLiteral("description(?:\\[(\\w+)\\])?"))
-                                      , QRegularExpression::CaseInsensitiveOption);
+    // example: Description[ca]=Mòdul de control del Foo.
+    const QRegularExpression descriptionExp(QRegularExpression::anchoredPattern(QStringLiteral("description(?:\\[(\\w+)\\])?")),
+                                            QRegularExpression::CaseInsensitiveOption);
 
-    const QRegularExpression nameExp(QRegularExpression::anchoredPattern(QStringLiteral("name(?:\\[(\\w+)\\])?"))
-                               , QRegularExpression::CaseInsensitiveOption);
+    // example: Name[ca]=Mòdul de control del Foo
+    const QRegularExpression nameExp(QRegularExpression::anchoredPattern(QStringLiteral("name(?:\\[(\\w+)\\])?")),
+                                     QRegularExpression::CaseInsensitiveOption);
 
+    // example: Policy=auth_admin
     const QRegularExpression policyExp(QRegularExpression::anchoredPattern(QStringLiteral("(?:yes|no|auth_self|auth_admin)")));
 
     const auto listChilds = ini.childGroups();
@@ -101,7 +106,7 @@ QList<Action> parse(QSettings &ini)
         for (const QString &key : listChildKeys) {
             QRegularExpressionMatch match;
             if ((match = descriptionExp.match(key)).hasMatch()) {
-                QString lang = match.captured();
+                QString lang = match.captured(1);
 
                 if (lang.isEmpty()) {
                     lang = QString::fromLatin1("en");
@@ -110,7 +115,7 @@ QList<Action> parse(QSettings &ini)
                 action.descriptions.insert(lang, ini.value(key).toString());
 
             } else if ((match = nameExp.match(key)).hasMatch()) {
-                QString lang = match.captured();
+                QString lang = match.captured(1);
 
                 if (lang.isEmpty()) {
                     lang = QString::fromLatin1("en");
