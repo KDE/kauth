@@ -151,6 +151,7 @@ Action::AuthStatus Polkit1Backend::actionStatus(const QString &action)
     if (authority->hasError()) {
         qCDebug(KAUTH) << "Encountered error while checking action status, error code:" << authority->lastError() << authority->errorDetails();
         authority->clearError();
+        return Action::InvalidStatus;
     }
 
     switch (r) {
