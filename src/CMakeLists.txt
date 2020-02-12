@@ -7,7 +7,13 @@ configure_file(BackendsConfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/BackendsConfig
 ecm_create_qm_loader(KAuth_QM_LOADER kauth5_qt)
 
 set(kauthdebug_SRCS)
-ecm_qt_declare_logging_category(kauthdebug_SRCS HEADER kauthdebug.h IDENTIFIER KAUTH CATEGORY_NAME kf5.kauth)
+ecm_qt_declare_logging_category(kauthdebug_SRCS
+    HEADER kauthdebug.h
+    IDENTIFIER KAUTH
+    CATEGORY_NAME kf5.kauth
+    DESCRIPTION "KAuth"
+    EXPORT KAUTH
+)
 
 if(TARGET Qt5::Widgets)
     # TODO KF6 Rename KAuth to KAuthWidgets
@@ -146,6 +152,12 @@ if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
             RUNTIME DESTINATION "${KDE_INSTALL_PLUGINDIR}/${KAUTH_HELPER_PLUGIN_DIR}"
     )
 endif ()
+
+ecm_qt_install_logging_categories(
+    EXPORT KAUTH
+    FILE kauth.categories
+    DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+)
 
 if(BUILD_QCH)
     ecm_add_qch(
