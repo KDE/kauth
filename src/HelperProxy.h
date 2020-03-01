@@ -31,6 +31,8 @@
 namespace KAuth
 {
 
+typedef Action::DetailsMap DetailsMap;
+
 class HelperProxy : public QObject
 {
     Q_OBJECT
@@ -40,7 +42,8 @@ public:
 
     // Application-side methods
     virtual void executeAction(const QString &action, const QString &helperID,
-                               const QVariantMap &arguments, int timeout) = 0;
+                               const DetailsMap &details, const QVariantMap &arguments,
+                               int timeout) = 0;
     virtual void stopAction(const QString &action, const QString &helperID) = 0;
 
     // Helper-side methods

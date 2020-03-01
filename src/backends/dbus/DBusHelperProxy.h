@@ -59,7 +59,8 @@ public:
     ~DBusHelperProxy() override;
 
     virtual void executeAction(const QString &action, const QString &helperID,
-                               const QVariantMap &arguments, int timeout = -1) override;
+                               const DetailsMap &details, const QVariantMap &arguments,
+                               int timeout = -1) override;
     void stopAction(const QString &action, const QString &helperID) override;
 
     bool initHelper(const QString &name) override;
@@ -71,7 +72,7 @@ public:
 
 public Q_SLOTS:
     void stopAction(const QString &action);
-    QByteArray performAction(const QString &action, const QByteArray &callerID, QByteArray arguments);
+    QByteArray performAction(const QString &action, const QByteArray &callerID, const QVariantMap &details, QByteArray arguments);
 
 Q_SIGNALS:
     void remoteSignal(int type, const QString &action, const QByteArray &blob); // This signal is sent from the helper to the app
@@ -80,7 +81,7 @@ private Q_SLOTS:
     void remoteSignalReceived(int type, const QString &action, QByteArray blob);
 
 private:
-    bool isCallerAuthorized(const QString &action, const QByteArray &callerID);
+    bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details);
 };
 
 } // namespace Auth

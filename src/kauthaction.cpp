@@ -38,16 +38,16 @@ public:
     ActionData(const ActionData &other)
         : QSharedData(other)
         , name(other.name)
-        , details(other.details)
         , helperId(other.helperId)
+        , details(other.details)
         , args(other.args)
         , parent(other.parent)
         , timeout(other.timeout) {}
     ~ActionData() {}
 
     QString name;
-    QString details;
     QString helperId;
+    Action::DetailsMap details;
     QVariantMap args;
     QWidget *parent = nullptr;
     int timeout;
@@ -71,11 +71,18 @@ Action::Action(const QString &name)
     BackendsManager::authBackend()->setupAction(d->name);
 }
 
+#ifndef KAUTHCORE_NO_DEPRECATED
 Action::Action(const QString &name, const QString &details)
+    : Action(name, DetailsMap{{AuthDetail::DetailOther, details}})
+{
+}
+#endif
+
+Action::Action(const QString &name, const DetailsMap &details)
     : d(new ActionData())
 {
     setName(name);
-    setDetails(details);
+    setDetailsV2(details);
     BackendsManager::authBackend()->setupAction(d->name);
 }
 
@@ -127,12 +134,25 @@ void Action::setTimeout(int timeout)
     d->timeout = timeout;
 }
 
+#ifndef KAUTHCORE_NO_DEPRECATED
 QString Action::details() const
+{
+    return d->details.value(AuthDetail::DetailOther).toString();
+}
+
+void Action::setDetails(const QString &details)
+{
+    d->details.clear();
+    d->details.insert(AuthDetail::DetailOther, details);
+}
+#endif
+
+Action::DetailsMap Action::detailsV2() const
 {
     return d->details;
 }
 
-void Action::setDetails(const QString &details)
+void Action::setDetailsV2(const DetailsMap &details)
 {
     d->details = details;
 }

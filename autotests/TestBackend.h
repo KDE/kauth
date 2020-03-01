@@ -39,7 +39,7 @@ public:
     Action::AuthStatus authorizeAction(const QString &) override;
     Action::AuthStatus actionStatus(const QString &) override;
     QByteArray callerID() const override;
-    bool isCallerAuthorized(const QString &action, QByteArray callerID) override;
+    bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) override;
     bool actionExists(const QString &action) override;
 
 public Q_SLOTS:

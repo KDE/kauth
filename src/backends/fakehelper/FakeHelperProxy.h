@@ -41,7 +41,7 @@ public:
     void setHelperResponder(QObject *o) override;
     bool initHelper(const QString &name) override;
     void stopAction(const QString &action, const QString &helperID) override;
-    void executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments, int timeout = -1) override;
+    void executeAction(const QString &action, const QString &helperID, const DetailsMap &details, const QVariantMap &arguments, int timeout = -1) override;
 };
 
 }

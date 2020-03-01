@@ -73,8 +73,10 @@ QByteArray TestBackend::callerID() const
     return QByteArray("a random caller Id");
 }
 
-bool TestBackend::isCallerAuthorized(const QString &action, QByteArray callerId)
+bool TestBackend::isCallerAuthorized(const QString &action, const QByteArray &callerId, const QVariantMap &details)
 {
+    Q_UNUSED(details);
+
     if (action == QLatin1String("doomed.to.fail")) {
         return false;
     } else if (action == QLatin1String("requires.auth")) {

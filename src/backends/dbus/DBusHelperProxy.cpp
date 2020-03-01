@@ -68,7 +68,7 @@ void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
     m_busConnection.asyncCall(message);
 }
 
-void DBusHelperProxy::executeAction(const QString &action, const QString &helperID, const QVariantMap &arguments, int timeout)
+void DBusHelperProxy::executeAction(const QString &action, const QString &helperID, const DetailsMap &details, const QVariantMap &arguments, int timeout)
 {
     QByteArray blob;
     {
@@ -102,7 +102,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("performAction"));
 
     QList<QVariant> args;
-    args << action << BackendsManager::authBackend()->callerID() << blob;
+    args << action << BackendsManager::authBackend()->callerID() << BackendsManager::authBackend()->backendDetails(details) << blob;
     message.setArguments(args);
 
     m_actionsInProgress.push_back(action);
@@ -111,12 +111,21 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
     auto watcher = new QDBusPendingCallWatcher(pendingCall, this);
 
-    connect(watcher, &QDBusPendingCallWatcher::finished, this, [this, action, watcher]() {
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, [=] () mutable {
         watcher->deleteLater();
 
-        const QDBusMessage reply = watcher->reply();
+        QDBusMessage reply = watcher->reply();
 
         if (reply.type() == QDBusMessage::ErrorMessage) {
+            if (watcher->error().type() == QDBusError::InvalidArgs) {
+                // For backwards compatibility if helper binary was built with older KAuth version.
+                args.removeAt(args.count() - 2); // remove backend details
+                message.setArguments(args);
+                reply = m_busConnection.call(message, QDBus::Block, timeout);
+                if (reply.type() != QDBusMessage::ErrorMessage) {
+                    return;
+                }
+            }
             ActionReply r = ActionReply::DBusErrorReply();
             r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
                                     "Connection error: %1. Message error: %2").arg(reply.errorMessage(), m_busConnection.lastError().message()));
@@ -198,7 +207,7 @@ bool DBusHelperProxy::hasToStopAction()
     return m_stopRequest;
 }
 
-bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray &callerID)
+bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details)
 {
     // Check the caller is really who it says it is
     switch (BackendsManager::authBackend()->extraCallerIDVerificationMethod()) {
@@ -218,10 +227,10 @@ bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray
         break;
     }
 
-    return BackendsManager::authBackend()->isCallerAuthorized(action, callerID);
+    return BackendsManager::authBackend()->isCallerAuthorized(action, callerID, details);
 }
 
-QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArray &callerID, QByteArray arguments)
+QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArray &callerID, const QVariantMap &details, QByteArray arguments)
 {
     if (!responder) {
         return ActionReply::NoResponderReply().serialized();
@@ -252,7 +261,7 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
     QTimer *timer = responder->property("__KAuth_Helper_Shutdown_Timer").value<QTimer *>();
     timer->stop();
 
-    if (isCallerAuthorized(action, callerID)) {
+    if (isCallerAuthorized(action, callerID, details)) {
         QString slotname = action;
         if (slotname.startsWith(m_name + QLatin1Char('.'))) {
             slotname = slotname.right(slotname.length() - m_name.length() - 1);

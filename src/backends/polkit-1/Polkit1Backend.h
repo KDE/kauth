@@ -50,8 +50,9 @@ public:
     Action::AuthStatus actionStatus(const QString &) override;
     QByteArray callerID() const override;
     ExtraCallerIDVerificationMethod extraCallerIDVerificationMethod() const override;
-    bool isCallerAuthorized(const QString &action, QByteArray callerID) override;
+    virtual bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) override;
     bool actionExists(const QString &action) override;
+    QVariantMap backendDetails(const DetailsMap &details) override;
 
 private Q_SLOTS:
     void checkForResultChanged();

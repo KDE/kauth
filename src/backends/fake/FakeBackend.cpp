@@ -50,10 +50,11 @@ QByteArray FakeBackend::callerID() const
     return QByteArray();
 }
 
-bool FakeBackend::isCallerAuthorized(const QString &action, QByteArray callerID)
+bool FakeBackend::isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details)
 {
     Q_UNUSED(action)
     Q_UNUSED(callerID)
+    Q_UNUSED(details)
     return false;
 }
 

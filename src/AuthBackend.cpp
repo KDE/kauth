@@ -71,5 +71,11 @@ void AuthBackend::preAuthAction(const QString &action, QWidget *parent)
     Q_UNUSED(parent)
 }
 
+QVariantMap AuthBackend::backendDetails(const DetailsMap &details)
+{
+    Q_UNUSED(details);
+    return QVariantMap();
+}
+
 } //namespace KAuth
 

@@ -4,8 +4,10 @@
         <method name="performAction" >
             <arg name="action" type="s" direction="in" />
             <arg name="callerID" type="ay" direction="in" />
+            <arg name="details" type="a{sv}" direction="in" />
             <arg name="arguments" type="ay" direction="in" />
             <arg name="r" type="ay" direction="out" />
+            <annotation name="org.qtproject.QtDBus.QtTypeName.In2" value="QVariantMap"/>
         </method>
         <method name="stopAction" >
             <arg name="action" type="s" direction="in" />

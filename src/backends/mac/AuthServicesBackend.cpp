@@ -165,8 +165,10 @@ QByteArray AuthServicesBackend::callerID() const
     return id;
 }
 
-bool AuthServicesBackend::isCallerAuthorized(const QString &action, QByteArray callerID)
+bool AuthServicesBackend::isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details)
 {
+    Q_UNUSED(details);
+
     AuthorizationExternalForm ext;
     memcpy(&ext, callerID.data(), sizeof(ext));
 

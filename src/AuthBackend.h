@@ -28,6 +28,8 @@
 namespace KAuth
 {
 
+typedef Action::DetailsMap DetailsMap;
+
 class AuthBackend : public QObject
 {
     Q_OBJECT
@@ -57,8 +59,9 @@ public:
     virtual Action::AuthStatus actionStatus(const QString &action) = 0;
     virtual QByteArray callerID() const = 0;
     virtual ExtraCallerIDVerificationMethod extraCallerIDVerificationMethod() const;
-    virtual bool isCallerAuthorized(const QString &action, QByteArray callerID) = 0;
+    virtual bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) = 0;
     virtual bool actionExists(const QString &action);
+    virtual QVariantMap backendDetails(const DetailsMap &details);
 
     Capabilities capabilities() const;
 

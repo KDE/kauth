@@ -34,6 +34,7 @@
 
 #include <PolkitQt1/Authority>
 #include <PolkitQt1/Subject>
+#include <polkitqt1-version.h>
 
 #include "kauthdebug.h"
 
@@ -160,15 +161,22 @@ AuthBackend::ExtraCallerIDVerificationMethod Polkit1Backend::extraCallerIDVerifi
     return VerifyAgainstDBusServiceName;
 }
 
-bool Polkit1Backend::isCallerAuthorized(const QString &action, QByteArray callerID)
+bool Polkit1Backend::isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details)
 {
     PolkitQt1::SystemBusNameSubject subject(QString::fromUtf8(callerID));
     PolkitQt1::Authority *authority = PolkitQt1::Authority::instance();
-
+    QMap<QString, QString> polkit1Details;
+    for (auto it = details.cbegin(); it != details.cend(); ++it) {
+        polkit1Details.insert(it.key(), it.value().toString());
+    }
     PolkitResultEventLoop e;
     connect(authority, SIGNAL(checkAuthorizationFinished(PolkitQt1::Authority::Result)),
             &e, SLOT(requestQuit(PolkitQt1::Authority::Result)));
+#if POLKITQT1_IS_VERSION(0, 113, 0)
+    authority->checkAuthorizationWithDetails(action, subject, PolkitQt1::Authority::AllowUserInteraction, polkit1Details);
+#else
     authority->checkAuthorization(action, subject, PolkitQt1::Authority::AllowUserInteraction);
+#endif
     e.exec();
 
     if (authority->hasError()) {
@@ -198,6 +206,23 @@ void Polkit1Backend::checkForResultChanged()
 bool Polkit1Backend::actionExists(const QString &action)
 {
     return m_cachedResults.value(action) != Action::InvalidStatus;
+}
+
+QVariantMap Polkit1Backend::backendDetails(const DetailsMap &details)
+{
+    QVariantMap backendDetails;
+    for (auto it = details.cbegin(); it != details.cend(); ++it) {
+        switch (it.key()) {
+            case Action::AuthDetail::DetailMessage:
+                backendDetails.insert(QStringLiteral("polkit.message"), it.value());
+                break;
+            case Action::AuthDetail::DetailOther:
+            default:
+                backendDetails.insert(QStringLiteral("other_details"), it.value());
+                break;
+        }
+    }
+    return backendDetails;
 }
 
 } // namespace Auth

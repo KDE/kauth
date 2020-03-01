@@ -39,7 +39,7 @@ public:
     virtual Action::AuthStatus authorizeAction(const QString &);
     virtual Action::AuthStatus actionStatus(const QString &);
     virtual QByteArray callerID() const;
-    virtual bool isCallerAuthorized(const QString &action, QByteArray callerID);
+    virtual bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details);
     virtual bool actionExists(const QString &action);
 };
 

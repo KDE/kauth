@@ -103,6 +103,17 @@ public:
     Q_ENUM(ExecutionMode)
 
     /**
+     * The backend specific details.
+     */
+    enum class AuthDetail {
+        DetailOther = 0,
+        DetailMessage, ///< The message to show in authentication dialog.
+    };
+    Q_ENUM(AuthDetail)
+
+    typedef QMap<AuthDetail, QVariant> DetailsMap;
+
+    /**
      * @brief Default constructor
      *
      * This constructor sets the name to the empty string.
@@ -126,8 +137,21 @@ public:
      * @param details The details of the action
      *
      * @see setDetails
+     * @deprecated since 5.68
      */
-    Action(const QString &name, const QString &details);
+#ifndef KAUTHCORE_NO_DEPRECATED
+    KAUTHCORE_DEPRECATED Action(const QString &name, const QString &details);
+#endif
+
+    /**
+     * This creates a new action object with this name and details
+     * @param name The name of the new action
+     * @param details The details of the action
+     *
+     * @see setDetails
+     * @since 5.68
+     */
+     Action(const QString &name, const DetailsMap &details);
 
     /// Virtual destructor
     ~Action();
@@ -207,8 +231,26 @@ public:
      * You can use this function to provide the user more details
      * (if the backend supports it) on the action being authorized in
      * the authorization dialog
+     *
+     * @deprecated since 5.68, use setDetails() with DetailsMap.
      */
-    void setDetails(const QString &details);
+#ifndef KAUTHCORE_NO_DEPRECATED
+    KAUTHCORE_DEPRECATED void setDetails(const QString &details);
+#endif
+
+    /**
+     * @brief Sets the action's details
+     *
+     * You can use this function to provide the user more details
+     * (if the backend supports it) on the action being authorized in
+     * the authorization dialog
+     *
+     * @param details the details describing the action. For e.g, "DetailMessage" key can
+     * be used to give a customized authentication message.
+     *
+     * @since 5.68
+     */
+    void setDetailsV2(const DetailsMap &details);
 
     /**
      * @brief Gets the action's details
@@ -217,8 +259,22 @@ public:
      * backend supports it.
      *
      * @return The action's details
+     * @deprecated since 5.68, use detailsV2() with DetailsMap.
      */
-    QString details() const;
+#ifndef KAUTHCORE_NO_DEPRECATED
+    KAUTHCORE_DEPRECATED QString details() const;
+#endif
+
+    /**
+     * @brief Gets the action's details
+     *
+     * The details that will be shown in the authorization dialog, if the
+     * backend supports it.
+     *
+     * @return The action's details
+     * @since 5.68
+     */
+    DetailsMap detailsV2() const;
 
     /**
      * @brief Returns if the object represents a valid action
