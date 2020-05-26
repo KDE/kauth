@@ -111,6 +111,9 @@ public:
     };
     Q_ENUM(AuthDetail)
 
+    /**
+     * Map of details.
+     */
     typedef QMap<AuthDetail, QVariant> DetailsMap;
 
     /**
