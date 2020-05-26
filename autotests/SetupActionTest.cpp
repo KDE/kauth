@@ -37,6 +37,9 @@ private Q_SLOTS:
     void init() {}
 
     void testNonExistentAction();
+#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
+    void testBasicActionPropertiesDeprecated();
+#endif
     void testBasicActionProperties();
     void testUserAuthorization();
     void testAuthorizationFail();
@@ -72,14 +75,17 @@ void SetupActionTest::testNonExistentAction()
     QVERIFY(!action.isValid());
 }
 
-void SetupActionTest::testBasicActionProperties()
+#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
+void SetupActionTest::testBasicActionPropertiesDeprecated()
 {
     emit changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability | KAuth::AuthBackend::CheckActionExistenceCapability);
+    KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
     KAuth::Action action(QLatin1String("always.authorized"), QLatin1String("details"));
     QVERIFY(action.isValid());
 
     QCOMPARE(action.name(), QLatin1String("always.authorized"));
     QCOMPARE(action.details(), QLatin1String("details"));
+    QCOMPARE(action.detailsV2(), detailsMap);
     QVERIFY(!action.hasHelper());
     QVERIFY(action.helperId().isEmpty());
     QCOMPARE(action.status(), KAuth::Action::AuthorizedStatus);
@@ -100,6 +106,48 @@ void SetupActionTest::testBasicActionProperties()
     QVERIFY(action.isValid());
     QCOMPARE(action.name(), QLatin1String("i.do.not.exist"));
     QCOMPARE(action.details(), QLatin1String("details"));
+    QCOMPARE(action.detailsV2(), detailsMap);
+    QVERIFY(!action.hasHelper());
+    QVERIFY(action.helperId().isEmpty());
+    QCOMPARE(action.status(), KAuth::Action::InvalidStatus);
+}
+#endif
+
+void SetupActionTest::testBasicActionProperties()
+{
+    emit changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability | KAuth::AuthBackend::CheckActionExistenceCapability);
+    KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
+    KAuth::Action action(QLatin1String("always.authorized"), detailsMap);
+    QVERIFY(action.isValid());
+
+    QCOMPARE(action.name(), QLatin1String("always.authorized"));
+#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
+    QCOMPARE(action.details(), QLatin1String("details"));
+#endif
+    QCOMPARE(action.detailsV2(), detailsMap);
+    QVERIFY(!action.hasHelper());
+    QVERIFY(action.helperId().isEmpty());
+    QCOMPARE(action.status(), KAuth::Action::AuthorizedStatus);
+
+    QVERIFY(action.arguments().isEmpty());
+    QVariantMap args;
+    args.insert(QLatin1String("akey"), QVariant::fromValue(42));
+    action.setArguments(args);
+    QCOMPARE(action.arguments(), args);
+
+    action.setName(QLatin1String("i.do.not.exist"));
+    QVERIFY(!action.isValid());
+
+    emit changeCapabilities(KAuth::AuthBackend::NoCapability);
+
+    action = KAuth::Action(QLatin1String("i.do.not.exist"), detailsMap);
+
+    QVERIFY(action.isValid());
+    QCOMPARE(action.name(), QLatin1String("i.do.not.exist"));
+#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
+    QCOMPARE(action.details(), QLatin1String("details"));
+#endif
+    QCOMPARE(action.detailsV2(), detailsMap);
     QVERIFY(!action.hasHelper());
     QVERIFY(action.helperId().isEmpty());
     QCOMPARE(action.status(), KAuth::Action::InvalidStatus);
@@ -109,7 +157,8 @@ void SetupActionTest::testUserAuthorization()
 {
     emit changeCapabilities(KAuth::AuthBackend::CheckActionExistenceCapability);
 
-    KAuth::Action action(QLatin1String("requires.auth"), QLatin1String("details"));
+    KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
+    KAuth::Action action(QLatin1String("requires.auth"), detailsMap);
     QVERIFY(action.isValid());
 
     QCOMPARE(action.status(), KAuth::Action::AuthRequiredStatus);
@@ -136,7 +185,8 @@ void SetupActionTest::testAuthorizationFail()
 {
     emit changeCapabilities(KAuth::AuthBackend::CheckActionExistenceCapability | KAuth::AuthBackend::AuthorizeFromClientCapability);
 
-    KAuth::Action action(QLatin1String("doomed.to.fail"), QLatin1String("details"));
+    KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
+    KAuth::Action action(QLatin1String("doomed.to.fail"), detailsMap);
     QVERIFY(action.isValid());
 
     QCOMPARE(action.status(), KAuth::Action::DeniedStatus);

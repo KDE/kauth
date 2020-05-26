@@ -38,6 +38,15 @@ target_compile_definitions(kauth_tests_static
     PUBLIC KAUTHCORE_STATIC_DEFINE=1
     PUBLIC KAUTH_STATIC_DEFINE=1
 )
+# have to manually duplicate logic of flags set by ecm_generate_expoirt_header on the library
+ecm_export_header_format_version(${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
+    CURRENT_VERSION ${KF5_VERSION}
+    HEXNUMBER_VAR kauthcore_tests_no_deprecated_before_and_at
+)
+target_compile_definitions(kauth_tests_static
+    PUBLIC "KAUTHCORE_DISABLE_DEPRECATED_BEFORE_AND_AT=${kauthcore_tests_no_deprecated_before_and_at}"
+    PUBLIC "KAUTHCORE_DEPRECATED_WARNINGS_SINCE=${kauthcore_tests_no_deprecated_before_and_at}"
+)
 ecm_mark_as_test(kauth_tests_static)
 
 target_include_directories(kauth_tests_static

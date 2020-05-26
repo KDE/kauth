@@ -131,16 +131,17 @@ public:
      */
     Action(const QString &name);
 
+#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 71)
     /**
      * This creates a new action object with this name and details
      * @param name The name of the new action
      * @param details The details of the action
      *
      * @see setDetails
-     * @deprecated since 5.68
+     * @deprecated since 5.68, use constructor with DetailsMap
      */
-#ifndef KAUTHCORE_NO_DEPRECATED
-    KAUTHCORE_DEPRECATED Action(const QString &name, const QString &details);
+    KAUTHCORE_DEPRECATED_VERSION_BELATED(5, 71, 5, 68, "Use constructor with DetailsMap")
+    Action(const QString &name, const QString &details);
 #endif
 
     /**
@@ -225,6 +226,7 @@ public:
      */
     void setTimeout(int timeout);
 
+#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 71)
     /**
      * @brief Sets the action's details
      *
@@ -232,10 +234,10 @@ public:
      * (if the backend supports it) on the action being authorized in
      * the authorization dialog
      *
-     * @deprecated since 5.68, use setDetails() with DetailsMap.
+     * @deprecated since 5.68, use setDetailsV2() with DetailsMap.
      */
-#ifndef KAUTHCORE_NO_DEPRECATED
-    KAUTHCORE_DEPRECATED void setDetails(const QString &details);
+    KAUTHCORE_DEPRECATED_VERSION_BELATED(5, 71, 5, 68, "Use setDetailsV2() with DetailsMap")
+    void setDetails(const QString &details);
 #endif
 
     /**
@@ -252,6 +254,7 @@ public:
      */
     void setDetailsV2(const DetailsMap &details);
 
+#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 71)
     /**
      * @brief Gets the action's details
      *
@@ -261,8 +264,8 @@ public:
      * @return The action's details
      * @deprecated since 5.68, use detailsV2() with DetailsMap.
      */
-#ifndef KAUTHCORE_NO_DEPRECATED
-    KAUTHCORE_DEPRECATED QString details() const;
+    KAUTHCORE_DEPRECATED_VERSION_BELATED(5, 71, 5, 68, "Use detailsV2() with DetailsMap")
+    QString details() const;
 #endif
 
     /**

@@ -71,7 +71,7 @@ Action::Action(const QString &name)
     BackendsManager::authBackend()->setupAction(d->name);
 }
 
-#ifndef KAUTHCORE_NO_DEPRECATED
+#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
 Action::Action(const QString &name, const QString &details)
     : Action(name, DetailsMap{{AuthDetail::DetailOther, details}})
 {
@@ -134,12 +134,14 @@ void Action::setTimeout(int timeout)
     d->timeout = timeout;
 }
 
-#ifndef KAUTHCORE_NO_DEPRECATED
+#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
 QString Action::details() const
 {
     return d->details.value(AuthDetail::DetailOther).toString();
 }
+#endif
 
+#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
 void Action::setDetails(const QString &details)
 {
     d->details.clear();
