@@ -35,6 +35,8 @@ class ExecuteJob;
 
 class ActionData;
 /**
+ * @class Action kauthaction.h <KAuthAction>
+ *
  * @brief Class to access, authorize and execute actions.
  *
  * This is the main class of the kauth API. It provides the interface to

@@ -31,6 +31,8 @@ namespace KAuth
 {
 
 /**
+ * @class ExecuteJob kauthexecutejob.h <KAuthExecuteJob>
+ *
  * @brief Job for executing an Action
  *
  * To run the action synchonously use KJob::exec() and check the return code for

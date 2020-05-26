@@ -31,6 +31,8 @@ namespace KAuth
 class ObjectDecoratorPrivate;
 
 /**
+ * @class ObjectDecorator kauthobjectdecorator.h <KAuthObjectDecorator>
+ *
  * @brief A decorator to add auth features to a button or an action
  *
  * @author Dario Freddi <drf@kde.org>

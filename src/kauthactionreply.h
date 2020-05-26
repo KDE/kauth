@@ -330,6 +330,8 @@ namespace KAuth
 class ActionReplyData;
 
 /**
+ * @class ActionReply kauthactionreply.h <KAuthActionReply>
+ *
  * @brief Class that encapsulates a reply coming from the helper after executing
  * an action
  *
