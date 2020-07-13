@@ -10,7 +10,8 @@ set(kauthdebug_SRCS)
 ecm_qt_declare_logging_category(kauthdebug_SRCS
     HEADER kauthdebug.h
     IDENTIFIER KAUTH
-    CATEGORY_NAME kf5.kauth
+    CATEGORY_NAME kf.auth
+    OLD_CATEGORY_NAMES kf5.kauth
     DESCRIPTION "KAuth"
     EXPORT KAUTH
 )

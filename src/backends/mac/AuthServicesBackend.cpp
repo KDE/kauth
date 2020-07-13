@@ -14,7 +14,7 @@
 
 Q_DECLARE_LOGGING_CATEGORY(KAUTH_OSX)
 // logging category for this backend, default: log stuff >= warning
-Q_LOGGING_CATEGORY(KAUTH_OSX, "kf5.kauth.apple", QtWarningMsg)
+Q_LOGGING_CATEGORY(KAUTH_OSX, "kf.auth.apple", QtWarningMsg)
 
 namespace KAuth
 {

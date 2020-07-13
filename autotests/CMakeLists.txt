@@ -14,7 +14,11 @@ qt5_add_dbus_adaptor(kauth_dbus_adaptor_tests_SRCS
 include(ECMAddTests)
 
 set(kauthdebug_SRCS)
-ecm_qt_declare_logging_category(kauthdebug_tests_SRCS HEADER kauthdebug.h IDENTIFIER KAUTH CATEGORY_NAME kf5.kauth)
+ecm_qt_declare_logging_category(kauthdebug_tests_SRCS
+    HEADER kauthdebug.h
+    IDENTIFIER KAUTH
+    CATEGORY_NAME kf.auth
+)
 
 
 set(libkauth_tests_static_SRCS
