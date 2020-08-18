@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2008 Nicola Gigante <nicola.gigante@gmail.com>
+    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -88,6 +89,19 @@ KAUTHCORE_EXPORT bool isStopped();
  *                  heap-allocated object of the class specified as the last macro parameter
  */
 KAUTHCORE_EXPORT int helperMain(int argc, char **argv, const char *id, QObject *responder);
+
+/**
+ * @brief Obtains the caller user id if available.
+ *
+ * This method offers a way to obtain the unprivileged client's UID if possible.
+ * For example when a DBus-based backend is used this will resolve the caller
+ * of the DBus method and obtain its process' UID.
+ *
+ * @since 5.74
+ *
+ * @return caller UID or -1 when not available
+ */
+KAUTHCORE_EXPORT int callerUid();
 } // namespace HelperSupport
 
 } // namespace Auth

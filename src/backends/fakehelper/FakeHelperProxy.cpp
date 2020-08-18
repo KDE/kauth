@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2010 Dario Freddi <drf@kde.org>
+    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -65,6 +66,11 @@ void FakeHelperProxy::executeAction(const QString &action, const QString &helper
     Q_UNUSED(arguments)
     Q_UNUSED(timeout)
     emit actionPerformed(action, KAuth::ActionReply::NoSuchActionReply());
+}
+
+int FakeHelperProxy::callerUid() const
+{
+    return -1;
 }
 
 }

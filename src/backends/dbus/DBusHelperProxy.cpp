@@ -1,6 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2008 Nicola Gigante <nicola.gigante@gmail.com>
     SPDX-FileCopyrightText: 2009-2010 Dario Freddi <drf@kde.org>
+    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -14,6 +15,7 @@
 #include <QDBusConnection>
 #include <QTimer>
 #include <QMetaMethod>
+#include <QDBusConnectionInterface>
 
 #include "BackendsManager.h"
 #include "kf5authadaptor.h"
@@ -347,6 +349,15 @@ void debugMessageReceived(int t, const QString &message)
         qFatal("Fatal error from helper: %s", message.toLatin1().data());
         break;
     }
+}
+
+int DBusHelperProxy::callerUid() const
+{
+    QDBusConnectionInterface *iface = connection().interface();
+    if (!iface) {
+        return -1;
+    }
+    return iface->serviceUid(message().service());
 }
 
 } // namespace Auth

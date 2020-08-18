@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2010 Dario Freddi <drf@kde.org>
+    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -29,6 +30,7 @@ public:
     bool initHelper(const QString &name) override;
     void stopAction(const QString &action, const QString &helperID) override;
     void executeAction(const QString &action, const QString &helperID, const DetailsMap &details, const QVariantMap &arguments, int timeout = -1) override;
+    int callerUid() const override;
 };
 
 }

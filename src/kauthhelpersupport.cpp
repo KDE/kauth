@@ -1,6 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2008 Nicola Gigante <nicola.gigante@gmail.com>
     SPDX-FileCopyrightText: 2009 Dario Freddi <drf@kde.org>
+    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -152,6 +153,11 @@ void HelperSupport::progressStep(const QVariantMap &data)
 bool HelperSupport::isStopped()
 {
     return BackendsManager::helperProxy()->hasToStopAction();
+}
+
+int HelperSupport::callerUid()
+{
+    return BackendsManager::helperProxy()->callerUid();
 }
 
 } // namespace Auth

@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2008 Nicola Gigante <nicola.gigante@gmail.com>
+    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -40,6 +41,8 @@ public:
     virtual void sendDebugMessage(int level, const char *msg) = 0;
     virtual void sendProgressStep(int step) = 0;
     virtual void sendProgressStep(const QVariantMap &step) = 0;
+    // Attempts to resolve the UID of the unprivileged remote process.
+    virtual int callerUid() const = 0;
 
 Q_SIGNALS:
     void actionStarted(const QString &action);

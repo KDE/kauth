@@ -1,6 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2008 Nicola Gigante <nicola.gigante@gmail.com>
     SPDX-FileCopyrightText: 2009 Dario Freddi <drf@kde.org>
+    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -56,6 +57,8 @@ public:
     void sendDebugMessage(int level, const char *msg) override;
     void sendProgressStep(int step) override;
     void sendProgressStep(const QVariantMap &data) override;
+
+    int callerUid() const override;
 
 public Q_SLOTS:
     void stopAction(const QString &action);
