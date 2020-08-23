@@ -63,9 +63,10 @@ private:
     Private *const d;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(AuthBackend::Capabilities)
+
 } // namespace Auth
 
 Q_DECLARE_INTERFACE(KAuth::AuthBackend, "org.kde.kf5auth.AuthBackend/0.1")
-Q_DECLARE_OPERATORS_FOR_FLAGS(KAuth::AuthBackend::Capabilities)
 
 #endif
