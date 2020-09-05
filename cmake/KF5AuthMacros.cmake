@@ -19,7 +19,7 @@ function(KAUTH_INSTALL_HELPER_FILES HELPER_TARGET HELPER_ID HELPER_USER)
         configure_file(${KAUTH_STUB_FILES_DIR}/dbus_service.stub
                         ${CMAKE_CURRENT_BINARY_DIR}/${HELPER_ID}.service)
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${HELPER_ID}.service
-                DESTINATION ${DBUS_SYSTEM_SERVICES_INSTALL_DIR})
+                DESTINATION ${KDE_INSTALL_DBUSSYSTEMSERVICEDIR})
     endif()
 endfunction()
 
