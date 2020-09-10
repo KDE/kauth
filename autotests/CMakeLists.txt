@@ -78,9 +78,11 @@ ecm_add_test(${HelperTest_SRCS}
 )
 
 ########### test kauth-policy-gen ###############
-add_test(NAME KAuthPolicyGenTest
-         COMMAND kauth-policy-gen ${CMAKE_SOURCE_DIR}/autotests/foo_actions.actions
-                                  ${CMAKE_BINARY_DIR}/generated-foo.policy)
-add_test(KAuthPolicyGenTestCompare ${CMAKE_COMMAND} -E compare_files
-         ${CMAKE_BINARY_DIR}/generated-foo.policy ${CMAKE_SOURCE_DIR}/autotests/foo.policy)
+if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
+    add_test(NAME KAuthPolicyGenTest
+             COMMAND kauth-policy-gen ${CMAKE_SOURCE_DIR}/autotests/foo_actions.actions
+                                      ${CMAKE_BINARY_DIR}/generated-foo.policy)
+    add_test(KAuthPolicyGenTestCompare ${CMAKE_COMMAND} -E compare_files
+             ${CMAKE_BINARY_DIR}/generated-foo.policy ${CMAKE_SOURCE_DIR}/autotests/foo.policy)
+endif()
 
