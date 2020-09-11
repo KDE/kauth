@@ -1,4 +1,4 @@
-maintainer:
+maintainer: davidedmundson
 description: Abstraction to system policy and authentication features
 tier: 2
 type: integration
