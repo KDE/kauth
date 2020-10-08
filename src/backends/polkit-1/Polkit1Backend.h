@@ -48,22 +48,6 @@ private:
     QHash<QString, Action::AuthStatus> m_cachedResults;
 };
 
-class PolkitResultEventLoop : public QEventLoop
-{
-    Q_OBJECT
-public:
-    PolkitResultEventLoop(QObject *parent = nullptr);
-    virtual ~PolkitResultEventLoop();
-
-    PolkitQt1::Authority::Result result() const;
-
-public Q_SLOTS:
-    void requestQuit(const PolkitQt1::Authority::Result &result);
-
-private:
-    PolkitQt1::Authority::Result m_result;
-};
-
 } // namespace Auth
 
 #endif

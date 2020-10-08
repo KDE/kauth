@@ -28,26 +28,6 @@
 namespace KAuth
 {
 
-PolkitResultEventLoop::PolkitResultEventLoop(QObject *parent)
-    : QEventLoop(parent)
-{
-}
-
-PolkitResultEventLoop::~PolkitResultEventLoop()
-{
-}
-
-void PolkitResultEventLoop::requestQuit(const PolkitQt1::Authority::Result &result)
-{
-    m_result = result;
-    quit();
-}
-
-PolkitQt1::Authority::Result PolkitResultEventLoop::result() const
-{
-    return m_result;
-}
-
 Polkit1Backend::Polkit1Backend()
     : AuthBackend()
 {
@@ -156,9 +136,15 @@ bool Polkit1Backend::isCallerAuthorized(const QString &action, const QByteArray 
     for (auto it = details.cbegin(); it != details.cend(); ++it) {
         polkit1Details.insert(it.key(), it.value().toString());
     }
-    PolkitResultEventLoop e;
-    connect(authority, SIGNAL(checkAuthorizationFinished(PolkitQt1::Authority::Result)),
-            &e, SLOT(requestQuit(PolkitQt1::Authority::Result)));
+
+    PolkitQt1::Authority::Result result;
+    QEventLoop e;
+    connect(authority, &PolkitQt1::Authority::checkAuthorizationFinished, &e, [&result, &e](PolkitQt1::Authority::Result _result) {
+        result = _result;
+        e.quit();
+    });
+
+
 #if POLKITQT1_IS_VERSION(0, 113, 0)
     authority->checkAuthorizationWithDetails(action, subject, PolkitQt1::Authority::AllowUserInteraction, polkit1Details);
 #else
@@ -171,7 +157,7 @@ bool Polkit1Backend::isCallerAuthorized(const QString &action, const QByteArray 
         authority->clearError();
     }
 
-    switch (e.result()) {
+    switch (result) {
     case PolkitQt1::Authority::Yes:
         return true;
     default:
