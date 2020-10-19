@@ -26,7 +26,7 @@ if(NOT KAUTH_BACKEND)
               URL "http://techbase.kde.org/Polkit-Qt-1"
               DESCRIPTION "PolicyKit API for Qt"
               TYPE RECOMMENDED
-              PURPOSE "Support for executing priviledged actions in a controlled way (KAuth)"
+              PURPOSE "Support for executing privileged actions in a controlled way (KAuth)"
             )
         else()
             set(KAUTH_BACKEND "FAKE")
@@ -54,7 +54,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
           URL "http://api.kde.org/polkit-qt"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
-          PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt5-1 is required to make KAuth work, and hence enable certain workspace functionalities"
+          PURPOSE "Support for executing privileged actions in a controlled way (KAuth). Either this or PolkitQt5-1 is required to make KAuth work, and hence enable certain workspace functionalities"
         )
         if(NOT POLKITQT_FOUND)
             message("WARNING: You chose the PolkitQt KAuth backend but you don't have PolkitQt installed.
@@ -68,7 +68,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
           URL "http://techbase.kde.org/Polkit-Qt-1"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
-          PURPOSE "Support for executing priviledged actions in a controlled way (KAuth). Either this or PolkitQt is required to make KAuth work, and hence enable certain workspace functionalities"
+          PURPOSE "Support for executing privileged actions in a controlled way (KAuth). Either this or PolkitQt is required to make KAuth work, and hence enable certain workspace functionalities"
         )
         if(NOT PolkitQt5-1_FOUND)
             message("WARNING: You chose the PolkitQt5-1 KAuth backend but you don't have PolkitQt5-1 installed.
