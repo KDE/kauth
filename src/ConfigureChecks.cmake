@@ -4,6 +4,9 @@ set(KAUTH_BACKEND_NAME "" CACHE STRING "Specifies the KAuth backend to build. Cu
                                    PolkitQt5-1, Fake, Apple. Not setting this variable will build the most
                                    appropriate backend for your system")
 
+# Case-insensitive
+string(TOUPPER "${KAUTH_BACKEND_NAME}" KAUTH_BACKEND_NAME)
+
 set(KAUTH_BACKEND ${KAUTH_BACKEND_NAME})
 
 ## Check if the user did not specify a backend to be built. If that is the case,
@@ -17,7 +20,7 @@ if(NOT KAUTH_BACKEND)
         find_package(PolkitQt5-1 0.99.0)
 
         if (PolkitQt5-1_FOUND)
-            set (KAUTH_BACKEND "PolkitQt5-1")
+            set (KAUTH_BACKEND "POLKITQT5-1")
 
             set_package_properties(PolkitQt5-1 PROPERTIES
               URL "http://techbase.kde.org/Polkit-Qt-1"
@@ -26,21 +29,14 @@ if(NOT KAUTH_BACKEND)
               PURPOSE "Support for executing priviledged actions in a controlled way (KAuth)"
             )
 		else (PolkitQt5-1_FOUND)
-            set (KAUTH_BACKEND "Fake")
+            set (KAUTH_BACKEND "FAKE")
         endif (PolkitQt5-1_FOUND)
     else(UNIX)
-        set (KAUTH_BACKEND "Fake")
+        set (KAUTH_BACKEND "FAKE")
     endif(APPLE)
 
-    # Case-insensitive
-    string(TOUPPER ${KAUTH_BACKEND} KAUTH_BACKEND_UPPER)
-    set (KAUTH_BACKEND ${KAUTH_BACKEND_UPPER})
 elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
-    # Case-insensitive
-    string(TOUPPER ${KAUTH_BACKEND} KAUTH_BACKEND_UPPER)
-    set (KAUTH_BACKEND ${KAUTH_BACKEND_UPPER})
-
-    # Check if the specified backend is valid. If it is not, we fall back to the Fake one
+    # Check if the specified backend is valid. If it is not, we fall back to the FAKE one
     if (NOT KAUTH_BACKEND STREQUAL "OSX" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT5-1" AND NOT KAUTH_BACKEND STREQUAL "FAKE")
         message ("WARNING: The KAuth Backend ${KAUTH_BACKEND} you specified does not exist. Falling back to Fake backend")
         set (KAUTH_BACKEND "FAKE")
