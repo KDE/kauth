@@ -16,20 +16,20 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 # Support POLKITQT-1_MIN_VERSION for compatibility:
-if ( NOT PolkitQt-1_FIND_VERSION AND POLKITQT-1_MIN_VERSION )
-  set ( PolkitQt-1_FIND_VERSION ${POLKITQT-1_MIN_VERSION} )
-endif ( NOT PolkitQt-1_FIND_VERSION AND POLKITQT-1_MIN_VERSION )
+if(NOT PolkitQt-1_FIND_VERSION AND POLKITQT-1_MIN_VERSION)
+  set(PolkitQt-1_FIND_VERSION ${POLKITQT-1_MIN_VERSION})
+endif()
 
-set( _PolkitQt-1_FIND_QUIETLY  ${PolkitQt-1_FIND_QUIETLY} )
-find_package( PolkitQt-1 ${PolkitQt-1_FIND_VERSION} QUIET NO_MODULE PATHS ${LIB_INSTALL_DIR}/PolkitQt-1/cmake )
-set( PolkitQt-1_FIND_QUIETLY ${_PolkitQt-1_FIND_QUIETLY} )
+set(_PolkitQt-1_FIND_QUIETLY  ${PolkitQt-1_FIND_QUIETLY} )
+find_package(PolkitQt-1 ${PolkitQt-1_FIND_VERSION} QUIET NO_MODULE PATHS ${LIB_INSTALL_DIR}/PolkitQt-1/cmake)
+set(PolkitQt-1_FIND_QUIETLY ${_PolkitQt-1_FIND_QUIETLY})
 
-include( FindPackageHandleStandardArgs )
-find_package_handle_standard_args( PolkitQt-1 DEFAULT_MSG PolkitQt-1_CONFIG )
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(PolkitQt-1 DEFAULT_MSG PolkitQt-1_CONFIG)
 
-if (POLKITQT-1_FOUND)
-    if (NOT POLKITQT-1_INSTALL_DIR STREQUAL CMAKE_INSTALL_PREFIX)
+if(POLKITQT-1_FOUND)
+    if(NOT POLKITQT-1_INSTALL_DIR STREQUAL CMAKE_INSTALL_PREFIX)
         message("WARNING: Installation prefix does not match PolicyKit install prefixes. You probably will need to move files installed "
                 "in POLICY_FILES_INSTALL_DIR and by dbus_add_activation_system_service to the ${PC_POLKITQT-1_PREFIX} prefix")
-    endif (NOT POLKITQT-1_INSTALL_DIR STREQUAL CMAKE_INSTALL_PREFIX)
-endif (POLKITQT-1_FOUND)
+    endif()
+endif()
