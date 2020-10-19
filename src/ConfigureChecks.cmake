@@ -1,7 +1,7 @@
 ####### checks for kdecore/kauth ###############
 
 set(KAUTH_BACKEND_NAME "" CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt5-1, Fake, Apple. Not setting this variable will build the most
+                                   PolkitQt5-1, Fake, OSX. Not setting this variable will build the most
                                    appropriate backend for your system")
 
 # Case-insensitive
@@ -44,7 +44,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 
     # Check requirements for each backend. If not, fall back to the fake one
     if (KAUTH_BACKEND STREQUAL "OSX" AND NOT APPLE)
-        message ("WARNING: You chose the Apple KAuth backend but your system does not support it. Falling back to Fake backend")
+        message ("WARNING: You chose the OSX KAuth backend but your system does not support it. Falling back to Fake backend")
         set (KAUTH_BACKEND "FAKE")
     endif (KAUTH_BACKEND STREQUAL "OSX" AND NOT APPLE)
     if (KAUTH_BACKEND STREQUAL "POLKITQT")
@@ -79,7 +79,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 endif()
 
 set(KAUTH_BACKEND_NAME ${KAUTH_BACKEND} CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt, PolkitQt5-1, Fake, Apple. Not setting this variable will build the most
+                                   PolkitQt, PolkitQt5-1, Fake, OSX. Not setting this variable will build the most
                                    appropriate backend for your system" FORCE)
 
 # Add the correct libraries depending on the backend, and eventually set the policy files install location
@@ -87,7 +87,7 @@ if(KAUTH_BACKEND_NAME STREQUAL "OSX")
     find_library(CORE_FOUNDATION_LIBRARY CoreFoundation)
     find_library(SECURITY_LIBRARY Security)
 
-    message(STATUS "Building Apple KAuth backend")
+    message(STATUS "Building OSX KAuth backend")
 
     set(KAUTH_BACKEND_SRCS
         backends/mac/AuthServicesBackend.cpp
