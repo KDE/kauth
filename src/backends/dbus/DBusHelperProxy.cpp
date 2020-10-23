@@ -12,7 +12,6 @@
 #include <QObject>
 #include <QMap>
 #include <QDBusMessage>
-#include <QDBusConnection>
 #include <QTimer>
 #include <QMetaMethod>
 #include <QDBusConnectionInterface>

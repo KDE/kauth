@@ -19,7 +19,6 @@
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
 
-#include <PolkitQt1/Authority>
 #include <PolkitQt1/Subject>
 #include <polkitqt1-version.h>
 
