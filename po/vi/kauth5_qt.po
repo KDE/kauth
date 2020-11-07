@@ -1,0 +1,79 @@
+# Vietnamese translation for kdelibs.
+# Copyright © 2007 KDE i18n Project for Vietnamese.
+#
+# Clytie Siddall <clytie@riverland.net.au>, 2006-2007.
+# Hoàng Đức Hiếu <hieu.d.hoang@gmail.com>, 2008, 2011.
+# Lê Hoàng Phương <herophuong93@gmail.com>, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2012-09-23 18:43+0800\n"
+"Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
+"Language-Team: American English <kde-i18n-vi@kde.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 1.5\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:72
+#, fuzzy, qt-format
+#| msgid "DBus Backend error: connection to helper failed. %1"
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: service start %1 failed: %2"
+msgstr "Lỗi hậu trường DBus: kết nối tới trình trợ giúp thất bại. %1"
+
+#: backends/dbus/DBusHelperProxy.cpp:82
+#, fuzzy, qt-format
+#| msgid "DBus Backend error: connection to helper failed. %1"
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: connection to helper failed. %1\n"
+"(application: %2 helper: %3)"
+msgstr "Lỗi hậu trường DBus: kết nối tới trình trợ giúp thất bại. %1"
+
+#: backends/dbus/DBusHelperProxy.cpp:119
+#, fuzzy, qt-format
+#| msgid ""
+#| "DBus Backend error: could not contact the helper. Connection error: %1. "
+#| "Message error: %2"
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: could not contact the helper. Connection error: %1. "
+"Message error: %2"
+msgstr ""
+"Lỗi hậu trường DBus: không thể liên lạc với trình trợ giúp. Lỗi kết nối: %1. "
+"Lỗi tin nhắn: %2"
+
+#: kauthexecutejob.cpp:75
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr ""
+
+#: kauthexecutejob.cpp:89
+#, fuzzy
+#| msgid "Unknown encryption scheme."
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Lược đồ mật mã lạ."
+
+#: kauthexecutejob.cpp:134
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr ""
+
+#: kauthexecutejob.cpp:146
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+
+#: kauthexecutejob.cpp:154 kauthexecutejob.cpp:178
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr ""
