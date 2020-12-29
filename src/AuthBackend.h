@@ -12,6 +12,8 @@
 
 #include "kauthaction.h"
 
+class QWindow;
+
 namespace KAuth
 {
 
@@ -41,7 +43,7 @@ public:
     AuthBackend();
     virtual ~AuthBackend();
     virtual void setupAction(const QString &action) = 0;
-    virtual void preAuthAction(const QString &action, QWidget *parent);
+    virtual void preAuthAction(const QString &action, QWindow *parent);
     virtual Action::AuthStatus authorizeAction(const QString &action) = 0;
     virtual Action::AuthStatus actionStatus(const QString &action) = 0;
     virtual QByteArray callerID() const = 0;

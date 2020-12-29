@@ -18,6 +18,7 @@
 #include <PolkitQt1/Authority>
 
 class QByteArray;
+class QWindow;
 
 namespace KAuth
 {
@@ -32,7 +33,7 @@ public:
     Polkit1Backend();
     virtual ~Polkit1Backend();
     void setupAction(const QString &) override;
-    void preAuthAction(const QString &action, QWidget *parent) override;
+    void preAuthAction(const QString &action, QWindow *parent) override;
     Action::AuthStatus authorizeAction(const QString &) override;
     Action::AuthStatus actionStatus(const QString &) override;
     QByteArray callerID() const override;
