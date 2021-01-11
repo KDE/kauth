@@ -61,8 +61,8 @@ void ObjectDecoratorPrivate::linkActionToWidget()
 {
     QWidget *widget = qobject_cast<QWidget *>(decoratedObject);
     if (widget) {
-        // Set the WA_NativeWindow attribute to force the creation of the QWindow.
-        // Without this QWidget::windowHandle() returns nullptr.
+        // Set the WA_NativeWindow attribute to force the creation of the QWindow,
+        // otherwise QWidget::windowHandle() may return a nullptr.
         widget->setAttribute(Qt::WA_NativeWindow, true);
         authAction.setParentWindow(widget->windowHandle());
         return;
@@ -72,8 +72,8 @@ void ObjectDecoratorPrivate::linkActionToWidget()
     if (action) {
         auto *w = action->parentWidget();
         if (w) {
-            // Set the WA_NativeWindow attribute to force the creation of the QWindow.
-            // Without this QWidget::windowHandle() returns nullptr.
+            // Set the WA_NativeWindow attribute to force the creation of the QWindow,
+            // otherwise QWidget::windowHandle() may return a nullptr.
             w->setAttribute(Qt::WA_NativeWindow, true);
             authAction.setParentWindow(w->windowHandle());
         }

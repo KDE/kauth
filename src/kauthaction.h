@@ -423,7 +423,7 @@ public:
      *
      * @deprecated since 5.79, use setParentWindow(QWindow *) instead.
      */
-    KAUTHCORE_DEPRECATED_VERSION(5, 79, "Use setParentWindow(QWindow *) instead.")
+    KAUTHCORE_DEPRECATED_VERSION(5, 79, "Use setParentWindow(QWindow *) instead, see its API docs for a code example.")
     void setParentWidget(QWidget *parent);
 #endif
 
@@ -455,6 +455,15 @@ public:
      * @param parent A QWindow which will be used as the dialog's parent
      *
      * @since 5.79
+     *
+     * @code
+     *  QWidget *parent = ....;
+     *  // Set the WA_NativeWindow attribute to force the creation of the QWindow,
+     *  // otherwise QWidget::windowHandle() may return a nullptr.
+     *  parent->setAttribute(Qt::WA_NativeWindow, true);
+     *  KAuth::Action authAction = KAuth::Action();
+     *  authAction.setParentWindow(parent->windowHandle());
+     * @endcode
      */
     void setParentWindow(QWindow *parent);
 
