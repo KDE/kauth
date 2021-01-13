@@ -36,10 +36,7 @@ public:
     QString helperId;
     Action::DetailsMap details;
     QVariantMap args;
-
     QWidget *parent = nullptr;
-    QWindow *m_parentWindow = nullptr;
-
     int timeout;
 };
 
@@ -192,28 +189,14 @@ void Action::setHelperId(const QString &id)
     d->helperId = id;
 }
 
-#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 79)
 void Action::setParentWidget(QWidget *parent)
 {
     d->parent = parent;
 }
-#endif
 
-#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 79)
 QWidget *Action::parentWidget() const
 {
     return d->parent;
-}
-#endif
-
-void Action::setParentWindow(QWindow *parent)
-{
-    d->m_parentWindow = parent;
-}
-
-QWindow *Action::parentWindow() const
-{
-    return d->m_parentWindow;
 }
 
 Action::AuthStatus Action::status() const

@@ -105,7 +105,7 @@ void ExecuteJob::Private::doExecuteAction()
     // If this action authorizes from the client, let's do it now
     if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
         if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-            BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWindow());
+            BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWidget());
         }
 
         Action::AuthStatus s = BackendsManager::authBackend()->authorizeAction(action.name());
@@ -139,7 +139,7 @@ void ExecuteJob::Private::doExecuteAction()
         }
     } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
         if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-            BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWindow());
+            BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWidget());
         }
         if (!action.hasHelper()) {
             ActionReply r(ActionReply::InvalidActionReply());
@@ -165,7 +165,7 @@ void ExecuteJob::Private::doAuthorizeAction()
         if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
             // In this case we can actually try an authorization
             if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-                BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWindow());
+                BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWidget());
             }
 
             s = BackendsManager::authBackend()->authorizeAction(action.name());

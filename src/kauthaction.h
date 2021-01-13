@@ -15,8 +15,6 @@
 
 #include <kauthcore_export.h>
 
-class QWindow;
-
 namespace KAuth
 {
 
@@ -406,7 +404,6 @@ public:
      */
     ExecuteJob *execute(ExecutionMode mode = ExecuteMode);
 
-#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 79)
     /**
      * @brief Sets a parent widget for the authentication dialog
      *
@@ -420,51 +417,17 @@ public:
      * @since 4.6
      *
      * @param parent A QWidget which will be used as the dialog's parent
-     *
-     * @deprecated since 5.79, use setParentWindow(QWindow *) instead.
      */
-    KAUTHCORE_DEPRECATED_VERSION(5, 79, "Use setParentWindow(QWindow *) instead.")
     void setParentWidget(QWidget *parent);
-#endif
 
-#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 79)
     /**
      * @brief Returns the parent widget for the authentication dialog for this action
      *
      * @since 4.6
      *
      * @returns A QWidget which will is being used as the dialog's parent
-     *
-     * @deprecated since 5.79, use parentWindow() instead.
      */
-    KAUTHCORE_DEPRECATED_VERSION(5, 79, "Use parentWindow() instead.")
     QWidget *parentWidget() const;
-#endif
-
-    /**
-     * @brief Sets a parent window for the authentication dialog
-     *
-     * This function is used to explicitly set a parent window, for an eventual authentication
-     * dialog that would be displayed if authorization is triggered. Some backends, in fact, (like
-     * polkit-1) require having a parent explicitly set in order to display the dialog correctly.
-     *
-     * @note If you are using KAuth through one of KDE's GUI components (KPushButton, KCModule...)
-     * you do not need, and should not, call this function, as it is already done by the component
-     * itself.
-     *
-     * @param parent A QWindow which will be used as the dialog's parent
-     *
-     * @since 5.79
-     */
-    void setParentWindow(QWindow *parent);
-
-    /**
-     * @brief Returns a pointer to the parent window of the authentication dialog for this action
-     * or nullptr if no parent was set previously.
-     *
-     * @since 5.79
-     */
-    QWindow *parentWindow() const;
 
 private:
     QSharedDataPointer<ActionData> d;

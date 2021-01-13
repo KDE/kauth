@@ -14,7 +14,7 @@
 #include <QTimer>
 
 #include <QApplication>
-#include <QWindow>
+#include <QWidget>
 
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
@@ -44,30 +44,28 @@ Polkit1Backend::~Polkit1Backend()
 
 }
 
-void Polkit1Backend::preAuthAction(const QString &action, QWindow *parent)
+void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
 {
     // If a parent was not specified, skip this
     if (!parent) {
-        qCDebug(KAUTH) << "Parent window does not exist, skipping";
+        qCDebug(KAUTH) << "Parent widget does not exist, skipping";
         return;
     }
 
     // Are we running our KDE auth agent?
     if (QDBusConnection::sessionBus().interface()->isServiceRegistered(QLatin1String("org.kde.polkit-kde-authentication-agent-1"))) {
         // Check if we actually are entitled to use GUI capabilities
-        if (!qGuiApp) {
-            qCDebug(KAUTH) << "Not streaming to the parent as we are on a TTY application";
+        if (qApp == nullptr || !qobject_cast<QApplication *>(qApp)) {
+            qCDebug(KAUTH) << "Not streaming parent as we are on a TTY application";
         }
 
         // Retrieve the dialog root window Id
-        const qulonglong wId = parent->winId();
+        qulonglong wId = parent->effectiveWinId();
 
         // Send it over the bus to our agent
         QDBusMessage methodCall =
-            QDBusMessage::createMethodCall(QStringLiteral("org.kde.polkit-kde-authentication-agent-1"),
-                                           QStringLiteral("/org/kde/Polkit1AuthAgent"),
-                                           QStringLiteral("org.kde.Polkit1AuthAgent"),
-                                           QStringLiteral("setWIdForAction"));
+            QDBusMessage::createMethodCall(QLatin1String("org.kde.polkit-kde-authentication-agent-1"), QLatin1String("/org/kde/Polkit1AuthAgent"), QLatin1String("org.kde.Polkit1AuthAgent"),
+                                           QLatin1String("setWIdForAction"));
 
         methodCall << action;
         methodCall << wId;
