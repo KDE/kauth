@@ -65,7 +65,7 @@ void FakeHelperProxy::executeAction(const QString &action, const QString &helper
     Q_UNUSED(details)
     Q_UNUSED(arguments)
     Q_UNUSED(timeout)
-    emit actionPerformed(action, KAuth::ActionReply::NoSuchActionReply());
+    Q_EMIT actionPerformed(action, KAuth::ActionReply::NoSuchActionReply());
 }
 
 int FakeHelperProxy::callerUid() const

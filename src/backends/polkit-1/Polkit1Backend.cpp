@@ -170,7 +170,7 @@ void Polkit1Backend::checkForResultChanged()
         const QString action = it.key();
         if (it.value() != actionStatus(action)) {
             *it = actionStatus(action);
-            emit actionStatusChanged(action, *it);
+            Q_EMIT actionStatusChanged(action, *it);
         }
     }
 }

@@ -212,14 +212,14 @@ void ExecuteJob::Private::progressStepSlot(const QString &taction, int i)
 void ExecuteJob::Private::progressStepSlot(const QString &taction, const QVariantMap &data)
 {
     if (taction == action.name()) {
-        emit q->newData(data);
+        Q_EMIT q->newData(data);
     }
 }
 
 void ExecuteJob::Private::statusChangedSlot(const QString &taction, Action::AuthStatus status)
 {
     if (taction == action.name()) {
-        emit q->statusChanged(status);
+        Q_EMIT q->statusChanged(status);
     }
 }
 
