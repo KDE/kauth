@@ -44,7 +44,7 @@ target_compile_definitions(kauth_tests_static
 )
 # have to manually duplicate logic of flags set by ecm_generate_expoirt_header on the library
 ecm_export_header_format_version(${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
-    CURRENT_VERSION ${KF5_VERSION}
+    CURRENT_VERSION ${KF_VERSION}
     HEXNUMBER_VAR kauthcore_tests_no_deprecated_before_and_at
 )
 target_compile_definitions(kauth_tests_static

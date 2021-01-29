@@ -37,7 +37,7 @@ if(TARGET Qt5::Widgets)
     ecm_generate_export_header(KF5AuthCore
         BASE_NAME KAuthCore
         GROUP_BASE_NAME KF
-        VERSION ${KF5_VERSION}
+        VERSION ${KF_VERSION}
         DEPRECATED_BASE_VERSION 0
         DEPRECATION_VERSIONS 5.71
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
@@ -172,7 +172,7 @@ if(BUILD_QCH)
         KF5Auth_QCH
         NAME KAuth
         BASE_NAME KF5Auth
-        VERSION ${KF5_VERSION}
+        VERSION ${KF_VERSION}
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API
             ${KAuth_HEADERS}
