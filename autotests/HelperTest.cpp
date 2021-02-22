@@ -168,7 +168,7 @@ void HelperTest::testExecuteJobSignals()
 
     QSignalSpy finishedSpy(job, SIGNAL(result(KJob *)));
     QSignalSpy newDataSpy(job, SIGNAL(newData(QVariantMap)));
-    QSignalSpy percentSpy(job, SIGNAL(percent(KJob *, ulong)));
+    QSignalSpy percentSpy(job, &KJob::percentChanged);
     QSignalSpy statusChangedSpy(job, SIGNAL(statusChanged(KAuth::Action::AuthStatus)));
 
     QVERIFY(job->exec());
