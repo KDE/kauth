@@ -27,12 +27,11 @@ int main(int argc, char **argv)
     readAction.setArguments(args);
     ExecuteJob *job = readAction.execute();
     if (!job->exec()) {
-       qDebug() << "KAuth returned an error code:" << job->error();
+        qDebug() << "KAuth returned an error code:" << job->error();
     } else {
-       QString contents = job->data()["contents"].toString();
+        QString contents = job->data()["contents"].toString();
     }
     //! [client_how_to_call_helper]
 
     return app.exec();
 }
-

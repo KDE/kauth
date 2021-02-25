@@ -11,20 +11,24 @@
 #include <cstdlib>
 
 #ifndef Q_OS_WIN
+#include <pwd.h>
+#include <sys/types.h>
 #include <syslog.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
 #else
 // Quick hack to replace syslog (just write to stderr)
 // TODO: should probably use ReportEvent
-#define LOG_ERR         3
-#define LOG_WARNING     4
-#define LOG_DEBUG       7
-#define LOG_INFO        6
-#define LOG_USER        (1<<3)
-static inline void openlog(const char*, int, int) {}
-static inline void closelog() {}
+#define LOG_ERR 3
+#define LOG_WARNING 4
+#define LOG_DEBUG 7
+#define LOG_INFO 6
+#define LOG_USER (1 << 3)
+static inline void openlog(const char *, int, int)
+{
+}
+static inline void closelog()
+{
+}
 #define syslog(level, ...) fprintf(stderr, __VA_ARGS__)
 
 #endif
@@ -39,7 +43,6 @@ static inline void closelog() {}
 
 namespace KAuth
 {
-
 namespace HelperSupport
 {
 void helperDebugHandler(QtMsgType type, const QMessageLogContext &context, const QString &msgStr);
@@ -50,7 +53,7 @@ static bool remote_dbg = false;
 #ifdef Q_OS_UNIX
 static void fixEnvironment()
 {
-    //try correct HOME
+    // try correct HOME
     const char *home = "HOME";
     if (getenv(home) == nullptr) {
         struct passwd *pw = getpwuid(getuid());
@@ -67,7 +70,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
 {
 #ifdef Q_OS_UNIX
     fixEnvironment();
-    //As we don't inherit lang, the locale could be something that doesn't support UTF-8. Force it
+    // As we don't inherit lang, the locale could be something that doesn't support UTF-8. Force it
     auto utf8Codec = QTextCodec::codecForName("UTF-8");
     if (utf8Codec) {
         QTextCodec::setCodecForLocale(utf8Codec);
@@ -75,7 +78,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
 #endif
 
 #ifdef Q_OS_OSX
-    openlog(id, LOG_CONS|LOG_PID, LOG_USER);
+    openlog(id, LOG_CONS | LOG_PID, LOG_USER);
     int logLevel = LOG_WARNING;
 #else
     openlog(id, 0, LOG_USER);
@@ -92,7 +95,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
         return -1;
     }
 
-    //closelog();
+    // closelog();
     remote_dbg = true;
 
     BackendsManager::helperProxy()->setHelperResponder(responder);
@@ -103,7 +106,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     timer->setInterval(10000);
     timer->start();
     QObject::connect(timer, SIGNAL(timeout()), &app, SLOT(quit()));
-    app.exec(); //krazy:exclude=crashy
+    app.exec(); // krazy:exclude=crashy
 
     return 0;
 }

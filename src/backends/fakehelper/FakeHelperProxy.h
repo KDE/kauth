@@ -12,7 +12,6 @@
 
 namespace KAuth
 {
-
 class FakeHelperProxy : public HelperProxy
 {
     Q_OBJECT

@@ -12,13 +12,13 @@
 
 namespace KAuth
 {
-
 class BackendsManager
 {
     static AuthBackend *auth;
     static HelperProxy *helper;
 
     BackendsManager();
+
 public:
     static AuthBackend *authBackend();
     static HelperProxy *helperProxy();

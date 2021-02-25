@@ -14,7 +14,6 @@ class QByteArray;
 
 namespace KAuth
 {
-
 class FakeBackend : public AuthBackend
 {
     Q_OBJECT

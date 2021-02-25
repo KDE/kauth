@@ -14,7 +14,6 @@
 
 namespace KAuth
 {
-
 typedef Action::DetailsMap DetailsMap;
 
 class AuthBackend : public QObject

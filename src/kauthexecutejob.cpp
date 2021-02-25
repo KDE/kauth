@@ -7,18 +7,20 @@
 #include "kauthexecutejob.h"
 #include "BackendsManager.h"
 
+#include "kauthdebug.h"
 #include <QEventLoop>
 #include <QHash>
 #include <QTimer>
-#include "kauthdebug.h"
 
 namespace KAuth
 {
-
 class Q_DECL_HIDDEN ExecuteJob::Private
 {
 public:
-    Private(ExecuteJob *parent) : q(parent) {}
+    Private(ExecuteJob *parent)
+        : q(parent)
+    {
+    }
 
     ExecuteJob *q;
     Action action;
@@ -45,11 +47,13 @@ ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject
 
     HelperProxy *helper = BackendsManager::helperProxy();
 
-    connect(helper, SIGNAL(actionPerformed(QString,KAuth::ActionReply)), this, SLOT(actionPerformedSlot(QString,KAuth::ActionReply)));
-    connect(helper, SIGNAL(progressStep(QString,int)), this, SLOT(progressStepSlot(QString,int)));
-    connect(helper, SIGNAL(progressStep(QString,QVariantMap)), this, SLOT(progressStepSlot(QString,QVariantMap)));
-    connect(BackendsManager::authBackend(), SIGNAL(actionStatusChanged(QString,KAuth::Action::AuthStatus)),
-            this, SLOT(statusChangedSlot(QString,KAuth::Action::AuthStatus)));
+    connect(helper, SIGNAL(actionPerformed(QString, KAuth::ActionReply)), this, SLOT(actionPerformedSlot(QString, KAuth::ActionReply)));
+    connect(helper, SIGNAL(progressStep(QString, int)), this, SLOT(progressStepSlot(QString, int)));
+    connect(helper, SIGNAL(progressStep(QString, QVariantMap)), this, SLOT(progressStepSlot(QString, QVariantMap)));
+    connect(BackendsManager::authBackend(),
+            SIGNAL(actionStatusChanged(QString, KAuth::Action::AuthStatus)),
+            this,
+            SLOT(statusChangedSlot(QString, KAuth::Action::AuthStatus)));
 }
 
 ExecuteJob::~ExecuteJob()
@@ -79,17 +83,20 @@ void ExecuteJob::start()
 
     switch (d->mode) {
     case Action::ExecuteMode:
-        QTimer::singleShot(0, this, [this]() {d->doExecuteAction();});
+        QTimer::singleShot(0, this, [this]() {
+            d->doExecuteAction();
+        });
         break;
     case Action::AuthorizeOnlyMode:
-        QTimer::singleShot(0, this, [this]() {d->doAuthorizeAction();});
+        QTimer::singleShot(0, this, [this]() {
+            d->doAuthorizeAction();
+        });
         break;
     default: {
         ActionReply reply(ActionReply::InvalidActionError);
         reply.setErrorDescription(tr("Unknown execution mode chosen"));
         d->actionPerformedSlot(d->action.name(), reply);
-    }
-    break;
+    } break;
     }
 }
 
@@ -133,8 +140,7 @@ void ExecuteJob::Private::doExecuteAction()
                 ActionReply r(ActionReply::BackendError);
                 r.setErrorDescription(tr("Unknown status for the authentication procedure"));
                 actionPerformedSlot(action.name(), r);
-            }
-            break;
+            } break;
             }
         }
     } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {

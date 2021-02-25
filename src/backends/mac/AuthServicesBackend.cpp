@@ -9,8 +9,8 @@
 
 #include <qplugin.h>
 
-#include <QLoggingCategory>
 #include <QDebug>
+#include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(KAUTH_OSX)
 // logging category for this backend, default: log stuff >= warning
@@ -18,7 +18,6 @@ Q_LOGGING_CATEGORY(KAUTH_OSX, "kf.auth.apple", QtWarningMsg)
 
 namespace KAuth
 {
-
 static AuthorizationRef s_authRef = NULL;
 
 AuthorizationRef authRef()
@@ -58,10 +57,7 @@ static OSStatus GetActionRights(const QString &action, AuthorizationFlags flags,
     rights.count = 1;
     rights.items = &item;
 
-    OSStatus result = AuthorizationCopyRights(auth,
-                                              &rights,
-                                              kAuthorizationEmptyEnvironment,
-                                              flags, NULL);
+    OSStatus result = AuthorizationCopyRights(auth, &rights, kAuthorizationEmptyEnvironment, flags, NULL);
     return result;
 }
 
@@ -92,30 +88,30 @@ Action::AuthStatus AuthServicesBackend::authorizeAction(const QString &action)
     OSStatus result = GetActionRights(action, kAuthorizationFlagExtendRights | kAuthorizationFlagInteractionAllowed, authRef());
     qCDebug(KAUTH_OSX) << "AuthServicesBackend::authorizeAction(" << action << ") AuthorizationCopyRights returned" << result;
     switch (result) {
-        case errAuthorizationSuccess:
-            retval = Action::AuthorizedStatus;
-            break;
-        case errAuthorizationCanceled:
-            retval = Action::UserCancelledStatus;
-            break;
-        case errAuthorizationInteractionNotAllowed:
-        case errAuthorizationDenied:
-            retval = Action::DeniedStatus;
-            break;
-        case errAuthorizationInternal:
-            // does this make sense?
-            retval = Action::AuthRequiredStatus;
-            break;
-        case errAuthorizationExternalizeNotAllowed:
-        case errAuthorizationInternalizeNotAllowed:
-        case errAuthorizationToolExecuteFailure:
-        case errAuthorizationToolEnvironmentError:
-        case errAuthorizationBadAddress:
-            retval = Action::ErrorStatus;
-            break;
-        default:
-            retval = Action::InvalidStatus;
-            break;
+    case errAuthorizationSuccess:
+        retval = Action::AuthorizedStatus;
+        break;
+    case errAuthorizationCanceled:
+        retval = Action::UserCancelledStatus;
+        break;
+    case errAuthorizationInteractionNotAllowed:
+    case errAuthorizationDenied:
+        retval = Action::DeniedStatus;
+        break;
+    case errAuthorizationInternal:
+        // does this make sense?
+        retval = Action::AuthRequiredStatus;
+        break;
+    case errAuthorizationExternalizeNotAllowed:
+    case errAuthorizationInternalizeNotAllowed:
+    case errAuthorizationToolExecuteFailure:
+    case errAuthorizationToolEnvironmentError:
+    case errAuthorizationBadAddress:
+        retval = Action::ErrorStatus;
+        break;
+    default:
+        retval = Action::InvalidStatus;
+        break;
     }
     return retval;
 }
@@ -127,18 +123,18 @@ Action::AuthStatus AuthServicesBackend::actionStatus(const QString &action)
     qCDebug(KAUTH_OSX) << "AuthServicesBackend::actionStatus(" << action << ") AuthorizationCopyRights returned" << result;
     // this function has a simpler return code parser:
     switch (result) {
-        case errAuthorizationSuccess:
-            retval = Action::AuthorizedStatus;
-            break;
-        case errAuthorizationCanceled:
-            retval = Action::UserCancelledStatus;
-            break;
-        case errAuthorizationInteractionNotAllowed:
-            retval = Action::AuthRequiredStatus;
-            break;
-        default:
-            retval = Action::DeniedStatus;
-            break;
+    case errAuthorizationSuccess:
+        retval = Action::AuthorizedStatus;
+        break;
+    case errAuthorizationCanceled:
+        retval = Action::UserCancelledStatus;
+        break;
+    case errAuthorizationInteractionNotAllowed:
+        retval = Action::AuthRequiredStatus;
+        break;
+    default:
+        retval = Action::DeniedStatus;
+        break;
     }
     return retval;
 }
@@ -166,8 +162,7 @@ bool AuthServicesBackend::isCallerAuthorized(const QString &action, const QByteA
         return false;
     }
 
-    OSStatus result = GetActionRights( action, kAuthorizationFlagExtendRights | kAuthorizationFlagInteractionAllowed,
-                      auth);
+    OSStatus result = GetActionRights(action, kAuthorizationFlagExtendRights | kAuthorizationFlagInteractionAllowed, auth);
 
     AuthorizationFree(auth, kAuthorizationFlagDefaults);
     qCDebug(KAUTH_OSX) << "AuthServicesBackend::isCallerAuthorized(" << action << "," << callerID.constData() << ") AuthorizationCopyRights returned" << result;
@@ -183,4 +178,3 @@ bool AuthServicesBackend::actionExists(const QString &)
 }
 
 }; // namespace KAuth
-

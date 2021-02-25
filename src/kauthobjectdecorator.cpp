@@ -8,8 +8,8 @@
 #include "kauthobjectdecorator.h"
 
 #include "kauthaction.h"
-#include "kauthexecutejob.h"
 #include "kauthdebug.h"
+#include "kauthexecutejob.h"
 
 #include <QAbstractButton>
 #include <QAction>
@@ -17,13 +17,12 @@
 
 namespace KAuth
 {
-
 class ObjectDecoratorPrivate
 {
 public:
     ObjectDecoratorPrivate(ObjectDecorator *parent)
-        : q(parent),
-          decoratedObject(parent->parent())
+        : q(parent)
+        , decoratedObject(parent->parent())
     {
     }
 
@@ -43,14 +42,12 @@ public:
 void ObjectDecoratorPrivate::connectDecorated()
 {
     if (qobject_cast<QAbstractButton *>(decoratedObject)) {
-        q->connect(decoratedObject, SIGNAL(clicked()),
-                   q, SLOT(slotActivated()));
+        q->connect(decoratedObject, SIGNAL(clicked()), q, SLOT(slotActivated()));
         return;
     }
 
     if (qobject_cast<QAction *>(decoratedObject)) {
-        q->connect(decoratedObject, SIGNAL(triggered(bool)),
-                   q, SLOT(slotActivated()));
+        q->connect(decoratedObject, SIGNAL(triggered(bool)), q, SLOT(slotActivated()));
         return;
     }
 
@@ -78,8 +75,7 @@ void ObjectDecoratorPrivate::slotActivated()
 {
     if (authAction.isValid()) {
         KAuth::ExecuteJob *job = authAction.execute(KAuth::Action::AuthorizeOnlyMode);
-        q->connect(job, SIGNAL(statusChanged(KAuth::Action::AuthStatus)),
-                   q, SLOT(authStatusChanged(KAuth::Action::AuthStatus)));
+        q->connect(job, SIGNAL(statusChanged(KAuth::Action::AuthStatus)), q, SLOT(authStatusChanged(KAuth::Action::AuthStatus)));
         if (job->exec()) {
             Q_EMIT q->authorized(authAction);
         } else {
@@ -113,7 +109,8 @@ void ObjectDecoratorPrivate::authStatusChanged(KAuth::Action::AuthStatus status)
 }
 
 ObjectDecorator::ObjectDecorator(QObject *parent)
-    : QObject(parent), d(new ObjectDecoratorPrivate(this))
+    : QObject(parent)
+    , d(new ObjectDecoratorPrivate(this))
 {
     d->connectDecorated();
 }

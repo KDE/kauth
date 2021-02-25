@@ -8,9 +8,9 @@
 #ifndef _POLICY_GEN_H_
 #define _POLICY_GEN_H_
 
-#include <QString>
-#include <QMap>
 #include <QHash>
+#include <QMap>
+#include <QString>
 
 struct Action {
     QString name;

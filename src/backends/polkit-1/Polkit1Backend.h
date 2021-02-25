@@ -11,8 +11,8 @@
 
 #include "AuthBackend.h"
 
-#include <QHash>
 #include <QEventLoop>
+#include <QHash>
 #include <QStringList>
 
 #include <PolkitQt1/Authority>
@@ -21,7 +21,6 @@ class QByteArray;
 
 namespace KAuth
 {
-
 class Polkit1Backend : public AuthBackend
 {
     Q_OBJECT

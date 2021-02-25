@@ -12,7 +12,6 @@
 
 namespace KAuth
 {
-
 class AuthServicesBackend : public AuthBackend
 {
     Q_OBJECT
@@ -30,8 +29,6 @@ public:
     virtual bool actionExists(const QString &action);
 };
 
-
 } // namespace KAuth
 
 #endif
-

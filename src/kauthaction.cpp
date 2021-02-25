@@ -6,8 +6,8 @@
 
 #include "kauthaction.h"
 
-#include <QtGlobal>
 #include <QRegularExpression>
+#include <QtGlobal>
 
 class QWidget;
 
@@ -17,11 +17,14 @@ class QWidget;
 
 namespace KAuth
 {
-
 class ActionData : public QSharedData
 {
 public:
-    ActionData() : parent(nullptr), timeout(-1) {}
+    ActionData()
+        : parent(nullptr)
+        , timeout(-1)
+    {
+    }
     ActionData(const ActionData &other)
         : QSharedData(other)
         , name(other.name)
@@ -29,8 +32,12 @@ public:
         , details(other.details)
         , args(other.args)
         , parent(other.parent)
-        , timeout(other.timeout) {}
-    ~ActionData() {}
+        , timeout(other.timeout)
+    {
+    }
+    ~ActionData()
+    {
+    }
 
     QString name;
     QString helperId;

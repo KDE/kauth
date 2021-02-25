@@ -9,9 +9,9 @@
 
 #include "Polkit1Backend.h"
 
-#include <qplugin.h>
 #include <QCoreApplication>
 #include <QTimer>
+#include <qplugin.h>
 
 #include <QApplication>
 #include <QWidget>
@@ -26,22 +26,18 @@
 
 namespace KAuth
 {
-
 Polkit1Backend::Polkit1Backend()
     : AuthBackend()
 {
     setCapabilities(AuthorizeFromHelperCapability | CheckActionExistenceCapability | PreAuthActionCapability);
 
     // Setup useful signals
-    connect(PolkitQt1::Authority::instance(), SIGNAL(configChanged()),
-            this, SLOT(checkForResultChanged()));
-    connect(PolkitQt1::Authority::instance(), SIGNAL(consoleKitDBChanged()),
-            this, SLOT(checkForResultChanged()));
+    connect(PolkitQt1::Authority::instance(), SIGNAL(configChanged()), this, SLOT(checkForResultChanged()));
+    connect(PolkitQt1::Authority::instance(), SIGNAL(consoleKitDBChanged()), this, SLOT(checkForResultChanged()));
 }
 
 Polkit1Backend::~Polkit1Backend()
 {
-
 }
 
 void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
@@ -63,9 +59,10 @@ void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
         qulonglong wId = parent->effectiveWinId();
 
         // Send it over the bus to our agent
-        QDBusMessage methodCall =
-            QDBusMessage::createMethodCall(QLatin1String("org.kde.polkit-kde-authentication-agent-1"), QLatin1String("/org/kde/Polkit1AuthAgent"), QLatin1String("org.kde.Polkit1AuthAgent"),
-                                           QLatin1String("setWIdForAction"));
+        QDBusMessage methodCall = QDBusMessage::createMethodCall(QLatin1String("org.kde.polkit-kde-authentication-agent-1"),
+                                                                 QLatin1String("/org/kde/Polkit1AuthAgent"),
+                                                                 QLatin1String("org.kde.Polkit1AuthAgent"),
+                                                                 QLatin1String("setWIdForAction"));
 
         methodCall << action;
         methodCall << wId;
@@ -97,8 +94,7 @@ Action::AuthStatus Polkit1Backend::actionStatus(const QString &action)
 {
     PolkitQt1::SystemBusNameSubject subject(QString::fromUtf8(callerID()));
     auto authority = PolkitQt1::Authority::instance();
-    PolkitQt1::Authority::Result r = authority->checkAuthorizationSync(action, subject,
-                                     PolkitQt1::Authority::None);
+    PolkitQt1::Authority::Result r = authority->checkAuthorizationSync(action, subject, PolkitQt1::Authority::None);
 
     if (authority->hasError()) {
         qCDebug(KAUTH) << "Encountered error while checking action status, error code:" << authority->lastError() << authority->errorDetails();
@@ -119,7 +115,7 @@ Action::AuthStatus Polkit1Backend::actionStatus(const QString &action)
 
 QByteArray Polkit1Backend::callerID() const
 {
-        return QDBusConnection::systemBus().baseService().toUtf8();
+    return QDBusConnection::systemBus().baseService().toUtf8();
 }
 
 AuthBackend::ExtraCallerIDVerificationMethod Polkit1Backend::extraCallerIDVerificationMethod() const
@@ -142,7 +138,6 @@ bool Polkit1Backend::isCallerAuthorized(const QString &action, const QByteArray 
         result = _result;
         e.quit();
     });
-
 
 #if POLKITQT1_IS_VERSION(0, 113, 0)
     authority->checkAuthorizationWithDetails(action, subject, PolkitQt1::Authority::AllowUserInteraction, polkit1Details);
@@ -185,17 +180,16 @@ QVariantMap Polkit1Backend::backendDetails(const DetailsMap &details)
     QVariantMap backendDetails;
     for (auto it = details.cbegin(); it != details.cend(); ++it) {
         switch (it.key()) {
-            case Action::AuthDetail::DetailMessage:
-                backendDetails.insert(QStringLiteral("polkit.message"), it.value());
-                break;
-            case Action::AuthDetail::DetailOther:
-            default:
-                backendDetails.insert(QStringLiteral("other_details"), it.value());
-                break;
+        case Action::AuthDetail::DetailMessage:
+            backendDetails.insert(QStringLiteral("polkit.message"), it.value());
+            break;
+        case Action::AuthDetail::DetailOther:
+        default:
+            backendDetails.insert(QStringLiteral("other_details"), it.value());
+            break;
         }
     }
     return backendDetails;
 }
 
 } // namespace Auth
-

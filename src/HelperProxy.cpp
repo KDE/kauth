@@ -9,8 +9,9 @@
 
 namespace KAuth
 {
-
-HelperProxy::~HelperProxy() {}
+HelperProxy::~HelperProxy()
+{
+}
 
 } // namespace KAuth
 

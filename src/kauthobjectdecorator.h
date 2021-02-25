@@ -15,7 +15,6 @@
 
 namespace KAuth
 {
-
 class ObjectDecoratorPrivate;
 
 /**
@@ -29,7 +28,6 @@ class KAUTH_EXPORT ObjectDecorator : public QObject
 {
     Q_OBJECT
 public:
-
     /**
      * Instantiate a new decorator attached to an object
      *
@@ -62,12 +60,12 @@ public:
     void setAuthAction(const KAuth::Action &action);
 
     /**
-    * Sets the action object associated with this decorator
-    *
-    * Overloaded member to allow creating the action by name
-    *
-    * @param actionName the name of the action to associate
-    */
+     * Sets the action object associated with this decorator
+     *
+     * Overloaded member to allow creating the action by name
+     *
+     * @param actionName the name of the action to associate
+     */
     void setAuthAction(const QString &actionName);
 
 Q_SIGNALS:

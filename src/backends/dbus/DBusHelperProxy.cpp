@@ -8,23 +8,22 @@
 
 #include "DBusHelperProxy.h"
 
-#include <qplugin.h>
-#include <QObject>
-#include <QMap>
-#include <QDBusMessage>
-#include <QTimer>
-#include <QMetaMethod>
 #include <QDBusConnectionInterface>
+#include <QDBusMessage>
+#include <QMap>
+#include <QMetaMethod>
+#include <QObject>
+#include <QTimer>
+#include <qplugin.h>
 
 #include "BackendsManager.h"
-#include "kf5authadaptor.h"
 #include "kauthdebug.h"
+#include "kf5authadaptor.h"
 
 extern Q_CORE_EXPORT const QMetaTypeInterface *qMetaTypeGuiHelper;
 
 namespace KAuth
 {
-
 static void debugMessageReceived(int t, const QString &message);
 
 DBusHelperProxy::DBusHelperProxy()
@@ -65,7 +64,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
         stream << arguments;
     }
 
-    //on unit tests we won't have a service, but the service will already be running
+    // on unit tests we won't have a service, but the service will already be running
     const auto reply = m_busConnection.interface()->startService(helperID);
     if (!reply.isValid() && !m_busConnection.interface()->isServiceRegistered(helperID)) {
         ActionReply errorReply = ActionReply::DBusErrorReply();
@@ -74,15 +73,18 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
         return;
     }
 
-    const bool connected = m_busConnection.connect(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("remoteSignal"), this, SLOT(remoteSignalReceived(int,QString,QByteArray)));
+    const bool connected = m_busConnection.connect(helperID,
+                                                   QLatin1String("/"),
+                                                   QLatin1String("org.kde.kf5auth"),
+                                                   QLatin1String("remoteSignal"),
+                                                   this,
+                                                   SLOT(remoteSignalReceived(int, QString, QByteArray)));
 
-    //if already connected reply will be false but we won't have an error or a reason to fail
+    // if already connected reply will be false but we won't have an error or a reason to fail
     if (!connected && m_busConnection.lastError().isValid()) {
         ActionReply errorReply = ActionReply::DBusErrorReply();
-        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. %1\n(application: %2 helper: %3)").arg(
-                m_busConnection.lastError().message(),
-                qApp->applicationName(),
-                helperID));
+        errorReply.setErrorDescription(tr("DBus Backend error: connection to helper failed. %1\n(application: %2 helper: %3)")
+                                           .arg(m_busConnection.lastError().message(), qApp->applicationName(), helperID));
         Q_EMIT actionPerformed(action, errorReply);
         return;
     }
@@ -100,7 +102,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
     auto watcher = new QDBusPendingCallWatcher(pendingCall, this);
 
-    connect(watcher, &QDBusPendingCallWatcher::finished, this, [=] () mutable {
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, [=]() mutable {
         watcher->deleteLater();
 
         QDBusMessage reply = watcher->reply();
@@ -117,7 +119,8 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
             }
             ActionReply r = ActionReply::DBusErrorReply();
             r.setErrorDescription(tr("DBus Backend error: could not contact the helper. "
-                                    "Connection error: %1. Message error: %2").arg(reply.errorMessage(), m_busConnection.lastError().message()));
+                                     "Connection error: %1. Message error: %2")
+                                      .arg(reply.errorMessage(), m_busConnection.lastError().message()));
             qCWarning(KAUTH) << reply.errorMessage();
 
             Q_EMIT actionPerformed(action, r);
@@ -184,7 +187,7 @@ void DBusHelperProxy::remoteSignalReceived(int t, const QString &action, QByteAr
 void DBusHelperProxy::stopAction(const QString &action)
 {
     Q_UNUSED(action)
-//#warning FIXME: The stop request should be action-specific rather than global
+    //#warning FIXME: The stop request should be action-specific rather than global
     m_stopRequest = true;
 }
 
@@ -200,19 +203,19 @@ bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray
 {
     // Check the caller is really who it says it is
     switch (BackendsManager::authBackend()->extraCallerIDVerificationMethod()) {
-        case AuthBackend::NoExtraCallerIDVerificationMethod:
+    case AuthBackend::NoExtraCallerIDVerificationMethod:
         break;
 
-        case AuthBackend::VerifyAgainstDBusServiceName:
-            if (message().service().toUtf8() != callerID) {
-                return false;
-            }
+    case AuthBackend::VerifyAgainstDBusServiceName:
+        if (message().service().toUtf8() != callerID) {
+            return false;
+        }
         break;
 
-        case AuthBackend::VerifyAgainstDBusServicePid:
-            if (connection().interface()->servicePid(message().service()).value() != callerID.toUInt()) {
-                return false;
-            }
+    case AuthBackend::VerifyAgainstDBusServicePid:
+        if (connection().interface()->servicePid(message().service()).value() != callerID.toUInt()) {
+            return false;
+        }
         break;
     }
 
@@ -272,11 +275,9 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
             const auto needle = "KAuth::";
             bool success = false;
             if (strncmp(needle, method.typeName(), strlen(needle)) == 0) {
-                success = method.invoke(responder, Qt::DirectConnection,
-                                        Q_RETURN_ARG(KAuth::ActionReply, retVal), Q_ARG(QVariantMap, args));
+                success = method.invoke(responder, Qt::DirectConnection, Q_RETURN_ARG(KAuth::ActionReply, retVal), Q_ARG(QVariantMap, args));
             } else {
-                success = method.invoke(responder, Qt::DirectConnection,
-                                        Q_RETURN_ARG(ActionReply, retVal), Q_ARG(QVariantMap, args));
+                success = method.invoke(responder, Qt::DirectConnection, Q_RETURN_ARG(ActionReply, retVal), Q_ARG(QVariantMap, args));
             }
             if (!success) {
                 retVal = ActionReply::NoSuchActionReply();

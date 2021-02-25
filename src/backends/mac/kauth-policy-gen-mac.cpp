@@ -6,8 +6,8 @@
 
 #include "../../policy-gen/policy-gen.h"
 
-#include <iostream>
 #include <Security/Security.h>
+#include <iostream>
 
 #include <QDebug>
 
@@ -21,11 +21,9 @@ void output(const QList<Action> &actions, const QMap<QString, QString> &domain)
     OSStatus err;
 
     for (const Action &action : qAsConst(actions)) {
-
         err = AuthorizationRightGet(action.name.toLatin1().constData(), NULL);
 
         if (err != errAuthorizationSuccess) {
-
             QString rule;
 
             if (action.policy == QLatin1String("yes")) {
@@ -39,7 +37,8 @@ void output(const QList<Action> &actions, const QMap<QString, QString> &domain)
             }
 
             CFStringRef cfRule = CFStringCreateWithCString(NULL, rule.toLatin1().constData(), kCFStringEncodingASCII);
-            CFStringRef cfPrompt = CFStringCreateWithCString(NULL, action.descriptions.value(QLatin1String("en")).toLatin1().constData(), kCFStringEncodingASCII);
+            CFStringRef cfPrompt =
+                CFStringCreateWithCString(NULL, action.descriptions.value(QLatin1String("en")).toLatin1().constData(), kCFStringEncodingASCII);
 
             err = AuthorizationRightSet(auth, action.name.toLatin1().constData(), cfRule, cfPrompt, NULL, NULL);
             if (err != noErr) {

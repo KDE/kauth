@@ -11,18 +11,23 @@
 
 namespace KAuth
 {
-
 class ActionReplyData : public QSharedData
 {
 public:
-    ActionReplyData() {}
+    ActionReplyData()
+    {
+    }
     ActionReplyData(const ActionReplyData &other)
         : QSharedData(other)
         , data(other.data)
         , errorCode(other.errorCode)
         , errorDescription(other.errorDescription)
-        , type(other.type) {}
-    ~ActionReplyData() {}
+        , type(other.type)
+    {
+    }
+    ~ActionReplyData()
+    {
+    }
 
     QVariantMap data; // User-defined data for success and helper error replies, empty for kauth errors
     uint errorCode;

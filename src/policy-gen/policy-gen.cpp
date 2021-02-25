@@ -9,10 +9,10 @@
 #include <QFile>
 
 #include <QCoreApplication>
-#include <QSettings>
-#include <QRegularExpression>
-#include <QStringList>
 #include <QDebug>
+#include <QRegularExpression>
+#include <QSettings>
+#include <QStringList>
 
 #include <cstdio>
 #include <errno.h>
@@ -67,8 +67,7 @@ QList<Action> parse(QSettings &ini)
                                             QRegularExpression::CaseInsensitiveOption);
 
     // example: Name[ca]=Mòdul de control del Foo
-    const QRegularExpression nameExp(QRegularExpression::anchoredPattern(QStringLiteral("name(?:\\[(\\w+)\\])?")),
-                                     QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpression nameExp(QRegularExpression::anchoredPattern(QStringLiteral("name(?:\\[(\\w+)\\])?")), QRegularExpression::CaseInsensitiveOption);
 
     // example: Policy=auth_admin
     const QRegularExpression policyExp(QRegularExpression::anchoredPattern(QStringLiteral("(?:yes|no|auth_self|auth_admin)")));
@@ -166,4 +165,3 @@ QMap<QString, QString> parseDomain(QSettings &ini)
 
     return rethash;
 }
-

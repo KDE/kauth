@@ -8,7 +8,6 @@
 
 namespace KAuth
 {
-
 FakeBackend::FakeBackend()
     : AuthBackend()
 {

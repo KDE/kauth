@@ -9,16 +9,13 @@
 
 namespace KAuth
 {
-
 FakeHelperProxy::FakeHelperProxy()
     : HelperProxy()
 {
-
 }
 
 FakeHelperProxy::~FakeHelperProxy()
 {
-
 }
 
 void FakeHelperProxy::sendProgressStep(const QVariantMap &step)
@@ -74,4 +71,3 @@ int FakeHelperProxy::callerUid() const
 }
 
 }
-

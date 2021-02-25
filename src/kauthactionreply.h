@@ -8,11 +8,11 @@
 #ifndef ACTION_REPLY_H
 #define ACTION_REPLY_H
 
+#include <QDataStream>
+#include <QMap>
+#include <QSharedDataPointer>
 #include <QString>
 #include <QVariant>
-#include <QMap>
-#include <QDataStream>
-#include <QSharedDataPointer>
 
 #include <kauthcore_export.h>
 /**
@@ -313,7 +313,6 @@
  */
 namespace KAuth
 {
-
 class ActionReplyData;
 
 /**
@@ -588,7 +587,6 @@ public:
 
 private:
     QSharedDataPointer<ActionReplyData> d;
-
 };
 
 } // namespace Auth

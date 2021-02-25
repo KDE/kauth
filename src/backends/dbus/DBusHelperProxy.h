@@ -18,7 +18,6 @@
 
 namespace KAuth
 {
-
 class DBusHelperProxy : public HelperProxy, protected QDBusContext
 {
     Q_OBJECT
@@ -37,7 +36,7 @@ class DBusHelperProxy : public HelperProxy, protected QDBusContext
         ActionPerformed, // The blob argument contains the ActionReply
         DebugMessage, // The blob argument contains the debug level and the message (in this order)
         ProgressStepIndicator, // The blob argument contains the step indicator
-        ProgressStepData,    // The blob argument contains the QVariantMap
+        ProgressStepData, // The blob argument contains the QVariantMap
     };
 
 public:
@@ -46,9 +45,8 @@ public:
 
     ~DBusHelperProxy() override;
 
-    virtual void executeAction(const QString &action, const QString &helperID,
-                               const DetailsMap &details, const QVariantMap &arguments,
-                               int timeout = -1) override;
+    virtual void
+    executeAction(const QString &action, const QString &helperID, const DetailsMap &details, const QVariantMap &arguments, int timeout = -1) override;
     void stopAction(const QString &action, const QString &helperID) override;
 
     bool initHelper(const QString &name) override;

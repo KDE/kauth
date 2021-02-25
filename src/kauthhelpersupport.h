@@ -13,12 +13,14 @@
 
 #include <kauthcore_export.h>
 
-#define KAUTH_HELPER_MAIN(ID, HelperClass) \
-    int main(int argc, char **argv) { return KAuth::HelperSupport::helperMain(argc, argv, ID, new HelperClass()); }
+#define KAUTH_HELPER_MAIN(ID, HelperClass)                                                                                                                     \
+    int main(int argc, char **argv)                                                                                                                            \
+    {                                                                                                                                                          \
+        return KAuth::HelperSupport::helperMain(argc, argv, ID, new HelperClass());                                                                            \
+    }
 
 namespace KAuth
 {
-
 /**
  * @brief Support class with some KAUTHCORE_EXPORT methods useful to the helper's code
  *
@@ -47,17 +49,17 @@ namespace HelperSupport
 KAUTHCORE_EXPORT void progressStep(int step);
 
 /**
-* @brief Send a progressStep signal to the caller application
-*
-* You can use this method to notify progress information about the
-* action execution. When you call this method, the KAuth::ExecuteJob
-* object associated with the current action will emit the progressStep(QVariantMap)
-* signal. The meaning of the data passed here is totally application dependent.
-*
-* If you only need a simple percentage value, use the other overload which takes an int.
-*
-* @param data The progress data
-*/
+ * @brief Send a progressStep signal to the caller application
+ *
+ * You can use this method to notify progress information about the
+ * action execution. When you call this method, the KAuth::ExecuteJob
+ * object associated with the current action will emit the progressStep(QVariantMap)
+ * signal. The meaning of the data passed here is totally application dependent.
+ *
+ * If you only need a simple percentage value, use the other overload which takes an int.
+ *
+ * @param data The progress data
+ */
 KAUTHCORE_EXPORT void progressStep(const QVariantMap &data);
 
 /**

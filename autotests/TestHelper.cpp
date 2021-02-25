@@ -6,12 +6,12 @@
 
 #include "TestHelper.h"
 
-#include <QtDebug>
+#include <QEventLoop>
 #include <QFile>
 #include <QTextStream>
 #include <QThread>
+#include <QtDebug>
 #include <qplatformdefs.h>
-#include <QEventLoop>
 
 ActionReply TestHelper::echoaction(QVariantMap args)
 {

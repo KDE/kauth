@@ -4,16 +4,16 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#include <QTest>
-#include <QSignalSpy>
-#include <QTimer>
-#include <QThread>
+#include "BackendsManager.h"
+#include "TestHelper.h"
 #include <QRandomGenerator>
+#include <QSignalSpy>
+#include <QTest>
+#include <QThread>
+#include <QTimer>
 #include <kauth.h>
 #include <kauthactionreply.h>
 #include <kauthexecutejob.h>
-#include "BackendsManager.h"
-#include "TestHelper.h"
 
 #include "../src/backends/dbus/DBusHelperProxy.h"
 
@@ -42,12 +42,16 @@ class HelperTest : public QObject
     Q_OBJECT
 
 public:
-    HelperTest(QObject *parent = nullptr) : QObject(parent)
-    { }
+    HelperTest(QObject *parent = nullptr)
+        : QObject(parent)
+    {
+    }
 
 private Q_SLOTS:
     void initTestCase();
-    void init() {}
+    void init()
+    {
+    }
 
     void testBasicActionExecution();
     void testExecuteJobSignals();
@@ -55,8 +59,12 @@ private Q_SLOTS:
     void testActionData();
     void testHelperFailure();
 
-    void cleanup() {}
-    void cleanupTestCase() {}
+    void cleanup()
+    {
+    }
+    void cleanupTestCase()
+    {
+    }
 
 Q_SIGNALS:
     void changeCapabilities(KAuth::AuthBackend::Capabilities capabilities);
@@ -113,8 +121,10 @@ void HelperHandler::init()
 
 void HelperTest::initTestCase()
 {
-    connect(this, SIGNAL(changeCapabilities(KAuth::AuthBackend::Capabilities)),
-            KAuth::BackendsManager::authBackend(), SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
+    connect(this,
+            SIGNAL(changeCapabilities(KAuth::AuthBackend::Capabilities)),
+            KAuth::BackendsManager::authBackend(),
+            SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
 
     qRegisterMetaType<KAuth::Action::AuthStatus>();
     qRegisterMetaType<KJob *>();
@@ -154,9 +164,9 @@ void HelperTest::testExecuteJobSignals()
 
     KAuth::ExecuteJob *job = action.execute();
 
-    QSignalSpy finishedSpy(job, SIGNAL(result(KJob*)));
+    QSignalSpy finishedSpy(job, SIGNAL(result(KJob *)));
     QSignalSpy newDataSpy(job, SIGNAL(newData(QVariantMap)));
-    QSignalSpy percentSpy(job, SIGNAL(percent(KJob*,ulong)));
+    QSignalSpy percentSpy(job, SIGNAL(percent(KJob *, ulong)));
     QSignalSpy statusChangedSpy(job, SIGNAL(statusChanged(KAuth::Action::AuthStatus)));
 
     QVERIFY(job->exec());
@@ -189,7 +199,6 @@ void HelperTest::testTwoCalls()
 
     job = action.execute();
     QVERIFY(job->exec());
-
 }
 
 void HelperTest::testActionData()

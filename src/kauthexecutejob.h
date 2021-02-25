@@ -16,7 +16,6 @@
 
 namespace KAuth
 {
-
 /**
  * @class ExecuteJob kauthexecutejob.h <KAuthExecuteJob>
  *
@@ -98,18 +97,18 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     /**
-    * @brief Signal emitted by the helper to notify the action's progress
-    *
-    * This signal is emitted every time the helper's code calls the
-    * HelperSupport::progressStep(QVariantMap) method. This is useful to let the
-    * helper notify the execution status of a long action, also providing
-    * some data, for example if you want to achieve some sort of progressive loading.
-    * The meaning of the data passed here is totally application-dependent.
-    * If you only need to pass some percentage, you can use the other signal that
-    * pass an int.
-    *
-    * @param data The progress data from the helper
-    */
+     * @brief Signal emitted by the helper to notify the action's progress
+     *
+     * This signal is emitted every time the helper's code calls the
+     * HelperSupport::progressStep(QVariantMap) method. This is useful to let the
+     * helper notify the execution status of a long action, also providing
+     * some data, for example if you want to achieve some sort of progressive loading.
+     * The meaning of the data passed here is totally application-dependent.
+     * If you only need to pass some percentage, you can use the other signal that
+     * pass an int.
+     *
+     * @param data The progress data from the helper
+     */
     void newData(const QVariantMap &data);
 
     /**
@@ -119,7 +118,7 @@ Q_SIGNALS:
     void statusChanged(KAuth::Action::AuthStatus status);
 
 private:
-  Q_DISABLE_COPY(ExecuteJob)
+    Q_DISABLE_COPY(ExecuteJob)
 };
 
 } // namespace Auth

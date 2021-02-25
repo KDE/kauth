@@ -9,12 +9,15 @@
 
 namespace KAuth
 {
-
 class AuthBackend::Private
 {
 public:
-    Private() {}
-    virtual ~Private() {}
+    Private()
+    {
+    }
+    virtual ~Private()
+    {
+    }
 
     Capabilities capabilities;
 };
@@ -23,7 +26,6 @@ AuthBackend::AuthBackend()
     : QObject(nullptr)
     , d(new Private)
 {
-
 }
 
 AuthBackend::~AuthBackend()
@@ -64,5 +66,4 @@ QVariantMap AuthBackend::backendDetails(const DetailsMap &details)
     return QVariantMap();
 }
 
-} //namespace KAuth
-
+} // namespace KAuth

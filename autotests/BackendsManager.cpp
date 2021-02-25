@@ -12,16 +12,15 @@
 #include "TestBackend.h"
 #include "backends/dbus/DBusHelperProxy.h"
 
-#include <QPluginLoader>
-#include <QDir>
 #include <QDebug>
+#include <QDir>
+#include <QPluginLoader>
 #include <QThread>
 
 namespace KAuth
 {
-
 AuthBackend *BackendsManager::auth = nullptr;
-QHash< QThread *, HelperProxy * > proxiesForThreads = QHash< QThread *, HelperProxy * >();
+QHash<QThread *, HelperProxy *> proxiesForThreads = QHash<QThread *, HelperProxy *>();
 
 BackendsManager::BackendsManager()
 {

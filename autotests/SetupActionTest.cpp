@@ -4,11 +4,11 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
+#include "BackendsManager.h"
 #include <QTest>
 #include <kauth.h>
 #include <kauthactionreply.h>
 #include <kauthexecutejob.h>
-#include "BackendsManager.h"
 
 class SetupActionTest : public QObject
 {
@@ -17,11 +17,14 @@ class SetupActionTest : public QObject
 public:
     SetupActionTest(QObject *parent = nullptr)
         : QObject(parent)
-    { }
+    {
+    }
 
 private Q_SLOTS:
     void initTestCase();
-    void init() {}
+    void init()
+    {
+    }
 
     void testNonExistentAction();
 #if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
@@ -31,8 +34,12 @@ private Q_SLOTS:
     void testUserAuthorization();
     void testAuthorizationFail();
 
-    void cleanup() {}
-    void cleanupTestCase() {}
+    void cleanup()
+    {
+    }
+    void cleanupTestCase()
+    {
+    }
 
 Q_SIGNALS:
     void changeCapabilities(KAuth::AuthBackend::Capabilities capabilities);
@@ -42,8 +49,10 @@ private:
 
 void SetupActionTest::initTestCase()
 {
-    connect(this, SIGNAL(changeCapabilities(KAuth::AuthBackend::Capabilities)),
-            KAuth::BackendsManager::authBackend(), SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
+    connect(this,
+            SIGNAL(changeCapabilities(KAuth::AuthBackend::Capabilities)),
+            KAuth::BackendsManager::authBackend(),
+            SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
 }
 
 void SetupActionTest::testNonExistentAction()

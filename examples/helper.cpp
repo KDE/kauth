@@ -18,23 +18,23 @@ using namespace KAuth;
 class MyHelper : public QObject
 {
     Q_OBJECT
-    public Q_SLOTS:
-        ActionReply read(const QVariantMap& args);
-        ActionReply write(const QVariantMap& args);
-        ActionReply longaction(const QVariantMap& args);
+public Q_SLOTS:
+    ActionReply read(const QVariantMap &args);
+    ActionReply write(const QVariantMap &args);
+    ActionReply longaction(const QVariantMap &args);
 };
 //! [helper_declaration]
 
 //! [helper_read_action]
-ActionReply MyHelper::read(const QVariantMap& args)
+ActionReply MyHelper::read(const QVariantMap &args)
 {
     ActionReply reply;
     QString filename = args["filename"].toString();
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
-       reply = ActionReply::HelperErrorReply();
-       reply.setErrorDescription(file.errorString());
-       return reply;
+        reply = ActionReply::HelperErrorReply();
+        reply.setErrorDescription(file.errorString());
+        return reply;
     }
     QTextStream stream(&file);
     QString contents;
@@ -51,13 +51,13 @@ ActionReply MyHelper::write(const QVariantMap &args)
 }
 
 //! [helper_longaction]
-ActionReply MyHelper::longaction(const QVariantMap&)
+ActionReply MyHelper::longaction(const QVariantMap &)
 {
     for (int i = 1; i <= 100; i++) {
-       if (HelperSupport::isStopped())
-          break;
-       HelperSupport::progressStep(i);
-       QThread::usleep(250000);
+        if (HelperSupport::isStopped())
+            break;
+        HelperSupport::progressStep(i);
+        QThread::usleep(250000);
     }
     return ActionReply::SuccessReply();
 }
@@ -68,4 +68,3 @@ KAUTH_HELPER_MAIN("org.kde.kf5auth.example", MyHelper)
 //! [helper_main]
 
 #include "helper.moc"
-

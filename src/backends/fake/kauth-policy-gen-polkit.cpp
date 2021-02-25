@@ -6,22 +6,24 @@
 
 #include <auth/policy-gen/policy-gen.h>
 
-#include <cstdio>
 #include <QDebug>
 #include <QTextStream>
+#include <cstdio>
 
-const char header[] = ""
-                      "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-                      "<!DOCTYPE policyconfig PUBLIC\n"
-                      "\"-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN\"\n"
-                      "\"http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd\">\n"
-                      "<policyconfig>\n";
+const char header[] =
+    ""
+    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+    "<!DOCTYPE policyconfig PUBLIC\n"
+    "\"-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN\"\n"
+    "\"http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd\">\n"
+    "<policyconfig>\n";
 
-const char policy_tag[] = ""
-                          "      <defaults>\n"
-                          "         <allow_inactive>no</allow_inactive>\n"
-                          "         <allow_active>%1</allow_active>\n"
-                          "      </defaults>\n";
+const char policy_tag[] =
+    ""
+    "      <defaults>\n"
+    "         <allow_inactive>no</allow_inactive>\n"
+    "         <allow_active>%1</allow_active>\n"
+    "      </defaults>\n";
 
 const char dent[] = "   ";
 

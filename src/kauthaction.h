@@ -8,16 +8,15 @@
 #ifndef ACTION_H
 #define ACTION_H
 
-#include <QString>
-#include <QVariant>
 #include <QHash>
 #include <QSharedDataPointer>
+#include <QString>
+#include <QVariant>
 
 #include <kauthcore_export.h>
 
 namespace KAuth
 {
-
 class ExecuteJob;
 
 class ActionData;
@@ -70,7 +69,7 @@ class ActionData;
  */
 class KAUTHCORE_EXPORT Action
 {
-Q_GADGET
+    Q_GADGET
 public:
     /**
      * The three values set by authorization methods
@@ -144,7 +143,7 @@ public:
      * @see setDetails
      * @since 5.68
      */
-     Action(const QString &name, const DetailsMap &details);
+    Action(const QString &name, const DetailsMap &details);
 
     /// Virtual destructor
     ~Action();
@@ -166,12 +165,12 @@ public:
     bool operator==(const Action &action) const;
 
     /**
-    * @brief Negated comparison operator
-    *
-    * Returns the negation of operator==
-    *
-    * @returns true if the two actions are different and not both invalid
-    */
+     * @brief Negated comparison operator
+     *
+     * Returns the negation of operator==
+     *
+     * @returns true if the two actions are different and not both invalid
+     */
     bool operator!=(const Action &action) const;
 
     /**
@@ -367,17 +366,17 @@ public:
     QVariantMap arguments() const;
 
     /**
-    * @brief Convenience method to add an argument.
-    *
-    * This method adds the pair @c key/value to the QVariantMap used to
-    * send custom data to the helper.
-    *
-    * Use this method if you don't want to create a new QVariantMap only to
-    * add a new entry.
-    *
-    * @param key The new entry's key
-    * @param value The value of the new entry
-    */
+     * @brief Convenience method to add an argument.
+     *
+     * This method adds the pair @c key/value to the QVariantMap used to
+     * send custom data to the helper.
+     *
+     * Use this method if you don't want to create a new QVariantMap only to
+     * add a new entry.
+     *
+     * @param key The new entry's key
+     * @param value The value of the new entry
+     */
     void addArgument(const QString &key, const QVariant &value);
 
     /**
