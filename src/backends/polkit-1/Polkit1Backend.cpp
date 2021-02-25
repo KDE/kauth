@@ -8,6 +8,7 @@
 */
 
 #include "Polkit1Backend.h"
+#include "kauthdebug.h"
 
 #include <QCoreApplication>
 #include <QTimer>
@@ -21,8 +22,6 @@
 
 #include <PolkitQt1/Subject>
 #include <polkitqt1-version.h>
-
-#include "kauthdebug.h"
 
 namespace KAuth
 {

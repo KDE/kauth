@@ -8,13 +8,14 @@
 #ifndef ACTION_REPLY_H
 #define ACTION_REPLY_H
 
+#include <kauthcore_export.h>
+
 #include <QDataStream>
 #include <QMap>
 #include <QSharedDataPointer>
 #include <QString>
 #include <QVariant>
 
-#include <kauthcore_export.h>
 /**
  @namespace KAuth
 

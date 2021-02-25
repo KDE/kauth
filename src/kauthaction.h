@@ -8,12 +8,12 @@
 #ifndef ACTION_H
 #define ACTION_H
 
+#include <kauthcore_export.h>
+
 #include <QHash>
 #include <QSharedDataPointer>
 #include <QString>
 #include <QVariant>
-
-#include <kauthcore_export.h>
 
 namespace KAuth
 {

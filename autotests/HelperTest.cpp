@@ -6,14 +6,16 @@
 
 #include "BackendsManager.h"
 #include "TestHelper.h"
+
+#include <kauth.h>
+#include <kauthactionreply.h>
+#include <kauthexecutejob.h>
+
 #include <QRandomGenerator>
 #include <QSignalSpy>
 #include <QTest>
 #include <QThread>
 #include <QTimer>
-#include <kauth.h>
-#include <kauthactionreply.h>
-#include <kauthexecutejob.h>
 
 #include "../src/backends/dbus/DBusHelperProxy.h"
 

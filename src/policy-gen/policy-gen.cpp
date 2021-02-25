@@ -6,10 +6,10 @@
 */
 
 #include "policy-gen.h"
-#include <QFile>
 
 #include <QCoreApplication>
 #include <QDebug>
+#include <QFile>
 #include <QRegularExpression>
 #include <QSettings>
 #include <QStringList>

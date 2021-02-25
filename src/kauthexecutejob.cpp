@@ -8,6 +8,7 @@
 #include "BackendsManager.h"
 
 #include "kauthdebug.h"
+
 #include <QEventLoop>
 #include <QHash>
 #include <QTimer>
@@ -96,7 +97,8 @@ void ExecuteJob::start()
         ActionReply reply(ActionReply::InvalidActionError);
         reply.setErrorDescription(tr("Unknown execution mode chosen"));
         d->actionPerformedSlot(d->action.name(), reply);
-    } break;
+        break;
+    }
     }
 }
 
@@ -140,7 +142,8 @@ void ExecuteJob::Private::doExecuteAction()
                 ActionReply r(ActionReply::BackendError);
                 r.setErrorDescription(tr("Unknown status for the authentication procedure"));
                 actionPerformedSlot(action.name(), r);
-            } break;
+                break;
+            }
             }
         }
     } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {

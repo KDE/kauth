@@ -7,6 +7,9 @@
 */
 
 #include "DBusHelperProxy.h"
+#include "BackendsManager.h"
+#include "kauthdebug.h"
+#include "kf5authadaptor.h"
 
 #include <QDBusConnectionInterface>
 #include <QDBusMessage>
@@ -15,10 +18,6 @@
 #include <QObject>
 #include <QTimer>
 #include <qplugin.h>
-
-#include "BackendsManager.h"
-#include "kauthdebug.h"
-#include "kf5authadaptor.h"
 
 extern Q_CORE_EXPORT const QMetaTypeInterface *qMetaTypeGuiHelper;
 
