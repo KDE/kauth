@@ -81,13 +81,13 @@ public:
         InvalidStatus, ///< An invalid action cannot be authorized
         AuthorizedStatus, ///< The authorization has been granted by the authorization backend
         AuthRequiredStatus, ///< The user could obtain the authorization after authentication
-        UserCancelledStatus ///< The user pressed Cancel the authentication dialog. Currently used only on the mac
+        UserCancelledStatus, ///< The user pressed Cancel the authentication dialog. Currently used only on the mac
     };
     Q_ENUM(AuthStatus)
 
     enum ExecutionMode {
         ExecuteMode,
-        AuthorizeOnlyMode
+        AuthorizeOnlyMode,
     };
     Q_ENUM(ExecutionMode)
 

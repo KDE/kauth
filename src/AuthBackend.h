@@ -28,7 +28,7 @@ public:
         AuthorizeFromClientCapability = 1,
         AuthorizeFromHelperCapability = 2,
         CheckActionExistenceCapability = 4,
-        PreAuthActionCapability = 8
+        PreAuthActionCapability = 8,
     };
     Q_DECLARE_FLAGS(Capabilities, Capability)
 

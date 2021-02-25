@@ -37,7 +37,7 @@ class DBusHelperProxy : public HelperProxy, protected QDBusContext
         ActionPerformed, // The blob argument contains the ActionReply
         DebugMessage, // The blob argument contains the debug level and the message (in this order)
         ProgressStepIndicator, // The blob argument contains the step indicator
-        ProgressStepData    // The blob argument contains the QVariantMap
+        ProgressStepData,    // The blob argument contains the QVariantMap
     };
 
 public:
