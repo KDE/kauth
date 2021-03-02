@@ -150,7 +150,7 @@ void HelperSupport::progressStep(int step)
 
 void HelperSupport::progressStep(const QVariantMap &data)
 {
-    BackendsManager::helperProxy()->sendProgressStep(data);
+    BackendsManager::helperProxy()->sendProgressStepData(data);
 }
 
 bool HelperSupport::isStopped()

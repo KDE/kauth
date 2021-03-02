@@ -37,7 +37,7 @@ public:
     virtual bool hasToStopAction() = 0;
     virtual void sendDebugMessage(int level, const char *msg) = 0;
     virtual void sendProgressStep(int step) = 0;
-    virtual void sendProgressStep(const QVariantMap &step) = 0;
+    virtual void sendProgressStepData(const QVariantMap &step) = 0;
     // Attempts to resolve the UID of the unprivileged remote process.
     virtual int callerUid() const = 0;
 
@@ -45,7 +45,7 @@ Q_SIGNALS:
     void actionStarted(const QString &action);
     void actionPerformed(const QString &action, const KAuth::ActionReply &reply);
     void progressStep(const QString &action, int progress);
-    void progressStep(const QString &action, const QVariantMap &data);
+    void progressStepData(const QString &action, const QVariantMap &data);
 };
 
 } // namespace KAuth

@@ -18,7 +18,7 @@ FakeHelperProxy::~FakeHelperProxy()
 {
 }
 
-void FakeHelperProxy::sendProgressStep(const QVariantMap &step)
+void FakeHelperProxy::sendProgressStepData(const QVariantMap &step)
 {
     Q_UNUSED(step)
 }

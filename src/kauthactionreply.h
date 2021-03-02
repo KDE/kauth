@@ -274,14 +274,17 @@
 
  In this example, the action is only waiting a "long" time using a loop, but we
  can see some interesting line. The progress status is sent to the application
- using the HelperSupport::progressStep() method.  When this method is called,
- the HelperProxy associated with this action will emit the progressStep()
- signal, reporting back the data to the application. There are two overloads of
- these methods and corresponding signals. The one used here takes an integer.
+ using the HelperSupport::progressStep(int) and
+ HelperSupport::progressStep(const QVariantMap &) methods.
+ When those methods are called, the HelperProxy associated with this action
+ will emit the HelperProxy::progressStep(const QString &, int) and
+ HelperProxy::progressStepData(const QString &, const QVariantMap &) signals,
+ respectively, reporting back the data to the application.
+ The method that takes an integer argument is the one used here.
  Its meaning is application dependent, so you can use it as a sort of
- percentage. The other overload takes a QVariantMap object that is directly
- passed to the app. In this way, you can report to the application all the
- custom data you want.
+ percentage. If you want to report custom data back to the application, you
+ can use the other method that takes a QVariantMap object which is directly
+ passed to the app.
 
  In this example code, the loop exits when the HelperSupport::isStopped()
  returns true. This happens when the application calls the HelperProxy::stopAction()

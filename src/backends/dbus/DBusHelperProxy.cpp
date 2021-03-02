@@ -178,8 +178,7 @@ void DBusHelperProxy::remoteSignalReceived(int t, const QString &action, QByteAr
     } else if (type == ProgressStepData) {
         QVariantMap data;
         stream >> data;
-
-        Q_EMIT progressStep(action, data);
+        Q_EMIT progressStepData(action, data);
     }
 }
 
@@ -318,7 +317,7 @@ void DBusHelperProxy::sendProgressStep(int step)
     Q_EMIT remoteSignal(ProgressStepIndicator, m_currentAction, blob);
 }
 
-void DBusHelperProxy::sendProgressStep(const QVariantMap &data)
+void DBusHelperProxy::sendProgressStepData(const QVariantMap &data)
 {
     QByteArray blob;
     QDataStream stream(&blob, QIODevice::WriteOnly);

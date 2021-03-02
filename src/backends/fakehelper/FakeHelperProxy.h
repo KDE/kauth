@@ -21,7 +21,7 @@ public:
     FakeHelperProxy();
     virtual ~FakeHelperProxy();
 
-    void sendProgressStep(const QVariantMap &step) override;
+    void sendProgressStepData(const QVariantMap &step) override;
     void sendProgressStep(int step) override;
     void sendDebugMessage(int level, const char *msg) override;
     bool hasToStopAction() override;

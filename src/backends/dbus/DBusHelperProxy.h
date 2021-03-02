@@ -54,7 +54,7 @@ public:
     bool hasToStopAction() override;
     void sendDebugMessage(int level, const char *msg) override;
     void sendProgressStep(int step) override;
-    void sendProgressStep(const QVariantMap &data) override;
+    void sendProgressStepData(const QVariantMap &data) override;
 
     int callerUid() const override;
 

@@ -49,7 +49,6 @@ class KAUTHCORE_EXPORT ExecuteJob : public KJob
     Q_PRIVATE_SLOT(d, void doAuthorizeAction())
     Q_PRIVATE_SLOT(d, void actionPerformedSlot(const QString &action, const KAuth::ActionReply &reply))
     Q_PRIVATE_SLOT(d, void progressStepSlot(const QString &action, int i))
-    Q_PRIVATE_SLOT(d, void progressStepSlot(const QString &action, const QVariantMap &data))
     Q_PRIVATE_SLOT(d, void statusChangedSlot(const QString &action, KAuth::Action::AuthStatus status))
 
 public:

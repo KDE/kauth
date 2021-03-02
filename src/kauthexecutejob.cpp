@@ -50,7 +50,10 @@ ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject
 
     connect(helper, SIGNAL(actionPerformed(QString, KAuth::ActionReply)), this, SLOT(actionPerformedSlot(QString, KAuth::ActionReply)));
     connect(helper, SIGNAL(progressStep(QString, int)), this, SLOT(progressStepSlot(QString, int)));
-    connect(helper, SIGNAL(progressStep(QString, QVariantMap)), this, SLOT(progressStepSlot(QString, QVariantMap)));
+    connect(helper, &KAuth::HelperProxy::progressStepData, this, [this](const QString &action, const QVariantMap &data) {
+        d->progressStepSlot(action, data);
+    });
+
     connect(BackendsManager::authBackend(),
             SIGNAL(actionStatusChanged(QString, KAuth::Action::AuthStatus)),
             this,
