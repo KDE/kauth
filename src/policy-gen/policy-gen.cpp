@@ -14,8 +14,8 @@
 #include <QSettings>
 #include <QStringList>
 
+#include <cerrno>
 #include <cstdio>
-#include <errno.h>
 
 using namespace std;
 
