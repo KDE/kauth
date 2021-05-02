@@ -47,7 +47,7 @@ if(TARGET Qt5::Widgets)
     target_link_libraries(KF5AuthCore PRIVATE Qt5::DBus)
     target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
     install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
-    set_target_properties(KF5AuthCore PROPERTIES VERSION  ${KAUTH_VERSION_STRING}
+    set_target_properties(KF5AuthCore PROPERTIES VERSION ${KAUTH_VERSION}
                                             SOVERSION ${KAUTH_SOVERSION}
                                             EXPORT_NAME AuthCore)
 
@@ -64,7 +64,7 @@ if(TARGET Qt5::Widgets)
 
     target_link_libraries(KF5Auth PUBLIC KF5AuthCore)
     target_link_libraries(KF5Auth PRIVATE Qt5::Widgets)
-    set_target_properties(KF5Auth PROPERTIES VERSION   ${KAUTH_VERSION_STRING}
+    set_target_properties(KF5Auth PROPERTIES VERSION  ${KAUTH_VERSION}
                                             SOVERSION ${KAUTH_SOVERSION}
                                             EXPORT_NAME Auth
     )
