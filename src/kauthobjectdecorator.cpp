@@ -41,13 +41,17 @@ public:
 
 void ObjectDecoratorPrivate::connectDecorated()
 {
-    if (qobject_cast<QAbstractButton *>(decoratedObject)) {
-        q->connect(decoratedObject, SIGNAL(clicked()), q, SLOT(slotActivated()));
+    if (auto *button = qobject_cast<QAbstractButton *>(decoratedObject)) {
+        q->connect(button, &QAbstractButton::clicked, q, [this] {
+            slotActivated();
+        });
         return;
     }
 
-    if (qobject_cast<QAction *>(decoratedObject)) {
-        q->connect(decoratedObject, SIGNAL(triggered(bool)), q, SLOT(slotActivated()));
+    if (auto *action = qobject_cast<QAction *>(decoratedObject)) {
+        q->connect(action, &QAction::triggered, q, [this] {
+            slotActivated();
+        });
         return;
     }
 
@@ -75,7 +79,10 @@ void ObjectDecoratorPrivate::slotActivated()
 {
     if (authAction.isValid()) {
         KAuth::ExecuteJob *job = authAction.execute(KAuth::Action::AuthorizeOnlyMode);
-        q->connect(job, SIGNAL(statusChanged(KAuth::Action::AuthStatus)), q, SLOT(authStatusChanged(KAuth::Action::AuthStatus)));
+        q->connect(job, &KAuth::ExecuteJob::statusChanged, q, [this](KAuth::Action::AuthStatus status) {
+            authStatusChanged(status);
+        });
+
         if (job->exec()) {
             Q_EMIT q->authorized(authAction);
         } else {

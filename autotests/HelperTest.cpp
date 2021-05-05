@@ -93,7 +93,7 @@ HelperHandler::HelperHandler()
 
     m_thread = new QThread(this);
     moveToThread(m_thread);
-    connect(m_thread, SIGNAL(started()), this, SLOT(init()));
+    connect(m_thread, &QThread::started, this, &HelperHandler::init);
     m_thread->start();
 }
 
@@ -133,10 +133,10 @@ void HelperTest::initTestCase()
 
     // Set up our HelperHandler
     m_handler = new HelperHandler;
-    QEventLoop e;
-    connect(m_handler, SIGNAL(ready()), &e, SLOT(quit()));
+    QEventLoop eventLoop;
+    connect(m_handler, &HelperHandler::ready, &eventLoop, &QEventLoop::quit);
     qDebug() << "Waiting for HelperHandler to be initialized";
-    e.exec();
+    eventLoop.exec();
 }
 
 void HelperTest::testBasicActionExecution()
@@ -166,10 +166,10 @@ void HelperTest::testExecuteJobSignals()
 
     KAuth::ExecuteJob *job = action.execute();
 
-    QSignalSpy finishedSpy(job, SIGNAL(result(KJob *)));
-    QSignalSpy newDataSpy(job, SIGNAL(newData(QVariantMap)));
+    QSignalSpy finishedSpy(job, &KJob::result);
+    QSignalSpy newDataSpy(job, &KAuth::ExecuteJob::newData);
     QSignalSpy percentSpy(job, &KJob::percentChanged);
-    QSignalSpy statusChangedSpy(job, SIGNAL(statusChanged(KAuth::Action::AuthStatus)));
+    QSignalSpy statusChangedSpy(job, &KAuth::ExecuteJob::statusChanged);
 
     QVERIFY(job->exec());
 

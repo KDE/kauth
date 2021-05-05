@@ -31,8 +31,8 @@ Polkit1Backend::Polkit1Backend()
     setCapabilities(AuthorizeFromHelperCapability | CheckActionExistenceCapability | PreAuthActionCapability);
 
     // Setup useful signals
-    connect(PolkitQt1::Authority::instance(), SIGNAL(configChanged()), this, SLOT(checkForResultChanged()));
-    connect(PolkitQt1::Authority::instance(), SIGNAL(consoleKitDBChanged()), this, SLOT(checkForResultChanged()));
+    connect(PolkitQt1::Authority::instance(), &PolkitQt1::Authority::configChanged, this, &KAuth::Polkit1Backend::checkForResultChanged);
+    connect(PolkitQt1::Authority::instance(), &PolkitQt1::Authority::consoleKitDBChanged, this, &KAuth::Polkit1Backend::checkForResultChanged);
 }
 
 Polkit1Backend::~Polkit1Backend()

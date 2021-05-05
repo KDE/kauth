@@ -7,6 +7,7 @@
 #include "kauthexecutejob.h"
 #include "BackendsManager.h"
 
+#include "BackendsManager.h"
 #include "kauthdebug.h"
 
 #include <QEventLoop>
@@ -48,16 +49,19 @@ ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject
 
     HelperProxy *helper = BackendsManager::helperProxy();
 
-    connect(helper, SIGNAL(actionPerformed(QString, KAuth::ActionReply)), this, SLOT(actionPerformedSlot(QString, KAuth::ActionReply)));
-    connect(helper, SIGNAL(progressStep(QString, int)), this, SLOT(progressStepSlot(QString, int)));
+    connect(helper, &KAuth::HelperProxy::actionPerformed, this, [this](const QString &action, const ActionReply &reply) {
+        d->actionPerformedSlot(action, reply);
+    });
+    connect(helper, &KAuth::HelperProxy::progressStep, this, [this](const QString &action, int i) {
+        d->progressStepSlot(action, i);
+    });
     connect(helper, &KAuth::HelperProxy::progressStepData, this, [this](const QString &action, const QVariantMap &data) {
         d->progressStepSlot(action, data);
     });
 
-    connect(BackendsManager::authBackend(),
-            SIGNAL(actionStatusChanged(QString, KAuth::Action::AuthStatus)),
-            this,
-            SLOT(statusChangedSlot(QString, KAuth::Action::AuthStatus)));
+    connect(BackendsManager::authBackend(), &KAuth::AuthBackend::actionStatusChanged, this, [this](const QString &action, Action::AuthStatus status) {
+        d->statusChangedSlot(action, status);
+    });
 }
 
 ExecuteJob::~ExecuteJob()

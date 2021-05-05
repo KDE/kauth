@@ -105,7 +105,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     responder->setProperty("__KAuth_Helper_Shutdown_Timer", QVariant::fromValue(timer));
     timer->setInterval(10000);
     timer->start();
-    QObject::connect(timer, SIGNAL(timeout()), &app, SLOT(quit()));
+    QObject::connect(timer, &QTimer::timeout, &app, &QCoreApplication::quit);
     app.exec(); // krazy:exclude=crashy
 
     return 0;
