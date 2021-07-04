@@ -63,16 +63,14 @@ target_link_libraries(kauth_tests_static PUBLIC Qt5::DBus KF5::CoreAddons)
 
 ########### next target ###############
 
-set(SetupActionTest_SRCS SetupActionTest.cpp)
-ecm_add_test(${SetupActionTest_SRCS}
+ecm_add_test(SetupActionTest.cpp
     TEST_NAME KAuthSetupActionTest
     LINK_LIBRARIES Qt5::Test kauth_tests_static
 )
 
 ########### next target ###############
 
-set(HelperTest_SRCS HelperTest.cpp TestHelper.cpp)
-ecm_add_test(${HelperTest_SRCS}
+ecm_add_test(HelperTest.cpp TestHelper.cpp
     TEST_NAME KAuthHelperTest
     LINK_LIBRARIES Qt5::Test kauth_tests_static
 )

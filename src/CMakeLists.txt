@@ -19,7 +19,15 @@ ecm_qt_declare_logging_category(kauthdebug_SRCS
 if(TARGET Qt5::Widgets)
     # TODO KF6 Rename KAuth to KAuthWidgets
     # TODO KAuthCore should be installed also when no widgets available, in the header installation etc, so ignoring for now
-    set(libkauth_core_SRCS
+    add_library(KF5AuthCore)
+    add_library(KF5::AuthCore ALIAS KF5AuthCore)
+    set_target_properties(KF5AuthCore PROPERTIES
+        VERSION     ${KAUTH_VERSION}
+        SOVERSION   ${KAUTH_SOVERSION}
+        EXPORT_NAME AuthCore
+    )
+
+    target_sources(KF5AuthCore PRIVATE
         kauthaction.cpp
         kauthactionreply.cpp
         kauthexecutejob.cpp
@@ -33,7 +41,6 @@ if(TARGET Qt5::Widgets)
         ${KAuth_QM_LOADER}
     )
 
-    add_library(KF5AuthCore ${libkauth_core_SRCS})
     ecm_generate_export_header(KF5AuthCore
         BASE_NAME KAuthCore
         GROUP_BASE_NAME KF
@@ -42,32 +49,30 @@ if(TARGET Qt5::Widgets)
         DEPRECATION_VERSIONS 5.71
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
-    add_library(KF5::AuthCore ALIAS KF5AuthCore)
     target_link_libraries(KF5AuthCore PUBLIC Qt5::Core KF5::CoreAddons)  # for KJob
     target_link_libraries(KF5AuthCore PRIVATE Qt5::DBus)
     target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
     install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
-    set_target_properties(KF5AuthCore PROPERTIES VERSION ${KAUTH_VERSION}
-                                            SOVERSION ${KAUTH_SOVERSION}
-                                            EXPORT_NAME AuthCore)
 
-    set(libkauth_SRCS
+    add_library(KF5Auth)
+    add_library(KF5::Auth ALIAS KF5Auth)
+    set_target_properties(KF5Auth PROPERTIES
+        VERSION     ${KAUTH_VERSION}
+        SOVERSION   ${KAUTH_SOVERSION}
+        EXPORT_NAME Auth
+    )
+
+    target_sources(KF5Auth PRIVATE
         ${kauthdebug_SRCS}
         kauthobjectdecorator.cpp
     )
 
-    add_library(KF5Auth ${libkauth_SRCS})
     generate_export_header(KF5Auth BASE_NAME KAuth)
-    add_library(KF5::Auth ALIAS KF5Auth)
 
     target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
 
     target_link_libraries(KF5Auth PUBLIC KF5AuthCore)
     target_link_libraries(KF5Auth PRIVATE Qt5::Widgets)
-    set_target_properties(KF5Auth PROPERTIES VERSION  ${KAUTH_VERSION}
-                                            SOVERSION ${KAUTH_SOVERSION}
-                                            EXPORT_NAME Auth
-    )
 
     ecm_generate_headers(KAuth_HEADERS
         HEADER_NAMES
@@ -134,7 +139,7 @@ endif ()
 # KAuth backend plugin
 
 if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
-    set(KAUTH_BACKEND_SRCS ${KAUTH_BACKEND_SRCS})
+    # KAUTH_BACKEND_SRCS has been set from ConfigureChecks.cmake
     # KAuth::AuthBackend is not exported
     add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp ${kauthdebug_SRCS})
     target_link_libraries(kauth_backend_plugin PRIVATE ${KAUTH_BACKEND_LIBS})
