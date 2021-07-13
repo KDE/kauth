@@ -288,7 +288,7 @@
 
  In this example code, the loop exits when the HelperSupport::isStopped()
  returns true. This happens when the application calls the HelperProxy::stopAction()
- method on the correponding action object.
+ method on the corresponding action object.
  The stopAction() method, this way, asks the helper to
  stop the action execution. It's up to the helper to obbey to this request, and
  if it does so, it should return from the slot, _not_ exit.
@@ -565,7 +565,7 @@ public:
      * This operator checks if the type and the error code of two replies are the same.
      * It <b>doesn't</b> compare the data or the error descriptions, so be careful.
      *
-     * The suggested use it to compare a reply agains one of the predefined error replies:
+     * The suggested use is to compare a reply against one of the predefined error replies:
      * @code
      * if(reply == ActionReply::HelperBusyReply) {
      *    // Do something...
