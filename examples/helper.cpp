@@ -54,8 +54,9 @@ ActionReply MyHelper::write(const QVariantMap &args)
 ActionReply MyHelper::longaction(const QVariantMap &)
 {
     for (int i = 1; i <= 100; i++) {
-        if (HelperSupport::isStopped())
+        if (HelperSupport::isStopped()) {
             break;
+        }
         HelperSupport::progressStep(i);
         QThread::usleep(250000);
     }
