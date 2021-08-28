@@ -39,7 +39,7 @@ void output(const QList<Action> &actions, const QMap<QString, QString> &domain)
 
     out << header;
 
-    for (const Action &action : qAsConst(actions)) {
+    for (const Action &action : std::as_const(actions)) {
         out << dent << "<action id=\"" << action.name << "\" >\n";
 
         const auto lstKeys = action.descriptions.keys();

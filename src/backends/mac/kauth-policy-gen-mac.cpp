@@ -20,7 +20,7 @@ void output(const QList<Action> &actions, const QMap<QString, QString> &domain)
 
     OSStatus err;
 
-    for (const Action &action : qAsConst(actions)) {
+    for (const Action &action : std::as_const(actions)) {
         err = AuthorizationRightGet(action.name.toLatin1().constData(), NULL);
 
         if (err != errAuthorizationSuccess) {
