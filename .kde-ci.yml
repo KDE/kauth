@@ -1,0 +1,9 @@
+Dependencies:
+- 'on': ['macOS', 'Linux', 'FreeBSD']
+  'require':
+    'frameworks/extra-cmake-modules': '@same'
+    'frameworks/kcoreaddons' : '@same'
+    'kdesupport/polkit-qt-1' : '@same'
+
+Options:
+  test-before-installing: True
