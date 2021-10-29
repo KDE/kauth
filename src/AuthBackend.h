@@ -38,7 +38,7 @@ public:
     };
 
     AuthBackend();
-    virtual ~AuthBackend();
+    ~AuthBackend() override;
     virtual void setupAction(const QString &action) = 0;
     virtual void preAuthAction(const QString &action, QWidget *parent);
     virtual Action::AuthStatus authorizeAction(const QString &action) = 0;

@@ -29,7 +29,7 @@ class Polkit1Backend : public AuthBackend
 
 public:
     Polkit1Backend();
-    virtual ~Polkit1Backend();
+    ~Polkit1Backend() override;
     void setupAction(const QString &) override;
     void preAuthAction(const QString &action, QWidget *parent) override;
     Action::AuthStatus authorizeAction(const QString &) override;

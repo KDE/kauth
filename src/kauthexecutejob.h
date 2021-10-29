@@ -53,7 +53,7 @@ class KAUTHCORE_EXPORT ExecuteJob : public KJob
 
 public:
     /// Virtual destructor
-    virtual ~ExecuteJob();
+    ~ExecuteJob() override;
 
     /**
      * Starts the job asynchronously.

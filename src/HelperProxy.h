@@ -25,7 +25,7 @@ class HelperProxy : public QObject
     Q_OBJECT
 
 public:
-    virtual ~HelperProxy();
+    ~HelperProxy() override;
 
     // Application-side methods
     virtual void executeAction(const QString &action, const QString &helperID, const DetailsMap &details, const QVariantMap &arguments, int timeout) = 0;

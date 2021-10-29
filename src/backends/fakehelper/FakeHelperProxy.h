@@ -19,7 +19,7 @@ class FakeHelperProxy : public HelperProxy
 
 public:
     FakeHelperProxy();
-    virtual ~FakeHelperProxy();
+    ~FakeHelperProxy() override;
 
     void sendProgressStepData(const QVariantMap &step) override;
     void sendProgressStep(int step) override;

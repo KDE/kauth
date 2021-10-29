@@ -38,7 +38,7 @@ public:
     /**
      * Destructs the decorator
      */
-    ~ObjectDecorator();
+    ~ObjectDecorator() override;
 
     /**
      * Returns the action object associated with this decorator, or 0 if it does not have one
