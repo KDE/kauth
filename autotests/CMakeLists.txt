@@ -82,5 +82,6 @@ if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
                                       ${CMAKE_BINARY_DIR}/generated-foo.policy)
     add_test(KAuthPolicyGenTestCompare ${CMAKE_COMMAND} -E compare_files
              ${CMAKE_BINARY_DIR}/generated-foo.policy ${CMAKE_SOURCE_DIR}/autotests/foo.policy)
+    set_tests_properties(KAuthPolicyGenTestCompare PROPERTIES DEPENDS KAuthPolicyGenTest)
 endif()
 
