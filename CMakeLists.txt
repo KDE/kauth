@@ -11,27 +11,29 @@ feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKA
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-set(REQUIRED_QT_VERSION 5.15.2)
-find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
-option(KAUTH_BUILD_CODEGENERATOR_ONLY "Only build the kauth-policy-gen code generator." OFF)
-if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
-    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Widgets)
-endif()
-include(KDEInstallDirs)
-include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
-include(KDECMakeSettings)
-include(KDEGitCommitHooks)
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-
 include(ECMGenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMQtDeclareLoggingCategory)
 
+include(KDEInstallDirs)
+include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
+include(KDECMakeSettings)
+include(KDEGitCommitHooks)
+
 include(ECMPoQmTools)
 include(ECMAddQch)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+set(REQUIRED_QT_VERSION 5.15.2)
+find_package(Qt${QT_MAJOR_VERSION}DBus ${REQUIRED_QT_VERSION} CONFIG REQUIRED)
+
+option(KAUTH_BUILD_CODEGENERATOR_ONLY "Only build the kauth-policy-gen code generator." OFF)
+if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
+    find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Widgets)
+endif()
+
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
 
@@ -57,7 +59,7 @@ ecm_install_po_files_as_qm(po)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055100)
 add_subdirectory(src)
-if(TARGET Qt5::Widgets)
+if(TARGET Qt${QT_MAJOR_VERSION}::Widgets)
     if (BUILD_TESTING)
         add_subdirectory(autotests)
     endif()
@@ -82,7 +84,7 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KF5AuthConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfig.cmake"
-    PATH_VARS KDE_INSTALL_DATADIR_KF5
+    PATH_VARS KDE_INSTALL_DATADIR_KF
     INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
 )
 
@@ -104,7 +106,7 @@ if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
 endif()
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kauth_version.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel )
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF} COMPONENT Devel )
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 

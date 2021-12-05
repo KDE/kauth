@@ -1,8 +1,8 @@
 
-find_package(Qt5Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
+find_package(Qt${QT_MAJOR_VERSION}Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
 
-if(NOT Qt5Test_FOUND)
-    message(STATUS "Qt5Test not found, autotests will not be built.")
+if(NOT TARGET Qt${QT_MAJOR_VERSION}::Test)
+    message(STATUS "Qt${QT_MAJOR_VERSION}Test not found, autotests will not be built.")
     return()
 endif()
 
@@ -59,20 +59,20 @@ target_include_directories(kauth_tests_static
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
 )
 
-target_link_libraries(kauth_tests_static PUBLIC Qt5::DBus KF5::CoreAddons)
+target_link_libraries(kauth_tests_static PUBLIC Qt${QT_MAJOR_VERSION}::DBus KF5::CoreAddons KF5::AuthCore)
 
 ########### next target ###############
 
 ecm_add_test(SetupActionTest.cpp
     TEST_NAME KAuthSetupActionTest
-    LINK_LIBRARIES Qt5::Test kauth_tests_static
+    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test kauth_tests_static
 )
 
 ########### next target ###############
 
 ecm_add_test(HelperTest.cpp TestHelper.cpp
     TEST_NAME KAuthHelperTest
-    LINK_LIBRARIES Qt5::Test kauth_tests_static
+    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test kauth_tests_static
 )
 
 ########### test kauth-policy-gen ###############

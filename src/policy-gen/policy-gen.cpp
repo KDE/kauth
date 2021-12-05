@@ -32,7 +32,10 @@ int main(int argc, char **argv)
     }
 
     QSettings ini(QFile::decodeName(argv[1]), QSettings::IniFormat);
+    // It's UTF-8 by default in Qt6
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     ini.setIniCodec("UTF-8");
+#endif
     if (ini.status()) {
         qCritical("Error loading file: %s", argv[1]);
         return 1;

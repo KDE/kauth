@@ -16,7 +16,7 @@ ecm_qt_declare_logging_category(kauthdebug_SRCS
     EXPORT KAUTH
 )
 
-if(TARGET Qt5::Widgets)
+if(TARGET Qt${QT_MAJOR_VERSION}::Widgets)
     # TODO KF6 Rename KAuth to KAuthWidgets
     # TODO KAuthCore should be installed also when no widgets available, in the header installation etc, so ignoring for now
     add_library(KF5AuthCore)
@@ -49,9 +49,10 @@ if(TARGET Qt5::Widgets)
         DEPRECATION_VERSIONS 5.71
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
-    target_link_libraries(KF5AuthCore PUBLIC Qt5::Core KF5::CoreAddons)  # for KJob
-    target_link_libraries(KF5AuthCore PRIVATE Qt5::DBus)
-    target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
+    target_link_libraries(KF5AuthCore PUBLIC Qt${QT_MAJOR_VERSION}::Core KF5::CoreAddons)  # for KJob
+    target_link_libraries(KF5AuthCore PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
+
+    target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KAuth>")
     install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
     add_library(KF5Auth)
@@ -69,10 +70,10 @@ if(TARGET Qt5::Widgets)
 
     generate_export_header(KF5Auth BASE_NAME KAuth)
 
-    target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth>")
+    target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KAuth>")
 
     target_link_libraries(KF5Auth PUBLIC KF5AuthCore)
-    target_link_libraries(KF5Auth PRIVATE Qt5::Widgets)
+    target_link_libraries(KF5Auth PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
 
     ecm_generate_headers(KAuth_HEADERS
         HEADER_NAMES
@@ -91,7 +92,7 @@ if(TARGET Qt5::Widgets)
         ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
         ${CMAKE_CURRENT_BINARY_DIR}/kauthcore_export.h
         ${KAuth_HEADERS}
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth COMPONENT Devel
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth COMPONENT Devel
     )
 endif()
 
@@ -103,7 +104,7 @@ if (PythonModuleGeneration_FOUND)
     PYTHONNAMESPACE PyKF5
     MODULENAME KAuth
     RULES_FILE "${CMAKE_SOURCE_DIR}/cmake/rules_PyKF5.py"
-    SIP_INCLUDES $<TARGET_PROPERTY:Qt5::Widgets,INTERFACE_INCLUDE_DIRECTORIES>
+    SIP_INCLUDES $<TARGET_PROPERTY:Qt${QT_MAJOR_VERSION}::Widgets,INTERFACE_INCLUDE_DIRECTORIES>
     SIP_DEPENDS
       QtWidgets/QtWidgetsmod.sip
       PyKF5/KCoreAddons/KCoreAddonsmod.sip
@@ -138,7 +139,7 @@ endif ()
 
 # KAuth backend plugin
 
-if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
+if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt${QT_MAJOR_VERSION}::Widgets)
     # KAUTH_BACKEND_SRCS has been set from ConfigureChecks.cmake
     # KAuth::AuthBackend is not exported
     add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp ${kauthdebug_SRCS})
@@ -154,7 +155,7 @@ endif ()
 
 # KAuth helper plugin
 
-if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt5::Widgets)
+if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt${QT_MAJOR_VERSION}::Widgets)
     # KAuth::HelperProxy is not exported
     add_library(kauth_helper_plugin MODULE ${KAUTH_HELPER_BACKEND_SRCS} HelperProxy.cpp ${kauthdebug_SRCS})
     target_link_libraries(kauth_helper_plugin PRIVATE ${KAUTH_HELPER_BACKEND_LIBS})
@@ -208,7 +209,7 @@ string(REPLACE "--pedantic" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 string(REPLACE "-pedantic" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KAuthCore LIB_NAME KF5AuthCore DEPS "core KCoreAddons" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth)
+ecm_generate_pri_file(BASE_NAME KAuthCore LIB_NAME KF5AuthCore DEPS "core KCoreAddons" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
-ecm_generate_pri_file(BASE_NAME KAuth LIB_NAME KF5Auth DEPS "KAuthCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KAuth)
+ecm_generate_pri_file(BASE_NAME KAuth LIB_NAME KF5Auth DEPS "KAuthCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

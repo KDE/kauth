@@ -8,6 +8,7 @@
 #include "kauthactionreply.h"
 
 #include <QDebug>
+#include <QIODevice>
 
 namespace KAuth
 {

@@ -93,7 +93,7 @@ if(KAUTH_BACKEND_NAME STREQUAL "OSX")
         backends/mac/AuthServicesBackend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${SECURITY_LIBRARY} Qt5::Core)
+    set(KAUTH_BACKEND_LIBS ${SECURITY_LIBRARY} Qt${QT_MAJOR_VERSION}::Core)
 elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
     message(STATUS "Building PolkitQt5-1 KAuth backend")
 
@@ -103,7 +103,7 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
         backends/polkit-1/Polkit1Backend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt5::DBus Qt5::Widgets)
+    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt${QT_MAJOR_VERSION}::DBus Qt${QT_MAJOR_VERSION}::Widgets KF5::AuthCore)
 
     # POLKITQT-1_POLICY_FILES_INSTALL_DIR has an absolute pathname, fix that.
     if(PolkitQt5-1_FOUND)
@@ -130,12 +130,12 @@ set(KAUTH_POLICY_GEN_LIBRARIES)
 if(KAUTH_BACKEND_NAME STREQUAL "OSX")
    set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
        backends/mac/kauth-policy-gen-mac.cpp)
-   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES} ${CORE_FOUNDATION_LIBRARY} ${SECURITY_LIBRARY} Qt5::Core)
+   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES} ${CORE_FOUNDATION_LIBRARY} ${SECURITY_LIBRARY} Qt${QT_MAJOR_VERSION}::Core)
 elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
   set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
       backends/polkit-1/kauth-policy-gen-polkit1.cpp)
   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES}
-      Qt5::Core)
+      Qt${QT_MAJOR_VERSION}::Core)
 endif()
 
 ########################
@@ -163,7 +163,7 @@ set(KAUTH_HELPER_BACKEND_NAME ${KAUTH_HELPER_BACKEND} CACHE STRING "Specifies th
 
 # Add the correct libraries/files depending on the backend
 if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
-    qt5_add_dbus_adaptor(kauth_dbus_adaptor_SRCS
+    qt_add_dbus_adaptor(kauth_dbus_adaptor_SRCS
                         backends/dbus/org.kde.kf5auth.xml
                         backends/dbus/DBusHelperProxy.h
                         KAuth::DBusHelperProxy)
@@ -173,7 +173,7 @@ if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
         ${kauth_dbus_adaptor_SRCS}
     )
 
-    set(KAUTH_HELPER_BACKEND_LIBS Qt5::DBus KF5::Auth)
+    set(KAUTH_HELPER_BACKEND_LIBS Qt${QT_MAJOR_VERSION}::DBus KF5::Auth KF5::AuthCore)
 
     # Install some files as well
     install(FILES backends/dbus/org.kde.kf5auth.conf

@@ -19,7 +19,11 @@
 #include <QTimer>
 #include <qplugin.h>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+extern Q_CORE_EXPORT const QtPrivate::QMetaTypeInterface *qMetaTypeGuiHelper;
+#else
 extern Q_CORE_EXPORT const QMetaTypeInterface *qMetaTypeGuiHelper;
+#endif
 
 namespace KAuth
 {
