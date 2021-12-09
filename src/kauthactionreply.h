@@ -583,12 +583,6 @@ public:
      */
     bool operator!=(const ActionReply &reply) const;
 
-    /// Output streaming operator for QDataStream
-    friend QDataStream &operator<<(QDataStream &, const ActionReply &);
-
-    /// Input streaming operator for QDataStream
-    friend QDataStream &operator>>(QDataStream &, ActionReply &);
-
 private:
     QSharedDataPointer<ActionReplyData> d;
 };

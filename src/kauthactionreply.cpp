@@ -190,7 +190,7 @@ QByteArray ActionReply::serialized() const
     QByteArray data;
     QDataStream s(&data, QIODevice::WriteOnly);
 
-    s << *this;
+    s << d->data << d->errorCode << static_cast<quint32>(d->type) << d->errorDescription;
 
     return data;
 }
@@ -201,7 +201,9 @@ ActionReply ActionReply::deserialize(const QByteArray &data)
     QByteArray a(data);
     QDataStream s(&a, QIODevice::ReadOnly);
 
-    s >> reply;
+    quint32 i;
+    s >> reply.d->data >> reply.d->errorCode >> i >> reply.d->errorDescription;
+    reply.d->type = static_cast<ActionReply::Type>(i);
 
     return reply;
 }
@@ -226,20 +228,6 @@ bool ActionReply::operator==(const ActionReply &reply) const
 bool ActionReply::operator!=(const ActionReply &reply) const
 {
     return (d->type != reply.d->type || d->errorCode != reply.d->errorCode);
-}
-
-QDataStream &operator<<(QDataStream &d, const ActionReply &reply)
-{
-    return d << reply.d->data << reply.d->errorCode << static_cast<quint32>(reply.d->type) << reply.d->errorDescription;
-}
-
-QDataStream &operator>>(QDataStream &stream, ActionReply &reply)
-{
-    quint32 i;
-    stream >> reply.d->data >> reply.d->errorCode >> i >> reply.d->errorDescription;
-    reply.d->type = static_cast<ActionReply::Type>(i);
-
-    return stream;
 }
 
 } // namespace Auth
