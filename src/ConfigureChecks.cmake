@@ -181,7 +181,7 @@ if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
 
     install(FILES backends/dbus/dbus_policy.stub
                    backends/dbus/dbus_service.stub
-             DESTINATION ${KF5_DATA_INSTALL_DIR}/kauth COMPONENT Devel)
+             DESTINATION ${KDE_INSTALL_DATADIR_KF}/kauth COMPONENT Devel)
 elseif(KAUTH_HELPER_BACKEND_NAME STREQUAL "FAKE")
     message("WARNING: No valid KAuth helper backends will be built. The library will not work properly unless compiled with
              a working backend")
