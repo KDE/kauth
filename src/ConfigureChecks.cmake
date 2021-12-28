@@ -1,7 +1,7 @@
 ####### checks for kdecore/kauth ###############
 
 set(KAUTH_BACKEND_NAME "" CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt5-1, Fake, OSX. Not setting this variable will build the most
+                                   PolkitQt${QT_MAJOR_VERSION}-1, Fake, OSX. Not setting this variable will build the most
                                    appropriate backend for your system")
 
 # Case-insensitive
@@ -17,12 +17,12 @@ if(NOT KAUTH_BACKEND)
     if(APPLE)
         set(KAUTH_BACKEND "OSX")
     elseif(UNIX)
-        find_package(PolkitQt5-1 0.99.0)
+        find_package(PolkitQt${QT_MAJOR_VERSION}-1 0.99.0)
 
-        if(PolkitQt5-1_FOUND)
-            set(KAUTH_BACKEND "POLKITQT5-1")
+        if(PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
+            set(KAUTH_BACKEND "POLKITQT${QT_MAJOR_VERSION}-1")
 
-            set_package_properties(PolkitQt5-1 PROPERTIES
+            set_package_properties(PolkitQt${QT_MAJOR_VERSION}-1 PROPERTIES
               URL "http://techbase.kde.org/Polkit-Qt-1"
               DESCRIPTION "PolicyKit API for Qt"
               TYPE RECOMMENDED
@@ -37,7 +37,10 @@ if(NOT KAUTH_BACKEND)
 
 elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     # Check if the specified backend is valid. If it is not, we fall back to the FAKE one
-    if(NOT KAUTH_BACKEND STREQUAL "OSX" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT" AND NOT KAUTH_BACKEND STREQUAL "POLKITQT5-1" AND NOT KAUTH_BACKEND STREQUAL "FAKE")
+    if(NOT KAUTH_BACKEND STREQUAL "OSX"
+        AND NOT KAUTH_BACKEND STREQUAL "POLKITQT"
+        AND NOT KAUTH_BACKEND STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1"
+        AND NOT KAUTH_BACKEND STREQUAL "FAKE")
         message("WARNING: The KAuth Backend ${KAUTH_BACKEND} you specified does not exist. Falling back to Fake backend")
         set(KAUTH_BACKEND "FAKE")
     endif()
@@ -54,7 +57,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
           URL "http://api.kde.org/polkit-qt"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
-          PURPOSE "Support for executing privileged actions in a controlled way (KAuth). Either this or PolkitQt5-1 is required to make KAuth work, and hence enable certain workspace functionalities"
+          PURPOSE "Support for executing privileged actions in a controlled way (KAuth). Either this or PolkitQt${QT_MAJOR_VERSION}-1 is required to make KAuth work, and hence enable certain workspace functionalities"
         )
         if(NOT POLKITQT_FOUND)
             message("WARNING: You chose the PolkitQt KAuth backend but you don't have PolkitQt installed.
@@ -62,16 +65,16 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
             set(KAUTH_BACKEND "FAKE")
         endif()
     endif()
-    if(KAUTH_BACKEND STREQUAL "POLKITQT5-1")
-        find_package(PolkitQt5-1 0.99.0)
-        set_package_properties(PolkitQt5-1 PROPERTIES
+    if(KAUTH_BACKEND STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
+        find_package(PolkitQt${QT_MAJOR_VERSION}-1 0.99.0)
+        set_package_properties(PolkitQt${QT_MAJOR_VERSION}-1 PROPERTIES
           URL "http://techbase.kde.org/Polkit-Qt-1"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
           PURPOSE "Support for executing privileged actions in a controlled way (KAuth). Either this or PolkitQt is required to make KAuth work, and hence enable certain workspace functionalities"
         )
-        if(NOT PolkitQt5-1_FOUND)
-            message("WARNING: You chose the PolkitQt5-1 KAuth backend but you don't have PolkitQt5-1 installed.
+        if(NOT PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
+            message("WARNING: You chose the PolkitQt${QT_MAJOR_VERSION}-1 KAuth backend but you don't have PolkitQt${QT_MAJOR_VERSION}-1 installed.
                       Falling back to Fake backend")
             set(KAUTH_BACKEND "FAKE")
         endif()
@@ -79,7 +82,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 endif()
 
 set(KAUTH_BACKEND_NAME ${KAUTH_BACKEND} CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt, PolkitQt5-1, Fake, OSX. Not setting this variable will build the most
+                                   PolkitQt, PolkitQt${QT_MAJOR_VERSION}-1, Fake, OSX. Not setting this variable will build the most
                                    appropriate backend for your system" FORCE)
 
 # Add the correct libraries depending on the backend, and eventually set the policy files install location
@@ -94,8 +97,8 @@ if(KAUTH_BACKEND_NAME STREQUAL "OSX")
     )
 
     set(KAUTH_BACKEND_LIBS ${SECURITY_LIBRARY} Qt${QT_MAJOR_VERSION}::Core)
-elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
-    message(STATUS "Building PolkitQt5-1 KAuth backend")
+elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
+    message(STATUS "Building PolkitQt${QT_MAJOR_VERSION}-1 KAuth backend")
 
     include_directories(SYSTEM ${POLKITQT-1_INCLUDE_DIR})
 
@@ -106,7 +109,7 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
     set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt${QT_MAJOR_VERSION}::DBus Qt${QT_MAJOR_VERSION}::Widgets KF5::AuthCore)
 
     # POLKITQT-1_POLICY_FILES_INSTALL_DIR has an absolute pathname, fix that.
-    if(PolkitQt5-1_FOUND)
+    if(PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
         string(REPLACE ${POLKITQT-1_INSTALL_DIR}
             ${CMAKE_INSTALL_PREFIX} _KAUTH_POLICY_FILES_INSTALL_DIR
             ${POLKITQT-1_POLICY_FILES_INSTALL_DIR})
@@ -131,7 +134,7 @@ if(KAUTH_BACKEND_NAME STREQUAL "OSX")
    set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
        backends/mac/kauth-policy-gen-mac.cpp)
    set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES} ${CORE_FOUNDATION_LIBRARY} ${SECURITY_LIBRARY} Qt${QT_MAJOR_VERSION}::Core)
-elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT5-1")
+elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
   set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
       backends/polkit-1/kauth-policy-gen-polkit1.cpp)
   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES}
