@@ -38,7 +38,6 @@ if(NOT KAUTH_BACKEND)
 elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     # Check if the specified backend is valid. If it is not, we fall back to the FAKE one
     if(NOT KAUTH_BACKEND STREQUAL "OSX"
-        AND NOT KAUTH_BACKEND STREQUAL "POLKITQT"
         AND NOT KAUTH_BACKEND STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1"
         AND NOT KAUTH_BACKEND STREQUAL "FAKE")
         message("WARNING: The KAuth Backend ${KAUTH_BACKEND} you specified does not exist. Falling back to Fake backend")
@@ -50,28 +49,14 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         message("WARNING: You chose the OSX KAuth backend but your system does not support it. Falling back to Fake backend")
         set(KAUTH_BACKEND "FAKE")
     endif()
-    if(KAUTH_BACKEND STREQUAL "POLKITQT")
-        find_package(PolkitQt)
 
-        set_package_properties(PolkitQt PROPERTIES
-          URL "http://api.kde.org/polkit-qt"
-          DESCRIPTION "PolicyKit API for Qt"
-          TYPE RECOMMENDED
-          PURPOSE "Support for executing privileged actions in a controlled way (KAuth). Either this or PolkitQt${QT_MAJOR_VERSION}-1 is required to make KAuth work, and hence enable certain workspace functionalities"
-        )
-        if(NOT POLKITQT_FOUND)
-            message("WARNING: You chose the PolkitQt KAuth backend but you don't have PolkitQt installed.
-                      Falling back to Fake backend")
-            set(KAUTH_BACKEND "FAKE")
-        endif()
-    endif()
     if(KAUTH_BACKEND STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
         find_package(PolkitQt${QT_MAJOR_VERSION}-1 0.99.0)
         set_package_properties(PolkitQt${QT_MAJOR_VERSION}-1 PROPERTIES
           URL "http://techbase.kde.org/Polkit-Qt-1"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
-          PURPOSE "Support for executing privileged actions in a controlled way (KAuth). Either this or PolkitQt is required to make KAuth work, and hence enable certain workspace functionalities"
+          PURPOSE "Support for executing privileged actions in a controlled way (KAuth). This is required to make KAuth work, and hence enable certain workspace functionalities"
         )
         if(NOT PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
             message("WARNING: You chose the PolkitQt${QT_MAJOR_VERSION}-1 KAuth backend but you don't have PolkitQt${QT_MAJOR_VERSION}-1 installed.
@@ -82,7 +67,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 endif()
 
 set(KAUTH_BACKEND_NAME ${KAUTH_BACKEND} CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt, PolkitQt${QT_MAJOR_VERSION}-1, Fake, OSX. Not setting this variable will build the most
+                                   PolkitQt${QT_MAJOR_VERSION}-1, Fake, OSX. Not setting this variable will build the most
                                    appropriate backend for your system" FORCE)
 
 # Add the correct libraries depending on the backend, and eventually set the policy files install location
