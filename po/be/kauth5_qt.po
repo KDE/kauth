@@ -1,0 +1,79 @@
+# translation of kdelibs4.po to Belarusian
+# translation of kdelibs4.po to
+#
+# Eugene Zelenko <greendeath@mail.ru>, 2002-2004.
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
+# Darafei Praliaskouski <komzpa@licei2.com>, 2007.
+# Komяpa <symbol@me.by>, 2007.
+# Komяpa <komzpa@gmail.com>, 2007.
+# Darafei Praliaskoski <komzpa@gmail.com>, 2007.
+# Darafei Praliaskouski <komzpa@gmail.com>, 2008, 2009.
+# Siarhei Liantsevich <serzh.by@gmail.com>, 2008.
+# kom <me@komzpa.net>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2009-09-06 15:21+0300\n"
+"Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
+"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:74
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: service start %1 failed: %2"
+msgstr ""
+
+#: backends/dbus/DBusHelperProxy.cpp:89
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: connection to helper failed. %1\n"
+"(application: %2 helper: %3)"
+msgstr ""
+
+#: backends/dbus/DBusHelperProxy.cpp:124
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: could not contact the helper. Connection error: %1. "
+"Message error: %2"
+msgstr ""
+
+#: kauthexecutejob.cpp:87
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr ""
+
+#: kauthexecutejob.cpp:105
+#, fuzzy
+#| msgid "Unknown encryption scheme."
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Невядомая схема шыфравання."
+
+#: kauthexecutejob.cpp:150
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr ""
+
+#: kauthexecutejob.cpp:162
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+
+#: kauthexecutejob.cpp:170 kauthexecutejob.cpp:194
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr ""

@@ -1,0 +1,80 @@
+# translation of kdelibs4.po to Irish
+# Translation of kdelibs4.po to Irish
+# Copyright (C) 1999,2003,2004 Free Software Foundation, Inc.
+# Sean V. Kelley <s_oceallaigh@yahoo.com>, 1999
+# Séamus Ó Ciardhuáin <seoc at iolfree.ie>, 2003,2004
+# Kevin Scannell <kscanne@gmail.com>, 2004-2009
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2004-12-14 09:11-0600\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
+"3 : 4\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:74
+#, fuzzy, qt-format
+#| msgid "DBus Backend error: connection to helper failed. %1"
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: service start %1 failed: %2"
+msgstr "Earráid in inneall DBus: theip ar cheangal le cúntóir. %1"
+
+#: backends/dbus/DBusHelperProxy.cpp:89
+#, fuzzy, qt-format
+#| msgid "DBus Backend error: connection to helper failed. %1"
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: connection to helper failed. %1\n"
+"(application: %2 helper: %3)"
+msgstr "Earráid in inneall DBus: theip ar cheangal le cúntóir. %1"
+
+#: backends/dbus/DBusHelperProxy.cpp:124
+#, fuzzy, qt-format
+#| msgid ""
+#| "DBus Backend error: could not contact the helper. Connection error: %1. "
+#| "Message error: %2"
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: could not contact the helper. Connection error: %1. "
+"Message error: %2"
+msgstr ""
+"Earráid in inneall DBus: níorbh fhéidir dul i dteagmháil leis an gcúntóir.  "
+"Earráid cheangail: %1. Earráid teachtaireachta: %2"
+
+#: kauthexecutejob.cpp:87
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr ""
+
+#: kauthexecutejob.cpp:105
+#, fuzzy
+#| msgid "Unknown encryption scheme."
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Scéim anaithnid criptiúcháin."
+
+#: kauthexecutejob.cpp:150
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr ""
+
+#: kauthexecutejob.cpp:162
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+
+#: kauthexecutejob.cpp:170 kauthexecutejob.cpp:194
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr ""

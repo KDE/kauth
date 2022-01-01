@@ -1,0 +1,83 @@
+# translation of kdelibs4.po to Italian
+# Andrea Rizzi <rizzi@kde.org>, 2003, 2004, 2005.
+# Federico Cozzi <federicocozzi@federicocozzi.it>, 2004.
+# Federico Zenith <federico.zenith@member.fsf.org>, 2004, 2008, 2009, 2010, 2011.
+# Andrea Rizzi <Andrea.Rizzi@sns.it>, 2004.
+# Nicola Ruggero <nixprog.adsl@tiscali.it>, 2005, 2006.
+# Nicola Ruggero <nicola@nxnt.org>, 2006, 2007, 2010.
+# Luciano Montanaro <mikelima@cirulla.net>, 2007.
+# Dario Panico <Dareus_Persarumrex@fastwebnet.it>, 2008.
+# Pino Toscano <toscano.pino@tiscali.it>, 2008.
+# Federico Zenith <federico.zenith@member.fsf.org>, 2008, 2012, 2013, 2014, 2015.
+# Innocenzo Ventre <innocenzo.ventre@gmail.com>, 2012.
+# Vincenzo Reale <smart2128vr@gmail.com>, 2014, 2015, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2017-03-19 12:08+0100\n"
+"Last-Translator: Vincenzo Reale <smart2128@baslug.org>\n"
+"Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 2.0\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:74
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: service start %1 failed: %2"
+msgstr "Errore del motore DBus: l'avvio del servizio %1 non è riuscito: %2"
+
+#: backends/dbus/DBusHelperProxy.cpp:89
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: connection to helper failed. %1\n"
+"(application: %2 helper: %3)"
+msgstr ""
+"Errore del motore DBus: connessione all'assistente non riuscita. %1\n"
+"(applicazione: %2 assistente: %3)"
+
+#: backends/dbus/DBusHelperProxy.cpp:124
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: could not contact the helper. Connection error: %1. "
+"Message error: %2"
+msgstr ""
+"Errore del motore DBus: impossibile contattare l'assistente. Errore di "
+"connessione: %1. Messaggio di errore: %2"
+
+#: kauthexecutejob.cpp:87
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "Tentato l'avvio di un'azione non valida"
+
+#: kauthexecutejob.cpp:105
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "La modalità di esecuzione scelta è sconosciuta"
+
+#: kauthexecutejob.cpp:150
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "Stato sconosciuto per la procedura di autenticazione"
+
+#: kauthexecutejob.cpp:162
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"Il motore attuale consente solo l'autorizzazione dell'assistente, ma questa "
+"azione non ha un assistente."
+
+#: kauthexecutejob.cpp:170 kauthexecutejob.cpp:194
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "Il motore non specifica come autorizzare"

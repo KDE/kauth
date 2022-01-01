@@ -1,0 +1,88 @@
+# translation of kdelibs4.po to Dutch
+# Copyright (C) 2000,2001,2002,2003, 2004 KDE e.v..
+# KTranslator Generated File
+# Nederlandse vertaling van kdelibs.
+# KDE-vertaalgroep Nederlands <i18n@kde.nl>, 2000, 2001, 2002.
+# Rinse de Vries <rinsedevries@kde.nl>,2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009.
+# Wilbert Berendsen <wbsoft@xs4all.nl>, 2003, 2004.
+# Bram Schoenmakers <bramschoenmakers@kde.nl>, 2004, 2005, 2006, 2007.
+# Tom Albers <tomalbers@kde.nl>, 2004.
+# Sander Koning <sanderkoning@kde.nl>, 2005.
+# Tijmen Baarda <tijmenbaarda@kde.nl>, 2005.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2008, 2009.
+# Kristof Bal <kristof.bal@gmail.com>, 2008, 2009.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2009, 2010.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2010, 2011, 2012.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2010, 2011, 2013, 2014, 2016, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2017-03-17 23:22+0100\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Files: kfarch.cpp kfdird.cpp kfind.cpp kfindtop.cpp kfoptions.cpp kfsave.cpp "
+"kftabdlg.cpp kftypes.cpp kfwin.cpp main.cpp mkfdird.cpp mkfind.cpp\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:74
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: service start %1 failed: %2"
+msgstr "DBus-backendfout: starten van service %1 is mislukt: %2"
+
+#: backends/dbus/DBusHelperProxy.cpp:89
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: connection to helper failed. %1\n"
+"(application: %2 helper: %3)"
+msgstr ""
+"DBus-backendfout: verbinding naar helper is mislukt. %1\n"
+"(toepassing: %2 helper: %3)"
+
+#: backends/dbus/DBusHelperProxy.cpp:124
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: could not contact the helper. Connection error: %1. "
+"Message error: %2"
+msgstr ""
+"DBus-backendfout: kon geen contact krijgen met de helper. Verbindingsfout: "
+"%1 Foutmelding: %2"
+
+#: kauthexecutejob.cpp:87
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "Probeerde een ongeldige actie te starten"
+
+#: kauthexecutejob.cpp:105
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Onbekende uitvoeringsmodus gekozen"
+
+#: kauthexecutejob.cpp:150
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "Onbekend status voor de authenticatieprocedure"
+
+#: kauthexecutejob.cpp:162
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"De huidige backend staat alleen autorisatie van de helper toe, maar deze "
+"actie heeft geen helper."
+
+#: kauthexecutejob.cpp:170 kauthexecutejob.cpp:194
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "De backend specificeert niet hoe de autorisatie te doen"

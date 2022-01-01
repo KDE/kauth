@@ -1,0 +1,78 @@
+# translation of kdelibs4.po to Tajik Language
+# 2004, 2005, 2006, 2007 infoDev, a World Bank organization.
+# 2004, 2005, 2006, 2007 Khujand Computer Technologies, Inc.
+# 2004, 2005, 2006, 2007 Youth Opportunities, NGO, 2005.
+# Roger Kovacs <rkovacs@khujand.org>, 2003.
+# Thomas Diehl <thd@kde.org>, 2003.
+# Victor Ibragimov <victor.ibragimov@gmail.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2019
+# Copyright (C) 2004, 2002, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-03-23 01:50+0000\n"
+"PO-Revision-Date: 2019-08-13 13:07+0500\n"
+"Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
+"Language-Team: Tajik Language\n"
+"Language: tg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: backends/dbus/DBusHelperProxy.cpp:74
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid "DBus Backend error: service start %1 failed: %2"
+msgstr "Хатои дохилии DBus: оғози хидмати %1 қатъ шуд: %2"
+
+#: backends/dbus/DBusHelperProxy.cpp:89
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: connection to helper failed. %1\n"
+"(application: %2 helper: %3)"
+msgstr ""
+"Хатои дохилии DBus:: пайвастшавӣ ба ёридиҳанда қатъ шуд. %1\n"
+"(барнома: %2 ёридиҳанда: %3)"
+
+#: backends/dbus/DBusHelperProxy.cpp:124
+#, qt-format
+msgctxt "KAuth::DBusHelperProxy|"
+msgid ""
+"DBus Backend error: could not contact the helper. Connection error: %1. "
+"Message error: %2"
+msgstr ""
+"Хатои дохилии DBus: алоқа бо ёридиҳанда имконнопазир аст. Хатои пайвастшавӣ: "
+"%1. Паёми хато: %2"
+
+#: kauthexecutejob.cpp:87
+msgctxt "KAuth::ExecuteJob|"
+msgid "Tried to start an invalid action"
+msgstr "Кӯшиши оғози амали нодуруст"
+
+#: kauthexecutejob.cpp:105
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown execution mode chosen"
+msgstr "Иҷрокунии реҷаи номаълум интихоб шудааст"
+
+#: kauthexecutejob.cpp:150
+msgctxt "KAuth::ExecuteJob|"
+msgid "Unknown status for the authentication procedure"
+msgstr "Вазъияти номаълум барои раванди санҷиши ҳаққоният"
+
+#: kauthexecutejob.cpp:162
+msgctxt "KAuth::ExecuteJob|"
+msgid ""
+"The current backend only allows helper authorization, but this action does "
+"not have a helper."
+msgstr ""
+"Коркардкунандаи ҷорӣ танҳо барои санҷиши ҳаққонияти ёридиҳанда иҷозат "
+"медиҳад, аммо ин амал дорои ёридиҳанда намебошад."
+
+#: kauthexecutejob.cpp:170 kauthexecutejob.cpp:194
+msgctxt "KAuth::ExecuteJob|"
+msgid "The backend does not specify how to authorize"
+msgstr "Ин коркардкунанда роҳи санҷиши ҳаққониятро муайян намекунад"
