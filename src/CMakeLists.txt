@@ -201,13 +201,6 @@ if(BUILD_QCH)
     )
 endif()
 
-# TODO: Remove once we depend on polkit-qt1 > 0.99.0
-# core/polkitqt1-actiondescription.h from polkit currently fails when built with -pedantic
-string(REPLACE "--pedantic-errors" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-string(REPLACE "-pedantic-errors" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-string(REPLACE "--pedantic" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-string(REPLACE "-pedantic" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-
 include(ECMGeneratePriFile)
 ecm_generate_pri_file(BASE_NAME KAuthCore LIB_NAME KF5AuthCore DEPS "core KCoreAddons" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

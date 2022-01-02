@@ -9,6 +9,8 @@ string(TOUPPER "${KAUTH_BACKEND_NAME}" KAUTH_BACKEND_NAME)
 
 set(KAUTH_BACKEND ${KAUTH_BACKEND_NAME})
 
+set(POLKITQT_MIN_VERSION 0.112.0)
+
 ## Check if the user did not specify a backend to be built. If that is the case,
 ## we check what is the best backend to build on this system.
 if(NOT KAUTH_BACKEND)
@@ -17,7 +19,7 @@ if(NOT KAUTH_BACKEND)
     if(APPLE)
         set(KAUTH_BACKEND "OSX")
     elseif(UNIX)
-        find_package(PolkitQt${QT_MAJOR_VERSION}-1 0.99.0)
+        find_package(PolkitQt${QT_MAJOR_VERSION}-1 ${POLKITQT_MIN_VERSION})
 
         if(PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
             set(KAUTH_BACKEND "POLKITQT${QT_MAJOR_VERSION}-1")
@@ -51,7 +53,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     endif()
 
     if(KAUTH_BACKEND STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
-        find_package(PolkitQt${QT_MAJOR_VERSION}-1 0.99.0)
+        find_package(PolkitQt${QT_MAJOR_VERSION}-1 ${POLKITQT_MIN_VERSION})
         set_package_properties(PolkitQt${QT_MAJOR_VERSION}-1 PROPERTIES
           URL "http://techbase.kde.org/Polkit-Qt-1"
           DESCRIPTION "PolicyKit API for Qt"
