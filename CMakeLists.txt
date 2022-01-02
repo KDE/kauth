@@ -57,7 +57,7 @@ endif()
 
 ecm_install_po_files_as_qm(po)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055100)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055900)
 add_subdirectory(src)
 if(TARGET Qt${QT_MAJOR_VERSION}::Widgets)
     if (BUILD_TESTING)
