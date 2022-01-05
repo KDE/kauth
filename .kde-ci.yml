@@ -1,8 +1,10 @@
 Dependencies:
-- 'on': ['macOS', 'Linux', 'FreeBSD']
+- 'on': ['macOS', 'Linux', 'FreeBSD', 'Windows']
   'require':
     'frameworks/extra-cmake-modules': '@same'
     'frameworks/kcoreaddons' : '@same'
+
+- 'on': ['Linux', 'FreeBSD']
     'kdesupport/polkit-qt-1' : '@same'
 
 Options:
