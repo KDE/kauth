@@ -5,6 +5,7 @@ Dependencies:
     'frameworks/kcoreaddons' : '@same'
 
 - 'on': ['Linux', 'FreeBSD']
+  'require':
     'kdesupport/polkit-qt-1' : '@same'
 
 Options:
