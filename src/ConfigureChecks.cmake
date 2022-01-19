@@ -212,12 +212,12 @@ if(NOT WIN32)
     endif()
   endmacro()
 
-  _set_fancy(KAUTH_HELPER_PLUGIN_DIR "kauth/helper" "Where KAuth's helper plugin will be installed")
-  _set_fancy(KAUTH_BACKEND_PLUGIN_DIR "kauth/backend" "Where KAuth's backend plugin will be installed")
+  _set_fancy(KAUTH_HELPER_PLUGIN_DIR "kf${QT_MAJOR_VERSION}/kauth/helper" "Where KAuth's helper plugin will be installed")
+  _set_fancy(KAUTH_BACKEND_PLUGIN_DIR "kf${QT_MAJOR_VERSION}/kauth/backend" "Where KAuth's backend plugin will be installed")
   #set(KAUTH_OTHER_PLUGIN_DIR "${QT_PLUGINS_DIR}/kauth/plugins")
 else()
-  set(KAUTH_HELPER_PLUGIN_DIR "kauth/helper")
-  set(KAUTH_BACKEND_PLUGIN_DIR "kauth/backend")
+  set(KAUTH_HELPER_PLUGIN_DIR "kf${QT_MAJOR_VERSION}/kauth/helper")
+  set(KAUTH_BACKEND_PLUGIN_DIR "kf${QT_MAJOR_VERSION}/kauth/backend")
 endif()
 
 ## End
