@@ -5,8 +5,8 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#ifndef HELPER_SUPPORT_H
-#define HELPER_SUPPORT_H
+#ifndef KAUTH_HELPER_SUPPORT_H
+#define KAUTH_HELPER_SUPPORT_H
 
 #include <QObject>
 #include <QVariant>

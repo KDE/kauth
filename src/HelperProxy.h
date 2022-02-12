@@ -5,8 +5,8 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#ifndef HELPER_PROXY_H
-#define HELPER_PROXY_H
+#ifndef KAUTH_HELPER_PROXY_H
+#define KAUTH_HELPER_PROXY_H
 
 #include <QMap>
 #include <QObject>

@@ -5,8 +5,8 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#ifndef ACTION_H
-#define ACTION_H
+#ifndef KAUTH_ACTION_H
+#define KAUTH_ACTION_H
 
 #include <kauthcore_export.h>
 

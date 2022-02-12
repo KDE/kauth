@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#ifndef EXECUTE_JOB_H
-#define EXECUTE_JOB_H
+#ifndef KAUTH_EXECUTE_JOB_H
+#define KAUTH_EXECUTE_JOB_H
 
 #include <kjob.h>
 

@@ -5,8 +5,8 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#ifndef AUTH_BACKEND_H
-#define AUTH_BACKEND_H
+#ifndef KAUTH_AUTH_BACKEND_H
+#define KAUTH_AUTH_BACKEND_H
 
 #include <QObject>
 

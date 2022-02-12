@@ -5,8 +5,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef OBJECTDECORATOR_H
-#define OBJECTDECORATOR_H
+#ifndef KAUTH_OBJECTDECORATOR_H
+#define KAUTH_OBJECTDECORATOR_H
 
 #include <QObject>
 #include <kauthaction.h>
@@ -96,4 +96,4 @@ private:
 
 } // namespace KAuth
 
-#endif // OBJECTDECORATOR_H
+#endif // KAUTH_OBJECTDECORATOR_H
