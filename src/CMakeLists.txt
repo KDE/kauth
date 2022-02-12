@@ -16,7 +16,7 @@ ecm_qt_declare_logging_category(kauthdebug_SRCS
     EXPORT KAUTH
 )
 
-if(TARGET Qt${QT_MAJOR_VERSION}::Widgets)
+if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     # TODO KF6 Rename KAuth to KAuthWidgets
     # TODO KAuthCore should be installed also when no widgets available, in the header installation etc, so ignoring for now
     add_library(KF5AuthCore)
@@ -139,7 +139,7 @@ endif ()
 
 # KAuth backend plugin
 
-if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt${QT_MAJOR_VERSION}::Widgets)
+if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     # KAUTH_BACKEND_SRCS has been set from ConfigureChecks.cmake
     # KAuth::AuthBackend is not exported
     add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp ${kauthdebug_SRCS})
@@ -155,7 +155,7 @@ endif ()
 
 # KAuth helper plugin
 
-if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE" AND TARGET Qt${QT_MAJOR_VERSION}::Widgets)
+if (NOT "${KAUTH_HELPER_BACKEND_NAME}" STREQUAL "FAKE" AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     # KAuth::HelperProxy is not exported
     add_library(kauth_helper_plugin MODULE ${KAUTH_HELPER_BACKEND_SRCS} HelperProxy.cpp ${kauthdebug_SRCS})
     target_link_libraries(kauth_helper_plugin PRIVATE ${KAUTH_HELPER_BACKEND_LIBS})
