@@ -8,7 +8,7 @@
 #ifndef KAUTH_ACTION_H
 #define KAUTH_ACTION_H
 
-#include <kauthcore_export.h>
+#include "kauthcore_export.h"
 
 #include <QHash>
 #include <QSharedDataPointer>

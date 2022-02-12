@@ -9,9 +9,9 @@
 #define KAUTH_OBJECTDECORATOR_H
 
 #include <QObject>
-#include <kauthaction.h>
 
-#include <kauth_export.h>
+#include "kauth_export.h"
+#include "kauthaction.h"
 
 namespace KAuth
 {

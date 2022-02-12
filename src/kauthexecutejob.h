@@ -9,10 +9,9 @@
 
 #include <kjob.h>
 
-#include <kauthcore_export.h>
-
 #include "kauthaction.h"
 #include "kauthactionreply.h"
+#include "kauthcore_export.h"
 
 namespace KAuth
 {

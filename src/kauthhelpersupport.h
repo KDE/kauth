@@ -11,7 +11,7 @@
 #include <QObject>
 #include <QVariant>
 
-#include <kauthcore_export.h>
+#include "kauthcore_export.h"
 
 #define KAUTH_HELPER_MAIN(ID, HelperClass)                                                                                                                     \
     int main(int argc, char **argv)                                                                                                                            \

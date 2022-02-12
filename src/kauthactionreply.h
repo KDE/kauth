@@ -8,7 +8,7 @@
 #ifndef KAUTH_ACTION_REPLY_H
 #define KAUTH_ACTION_REPLY_H
 
-#include <kauthcore_export.h>
+#include "kauthcore_export.h"
 
 #include <QDataStream>
 #include <QMap>

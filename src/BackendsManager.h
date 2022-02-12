@@ -10,7 +10,7 @@
 
 #include "AuthBackend.h"
 #include "HelperProxy.h"
-#include <kauthcore_export.h>
+#include "kauthcore_export.h"
 
 namespace KAuth
 {
