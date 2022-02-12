@@ -8,17 +8,19 @@
 #ifndef KAUTH_OBJECTDECORATOR_H
 #define KAUTH_OBJECTDECORATOR_H
 
+// Qt
 #include <QObject>
-
+// KAuthCore
+#include <KAuth/Action>
+// lib
 #include "kauth_export.h"
-#include "kauthaction.h"
 
 namespace KAuth
 {
 class ObjectDecoratorPrivate;
 
 /**
- * @class ObjectDecorator kauthobjectdecorator.h <KAuthObjectDecorator>
+ * @class ObjectDecorator objectdecorator.h <KAuth/ObjectDecorator>
  *
  * @brief A decorator to add auth features to a button or an action
  *

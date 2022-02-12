@@ -9,14 +9,13 @@
 
 #include <kjob.h>
 
-#include "kauthaction.h"
-#include "kauthactionreply.h"
-#include "kauthcore_export.h"
+#include "action.h"
+#include "actionreply.h"
 
 namespace KAuth
 {
 /**
- * @class ExecuteJob kauthexecutejob.h <KAuthExecuteJob>
+ * @class ExecuteJob executejob.h <KAuth/ExecuteJob>
  *
  * @brief Job for executing an Action
  *

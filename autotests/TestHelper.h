@@ -9,7 +9,7 @@
 
 #include <QObject>
 
-#include <kauth.h>
+#include <actionreply.h>
 
 using namespace KAuth;
 

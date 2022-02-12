@@ -11,7 +11,8 @@
 #include <QThread>
 
 //! [helper_declaration]
-#include <KAuth>
+#include <KAuth/ActionReply>
+#include <KAuth/HelperSupport>
 
 using namespace KAuth;
 

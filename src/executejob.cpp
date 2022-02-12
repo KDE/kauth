@@ -4,8 +4,7 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#include "kauthexecutejob.h"
-#include "BackendsManager.h"
+#include "executejob.h"
 
 #include "BackendsManager.h"
 #include "kauthdebug.h"
@@ -241,4 +240,4 @@ void ExecuteJob::Private::statusChangedSlot(const QString &taction, Action::Auth
 
 } // namespace Auth
 
-#include "moc_kauthexecutejob.cpp"
+#include "moc_executejob.cpp"

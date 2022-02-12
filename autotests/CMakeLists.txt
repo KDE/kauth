@@ -22,14 +22,14 @@ ecm_qt_declare_logging_category(kauthdebug_tests_SRCS
 
 
 set(libkauth_tests_static_SRCS
-    ../src/kauthaction.cpp
-    ../src/kauthactionreply.cpp
-    ../src/kauthexecutejob.cpp
+    ../src/action.cpp
+    ../src/actionreply.cpp
+    ../src/executejob.cpp
     ../src/AuthBackend.cpp
     # Use our "special" backends manager
     BackendsManager.cpp
     ../src/HelperProxy.cpp
-    ../src/kauthhelpersupport.cpp
+    ../src/helpersupport.cpp
     TestBackend.cpp
     ../src/backends/dbus/DBusHelperProxy.cpp
     ${kauth_dbus_adaptor_tests_SRCS}

@@ -10,7 +10,7 @@
 
 #include <QObject>
 
-#include "kauthaction.h"
+#include "action.h"
 
 namespace KAuth
 {

@@ -6,7 +6,8 @@
 
 #undef QT_NO_CAST_FROM_ASCII
 
-#include <KAuth>
+#include <KAuth/Action>
+#include <KAuth/ExecuteJob>
 
 #include <QCoreApplication>
 #include <QDebug>

@@ -6,7 +6,7 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#include "kauthhelpersupport.h"
+#include "helpersupport.h"
 
 #include <cstdlib>
 

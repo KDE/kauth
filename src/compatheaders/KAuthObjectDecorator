@@ -1,0 +1,16 @@
+/*
+    SPDX-FileCopyrightText: 2022 Friedrich W. H. Kossebau <kossebau@kde.org>
+
+    SPDX-License-Identifier: LGPL-2.1-or-later
+*/
+
+#include <kauth/kauth_export.h>
+
+#if KAUTH_ENABLE_DEPRECATED_SINCE(5, 92)
+#include <kauth/objectdecorator.h>
+#if KAUTH_DEPRECATED_WARNINGS_SINCE >= 0x055c00
+#pragma message("Deprecated header. Since 5.92, use #include <KAuth/ObjectDecorator> instead")
+#endif
+#else
+#error "Include of deprecated header is disabled"
+#endif

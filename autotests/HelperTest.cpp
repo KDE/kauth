@@ -7,9 +7,8 @@
 #include "BackendsManager.h"
 #include "TestHelper.h"
 
-#include <kauth.h>
-#include <kauthactionreply.h>
-#include <kauthexecutejob.h>
+#include <kauth/actionreply.h>
+#include <kauth/executejob.h>
 
 #include <QRandomGenerator>
 #include <QSignalSpy>

@@ -10,7 +10,7 @@
 #define DBUS_HELPER_PROXY_H
 
 #include "HelperProxy.h"
-#include "kauthactionreply.h"
+#include "actionreply.h"
 
 #include <QDBusConnection>
 #include <QDBusContext>

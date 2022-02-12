@@ -6,9 +6,8 @@
 
 #include "BackendsManager.h"
 #include <QTest>
-#include <kauth.h>
-#include <kauthactionreply.h>
-#include <kauthexecutejob.h>
+#include <kauth/actionreply.h>
+#include <kauth/executejob.h>
 
 class SetupActionTest : public QObject
 {

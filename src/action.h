@@ -21,7 +21,7 @@ class ExecuteJob;
 
 class ActionData;
 /**
- * @class Action kauthaction.h <KAuthAction>
+ * @class Action action.h <KAuth/Action>
  *
  * @brief Class to access, authorize and execute actions.
  *

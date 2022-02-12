@@ -6,6 +6,8 @@
 
 #include "TestHelper.h"
 
+#include <helpersupport.h>
+
 #include <QDebug>
 #include <QEventLoop>
 #include <QFile>

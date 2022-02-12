@@ -5,11 +5,11 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "kauthobjectdecorator.h"
+#include "objectdecorator.h"
 
-#include "kauthaction.h"
+#include "action.h"
+#include "executejob.h"
 #include "kauthdebug.h"
-#include "kauthexecutejob.h"
 
 #include <QAbstractButton>
 #include <QAction>
@@ -166,4 +166,4 @@ void ObjectDecorator::setAuthAction(const KAuth::Action &action)
 
 } // namespace KAuth
 
-#include "moc_kauthobjectdecorator.cpp"
+#include "moc_objectdecorator.cpp"

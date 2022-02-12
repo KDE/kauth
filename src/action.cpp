@@ -4,14 +4,14 @@
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
-#include "kauthaction.h"
+#include "action.h"
 
 #include <QRegularExpression>
 #include <QtGlobal>
 
 class QWidget;
 
-#include "kauthexecutejob.h"
+#include "executejob.h"
 
 #include "BackendsManager.h"
 

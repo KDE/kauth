@@ -13,8 +13,8 @@
 #include <QString>
 #include <QVariant>
 
-#include "kauthaction.h"
-#include "kauthactionreply.h"
+#include "action.h"
+#include "actionreply.h"
 
 namespace KAuth
 {
