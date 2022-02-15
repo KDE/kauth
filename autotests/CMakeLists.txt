@@ -59,7 +59,7 @@ target_include_directories(kauth_tests_static
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
 )
 
-target_link_libraries(kauth_tests_static PUBLIC Qt${QT_MAJOR_VERSION}::DBus KF5::CoreAddons KF5::AuthCore)
+target_link_libraries(kauth_tests_static PUBLIC Qt${QT_MAJOR_VERSION}::DBus KF5::CoreAddons)
 
 ########### next target ###############
 
