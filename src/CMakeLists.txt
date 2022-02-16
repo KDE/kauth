@@ -172,28 +172,6 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     endif()
 endif()
 
-find_package(PythonModuleGeneration)
-
-if (PythonModuleGeneration_FOUND)
-  ecm_generate_python_binding(
-    TARGET KF5::Auth
-    PYTHONNAMESPACE PyKF5
-    MODULENAME KAuth
-    RULES_FILE "${CMAKE_SOURCE_DIR}/cmake/rules_PyKF5.py"
-    SIP_INCLUDES $<TARGET_PROPERTY:Qt${QT_MAJOR_VERSION}::Widgets,INTERFACE_INCLUDE_DIRECTORIES>
-    SIP_DEPENDS
-      QtWidgets/QtWidgetsmod.sip
-      PyKF5/KCoreAddons/KCoreAddonsmod.sip
-    HEADERS
-      kauth.h
-      helpersupport.h
-      action.h
-      actionreply.h
-      executejob.h
-      objectdecorator.h
-  )
-endif()
-
 # KAuth policy generator executable
 
 # Compile only if fake backend has not been selected
