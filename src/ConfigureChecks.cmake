@@ -163,7 +163,7 @@ if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
         ${kauth_dbus_adaptor_SRCS}
     )
 
-    set(KAUTH_HELPER_BACKEND_LIBS Qt${QT_MAJOR_VERSION}::DBus KF5::Auth KF5::AuthCore)
+    set(KAUTH_HELPER_BACKEND_LIBS Qt${QT_MAJOR_VERSION}::DBus KF5::AuthWidgets KF5::AuthCore)
 
     # Install some files as well
     install(FILES backends/dbus/org.kde.kf5auth.conf

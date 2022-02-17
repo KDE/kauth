@@ -19,8 +19,6 @@ ecm_qt_declare_logging_category(kauthdebug_SRCS
 )
 
 if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
-    # TODO KF6 Rename KAuth to KAuthWidgets
-    # TODO KAuthCore should be installed also when no widgets available, in the header installation etc, so ignoring for now
     add_library(KF5AuthCore)
     add_library(KF5::AuthCore ALIAS KF5AuthCore)
     set_target_properties(KF5AuthCore PROPERTIES
@@ -57,25 +55,37 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KAUTH_INSTALL_INCLUDEDIR}>")
     install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
-    add_library(KF5Auth)
-    add_library(KF5::Auth ALIAS KF5Auth)
-    set_target_properties(KF5Auth PROPERTIES
+    add_library(KF5AuthWidgets)
+    add_library(KF5::AuthWidgets ALIAS KF5AuthWidgets)
+    set_target_properties(KF5AuthWidgets PROPERTIES
         VERSION     ${KAUTH_VERSION}
         SOVERSION   ${KAUTH_SOVERSION}
-        EXPORT_NAME Auth
     )
+    if (QT_MAJOR_VERSION STREQUAL "5")
+        # backward-compat name
+        set_target_properties(KF5AuthWidgets PROPERTIES
+            OUTPUT_NAME KF5Auth
+            EXPORT_NAME Auth
+        )
+    else()
+        set_target_properties(KF5AuthWidgets PROPERTIES
+            EXPORT_NAME AuthWidgets
+        )
+    endif()
 
-    target_sources(KF5Auth PRIVATE
+    target_sources(KF5AuthWidgets PRIVATE
         ${kauthdebug_SRCS}
         kauthobjectdecorator.cpp
     )
 
-    generate_export_header(KF5Auth BASE_NAME KAuth)
+    generate_export_header(KF5AuthWidgets BASE_NAME KAuth)
 
-    target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KAUTH_INSTALL_INCLUDEDIR}>")
+    target_include_directories(KF5AuthWidgets INTERFACE "$<INSTALL_INTERFACE:${KAUTH_INSTALL_INCLUDEDIR}>")
 
-    target_link_libraries(KF5Auth PUBLIC KF5AuthCore)
-    target_link_libraries(KF5Auth PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
+    target_link_libraries(KF5AuthWidgets PUBLIC KF5AuthCore)
+    target_link_libraries(KF5AuthWidgets PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
+
+    install(TARGETS KF5AuthWidgets EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
     ecm_generate_headers(KAuth_HEADERS
         HEADER_NAMES
@@ -88,8 +98,6 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 
         REQUIRED_HEADERS KAuth_HEADERS
     )
-
-    install(TARGETS KF5Auth EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
     install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
         ${CMAKE_CURRENT_BINARY_DIR}/kauthcore_export.h
@@ -97,6 +105,16 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         DESTINATION ${KAUTH_INSTALL_INCLUDEDIR}
         COMPONENT Devel
     )
+
+    # provide KF6-forward compat import target
+    if (QT_MAJOR_VERSION STREQUAL "5")
+        add_library(KF5AuthFutureWidgets INTERFACE)
+        target_link_libraries(KF5AuthFutureWidgets INTERFACE KF5AuthWidgets)
+        set_target_properties(KF5AuthFutureWidgets PROPERTIES
+            EXPORT_NAME AuthWidgets
+        )
+        install(TARGETS KF5AuthFutureWidgets EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+    endif()
 endif()
 
 find_package(PythonModuleGeneration)
