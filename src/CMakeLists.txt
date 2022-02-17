@@ -4,6 +4,8 @@ include(ConfigureChecks.cmake)
 # Configure a small file to tell BackendsManager what to use
 configure_file(BackendsConfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/BackendsConfig.h)
 
+set(KAUTH_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuth")
+
 ecm_create_qm_loader(KAuth_QM_LOADER kauth5_qt)
 
 set(kauthdebug_SRCS)
@@ -52,7 +54,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     target_link_libraries(KF5AuthCore PUBLIC Qt${QT_MAJOR_VERSION}::Core KF5::CoreAddons)  # for KJob
     target_link_libraries(KF5AuthCore PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
 
-    target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KAuth>")
+    target_include_directories(KF5AuthCore INTERFACE "$<INSTALL_INTERFACE:${KAUTH_INSTALL_INCLUDEDIR}>")
     install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
     add_library(KF5Auth)
@@ -70,7 +72,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 
     generate_export_header(KF5Auth BASE_NAME KAuth)
 
-    target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KAuth>")
+    target_include_directories(KF5Auth INTERFACE "$<INSTALL_INTERFACE:${KAUTH_INSTALL_INCLUDEDIR}>")
 
     target_link_libraries(KF5Auth PUBLIC KF5AuthCore)
     target_link_libraries(KF5Auth PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
@@ -92,7 +94,8 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
         ${CMAKE_CURRENT_BINARY_DIR}/kauthcore_export.h
         ${KAuth_HEADERS}
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth COMPONENT Devel
+        DESTINATION ${KAUTH_INSTALL_INCLUDEDIR}
+        COMPONENT Devel
     )
 endif()
 
@@ -202,7 +205,19 @@ if(BUILD_QCH)
 endif()
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KAuthCore LIB_NAME KF5AuthCore DEPS "core KCoreAddons" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth)
+ecm_generate_pri_file(
+    BASE_NAME KAuthCore
+    LIB_NAME KF5AuthCore
+    DEPS "core KCoreAddons"
+    FILENAME_VAR PRI_FILENAME
+    INCLUDE_INSTALL_DIRS ${KAUTH_INSTALL_INCLUDEDIR}
+)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
-ecm_generate_pri_file(BASE_NAME KAuth LIB_NAME KF5Auth DEPS "KAuthCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth)
+ecm_generate_pri_file(
+    BASE_NAME KAuth
+    LIB_NAME KF5Auth
+    DEPS "KAuthCore"
+    FILENAME_VAR PRI_FILENAME
+    INCLUDE_INSTALL_DIRS ${KAUTH_INSTALL_INCLUDEDIR}
+)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
