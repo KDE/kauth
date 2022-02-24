@@ -14,6 +14,8 @@
 #include <KAuth/Action>
 // lib
 #include "kauth_export.h"
+// Std
+#include <memory>
 
 namespace KAuth
 {
@@ -90,7 +92,7 @@ Q_SIGNALS:
 
 private:
     friend class ObjectDecoratorPrivate;
-    ObjectDecoratorPrivate *const d;
+    std::unique_ptr<ObjectDecoratorPrivate> const d;
 
     Q_PRIVATE_SLOT(d, void slotActivated())
     Q_PRIVATE_SLOT(d, void authStatusChanged(KAuth::Action::AuthStatus))

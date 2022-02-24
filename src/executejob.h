@@ -12,6 +12,8 @@
 #include "action.h"
 #include "actionreply.h"
 
+#include <memory>
+
 namespace KAuth
 {
 /**
@@ -41,7 +43,7 @@ class KAUTHCORE_EXPORT ExecuteJob : public KJob
     friend class Action;
 
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 
     Q_PRIVATE_SLOT(d, void doExecuteAction())
     Q_PRIVATE_SLOT(d, void doAuthorizeAction())

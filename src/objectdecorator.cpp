@@ -122,10 +122,7 @@ ObjectDecorator::ObjectDecorator(QObject *parent)
     d->connectDecorated();
 }
 
-ObjectDecorator::~ObjectDecorator()
-{
-    delete d;
-}
+ObjectDecorator::~ObjectDecorator() = default;
 
 KAuth::Action ObjectDecorator::authAction() const
 {

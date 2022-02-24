@@ -63,10 +63,7 @@ ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject
     });
 }
 
-ExecuteJob::~ExecuteJob()
-{
-    delete d;
-}
+ExecuteJob::~ExecuteJob() = default;
 
 Action ExecuteJob::action() const
 {
