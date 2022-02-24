@@ -16,6 +16,8 @@
 
 namespace KAuth
 {
+class ExecuteJobPrivate;
+
 /**
  * @class ExecuteJob executejob.h <KAuth/ExecuteJob>
  *
@@ -42,8 +44,8 @@ class KAUTHCORE_EXPORT ExecuteJob : public KJob
 
     friend class Action;
 
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class ExecuteJobPrivate;
+    std::unique_ptr<ExecuteJobPrivate> const d;
 
     Q_PRIVATE_SLOT(d, void doExecuteAction())
     Q_PRIVATE_SLOT(d, void doAuthorizeAction())

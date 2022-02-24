@@ -9,16 +9,19 @@
 #include "BackendsManager.h"
 #include "kauthdebug.h"
 
+#include <QCoreApplication>
 #include <QEventLoop>
 #include <QHash>
 #include <QTimer>
 
 namespace KAuth
 {
-class Q_DECL_HIDDEN ExecuteJob::Private
+class ExecuteJobPrivate
 {
+    Q_DECLARE_TR_FUNCTIONS(KAuth::ExecuteJob)
+
 public:
-    Private(ExecuteJob *parent)
+    explicit ExecuteJobPrivate(ExecuteJob *parent)
         : q(parent)
     {
     }
@@ -41,7 +44,7 @@ static QHash<QString, ExecuteJob *> s_watchers;
 
 ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject *parent)
     : KJob(parent)
-    , d(new Private(this))
+    , d(new ExecuteJobPrivate(this))
 {
     d->action = action;
     d->mode = mode;
@@ -112,7 +115,7 @@ bool ExecuteJob::kill(KillVerbosity verbosity)
     return true;
 }
 
-void ExecuteJob::Private::doExecuteAction()
+void ExecuteJobPrivate::doExecuteAction()
 {
     // If this action authorizes from the client, let's do it now
     if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
@@ -168,7 +171,7 @@ void ExecuteJob::Private::doExecuteAction()
     }
 }
 
-void ExecuteJob::Private::doAuthorizeAction()
+void ExecuteJobPrivate::doAuthorizeAction()
 {
     // Check the status first
     Action::AuthStatus s = action.status();
@@ -200,7 +203,7 @@ void ExecuteJob::Private::doAuthorizeAction()
     }
 }
 
-void ExecuteJob::Private::actionPerformedSlot(const QString &taction, const ActionReply &reply)
+void ExecuteJobPrivate::actionPerformedSlot(const QString &taction, const ActionReply &reply)
 {
     if (taction == action.name()) {
         if (reply.failed()) {
@@ -214,21 +217,21 @@ void ExecuteJob::Private::actionPerformedSlot(const QString &taction, const Acti
     }
 }
 
-void ExecuteJob::Private::progressStepSlot(const QString &taction, int i)
+void ExecuteJobPrivate::progressStepSlot(const QString &taction, int i)
 {
     if (taction == action.name()) {
         q->setPercent(i);
     }
 }
 
-void ExecuteJob::Private::progressStepSlot(const QString &taction, const QVariantMap &data)
+void ExecuteJobPrivate::progressStepSlot(const QString &taction, const QVariantMap &data)
 {
     if (taction == action.name()) {
         Q_EMIT q->newData(data);
     }
 }
 
-void ExecuteJob::Private::statusChangedSlot(const QString &taction, Action::AuthStatus status)
+void ExecuteJobPrivate::statusChangedSlot(const QString &taction, Action::AuthStatus status)
 {
     if (taction == action.name()) {
         Q_EMIT q->statusChanged(status);
