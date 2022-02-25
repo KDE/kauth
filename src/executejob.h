@@ -76,10 +76,11 @@ public:
      * action.
      *
      * This function is particularly useful once the job has completed. During
-     * execution, simply read the data in the newData signal.
+     * execution, simply read the data in the newData() signal.
+     *
+     * @returns the data set by the helper
      *
      * @see ExecuteJob::newData
-     * @returns the data set by the helper
      */
     QVariantMap data() const;
 
@@ -89,10 +90,11 @@ public Q_SLOTS:
      * You should listen to the finished and result signals to work out whether
      * halting was successful (as long running operations can also take time
      * to shut down cleanly).
+     * @return Always returns @c true
+     *
      * @see HelperSupport::isStopped()
      * @see KJob::result
      * @see KJob::finished
-     * @return Always returns true
      */
     bool kill(KillVerbosity verbosity = Quietly);
 

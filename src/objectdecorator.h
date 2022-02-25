@@ -45,7 +45,8 @@ public:
     ~ObjectDecorator() override;
 
     /**
-     * Returns the action object associated with this decorator, or 0 if it does not have one
+     * Returns the action object associated with this decorator,
+     * or an invalid action if it does not have one.
      *
      * @returns the KAuth::Action associated with this decorator.
      */
@@ -57,7 +58,7 @@ public:
      * By setting a KAuth::Action, this decorator will become associated with it, and
      * whenever the action or button it is attached to gets clicked, it will trigger the
      * authorization and execution process for the action.
-     * Pass 0 to this function to disassociate the decorator
+     * Pass an invalid action to this function to disassociate the decorator.
      *
      * @param action the KAuth::Action to associate with this decorator.
      */

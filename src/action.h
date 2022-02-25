@@ -25,14 +25,14 @@ class ActionData;
  *
  * @brief Class to access, authorize and execute actions.
  *
- * This is the main class of the kauth API. It provides the interface to
+ * This is the main class of the KAuth API. It provides the interface to
  * manipulate actions. Every action is identified by its name. Every instance
  * of the Action class with the same name refers to the same action.
  *
  * Once you have an action object you can tell the helper to execute it
  * (asking the user to authenticate if needed) with the execute() method.
  * The simplest thing to do is to execute a single action synchronously
- * blocking for the reply by callin exec() on the job object returned by
+ * blocking for the reply by calling KJob::exec() on the job object returned by
  * execute().
  *
  * For asynchronous calls, use KAuth::ExecuteJob::start() instead.
@@ -42,7 +42,7 @@ class ActionData;
  * once the action is done executing.
  *
  * To use the execute() method you have to set the default helper's ID using
- * the setHelperID() static method. Alternatively, you can specify the helperID using
+ * the setHelperId() static method. Alternatively, you can specify the helperID using
  * the overloaded version of the methods that takes it as a parameter.
  *
  * Each action object contains a QVariantMap object that is passed directly to the
@@ -280,11 +280,11 @@ public:
      *
      * In other words, the action name has to match this perl-like
      * regular expression:
-     * @verbatim
+     * @code
      * /^[a-z]+(\.[a-z]+)*$/
-     * @endverbatim
+     * @endcode
      *
-     * This method returns false if the action name doesn't match the
+     * This method returns @c false if the action name doesn't match the
      * valid syntax.
      *
      * If the backend supports it, this method also checks if the action is
@@ -301,10 +301,10 @@ public:
      * @brief Gets the default helper ID used for actions execution
      *
      * The helper ID is the string that uniquely identifies the helper in
-     * the system. It is the string passed to the KAUTH_HELPER() macro
+     * the system. It is the string passed to the KAUTH_HELPER_MAIN() macro
      * in the helper source. Because one could have different helpers,
      * you need to specify an helper ID for each execution, or set a default
-     * ID by calling setHelperID(). This method returns the current default
+     * ID by calling setHelperId(). This method returns the current default
      * value.
      *
      * @return The default helper ID.
@@ -332,14 +332,14 @@ public:
      * @brief Checks if the action has an helper
      *
      * This function can be used to check if an helper will be called upon the
-     * execution of an action. Such an helper can be set through setHelperID. If
+     * execution of an action. Such an helper can be set through setHelperId(). If
      * this function returns false, upon execution the action will be just authorized.
      *
      * @since 4.5
      *
      * @return Whether the action has an helper or not
      *
-     * @see setHelperID
+     * @see setHelperId
      */
     bool hasHelper() const;
 
@@ -399,7 +399,7 @@ public:
     /**
      * @brief Get the job object used to execute the action
      *
-     * @return The KJob::ExecuteJob object to be used to run the action.
+     * @return The KAuth::ExecuteJob object to be used to run the action.
      */
     ExecuteJob *execute(ExecutionMode mode = ExecuteMode);
 

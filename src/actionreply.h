@@ -122,7 +122,7 @@
  source code tree you find a complete example.  Let's look at that.  The
  helper.h file declares the class that implements the helper. It looks like:
 
- @snippet helper.h helper_declaration
+ @snippet helper.cpp helper_declaration
 
  The slot names are the last part of the action name, without the helper's ID if
  it's a prefix, with all the dots replaced by underscores. In this case, the
@@ -180,7 +180,7 @@
 
  The first argument is the cmake target name for the helper executable, which
  you have to build and install separately. Make sure to INSTALL THE HELPER IN
- ${KAUTH_HELPER_INSTALL_DIR}, otherwise kauth_install_helper_files will not work. The
+ @c ${KAUTH_HELPER_INSTALL_DIR}, otherwise @c kauth_install_helper_files will not work. The
  second argument is the helper id. Please be sure to don't misspell it, and to
  not quote it. The user parameter is the user that the helper has to be run as.
  It usually is root, but some actions could require less strict permissions, so

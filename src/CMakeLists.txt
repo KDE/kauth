@@ -265,6 +265,8 @@ if(BUILD_QCH)
             KF5CoreAddons_QCH
         INCLUDE_DIRS
             ${CMAKE_CURRENT_BINARY_DIR}
+        EXAMPLE_DIRS
+            ${CMAKE_SOURCE_DIR}/examples
         BLANK_MACROS
             KAUTHCORE_EXPORT
             KAUTH_EXPORT
