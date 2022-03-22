@@ -1,6 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2009-2012 Dario Freddi <drf@kde.org>
     SPDX-FileCopyrightText: 2008 Nicola Gigante <nicola.gigante@gmail.com>
+    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -14,6 +15,10 @@
 #include <QSharedDataPointer>
 #include <QString>
 #include <QVariant>
+
+#if __has_include(<chrono>)
+#include <chrono>
+#endif
 
 namespace KAuth
 {
@@ -216,6 +221,17 @@ public:
      *
      */
     void setTimeout(int timeout);
+
+#if __has_include(<chrono>)
+    /**
+     * Convenience overload suporting C++ chrono types. May also be used with chrono literals.
+     * @since 5.93
+     */
+    void setTimeout(std::chrono::milliseconds msec)
+    {
+        setTimeout(int(msec.count()));
+    }
+#endif
 
 #if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 71)
     /**
