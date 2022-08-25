@@ -6,7 +6,7 @@ Dependencies:
 
 - 'on': ['Linux', 'FreeBSD']
   'require':
-    'kdesupport/polkit-qt-1' : '@same'
+    'libraries/polkit-qt-1' : '@same'
 
 Options:
   test-before-installing: True
