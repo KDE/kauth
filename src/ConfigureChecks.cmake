@@ -9,7 +9,7 @@ string(TOUPPER "${KAUTH_BACKEND_NAME}" KAUTH_BACKEND_NAME)
 
 set(KAUTH_BACKEND ${KAUTH_BACKEND_NAME})
 
-set(POLKITQT_MIN_VERSION 0.112.0)
+set(POLKITQT_MIN_VERSION 0.112.0 PARENT_SCOPE)
 
 ## Check if the user did not specify a backend to be built. If that is the case,
 ## we check what is the best backend to build on this system.
