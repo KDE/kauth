@@ -57,7 +57,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     target_include_directories(KF5AuthCore INTERFACE
         "$<INSTALL_INTERFACE:${KAUTHCORE_INSTALL_INCLUDEDIR};${KAUTH_INSTALL_INCLUDEDIR}>"
     )
-    install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
     ecm_generate_headers(KAuthCore_CamelCase_HEADERS
         HEADER_NAMES
@@ -118,7 +118,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     target_link_libraries(KF5AuthWidgets PUBLIC KF5AuthCore)
     target_link_libraries(KF5AuthWidgets PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
 
-    install(TARGETS KF5AuthWidgets EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KF5AuthWidgets EXPORT KF5AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
     ecm_generate_headers(KAuthWidgets_CamelCase_HEADERS
         HEADER_NAMES
@@ -146,7 +146,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         set_target_properties(KF5AuthFutureWidgets PROPERTIES
             EXPORT_NAME AuthWidgets
         )
-        install(TARGETS KF5AuthFutureWidgets EXPORT KF5AuthTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+        install(TARGETS KF5AuthFutureWidgets EXPORT KF5AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
     endif()
 
     # provide compat headers for old C++ namespace-part-of-filename includes
