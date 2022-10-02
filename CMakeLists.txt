@@ -61,7 +61,7 @@ ecm_set_disabled_deprecation_versions(
     KF 5.95
 )
 
-ecm_install_po_files_as_qm(po)
+ecm_install_po_files_as_qm(poqm)
 
 add_subdirectory(src)
 
