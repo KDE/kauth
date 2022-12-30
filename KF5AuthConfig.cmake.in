@@ -20,11 +20,11 @@ if(NOT @BUILD_SHARED_LIBS@)
     endif()
 
     if(NOT KAUTH_BACKEND_NAME AND @UNIX@ AND NOT @APPLE@)
-        find_dependency(PolkitQt@QT_MAJOR_VERSION@ "@POLKITQT_MIN_VERSION@")
+        find_dependency(PolkitQt@QT_MAJOR_VERSION@-1 "@POLKITQT_MIN_VERSION@")
     endif()
 
     if(KAUTH_BACKEND_NAME AND NOT @KAUTH_BUILD_CODEGENERATOR_ONLY@ AND "${KAUTH_BACKEND_NAME}" STREQUAL "POLKITQT@QT_MAJOR_VERSION@-1")
-        find_dependency(PolkitQt@QT_MAJOR_VERSION@ "@POLKITQT_MIN_VERSION@")
+        find_dependency(PolkitQt@QT_MAJOR_VERSION@-1 "@POLKITQT_MIN_VERSION@")
     endif()
 endif()
 
