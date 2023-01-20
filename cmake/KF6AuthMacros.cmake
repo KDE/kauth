@@ -33,7 +33,7 @@ endfunction()
 function(KAUTH_INSTALL_ACTIONS HELPER_ID ACTIONS_FILE)
 
   if(KAUTH_BACKEND_NAME STREQUAL "APPLE" OR KAUTH_BACKEND_NAME STREQUAL "OSX")
-    get_target_property(kauth_policy_gen KF5::kauth-policy-gen LOCATION)
+    get_target_property(kauth_policy_gen KF6::kauth-policy-gen LOCATION)
     install(CODE "execute_process(COMMAND ${kauth_policy_gen} ${ACTIONS_FILE} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})")
     message(STATUS "installation will execute ${kauth_policy_gen} ${ACTIONS_FILE} in ${CMAKE_CURRENT_SOURCE_DIR}")
   elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
@@ -41,11 +41,11 @@ function(KAUTH_INSTALL_ACTIONS HELPER_ID ACTIONS_FILE)
     get_filename_component(_input ${ACTIONS_FILE} ABSOLUTE)
 
     add_custom_command(OUTPUT ${_output}
-                       COMMAND KF5::kauth-policy-gen ${_input} ${_output}
+                       COMMAND KF6::kauth-policy-gen ${_input} ${_output}
                        MAIN_DEPENDENCY ${_input}
                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                        COMMENT "Generating ${HELPER_ID}.policy"
-                       DEPENDS KF5::kauth-policy-gen)
+                       DEPENDS KF6::kauth-policy-gen)
     add_custom_target(${HELPER_ID}.policy-customtarget ALL COMMENT "actions for ${HELPER_ID}" DEPENDS ${_output})
 
     if(INSTALL_BROKEN_KAUTH_POLICY_FILES)

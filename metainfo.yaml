@@ -11,10 +11,10 @@ deprecated: false
 release: true
 libraries:
  - qmake: KAuthCore
-   cmake: "KF5::AuthCore"
+   cmake: "KF6::AuthCore"
  - qmake: KAuth
-   cmake: "KF5::Auth"
-cmakename: KF5Auth
+   cmake: "KF6::Auth"
+cmakename: KF6Auth
 
 public_lib: true
 group: Frameworks

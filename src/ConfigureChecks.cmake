@@ -93,7 +93,7 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
         backends/polkit-1/Polkit1Backend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt${QT_MAJOR_VERSION}::DBus Qt${QT_MAJOR_VERSION}::Widgets KF5::AuthCore)
+    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt${QT_MAJOR_VERSION}::DBus Qt${QT_MAJOR_VERSION}::Widgets KF6::AuthCore)
 
     # POLKITQT-1_POLICY_FILES_INSTALL_DIR has an absolute pathname, fix that.
     if(PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
@@ -163,7 +163,7 @@ if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
         ${kauth_dbus_adaptor_SRCS}
     )
 
-    set(KAUTH_HELPER_BACKEND_LIBS Qt${QT_MAJOR_VERSION}::DBus KF5::AuthWidgets KF5::AuthCore)
+    set(KAUTH_HELPER_BACKEND_LIBS Qt${QT_MAJOR_VERSION}::DBus KF6::AuthWidgets KF6::AuthCore)
 
     # Install some files as well
     install(FILES backends/dbus/org.kde.kf5auth.conf

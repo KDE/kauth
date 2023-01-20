@@ -43,10 +43,10 @@ add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt 
 
 ecm_setup_version(PROJECT VARIABLE_PREFIX KAUTH
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kauth_version.h"
-                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfigVersion.cmake"
-                        SOVERSION 5)
+                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6AuthConfigVersion.cmake"
+                        SOVERSION 6)
 
-find_package(KF5CoreAddons ${KF_DEP_VERSION} REQUIRED)
+find_package(KF6CoreAddons ${KF_DEP_VERSION} REQUIRED)
 
 set(KAUTH_HELPER_INSTALL_DIR "${KDE_INSTALL_LIBEXECDIR}/kauth")
 
@@ -73,42 +73,42 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5Auth")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Auth")
 
 if (BUILD_QCH)
     ecm_install_qch_export(
-        TARGETS KF5Auth_QCH
-        FILE KF5AuthQchTargets.cmake
+        TARGETS KF6Auth_QCH
+        FILE KF6AuthQchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF5AuthQchTargets.cmake\")")
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6AuthQchTargets.cmake\")")
 endif()
 
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/KF5AuthConfig.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfig.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/KF6AuthConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KF6AuthConfig.cmake"
     PATH_VARS KDE_INSTALL_DATADIR_KF
     INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
 )
 
-install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfig.cmake"
-               "${CMAKE_CURRENT_BINARY_DIR}/KF5AuthConfigVersion.cmake"
-               "${CMAKE_CURRENT_SOURCE_DIR}/cmake/KF5AuthMacros.cmake"
+install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6AuthConfig.cmake"
+               "${CMAKE_CURRENT_BINARY_DIR}/KF6AuthConfigVersion.cmake"
+               "${CMAKE_CURRENT_SOURCE_DIR}/cmake/KF6AuthMacros.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel )
 
 
 if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
-    install(EXPORT KF5AuthTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        FILE KF5AuthTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
+    install(EXPORT KF6AuthTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KF6AuthTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 endif()
 
 if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
-    install(EXPORT KF5AuthToolsTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-            FILE KF5AuthToolsTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
+    install(EXPORT KF6AuthToolsTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+            FILE KF6AuthToolsTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 endif()
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kauth_version.h

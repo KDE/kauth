@@ -21,15 +21,15 @@ ecm_qt_declare_logging_category(kauthdebug_SRCS
 )
 
 if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
-    add_library(KF5AuthCore)
-    add_library(KF5::AuthCore ALIAS KF5AuthCore)
-    set_target_properties(KF5AuthCore PROPERTIES
+    add_library(KF6AuthCore)
+    add_library(KF6::AuthCore ALIAS KF6AuthCore)
+    set_target_properties(KF6AuthCore PROPERTIES
         VERSION     ${KAUTH_VERSION}
         SOVERSION   ${KAUTH_SOVERSION}
         EXPORT_NAME AuthCore
     )
 
-    target_sources(KF5AuthCore PRIVATE
+    target_sources(KF6AuthCore PRIVATE
         action.cpp
         actionreply.cpp
         executejob.cpp
@@ -43,7 +43,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         ${KAuth_QM_LOADER}
     )
 
-    ecm_generate_export_header(KF5AuthCore
+    ecm_generate_export_header(KF6AuthCore
         BASE_NAME KAuthCore
         GROUP_BASE_NAME KF
         VERSION ${KF_VERSION}
@@ -51,13 +51,13 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         DEPRECATION_VERSIONS 5.71
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
-    target_link_libraries(KF5AuthCore PUBLIC Qt${QT_MAJOR_VERSION}::Core KF5::CoreAddons)  # for KJob
-    target_link_libraries(KF5AuthCore PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
+    target_link_libraries(KF6AuthCore PUBLIC Qt${QT_MAJOR_VERSION}::Core KF6::CoreAddons)  # for KJob
+    target_link_libraries(KF6AuthCore PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
 
-    target_include_directories(KF5AuthCore INTERFACE
+    target_include_directories(KF6AuthCore INTERFACE
         "$<INSTALL_INTERFACE:${KAUTHCORE_INSTALL_INCLUDEDIR};${KAUTH_INSTALL_INCLUDEDIR}>"
     )
-    install(TARGETS KF5AuthCore EXPORT KF5AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KF6AuthCore EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
     ecm_generate_headers(KAuthCore_CamelCase_HEADERS
         HEADER_NAMES
@@ -81,30 +81,30 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         COMPONENT Devel
     )
 
-    add_library(KF5AuthWidgets)
-    add_library(KF5::AuthWidgets ALIAS KF5AuthWidgets)
-    set_target_properties(KF5AuthWidgets PROPERTIES
+    add_library(KF6AuthWidgets)
+    add_library(KF6::AuthWidgets ALIAS KF6AuthWidgets)
+    set_target_properties(KF6AuthWidgets PROPERTIES
         VERSION     ${KAUTH_VERSION}
         SOVERSION   ${KAUTH_SOVERSION}
     )
     if (QT_MAJOR_VERSION STREQUAL "5")
         # backward-compat name
-        set_target_properties(KF5AuthWidgets PROPERTIES
-            OUTPUT_NAME KF5Auth
+        set_target_properties(KF6AuthWidgets PROPERTIES
+            OUTPUT_NAME KF6Auth
             EXPORT_NAME Auth
         )
     else()
-        set_target_properties(KF5AuthWidgets PROPERTIES
+        set_target_properties(KF6AuthWidgets PROPERTIES
             EXPORT_NAME AuthWidgets
         )
     endif()
 
-    target_sources(KF5AuthWidgets PRIVATE
+    target_sources(KF6AuthWidgets PRIVATE
         ${kauthdebug_SRCS}
         objectdecorator.cpp
     )
 
-    ecm_generate_export_header(KF5AuthWidgets
+    ecm_generate_export_header(KF6AuthWidgets
         BASE_NAME KAuth
         GROUP_BASE_NAME KF
         VERSION ${KF_VERSION}
@@ -113,12 +113,12 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
 
-    target_include_directories(KF5AuthWidgets INTERFACE "$<INSTALL_INTERFACE:${KAUTHWIDGETS_INSTALL_INCLUDEDIR}>")
+    target_include_directories(KF6AuthWidgets INTERFACE "$<INSTALL_INTERFACE:${KAUTHWIDGETS_INSTALL_INCLUDEDIR}>")
 
-    target_link_libraries(KF5AuthWidgets PUBLIC KF5AuthCore)
-    target_link_libraries(KF5AuthWidgets PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
+    target_link_libraries(KF6AuthWidgets PUBLIC KF6AuthCore)
+    target_link_libraries(KF6AuthWidgets PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
 
-    install(TARGETS KF5AuthWidgets EXPORT KF5AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KF6AuthWidgets EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
     ecm_generate_headers(KAuthWidgets_CamelCase_HEADERS
         HEADER_NAMES
@@ -141,12 +141,12 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 
     # provide KF6-forward compat import target
     if (QT_MAJOR_VERSION STREQUAL "5")
-        add_library(KF5AuthFutureWidgets INTERFACE)
-        target_link_libraries(KF5AuthFutureWidgets INTERFACE KF5AuthWidgets)
-        set_target_properties(KF5AuthFutureWidgets PROPERTIES
+        add_library(KF6AuthFutureWidgets INTERFACE)
+        target_link_libraries(KF6AuthFutureWidgets INTERFACE KF6AuthWidgets)
+        set_target_properties(KF6AuthFutureWidgets PROPERTIES
             EXPORT_NAME AuthWidgets
         )
-        install(TARGETS KF5AuthFutureWidgets EXPORT KF5AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+        install(TARGETS KF6AuthFutureWidgets EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
     endif()
 
     # provide compat headers for old C++ namespace-part-of-filename includes
@@ -179,7 +179,7 @@ endif()
 if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     # KAUTH_POLICY_GEN_SRCS has been generated from ConfigureChecks.cmake
     add_executable(kauth-policy-gen ${KAUTH_POLICY_GEN_SRCS})
-    add_executable(KF5::kauth-policy-gen ALIAS kauth-policy-gen)
+    add_executable(KF6::kauth-policy-gen ALIAS kauth-policy-gen)
     if (APPLE)
         include(ECMMarkNonGuiExecutable)
         ecm_mark_nongui_executable(kauth-policy-gen)
@@ -188,7 +188,7 @@ if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     # KAUTH_POLICY_GEN_LIBRARIES has been generated from ConfigureChecks.cmake
     target_link_libraries( kauth-policy-gen PRIVATE ${KAUTH_POLICY_GEN_LIBRARIES} )
 
-    install( TARGETS kauth-policy-gen EXPORT KF5AuthToolsTargets DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
+    install( TARGETS kauth-policy-gen EXPORT KF6AuthToolsTargets DESTINATION ${KAUTH_HELPER_INSTALL_DIR})
 endif ()
 
 # KAuth backend plugin
@@ -229,9 +229,9 @@ ecm_qt_install_logging_categories(
 
 if(BUILD_QCH)
     ecm_add_qch(
-        KF5Auth_QCH
+        KF6Auth_QCH
         NAME KAuth
-        BASE_NAME KF5Auth
+        BASE_NAME KF6Auth
         VERSION ${KF_VERSION}
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API
@@ -240,7 +240,7 @@ if(BUILD_QCH)
         MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
         LINK_QCHS
             Qt5Core_QCH
-            KF5CoreAddons_QCH
+            KF6CoreAddons_QCH
         INCLUDE_DIRS
             ${CMAKE_CURRENT_BINARY_DIR}
         EXAMPLE_DIRS
@@ -261,7 +261,7 @@ endif()
 include(ECMGeneratePriFile)
 ecm_generate_pri_file(
     BASE_NAME KAuthCore
-    LIB_NAME KF5AuthCore
+    LIB_NAME KF6AuthCore
     DEPS "core KCoreAddons"
     FILENAME_VAR PRI_FILENAME
     INCLUDE_INSTALL_DIRS
@@ -271,7 +271,7 @@ ecm_generate_pri_file(
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
 ecm_generate_pri_file(
     BASE_NAME KAuth
-    LIB_NAME KF5Auth
+    LIB_NAME KF6Auth
     DEPS "KAuthCore"
     FILENAME_VAR PRI_FILENAME
     INCLUDE_INSTALL_DIRS ${KAUTHWIDGETS_INSTALL_INCLUDEDIR}

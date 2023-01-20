@@ -55,11 +55,11 @@ ecm_mark_as_test(kauth_tests_static)
 
 target_include_directories(kauth_tests_static
   PUBLIC
-    $<TARGET_PROPERTY:KF5::AuthCore,INTERFACE_INCLUDE_DIRECTORIES>
+    $<TARGET_PROPERTY:KF6::AuthCore,INTERFACE_INCLUDE_DIRECTORIES>
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
 )
 
-target_link_libraries(kauth_tests_static PUBLIC Qt${QT_MAJOR_VERSION}::DBus KF5::CoreAddons)
+target_link_libraries(kauth_tests_static PUBLIC Qt${QT_MAJOR_VERSION}::DBus KF6::CoreAddons)
 
 ########### next target ###############
 
