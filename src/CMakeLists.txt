@@ -86,18 +86,8 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     set_target_properties(KF6AuthWidgets PROPERTIES
         VERSION     ${KAUTH_VERSION}
         SOVERSION   ${KAUTH_SOVERSION}
+        EXPORT_NAME AuthWidgets
     )
-    if (QT_MAJOR_VERSION STREQUAL "5")
-        # backward-compat name
-        set_target_properties(KF6AuthWidgets PROPERTIES
-            OUTPUT_NAME KF6Auth
-            EXPORT_NAME Auth
-        )
-    else()
-        set_target_properties(KF6AuthWidgets PROPERTIES
-            EXPORT_NAME AuthWidgets
-        )
-    endif()
 
     target_sources(KF6AuthWidgets PRIVATE
         ${kauthdebug_SRCS}
@@ -138,16 +128,6 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         DESTINATION ${KAUTHWIDGETS_INSTALL_INCLUDEDIR}/KAuth # C++ namespace
         COMPONENT Devel
     )
-
-    # provide KF6-forward compat import target
-    if (QT_MAJOR_VERSION STREQUAL "5")
-        add_library(KF6AuthFutureWidgets INTERFACE)
-        target_link_libraries(KF6AuthFutureWidgets INTERFACE KF6AuthWidgets)
-        set_target_properties(KF6AuthFutureWidgets PROPERTIES
-            EXPORT_NAME AuthWidgets
-        )
-        install(TARGETS KF6AuthFutureWidgets EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
-    endif()
 endif()
 
 # KAuth policy generator executable
