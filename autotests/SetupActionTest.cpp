@@ -26,9 +26,6 @@ private Q_SLOTS:
     }
 
     void testNonExistentAction();
-#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
-    void testBasicActionPropertiesDeprecated();
-#endif
     void testBasicActionProperties();
     void testUserAuthorization();
     void testAuthorizationFail();
@@ -70,44 +67,6 @@ void SetupActionTest::testNonExistentAction()
     QVERIFY(!action.isValid());
 }
 
-#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
-void SetupActionTest::testBasicActionPropertiesDeprecated()
-{
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability | KAuth::AuthBackend::CheckActionExistenceCapability);
-    KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
-    KAuth::Action action(QLatin1String("always.authorized"), QLatin1String("details"));
-    QVERIFY(action.isValid());
-
-    QCOMPARE(action.name(), QLatin1String("always.authorized"));
-    QCOMPARE(action.details(), QLatin1String("details"));
-    QCOMPARE(action.detailsV2(), detailsMap);
-    QVERIFY(!action.hasHelper());
-    QVERIFY(action.helperId().isEmpty());
-    QCOMPARE(action.status(), KAuth::Action::AuthorizedStatus);
-
-    QVERIFY(action.arguments().isEmpty());
-    QVariantMap args;
-    args.insert(QLatin1String("akey"), QVariant::fromValue(42));
-    action.setArguments(args);
-    QCOMPARE(action.arguments(), args);
-
-    action.setName(QLatin1String("i.do.not.exist"));
-    QVERIFY(!action.isValid());
-
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::NoCapability);
-
-    action = KAuth::Action(QLatin1String("i.do.not.exist"), QLatin1String("details"));
-
-    QVERIFY(action.isValid());
-    QCOMPARE(action.name(), QLatin1String("i.do.not.exist"));
-    QCOMPARE(action.details(), QLatin1String("details"));
-    QCOMPARE(action.detailsV2(), detailsMap);
-    QVERIFY(!action.hasHelper());
-    QVERIFY(action.helperId().isEmpty());
-    QCOMPARE(action.status(), KAuth::Action::InvalidStatus);
-}
-#endif
-
 void SetupActionTest::testBasicActionProperties()
 {
     Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability | KAuth::AuthBackend::CheckActionExistenceCapability);
@@ -116,9 +75,6 @@ void SetupActionTest::testBasicActionProperties()
     QVERIFY(action.isValid());
 
     QCOMPARE(action.name(), QLatin1String("always.authorized"));
-#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
-    QCOMPARE(action.details(), QLatin1String("details"));
-#endif
     QCOMPARE(action.detailsV2(), detailsMap);
     QVERIFY(!action.hasHelper());
     QVERIFY(action.helperId().isEmpty());
@@ -139,9 +95,6 @@ void SetupActionTest::testBasicActionProperties()
 
     QVERIFY(action.isValid());
     QCOMPARE(action.name(), QLatin1String("i.do.not.exist"));
-#if KAUTHCORE_BUILD_DEPRECATED_SINCE(5, 71)
-    QCOMPARE(action.details(), QLatin1String("details"));
-#endif
     QCOMPARE(action.detailsV2(), detailsMap);
     QVERIFY(!action.hasHelper());
     QVERIFY(action.helperId().isEmpty());

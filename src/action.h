@@ -127,19 +127,6 @@ public:
      */
     Action(const QString &name);
 
-#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 71)
-    /**
-     * This creates a new action object with this name and details
-     * @param name The name of the new action
-     * @param details The details of the action
-     *
-     * @see setDetails
-     * @deprecated since 5.68, use constructor with DetailsMap
-     */
-    KAUTHCORE_DEPRECATED_VERSION_BELATED(5, 71, 5, 68, "Use constructor with DetailsMap")
-    Action(const QString &name, const QString &details);
-#endif
-
     /**
      * This creates a new action object with this name and details
      * @param name The name of the new action
@@ -233,20 +220,6 @@ public:
     }
 #endif
 
-#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 71)
-    /**
-     * @brief Sets the action's details
-     *
-     * You can use this function to provide the user more details
-     * (if the backend supports it) on the action being authorized in
-     * the authorization dialog
-     *
-     * @deprecated since 5.68, use setDetailsV2() with DetailsMap.
-     */
-    KAUTHCORE_DEPRECATED_VERSION_BELATED(5, 71, 5, 68, "Use setDetailsV2() with DetailsMap")
-    void setDetails(const QString &details);
-#endif
-
     /**
      * @brief Sets the action's details
      *
@@ -260,20 +233,6 @@ public:
      * @since 5.68
      */
     void setDetailsV2(const DetailsMap &details);
-
-#if KAUTHCORE_ENABLE_DEPRECATED_SINCE(5, 71)
-    /**
-     * @brief Gets the action's details
-     *
-     * The details that will be shown in the authorization dialog, if the
-     * backend supports it.
-     *
-     * @return The action's details
-     * @deprecated since 5.68, use detailsV2() with DetailsMap.
-     */
-    KAUTHCORE_DEPRECATED_VERSION_BELATED(5, 71, 5, 68, "Use detailsV2() with DetailsMap")
-    QString details() const;
-#endif
 
     /**
      * @brief Gets the action's details

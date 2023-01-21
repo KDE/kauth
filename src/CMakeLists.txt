@@ -48,7 +48,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         GROUP_BASE_NAME KF
         VERSION ${KF_VERSION}
         DEPRECATED_BASE_VERSION 0
-        DEPRECATION_VERSIONS 5.71
+        DEPRECATION_VERSIONS
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
     target_link_libraries(KF6AuthCore PUBLIC Qt${QT_MAJOR_VERSION}::Core KF6::CoreAddons)  # for KJob
@@ -109,7 +109,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         GROUP_BASE_NAME KF
         VERSION ${KF_VERSION}
         DEPRECATED_BASE_VERSION 0
-        DEPRECATION_VERSIONS 5.92
+        DEPRECATION_VERSIONS
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
 
@@ -147,28 +147,6 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
             EXPORT_NAME AuthWidgets
         )
         install(TARGETS KF6AuthFutureWidgets EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
-    endif()
-
-    # provide compat headers for old C++ namespace-part-of-filename includes
-    if(NOT EXCLUDE_DEPRECATED_BEFORE_AND_AT STREQUAL "CURRENT" AND
-    EXCLUDE_DEPRECATED_BEFORE_AND_AT VERSION_LESS 5.92.0)
-
-        install(FILES
-                compatheaders/KAuth
-                compatheaders/kauth.h
-                compatheaders/KAuthAction
-                compatheaders/kauthaction.h
-                compatheaders/KAuthActionReply
-                compatheaders/kauthactionreply.h
-                compatheaders/KAuthExecuteJob
-                compatheaders/kauthexecutejob.h
-                compatheaders/KAuthHelperSupport
-                compatheaders/kauthhelpersupport.h
-                compatheaders/KAuthObjectDecorator
-                compatheaders/kauthobjectdecorator.h
-            DESTINATION ${KAUTH_INSTALL_INCLUDEDIR}
-            COMPONENT Devel
-        )
     endif()
 endif()
 
