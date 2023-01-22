@@ -1,7 +1,7 @@
 ####### checks for kdecore/kauth ###############
 
 set(KAUTH_BACKEND_NAME "" CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt${QT_MAJOR_VERSION}-1, Fake, OSX. Not setting this variable will build the most
+                                   PolkitQt6-1, Fake, OSX. Not setting this variable will build the most
                                    appropriate backend for your system")
 
 # Case-insensitive
@@ -19,12 +19,12 @@ if(NOT KAUTH_BACKEND)
     if(APPLE)
         set(KAUTH_BACKEND "OSX")
     elseif(UNIX)
-        find_package(PolkitQt${QT_MAJOR_VERSION}-1 ${POLKITQT_MIN_VERSION})
+        find_package(PolkitQt6-1 ${POLKITQT_MIN_VERSION})
 
-        if(PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
-            set(KAUTH_BACKEND "POLKITQT${QT_MAJOR_VERSION}-1")
+        if(PolkitQt6-1_FOUND)
+            set(KAUTH_BACKEND "POLKITQT6-1")
 
-            set_package_properties(PolkitQt${QT_MAJOR_VERSION}-1 PROPERTIES
+            set_package_properties(PolkitQt6-1 PROPERTIES
               URL "http://techbase.kde.org/Polkit-Qt-1"
               DESCRIPTION "PolicyKit API for Qt"
               TYPE RECOMMENDED
@@ -40,7 +40,7 @@ if(NOT KAUTH_BACKEND)
 elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     # Check if the specified backend is valid. If it is not, we fall back to the FAKE one
     if(NOT KAUTH_BACKEND STREQUAL "OSX"
-        AND NOT KAUTH_BACKEND STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1"
+        AND NOT KAUTH_BACKEND STREQUAL "POLKITQT6-1"
         AND NOT KAUTH_BACKEND STREQUAL "FAKE")
         message("WARNING: The KAuth Backend ${KAUTH_BACKEND} you specified does not exist. Falling back to Fake backend")
         set(KAUTH_BACKEND "FAKE")
@@ -52,16 +52,16 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         set(KAUTH_BACKEND "FAKE")
     endif()
 
-    if(KAUTH_BACKEND STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
-        find_package(PolkitQt${QT_MAJOR_VERSION}-1 ${POLKITQT_MIN_VERSION})
-        set_package_properties(PolkitQt${QT_MAJOR_VERSION}-1 PROPERTIES
+    if(KAUTH_BACKEND STREQUAL "POLKITQT6-1")
+        find_package(PolkitQt6-1 ${POLKITQT_MIN_VERSION})
+        set_package_properties(PolkitQt6-1 PROPERTIES
           URL "http://techbase.kde.org/Polkit-Qt-1"
           DESCRIPTION "PolicyKit API for Qt"
           TYPE RECOMMENDED
           PURPOSE "Support for executing privileged actions in a controlled way (KAuth). This is required to make KAuth work, and hence enable certain workspace functionalities"
         )
-        if(NOT PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
-            message("WARNING: You chose the PolkitQt${QT_MAJOR_VERSION}-1 KAuth backend but you don't have PolkitQt${QT_MAJOR_VERSION}-1 installed.
+        if(NOT PolkitQt6-1_FOUND)
+            message("WARNING: You chose the PolkitQt6-1 KAuth backend but you don't have PolkitQt6-1 installed.
                       Falling back to Fake backend")
             set(KAUTH_BACKEND "FAKE")
         endif()
@@ -69,7 +69,7 @@ elseif(KAUTH_BACKEND AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
 endif()
 
 set(KAUTH_BACKEND_NAME ${KAUTH_BACKEND} CACHE STRING "Specifies the KAuth backend to build. Current available options are
-                                   PolkitQt${QT_MAJOR_VERSION}-1, Fake, OSX. Not setting this variable will build the most
+                                   PolkitQt6-1, Fake, OSX. Not setting this variable will build the most
                                    appropriate backend for your system" FORCE)
 
 # Add the correct libraries depending on the backend, and eventually set the policy files install location
@@ -83,9 +83,9 @@ if(KAUTH_BACKEND_NAME STREQUAL "OSX")
         backends/mac/AuthServicesBackend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${SECURITY_LIBRARY} Qt${QT_MAJOR_VERSION}::Core)
-elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
-    message(STATUS "Building PolkitQt${QT_MAJOR_VERSION}-1 KAuth backend")
+    set(KAUTH_BACKEND_LIBS ${SECURITY_LIBRARY} Qt6::Core)
+elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT6-1")
+    message(STATUS "Building PolkitQt6-1 KAuth backend")
 
     include_directories(SYSTEM ${POLKITQT-1_INCLUDE_DIR})
 
@@ -93,10 +93,10 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
         backends/polkit-1/Polkit1Backend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt${QT_MAJOR_VERSION}::DBus Qt${QT_MAJOR_VERSION}::Widgets KF6::AuthCore)
+    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt6::DBus Qt6::Widgets KF6::AuthCore)
 
     # POLKITQT-1_POLICY_FILES_INSTALL_DIR has an absolute pathname, fix that.
-    if(PolkitQt${QT_MAJOR_VERSION}-1_FOUND)
+    if(PolkitQt6-1_FOUND)
         string(REPLACE ${POLKITQT-1_INSTALL_DIR}
             ${CMAKE_INSTALL_PREFIX} _KAUTH_POLICY_FILES_INSTALL_DIR
             ${POLKITQT-1_POLICY_FILES_INSTALL_DIR})
@@ -120,12 +120,12 @@ set(KAUTH_POLICY_GEN_LIBRARIES)
 if(KAUTH_BACKEND_NAME STREQUAL "OSX")
    set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
        backends/mac/kauth-policy-gen-mac.cpp)
-   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES} ${CORE_FOUNDATION_LIBRARY} ${SECURITY_LIBRARY} Qt${QT_MAJOR_VERSION}::Core)
-elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT${QT_MAJOR_VERSION}-1")
+   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES} ${CORE_FOUNDATION_LIBRARY} ${SECURITY_LIBRARY} Qt6::Core)
+elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT6-1")
   set(KAUTH_POLICY_GEN_SRCS ${KAUTH_POLICY_GEN_SRCS}
       backends/polkit-1/kauth-policy-gen-polkit1.cpp)
   set(KAUTH_POLICY_GEN_LIBRARIES ${KAUTH_POLICY_GEN_LIBRARIES}
-      Qt${QT_MAJOR_VERSION}::Core)
+      Qt6::Core)
 endif()
 
 ########################
@@ -163,7 +163,7 @@ if(KAUTH_HELPER_BACKEND_NAME STREQUAL "DBUS")
         ${kauth_dbus_adaptor_SRCS}
     )
 
-    set(KAUTH_HELPER_BACKEND_LIBS Qt${QT_MAJOR_VERSION}::DBus KF6::AuthWidgets KF6::AuthCore)
+    set(KAUTH_HELPER_BACKEND_LIBS Qt6::DBus KF6::AuthWidgets KF6::AuthCore)
 
     # Install some files as well
     install(FILES backends/dbus/org.kde.kf5auth.conf
@@ -177,11 +177,6 @@ elseif(KAUTH_HELPER_BACKEND_NAME STREQUAL "FAKE")
              a working backend")
 endif()
 
-
-set(_kf_prefix)
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(_kf_prefix "kf6/")
-endif()
 # Set directories for plugins
 if(NOT WIN32)
 
@@ -215,12 +210,12 @@ if(NOT WIN32)
         set(${_var} "${${_var}}" CACHE PATH "${_comment}")
     endif()
   endmacro()
-  _set_fancy(KAUTH_HELPER_PLUGIN_DIR "${_kf_prefix}kauth/helper" "Where KAuth's helper plugin will be installed")
-  _set_fancy(KAUTH_BACKEND_PLUGIN_DIR "${_kf_prefix}kauth/backend" "Where KAuth's backend plugin will be installed")
+  _set_fancy(KAUTH_HELPER_PLUGIN_DIR "kf6/kauth/helper" "Where KAuth's helper plugin will be installed")
+  _set_fancy(KAUTH_BACKEND_PLUGIN_DIR "kf6/kauth/backend" "Where KAuth's backend plugin will be installed")
   #set(KAUTH_OTHER_PLUGIN_DIR "${QT_PLUGINS_DIR}/kauth/plugins")
 else()
-    set(KAUTH_HELPER_PLUGIN_DIR "${_kf_prefix}kauth/helper")
-    set(KAUTH_BACKEND_PLUGIN_DIR "${_kf_prefix}kauth/backend")
+    set(KAUTH_HELPER_PLUGIN_DIR "kf6/kauth/helper")
+    set(KAUTH_BACKEND_PLUGIN_DIR "kf6/kauth/backend")
 endif()
 
 ## End

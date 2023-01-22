@@ -32,11 +32,6 @@ void output(const QList<Action> &actions, const QMap<QString, QString> &domain)
     Q_UNUSED(domain)
 
     QTextStream out(stdout);
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    out.setCodec("UTF-8");
-#endif
-
     out << header;
 
     for (const Action &action : std::as_const(actions)) {

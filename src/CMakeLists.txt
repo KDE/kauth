@@ -51,8 +51,8 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         DEPRECATION_VERSIONS
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
-    target_link_libraries(KF6AuthCore PUBLIC Qt${QT_MAJOR_VERSION}::Core KF6::CoreAddons)  # for KJob
-    target_link_libraries(KF6AuthCore PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
+    target_link_libraries(KF6AuthCore PUBLIC Qt6::Core KF6::CoreAddons)  # for KJob
+    target_link_libraries(KF6AuthCore PRIVATE Qt6::DBus)
 
     target_include_directories(KF6AuthCore INTERFACE
         "$<INSTALL_INTERFACE:${KAUTHCORE_INSTALL_INCLUDEDIR};${KAUTH_INSTALL_INCLUDEDIR}>"
@@ -106,7 +106,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     target_include_directories(KF6AuthWidgets INTERFACE "$<INSTALL_INTERFACE:${KAUTHWIDGETS_INSTALL_INCLUDEDIR}>")
 
     target_link_libraries(KF6AuthWidgets PUBLIC KF6AuthCore)
-    target_link_libraries(KF6AuthWidgets PRIVATE Qt${QT_MAJOR_VERSION}::Widgets)
+    target_link_libraries(KF6AuthWidgets PRIVATE Qt6::Widgets)
 
     install(TARGETS KF6AuthWidgets EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
