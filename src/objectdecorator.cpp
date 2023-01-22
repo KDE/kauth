@@ -68,7 +68,7 @@ void ObjectDecoratorPrivate::linkActionToWidget()
 
     QAction *action = qobject_cast<QAction *>(decoratedObject);
     if (action) {
-        authAction.setParentWidget(action->parentWidget());
+        authAction.setParentWidget(qobject_cast<QWidget *>(action->parent()));
         return;
     }
 
