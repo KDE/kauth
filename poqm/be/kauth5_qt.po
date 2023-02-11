@@ -1,6 +1,3 @@
-# translation of kdelibs4.po to Belarusian
-# translation of kdelibs4.po to
-#
 # Eugene Zelenko <greendeath@mail.ru>, 2002-2004.
 # Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
 # Darafei Praliaskouski <komzpa@licei2.com>, 2007.
@@ -12,12 +9,12 @@
 # kom <me@komzpa.net>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: kdelibs4\n"
+"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-03-23 01:50+0000\n"
-"PO-Revision-Date: 2009-09-06 15:21+0300\n"
+"PO-Revision-Date: 2023-02-09 14:47\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
-"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language-Team: Belarusian\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,12 +24,17 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
+"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
+"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /main/be/kauth/kauth5_qt.po\n"
+"X-Crowdin-File-ID: 7749\n"
 
 #: backends/dbus/DBusHelperProxy.cpp:74
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
-msgstr ""
+msgstr "Памылка рухавіка DBus: не ўдалося запусціць службу %1: %2"
 
 #: backends/dbus/DBusHelperProxy.cpp:89
 #, qt-format
@@ -41,6 +43,8 @@ msgid ""
 "DBus Backend error: connection to helper failed. %1\n"
 "(application: %2 helper: %3)"
 msgstr ""
+"Памылка рухавіка DBus: не ўдалося злучыцца з дапаможнай праграмай. %1\n"
+"(праграма: %2 дапаможная праграма: %3)"
 
 #: backends/dbus/DBusHelperProxy.cpp:124
 #, qt-format
@@ -49,23 +53,23 @@ msgid ""
 "DBus Backend error: could not contact the helper. Connection error: %1. "
 "Message error: %2"
 msgstr ""
+"Памылка рухавіка DBus: не ўдалося звязацца з дапаможнай праграмай. Памылка "
+"злучэння: %1. Паведамленне памылкі: %2"
 
 #: executejob.cpp:86
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
-msgstr ""
+msgstr "Спроба запуску хібнага дзеяння"
 
 #: executejob.cpp:104
-#, fuzzy
-#| msgid "Unknown encryption scheme."
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
-msgstr "Невядомая схема шыфравання."
+msgstr "Абраны невядомы рэжым выканання"
 
 #: executejob.cpp:149
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
-msgstr ""
+msgstr "Невядомы стан працэдуры аўтэнтыфікацыі"
 
 #: executejob.cpp:161
 msgctxt "KAuth::ExecuteJob|"
@@ -73,11 +77,13 @@ msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr ""
+"Бягучы рухавік дазваляе толькі аўтарызацыю дапаможнай праграмы, але для "
+"гэтага дзеянне няма дапаможнай праграмы."
 
 #: executejob.cpp:169 executejob.cpp:193
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
-msgstr ""
+msgstr "Рухавік не вызначае спосаб аўтарызацыі"
 
 #, fuzzy
 #~| msgctxt "1: the i18n'ed system error code, from errno"
