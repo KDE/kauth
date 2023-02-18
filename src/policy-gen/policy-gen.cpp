@@ -20,7 +20,7 @@
 using namespace std;
 
 QList<Action> parse(QSettings &ini);
-QMap<QString, QString> parseDomain(QSettings &ini);
+QMap<QString, QString> parseDomain(const QSettings &ini);
 
 int main(int argc, char **argv)
 {
@@ -146,7 +146,7 @@ QList<Action> parse(QSettings &ini)
     return actions;
 }
 
-QMap<QString, QString> parseDomain(QSettings &ini)
+QMap<QString, QString> parseDomain(const QSettings &ini)
 {
     QMap<QString, QString> rethash;
 
