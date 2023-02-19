@@ -31,6 +31,7 @@ int main(int argc, char **argv)
         qDebug() << "KAuth returned an error code:" << job->error();
     } else {
         QString contents = job->data()["contents"].toString();
+        qDebug() << "KAuth succeeded. Contents: " << contents;
     }
     //! [client_how_to_call_helper]
 
