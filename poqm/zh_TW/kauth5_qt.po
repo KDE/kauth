@@ -28,13 +28,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:74
+#: backends/dbus/DBusHelperProxy.cpp:70
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "DBus 後端介面錯誤：服務啟動 %1 失敗：%2"
 
-#: backends/dbus/DBusHelperProxy.cpp:89
+#: backends/dbus/DBusHelperProxy.cpp:85
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -44,7 +44,7 @@ msgstr ""
 "DBus 後端介面錯誤：連線到協助程式失敗。%1\n"
 "（應用程式：%2 協助程式：%3）"
 
-#: backends/dbus/DBusHelperProxy.cpp:124
+#: backends/dbus/DBusHelperProxy.cpp:120
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

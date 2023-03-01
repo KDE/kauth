@@ -23,13 +23,13 @@ msgstr ""
 "X-Wrapping: fine\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:71
+#: backends/dbus/DBusHelperProxy.cpp:70
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "Грешка д‑бус позадине: покретање сервиса %1 пропало: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:81
+#: backends/dbus/DBusHelperProxy.cpp:85
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -39,7 +39,7 @@ msgstr ""
 "Грешка д‑бус позадине: пропала веза са помоћником. %1\n"
 "(програм: %2 помоћник: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:118
+#: backends/dbus/DBusHelperProxy.cpp:120
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -49,22 +49,22 @@ msgstr ""
 "Грешка д‑бус позадине: помоћник не може да се контактира. Грешка повезивања: "
 "%1. Порука грешке: %2"
 
-#: kauthexecutejob.cpp:75
+#: executejob.cpp:86
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Покушано покретање лоше радње"
 
-#: kauthexecutejob.cpp:89
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Изабран непознат режим извршавања"
 
-#: kauthexecutejob.cpp:134
+#: executejob.cpp:149
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Непознато стање за поступак аутентификације"
 
-#: kauthexecutejob.cpp:146
+#: executejob.cpp:161
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -73,7 +73,7 @@ msgstr ""
 "Тренутна позадина дозвољава само овлашћивање помоћником, али ова радња нема "
 "помоћник."
 
-#: kauthexecutejob.cpp:154 kauthexecutejob.cpp:178
+#: executejob.cpp:169 executejob.cpp:193
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Позадина не наводи како се овлашћује"

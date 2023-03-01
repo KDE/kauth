@@ -36,13 +36,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:74
+#: backends/dbus/DBusHelperProxy.cpp:70
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr ""
 
-#: backends/dbus/DBusHelperProxy.cpp:89
+#: backends/dbus/DBusHelperProxy.cpp:85
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -50,7 +50,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr ""
 
-#: backends/dbus/DBusHelperProxy.cpp:124
+#: backends/dbus/DBusHelperProxy.cpp:120
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

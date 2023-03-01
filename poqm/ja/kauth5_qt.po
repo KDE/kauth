@@ -27,7 +27,7 @@ msgstr ""
 "X-Generator: Lokalize 1.1\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:74
+#: backends/dbus/DBusHelperProxy.cpp:70
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: connection to helper failed. "
@@ -35,7 +35,7 @@ msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "D-Bus バックエンドのエラー: ヘルパーへの接続に失敗しました。"
 
-#: backends/dbus/DBusHelperProxy.cpp:89
+#: backends/dbus/DBusHelperProxy.cpp:85
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: connection to helper failed. "
@@ -45,7 +45,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr "D-Bus バックエンドのエラー: ヘルパーへの接続に失敗しました。"
 
-#: backends/dbus/DBusHelperProxy.cpp:124
+#: backends/dbus/DBusHelperProxy.cpp:120
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: could not contact the helper. Connection error: "
