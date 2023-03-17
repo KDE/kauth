@@ -8,7 +8,7 @@ set(KAUTH_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuth")
 set(KAUTHCORE_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuthCore")
 set(KAUTHWIDGETS_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuthWidgets")
 
-ecm_create_qm_loader(KAuth_QM_LOADER kauth5_qt)
+ecm_create_qm_loader(KAuth_QM_LOADER kauth6_qt)
 
 set(kauthdebug_SRCS)
 ecm_qt_declare_logging_category(kauthdebug_SRCS
