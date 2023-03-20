@@ -1,4 +1,4 @@
-# Translation of kauth5_qt.po to Catalan
+# Translation of kauth6_qt.po to Catalan
 # Copyright (C) 1998-2020 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
@@ -81,7 +81,3 @@ msgstr ""
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "El dorsal no especifica com autoritzar"
-
-#~ msgctxt "KAuth::DBusHelperProxy|"
-#~ msgid ". Message error: "
-#~ msgstr ". Missatge d'error: "
