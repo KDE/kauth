@@ -40,7 +40,8 @@ class KAUTHCORE_EXPORT ExecuteJob : public KJob
 {
     Q_OBJECT
 
-    ExecuteJob(const KAuth::Action &action, KAuth::Action::ExecutionMode mode, QObject *parent);
+private:
+    KAUTHCORE_NO_EXPORT ExecuteJob(const KAuth::Action &action, KAuth::Action::ExecutionMode mode, QObject *parent);
 
     friend class Action;
 
