@@ -16,10 +16,11 @@ namespace KAuth
 {
 class KAUTHCORE_EXPORT BackendsManager
 {
+private:
     static AuthBackend *auth;
     static HelperProxy *helper;
 
-    BackendsManager();
+    KAUTHCORE_NO_EXPORT BackendsManager();
 
 public:
     static AuthBackend *authBackend();
