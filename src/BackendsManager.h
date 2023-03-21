@@ -27,8 +27,8 @@ public:
     static HelperProxy *helperProxy();
 
 private:
-    static void init();
-    static QList<QObject *> retrieveInstancesIn(const QString &path);
+    KAUTHCORE_NO_EXPORT static void init();
+    KAUTHCORE_NO_EXPORT static QList<QObject *> retrieveInstancesIn(const QString &path);
 };
 
 } // namespace Auth
