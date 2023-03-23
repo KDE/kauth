@@ -7,5 +7,9 @@
   <policy user="@HELPER_USER@">
     <allow own="@HELPER_ID@"/>
   </policy>
- 
+
+  <policy context="default">
+    <allow send_destination="*"/>
+  </policy>
+
 </busconfig>
