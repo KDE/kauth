@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2010-11-24 03:19+0000\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 19.12.3\n"
 "X-Qt-Contexts: true\n"
 
 #: backends/dbus/DBusHelperProxy.cpp:74
@@ -41,12 +41,12 @@ msgstr ""
 #: executejob.cpp:86
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
-msgstr ""
+msgstr "U përpoq nisja e një veprimi të pavlefshëm"
 
 #: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
-msgstr ""
+msgstr "Mënyra e zgjedhur e ekzekutimit është e panjohur"
 
 #: executejob.cpp:149
 msgctxt "KAuth::ExecuteJob|"
