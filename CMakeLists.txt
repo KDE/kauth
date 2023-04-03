@@ -41,8 +41,9 @@ set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprec
 option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
+set(kauth_version_header "${CMAKE_CURRENT_BINARY_DIR}/src/kauth_version.h")
 ecm_setup_version(PROJECT VARIABLE_PREFIX KAUTH
-                        VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kauth_version.h"
+                        VERSION_HEADER "${kauth_version_header}"
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6AuthConfigVersion.cmake"
                         SOVERSION 6)
 
@@ -111,7 +112,7 @@ if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
             FILE KF6AuthToolsTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 endif()
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kauth_version.h
+install(FILES ${kauth_version_header}
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KAuth COMPONENT Devel)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
