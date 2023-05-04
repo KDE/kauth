@@ -106,7 +106,7 @@ void HelperHandler::init()
     // The timer is here just to prevent the app from crashing.
     QTimer *timer = new QTimer(nullptr);
 
-    QVERIFY(m_helperProxy->initHelper(QLatin1String("org.kde.kf5auth.autotest")));
+    QVERIFY(m_helperProxy->initHelper(QLatin1String("org.kde.kf6auth.autotest")));
 
     m_helperProxy->setHelperResponder(m_helper);
 
@@ -142,8 +142,8 @@ void HelperTest::testBasicActionExecution()
 {
     Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability);
 
-    KAuth::Action action(QLatin1String("org.kde.kf5auth.autotest.standardaction"));
-    action.setHelperId(QLatin1String("org.kde.kf5auth.autotest"));
+    KAuth::Action action(QLatin1String("org.kde.kf6auth.autotest.standardaction"));
+    action.setHelperId(QLatin1String("org.kde.kf6auth.autotest"));
     QVERIFY(action.isValid());
 
     QCOMPARE(action.status(), KAuth::Action::AuthRequiredStatus);
@@ -157,8 +157,8 @@ void HelperTest::testBasicActionExecution()
 
 void HelperTest::testExecuteJobSignals()
 {
-    KAuth::Action action(QLatin1String("org.kde.kf5auth.autotest.longaction"));
-    action.setHelperId(QLatin1String("org.kde.kf5auth.autotest"));
+    KAuth::Action action(QLatin1String("org.kde.kf6auth.autotest.longaction"));
+    action.setHelperId(QLatin1String("org.kde.kf6auth.autotest"));
     QVERIFY(action.isValid());
 
     QCOMPARE(action.status(), KAuth::Action::AuthRequiredStatus);
@@ -190,8 +190,8 @@ void HelperTest::testExecuteJobSignals()
 
 void HelperTest::testTwoCalls()
 {
-    KAuth::Action action(QLatin1String("org.kde.kf5auth.autotest.standardaction"));
-    action.setHelperId(QLatin1String("org.kde.kf5auth.autotest"));
+    KAuth::Action action(QLatin1String("org.kde.kf6auth.autotest.standardaction"));
+    action.setHelperId(QLatin1String("org.kde.kf6auth.autotest"));
     QVERIFY(action.isValid());
 
     QCOMPARE(action.status(), KAuth::Action::AuthRequiredStatus);
@@ -204,8 +204,8 @@ void HelperTest::testTwoCalls()
 
 void HelperTest::testActionData()
 {
-    KAuth::Action action(QLatin1String("org.kde.kf5auth.autotest.echoaction"));
-    action.setHelperId(QLatin1String("org.kde.kf5auth.autotest"));
+    KAuth::Action action(QLatin1String("org.kde.kf6auth.autotest.echoaction"));
+    action.setHelperId(QLatin1String("org.kde.kf6auth.autotest"));
 
     QVariantMap args;
     // Fill with random data (and test heavy structures while we're at it)
@@ -228,8 +228,8 @@ void HelperTest::testActionData()
 
 void HelperTest::testHelperFailure()
 {
-    KAuth::Action action(QLatin1String("org.kde.kf5auth.autotest.failingaction"));
-    action.setHelperId(QLatin1String("org.kde.kf5auth.autotest"));
+    KAuth::Action action(QLatin1String("org.kde.kf6auth.autotest.failingaction"));
+    action.setHelperId(QLatin1String("org.kde.kf6auth.autotest"));
     QVERIFY(action.isValid());
     QCOMPARE(action.status(), KAuth::Action::AuthRequiredStatus);
     KAuth::ExecuteJob *job = action.execute();

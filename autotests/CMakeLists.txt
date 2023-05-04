@@ -7,7 +7,7 @@ if(NOT TARGET Qt6::Test)
 endif()
 
 qt_add_dbus_adaptor(kauth_dbus_adaptor_tests_SRCS
-                     ../src/backends/dbus/org.kde.kf5auth.xml
+                     ../src/backends/dbus/org.kde.kf6auth.xml
                      ../src/backends/dbus/DBusHelperProxy.h
                      KAuth::DBusHelperProxy)
 

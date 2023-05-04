@@ -126,9 +126,9 @@
 
  The slot names are the last part of the action name, without the helper's ID if
  it's a prefix, with all the dots replaced by underscores. In this case, the
- helper ID is "org.kde.kf5auth.example", so those three slots implement the
- actions "org.kde.kf5auth.example.read", "org.kde.kf5auth.example.write" and
- "org.kde.kf5auth.example.longaction". The helper ID doesn't have to appear at
+ helper ID is "org.kde.kf6auth.example", so those three slots implement the
+ actions "org.kde.kf6auth.example.read", "org.kde.kf6auth.example.write" and
+ "org.kde.kf6auth.example.longaction". The helper ID doesn't have to appear at
  the beginning of the action name, but it's good practice. If you want to extend
  MyHelper to implement also a different action like
  "org.kde.datetime.changetime", since the helper ID doesn't match you'll have to
@@ -203,7 +203,7 @@
  definition for the read action is:
 
  @verbatim
- [org.kde.kf5auth.example.read]
+ [org.kde.kf6auth.example.read]
  Name=Read action
  Description=Read action description
  Policy=auth_admin
@@ -262,7 +262,7 @@
  @section kauth_async Asynchronous calls, data reporting, and action termination
 
  For a more advanced example, we look at the action
- "org.kde.kf5auth.example.longaction" in the example helper. This is an action
+ "org.kde.kf6auth.example.longaction" in the example helper. This is an action
  that takes a long time to execute, so we need some features:
  - The helper needs to regularly send data to the application, to inform about
    the execution status.

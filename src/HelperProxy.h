@@ -50,6 +50,6 @@ Q_SIGNALS:
 
 } // namespace KAuth
 
-Q_DECLARE_INTERFACE(KAuth::HelperProxy, "org.kde.kf5auth.HelperProxy/0.1")
+Q_DECLARE_INTERFACE(KAuth::HelperProxy, "org.kde.kf6auth.HelperProxy/0.1")
 
 #endif

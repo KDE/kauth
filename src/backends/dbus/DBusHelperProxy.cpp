@@ -9,7 +9,7 @@
 #include "DBusHelperProxy.h"
 #include "BackendsManager.h"
 #include "kauthdebug.h"
-#include "kf5authadaptor.h"
+#include "kf6authadaptor.h"
 
 #include <QDBusConnectionInterface>
 #include <QDBusMessage>
@@ -46,7 +46,7 @@ DBusHelperProxy::~DBusHelperProxy()
 void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
 {
     QDBusMessage message;
-    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("stopAction"));
+    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf6auth"), QLatin1String("stopAction"));
 
     QList<QVariant> args;
     args << action;
@@ -74,7 +74,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
     const bool connected = m_busConnection.connect(helperID,
                                                    QLatin1String("/"),
-                                                   QLatin1String("org.kde.kf5auth"),
+                                                   QLatin1String("org.kde.kf6auth"),
                                                    QLatin1String("remoteSignal"),
                                                    this,
                                                    SLOT(remoteSignalReceived(int, QString, QByteArray)));
@@ -89,7 +89,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     }
 
     QDBusMessage message;
-    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf5auth"), QLatin1String("performAction"));
+    message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf6auth"), QLatin1String("performAction"));
 
     QList<QVariant> args;
     args << action << BackendsManager::authBackend()->callerID() << BackendsManager::authBackend()->backendDetails(details) << blob;
@@ -129,7 +129,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
 bool DBusHelperProxy::initHelper(const QString &name)
 {
-    new Kf5authAdaptor(this);
+    new Kf6authAdaptor(this);
 
     if (!m_busConnection.registerService(name)) {
         qCWarning(KAUTH) << "Error registering helper DBus service" << name << m_busConnection.lastError().message();

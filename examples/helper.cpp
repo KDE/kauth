@@ -66,7 +66,7 @@ ActionReply MyHelper::longaction(const QVariantMap &)
 //! [helper_longaction]
 
 //! [helper_main]
-KAUTH_HELPER_MAIN("org.kde.kf5auth.example", MyHelper)
+KAUTH_HELPER_MAIN("org.kde.kf6auth.example", MyHelper)
 //! [helper_main]
 
 #include "helper.moc"

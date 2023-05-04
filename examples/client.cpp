@@ -23,8 +23,8 @@ int main(int argc, char **argv)
     //! [client_how_to_call_helper]
     QVariantMap args;
     args["filename"] = filename;
-    Action readAction("org.kde.kf5auth.example.read");
-    readAction.setHelperId("org.kde.kf5auth.example");
+    Action readAction("org.kde.kf6auth.example.read");
+    readAction.setHelperId("org.kde.kf6auth.example");
     readAction.setArguments(args);
     ExecuteJob *job = readAction.execute();
     if (!job->exec()) {
