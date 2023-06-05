@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kauth\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-03-23 01:50+0000\n"
-"PO-Revision-Date: 2023-03-21 22:43+0100\n"
+"PO-Revision-Date: 2023-06-04 23:16+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
@@ -31,7 +31,7 @@ msgstr ""
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
-msgstr ""
+msgstr "DBus-Backend eraro: servostarto %1 malsukcesis: %2"
 
 #: backends/dbus/DBusHelperProxy.cpp:89
 #, qt-format
@@ -40,6 +40,8 @@ msgid ""
 "DBus Backend error: connection to helper failed. %1\n"
 "(application: %2 helper: %3)"
 msgstr ""
+"DBus-Backend eraro: konekto al helpilo malsukcesis. %1\n"
+"(aplikaĵo: %2 helpilo: %3)"
 
 #: backends/dbus/DBusHelperProxy.cpp:124
 #, qt-format
@@ -48,21 +50,23 @@ msgid ""
 "DBus Backend error: could not contact the helper. Connection error: %1. "
 "Message error: %2"
 msgstr ""
+"DBus-Backend eraro: ne povis kontakti la helpilon. Konekta eraro: %1. Mesaĝa "
+"eraro: %2"
 
 #: executejob.cpp:86
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
-msgstr ""
+msgstr "Provis ekigi nevalidan agon"
 
 #: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
-msgstr ""
+msgstr "Elektiĝis nekonata rulreĝimo"
 
 #: executejob.cpp:149
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
-msgstr ""
+msgstr "Nekonata statuso por la aŭtentiga proceduro"
 
 #: executejob.cpp:161
 msgctxt "KAuth::ExecuteJob|"
@@ -70,8 +74,10 @@ msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr ""
+"La aktuala backend nur permesas helpilan rajtigon, sed ĉi tiu ago ne havas "
+"helpilon."
 
 #: executejob.cpp:169 executejob.cpp:193
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
-msgstr ""
+msgstr "La backend ne specifas kiel rajtigi"
