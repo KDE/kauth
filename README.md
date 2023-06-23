@@ -33,6 +33,6 @@ KAuth::HelperSupport and be compiled into an executable.  You will also want to
 use the `kauth_install_helper_files` and `kauth_install_actions` macros in your
 CMakeLists.txt.
 
-See <http://techbase.kde.org/Development/Tutorials/KAuth/KAuth_Basics> for a
+See <https://develop.kde.org/docs/features/kauth/> for a
 detailed tutorial on how to use KAuth.
 
