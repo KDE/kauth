@@ -71,3 +71,5 @@ int FakeHelperProxy::callerUid() const
 }
 
 }
+
+#include "moc_FakeHelperProxy.cpp"

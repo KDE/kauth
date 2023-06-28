@@ -178,3 +178,5 @@ bool AuthServicesBackend::actionExists(const QString &)
 }
 
 }; // namespace KAuth
+
+#include "moc_AuthServicesBackend.cpp"

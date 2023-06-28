@@ -226,3 +226,5 @@ bool Action::hasHelper() const
 }
 
 } // namespace Auth
+
+#include "moc_action.cpp"

@@ -67,3 +67,5 @@ QVariantMap AuthBackend::backendDetails(const DetailsMap &details)
 }
 
 } // namespace KAuth
+
+#include "moc_AuthBackend.cpp"

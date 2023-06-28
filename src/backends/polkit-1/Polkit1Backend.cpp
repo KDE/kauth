@@ -192,3 +192,5 @@ QVariantMap Polkit1Backend::backendDetails(const DetailsMap &details)
 }
 
 } // namespace Auth
+
+#include "moc_Polkit1Backend.cpp"
