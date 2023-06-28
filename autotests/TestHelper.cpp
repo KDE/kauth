@@ -60,3 +60,5 @@ ActionReply TestHelper::failingaction(QVariantMap args)
     Q_UNUSED(args)
     return ActionReply::HelperErrorReply();
 }
+
+#include "moc_TestHelper.cpp"

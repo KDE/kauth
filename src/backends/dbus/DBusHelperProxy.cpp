@@ -359,3 +359,5 @@ int DBusHelperProxy::callerUid() const
 }
 
 } // namespace Auth
+
+#include "moc_DBusHelperProxy.cpp"

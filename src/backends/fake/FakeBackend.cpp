@@ -45,3 +45,5 @@ bool FakeBackend::isCallerAuthorized(const QString &action, const QByteArray &ca
 }
 
 } // namespace Auth
+
+#include "moc_FakeBackend.cpp"

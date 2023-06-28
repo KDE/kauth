@@ -107,3 +107,5 @@ bool TestBackend::actionExists(const QString &action)
 }
 
 } // namespace Auth
+
+#include "moc_TestBackend.cpp"
