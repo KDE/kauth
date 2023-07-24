@@ -33,7 +33,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr ""
 "DBus 백엔드 오류: 도우미에 연결할 수 없습니다. %1\n"
-"(프로그램: %2 도우미: %3)"
+"(앱: %2 도우미: %3)"
 
 #: backends/dbus/DBusHelperProxy.cpp:120
 #, qt-format
