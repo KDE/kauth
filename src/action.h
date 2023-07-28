@@ -409,4 +409,6 @@ private:
 
 } // namespace Auth
 
+Q_DECLARE_TYPEINFO(KAuth::Action, Q_RELOCATABLE_TYPE);
+
 #endif
