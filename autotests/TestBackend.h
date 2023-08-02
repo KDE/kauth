@@ -26,7 +26,6 @@ public:
     Action::AuthStatus actionStatus(const QString &) override;
     QByteArray callerID() const override;
     bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) override;
-    bool actionExists(const QString &action) override;
 
 public Q_SLOTS:
     void setNewCapabilities(KAuth::AuthBackend::Capabilities capabilities);

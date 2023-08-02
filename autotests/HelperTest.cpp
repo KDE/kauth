@@ -140,7 +140,7 @@ void HelperTest::initTestCase()
 
 void HelperTest::testBasicActionExecution()
 {
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability | KAuth::AuthBackend::CheckActionExistenceCapability);
+    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability);
 
     KAuth::Action action(QLatin1String("org.kde.kf5auth.autotest.standardaction"));
     action.setHelperId(QLatin1String("org.kde.kf5auth.autotest"));

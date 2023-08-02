@@ -28,7 +28,7 @@ namespace KAuth
 Polkit1Backend::Polkit1Backend()
     : AuthBackend()
 {
-    setCapabilities(AuthorizeFromHelperCapability | CheckActionExistenceCapability | PreAuthActionCapability);
+    setCapabilities(AuthorizeFromHelperCapability | PreAuthActionCapability);
 
     // Setup useful signals
     connect(PolkitQt1::Authority::instance(), &PolkitQt1::Authority::configChanged, this, &KAuth::Polkit1Backend::checkForResultChanged);
@@ -167,11 +167,6 @@ void Polkit1Backend::checkForResultChanged()
             Q_EMIT actionStatusChanged(action, *it);
         }
     }
-}
-
-bool Polkit1Backend::actionExists(const QString &action)
-{
-    return m_cachedResults.value(action) != Action::InvalidStatus;
 }
 
 QVariantMap Polkit1Backend::backendDetails(const DetailsMap &details)

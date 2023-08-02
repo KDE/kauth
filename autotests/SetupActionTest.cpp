@@ -25,7 +25,6 @@ private Q_SLOTS:
     {
     }
 
-    void testNonExistentAction();
     void testBasicActionProperties();
     void testUserAuthorization();
     void testAuthorizationFail();
@@ -51,25 +50,9 @@ void SetupActionTest::initTestCase()
             SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
 }
 
-void SetupActionTest::testNonExistentAction()
-{
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability | KAuth::AuthBackend::CheckActionExistenceCapability);
-    KAuth::Action action(QLatin1String("i.do.not.exist"));
-    QVERIFY(!action.isValid());
-
-    action = KAuth::Action(QLatin1String("/safinvalid124%$&"));
-    QVERIFY(action.isValid());
-
-    // Now with regexp check
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::NoCapability);
-
-    action = KAuth::Action(QLatin1String("/safinvalid124%$&"));
-    QVERIFY(!action.isValid());
-}
-
 void SetupActionTest::testBasicActionProperties()
 {
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability | KAuth::AuthBackend::CheckActionExistenceCapability);
+    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromHelperCapability);
     KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
     KAuth::Action action(QLatin1String("always.authorized"), detailsMap);
     QVERIFY(action.isValid());
@@ -86,9 +69,6 @@ void SetupActionTest::testBasicActionProperties()
     action.setArguments(args);
     QCOMPARE(action.arguments(), args);
 
-    action.setName(QLatin1String("i.do.not.exist"));
-    QVERIFY(!action.isValid());
-
     Q_EMIT changeCapabilities(KAuth::AuthBackend::NoCapability);
 
     action = KAuth::Action(QLatin1String("i.do.not.exist"), detailsMap);
@@ -103,8 +83,6 @@ void SetupActionTest::testBasicActionProperties()
 
 void SetupActionTest::testUserAuthorization()
 {
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::CheckActionExistenceCapability);
-
     KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
     KAuth::Action action(QLatin1String("requires.auth"), detailsMap);
     QVERIFY(action.isValid());
@@ -116,7 +94,7 @@ void SetupActionTest::testUserAuthorization()
 
     QCOMPARE(job->error(), (int)KAuth::ActionReply::BackendError);
 
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::CheckActionExistenceCapability | KAuth::AuthBackend::AuthorizeFromClientCapability);
+    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromClientCapability);
 
     QVERIFY(action.isValid());
 
@@ -131,7 +109,7 @@ void SetupActionTest::testUserAuthorization()
 
 void SetupActionTest::testAuthorizationFail()
 {
-    Q_EMIT changeCapabilities(KAuth::AuthBackend::CheckActionExistenceCapability | KAuth::AuthBackend::AuthorizeFromClientCapability);
+    Q_EMIT changeCapabilities(KAuth::AuthBackend::AuthorizeFromClientCapability);
 
     KAuth::Action::DetailsMap detailsMap{{KAuth::Action::AuthDetail::DetailOther, QLatin1String("details")}};
     KAuth::Action action(QLatin1String("doomed.to.fail"), detailsMap);

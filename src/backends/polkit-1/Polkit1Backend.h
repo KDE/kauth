@@ -37,7 +37,6 @@ public:
     QByteArray callerID() const override;
     ExtraCallerIDVerificationMethod extraCallerIDVerificationMethod() const override;
     virtual bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) override;
-    bool actionExists(const QString &action) override;
     QVariantMap backendDetails(const DetailsMap &details) override;
 
 private Q_SLOTS:

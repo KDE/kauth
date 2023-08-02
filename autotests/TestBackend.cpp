@@ -14,7 +14,7 @@ TestBackend::TestBackend()
     : AuthBackend()
 {
     qDebug() << "Test backend loaded";
-    setCapabilities(AuthorizeFromHelperCapability | CheckActionExistenceCapability);
+    setCapabilities(AuthorizeFromHelperCapability);
 }
 
 void TestBackend::setNewCapabilities(AuthBackend::Capabilities capabilities)
@@ -88,22 +88,6 @@ bool TestBackend::isCallerAuthorized(const QString &action, const QByteArray &ca
     }
 
     return false;
-}
-
-bool TestBackend::actionExists(const QString &action)
-{
-    qDebug() << "Checking if action " << action << "exists";
-    /* clang-format off */
-    if (action != QLatin1String("doomed.to.fail")
-        && action != QLatin1String("requires.auth")
-        && action != QLatin1String("generates.error")
-        && action != QLatin1String("always.authorized")
-        && action != QLatin1String("/safinvalid124%$&")
-        && !action.startsWith(QLatin1String("org.kde.kf5auth.autotest"))) { /* clang-format on */
-        return false;
-    }
-
-    return true;
 }
 
 } // namespace Auth

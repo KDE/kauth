@@ -48,12 +48,6 @@ AuthBackend::ExtraCallerIDVerificationMethod AuthBackend::extraCallerIDVerificat
     return NoExtraCallerIDVerificationMethod;
 }
 
-bool AuthBackend::actionExists(const QString &action)
-{
-    Q_UNUSED(action);
-    return false;
-}
-
 void AuthBackend::preAuthAction(const QString &action, QWindow *parent)
 {
     Q_UNUSED(action)

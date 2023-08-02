@@ -170,13 +170,6 @@ bool AuthServicesBackend::isCallerAuthorized(const QString &action, const QByteA
     return result == errAuthorizationSuccess;
 }
 
-// OS X doesn't distinguish between "action doesn't exist" and "action not allowed". So the
-// best thing we can do is return true and hope that the action will be created if it didn't exist...
-bool AuthServicesBackend::actionExists(const QString &)
-{
-    return true;
-}
-
 }; // namespace KAuth
 
 #include "moc_AuthServicesBackend.cpp"

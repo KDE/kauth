@@ -26,8 +26,7 @@ public:
         NoCapability = 0,
         AuthorizeFromClientCapability = 1,
         AuthorizeFromHelperCapability = 2,
-        CheckActionExistenceCapability = 4,
-        PreAuthActionCapability = 8,
+        PreAuthActionCapability = 4,
     };
     Q_DECLARE_FLAGS(Capabilities, Capability)
 
@@ -46,7 +45,6 @@ public:
     virtual QByteArray callerID() const = 0;
     virtual ExtraCallerIDVerificationMethod extraCallerIDVerificationMethod() const;
     virtual bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) = 0;
-    virtual bool actionExists(const QString &action);
     virtual QVariantMap backendDetails(const DetailsMap &details);
 
     Capabilities capabilities() const;

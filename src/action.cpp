@@ -131,19 +131,7 @@ void Action::setDetailsV2(const DetailsMap &details)
 
 bool Action::isValid() const
 {
-    if (d->name.isEmpty()) {
-        return false;
-    }
-
-    // Does the backend support checking for known actions?
-    if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::CheckActionExistenceCapability) {
-        // In this case, just ask the backend
-        return BackendsManager::authBackend()->actionExists(name());
-    } else {
-        // Otherwise, check through a regexp
-        const QRegularExpression re(QRegularExpression::anchoredPattern(QStringLiteral("[0-z]+(\\.[0-z]+)*")));
-        return re.match(name()).hasMatch();
-    }
+    return !d->name.isEmpty();
 }
 
 void Action::setArguments(const QVariantMap &arguments)
