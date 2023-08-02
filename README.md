@@ -15,7 +15,7 @@ If you are using CMake, you need to have
     find_package(KF6Auth NO_MODULE)
 
 (or find KF6 with the Auth component) in your CMakeLists.txt file. You need
-to link to KF6::AuthCore, or KF6::Auth if you need KAuth::ObjectDecorator.
+to link to KF6::AuthCore.
 
 Executing privileged actions typically involves having a minimal helper utility
 that does the actual work, and calling that utility with escalated privileges if

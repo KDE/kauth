@@ -6,7 +6,6 @@ configure_file(BackendsConfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/BackendsConfig
 
 set(KAUTH_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuth")
 set(KAUTHCORE_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuthCore")
-set(KAUTHWIDGETS_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuthWidgets")
 
 ecm_create_qm_loader(KAuth_QM_LOADER kauth6_qt)
 
@@ -82,55 +81,6 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         DESTINATION ${KAUTHCORE_INSTALL_INCLUDEDIR}/KAuth # C++ namespace
         COMPONENT Devel
     )
-
-    add_library(KF6AuthWidgets)
-    add_library(KF6::AuthWidgets ALIAS KF6AuthWidgets)
-    set_target_properties(KF6AuthWidgets PROPERTIES
-        VERSION     ${KAUTH_VERSION}
-        SOVERSION   ${KAUTH_SOVERSION}
-        EXPORT_NAME AuthWidgets
-    )
-
-    target_sources(KF6AuthWidgets PRIVATE
-        ${kauthdebug_SRCS}
-        objectdecorator.cpp
-    )
-
-    ecm_generate_export_header(KF6AuthWidgets
-        BASE_NAME KAuth
-        GROUP_BASE_NAME KF
-        VERSION ${KF_VERSION}
-        USE_VERSION_HEADER
-        DEPRECATED_BASE_VERSION 0
-        DEPRECATION_VERSIONS
-        EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
-    )
-
-    target_include_directories(KF6AuthWidgets INTERFACE "$<INSTALL_INTERFACE:${KAUTHWIDGETS_INSTALL_INCLUDEDIR}>")
-
-    target_link_libraries(KF6AuthWidgets PUBLIC KF6AuthCore)
-    target_link_libraries(KF6AuthWidgets PRIVATE Qt6::Widgets)
-
-    install(TARGETS KF6AuthWidgets EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
-
-    ecm_generate_headers(KAuthWidgets_CamelCase_HEADERS
-        HEADER_NAMES
-            ObjectDecorator
-
-        PREFIX KAuth
-        REQUIRED_HEADERS KAuthWidgets_HEADERS
-    )
-    install(FILES
-        ${CMAKE_CURRENT_BINARY_DIR}/kauth_export.h
-        ${KAuthWidgets_HEADERS}
-        DESTINATION ${KAUTHWIDGETS_INSTALL_INCLUDEDIR}/kauth # C++ namespace
-        COMPONENT Devel
-    )
-    install(FILES
-        ${KAuthWidgets_CamelCase_HEADERS}
-        DESTINATION ${KAUTHWIDGETS_INSTALL_INCLUDEDIR}/KAuth # C++ namespace
-        COMPONENT Devel
-    )
 endif()
 
 # KAuth policy generator executable
@@ -197,7 +147,6 @@ if(BUILD_QCH)
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API
             ${KAuthCore_HEADERS}
-            ${KAuthWidgets_HEADERS}
         MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
         LINK_QCHS
             Qt6Core_QCH
@@ -228,13 +177,5 @@ ecm_generate_pri_file(
     INCLUDE_INSTALL_DIRS
         ${KAUTHCORE_INSTALL_INCLUDEDIR}
         ${KAUTH_INSTALL_INCLUDEDIR}
-)
-install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
-ecm_generate_pri_file(
-    BASE_NAME KAuth
-    LIB_NAME KF6Auth
-    DEPS "KAuthCore"
-    FILENAME_VAR PRI_FILENAME
-    INCLUDE_INSTALL_DIRS ${KAUTHWIDGETS_INSTALL_INCLUDEDIR}
 )
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
