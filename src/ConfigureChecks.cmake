@@ -93,7 +93,7 @@ elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT6-1")
         backends/polkit-1/Polkit1Backend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt6::DBus Qt6::Widgets KF6::AuthCore)
+    set(KAUTH_BACKEND_LIBS ${POLKITQT-1_CORE_LIBRARY} Qt6::DBus Qt6::Gui KF6::AuthCore)
 
     # POLKITQT-1_POLICY_FILES_INSTALL_DIR has an absolute pathname, fix that.
     if(PolkitQt6-1_FOUND)

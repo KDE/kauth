@@ -16,7 +16,7 @@ if(NOT @BUILD_SHARED_LIBS@)
     find_dependency(Qt6DBus "@REQUIRED_QT_VERSION@")
 
     if(NOT @KAUTH_BUILD_CODEGENERATOR_ONLY@)
-        find_dependency(Qt6Widgets "@REQUIRED_QT_VERSION@")
+        find_dependency(Qt6Gui "@REQUIRED_QT_VERSION@")
     endif()
 
     if(NOT KAUTH_BACKEND_NAME AND @UNIX@ AND NOT @APPLE@)

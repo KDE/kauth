@@ -31,7 +31,7 @@ public:
     Polkit1Backend();
     ~Polkit1Backend() override;
     void setupAction(const QString &) override;
-    void preAuthAction(const QString &action, QWidget *parent) override;
+    void preAuthAction(const QString &action, QWindow *parent) override;
     Action::AuthStatus authorizeAction(const QString &) override;
     Action::AuthStatus actionStatus(const QString &) override;
     QByteArray callerID() const override;

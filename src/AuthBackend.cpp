@@ -54,7 +54,7 @@ bool AuthBackend::actionExists(const QString &action)
     return false;
 }
 
-void AuthBackend::preAuthAction(const QString &action, QWidget *parent)
+void AuthBackend::preAuthAction(const QString &action, QWindow *parent)
 {
     Q_UNUSED(action)
     Q_UNUSED(parent)

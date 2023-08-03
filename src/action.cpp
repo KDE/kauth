@@ -9,8 +9,6 @@
 #include <QRegularExpression>
 #include <QtGlobal>
 
-class QWidget;
-
 #include "executejob.h"
 
 #include "BackendsManager.h"
@@ -43,7 +41,7 @@ public:
     QString helperId;
     Action::DetailsMap details;
     QVariantMap args;
-    QWidget *parent = nullptr;
+    QWindow *parent = nullptr;
     int timeout;
 };
 
@@ -174,12 +172,12 @@ void Action::setHelperId(const QString &id)
     d->helperId = id;
 }
 
-void Action::setParentWidget(QWidget *parent)
+void Action::setParentWindow(QWindow *parent)
 {
     d->parent = parent;
 }
 
-QWidget *Action::parentWidget() const
+QWindow *Action::parentWindow() const
 {
     return d->parent;
 }

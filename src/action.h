@@ -20,6 +20,8 @@
 #include <chrono>
 #endif
 
+class QWindow;
+
 namespace KAuth
 {
 class ExecuteJob;
@@ -379,7 +381,7 @@ public:
     ExecuteJob *execute(ExecutionMode mode = ExecuteMode);
 
     /**
-     * @brief Sets a parent widget for the authentication dialog
+     * @brief Sets a parent window for the authentication dialog
      *
      * This function is used for explicitly setting a parent window for an eventual authentication dialog required when
      * authorization is triggered. Some backends, in fact, (like polkit-1) need to have a parent explicitly set for displaying
@@ -388,20 +390,20 @@ public:
      * @note If you are using KAuth through one of KDE's GUI components (KPushButton, KCModule...) you do not need and should not
      *       call this function, as it is already done by the component itself.
      *
-     * @since 4.6
+     * @since 6.0
      *
      * @param parent A QWidget which will be used as the dialog's parent
      */
-    void setParentWidget(QWidget *parent);
+    void setParentWindow(QWindow *parent);
 
     /**
      * @brief Returns the parent widget for the authentication dialog for this action
      *
-     * @since 4.6
+     * @since 6.0
      *
-     * @returns A QWidget which will is being used as the dialog's parent
+     * @returns A QWindow which will is being used as the dialog's parent
      */
-    QWidget *parentWidget() const;
+    QWindow *parentWindow() const;
 
 private:
     QSharedDataPointer<ActionData> d;

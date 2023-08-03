@@ -14,8 +14,8 @@
 #include <QTimer>
 #include <qplugin.h>
 
-#include <QApplication>
-#include <QWidget>
+#include <QGuiApplication>
+#include <QWindow>
 
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
@@ -39,7 +39,7 @@ Polkit1Backend::~Polkit1Backend()
 {
 }
 
-void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
+void Polkit1Backend::preAuthAction(const QString &action, QWindow *parent)
 {
     // If a parent was not specified, skip this
     if (!parent) {
@@ -50,12 +50,12 @@ void Polkit1Backend::preAuthAction(const QString &action, QWidget *parent)
     // Are we running our KDE auth agent?
     if (QDBusConnection::sessionBus().interface()->isServiceRegistered(QLatin1String("org.kde.polkit-kde-authentication-agent-1"))) {
         // Check if we actually are entitled to use GUI capabilities
-        if (qApp == nullptr || !qobject_cast<QApplication *>(qApp)) {
+        if (!qGuiApp) {
             qCDebug(KAUTH) << "Not streaming parent as we are on a TTY application";
         }
 
         // Retrieve the dialog root window Id
-        qulonglong wId = parent->effectiveWinId();
+        qulonglong wId = parent->winId();
 
         // Send it over the bus to our agent
         QDBusMessage methodCall = QDBusMessage::createMethodCall(QLatin1String("org.kde.polkit-kde-authentication-agent-1"),
