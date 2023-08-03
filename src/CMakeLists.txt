@@ -4,6 +4,7 @@ include(ConfigureChecks.cmake)
 # Configure a small file to tell BackendsManager what to use
 configure_file(BackendsConfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/BackendsConfig.h)
 
+set(KAUTH_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuth")
 set(KAUTHCORE_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR_KF}/KAuthCore")
 
 ecm_create_qm_loader(KAuth_QM_LOADER kauth6_qt)
@@ -55,7 +56,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     target_link_libraries(KF6AuthCore PRIVATE Qt6::DBus)
 
     target_include_directories(KF6AuthCore INTERFACE
-        "$<INSTALL_INTERFACE:${KAUTHCORE_INSTALL_INCLUDEDIR}>"
+        "$<INSTALL_INTERFACE:${KAUTHCORE_INSTALL_INCLUDEDIR};${KAUTH_INSTALL_INCLUDEDIR}>"
     )
     install(TARGETS KF6AuthCore EXPORT KF6AuthTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -175,5 +176,6 @@ ecm_generate_pri_file(
     FILENAME_VAR PRI_FILENAME
     INCLUDE_INSTALL_DIRS
         ${KAUTHCORE_INSTALL_INCLUDEDIR}
+        ${KAUTH_INSTALL_INCLUDEDIR}
 )
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
