@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kauth\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-03-23 01:50+0000\n"
-"PO-Revision-Date: 2023-03-29 20:12+0100\n"
+"PO-Revision-Date: 2023-08-06 22:58+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -28,10 +28,11 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 
 #: backends/dbus/DBusHelperProxy.cpp:70
-#, qt-format
+#, fuzzy, qt-format
+#| msgid "DBus Backend error: service start %1 failed: %2"
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
-msgstr "DBus-Backend eraro: serv-ekfunkciigo malsukcesis: %2"
+msgstr "DBus-Backend eraro: serv-ekfunkciigo %1 malsukcesis: %2"
 
 #: backends/dbus/DBusHelperProxy.cpp:85
 #, qt-format
