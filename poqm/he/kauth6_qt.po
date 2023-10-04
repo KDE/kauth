@@ -17,66 +17,70 @@
 # Meni Livne <livne@kde.org>, 2007.
 # tahmar1900 <tahmar1900@gmail.com>, 2008, 2009.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2023 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-05-16 06:49-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2023-10-03 08:12+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
 #: backends/dbus/DBusHelperProxy.cpp:70
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
-msgstr "שגיאה במנוע הרקע של DBus: נכשל ניסיון יצירת קשר עם המסייע. %1"
+msgstr "שגיאת מנגנון DBus: הפעלת השירות %1 נכשלה: %2"
 
 #: backends/dbus/DBusHelperProxy.cpp:85
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
 "DBus Backend error: connection to helper failed. %1\n"
 "(application: %2 helper: %3)"
-msgstr "שגיאה במנוע הרקע של DBus: נכשל ניסיון יצירת קשר עם המסייע. %1"
+msgstr ""
+"שגיאת מנגנון DBus: החיבור למסייע נכשל. %1\n"
+"(יישום: %2 מסייע: %3)"
 
 #: backends/dbus/DBusHelperProxy.cpp:120
-#, fuzzy, qt-format
+#, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
 "DBus Backend error: could not contact the helper. Connection error: %1. "
 "Message error: %2"
 msgstr ""
-"שגיאה במנוע הרקע של DBus: לא ניתן ליצור קשר עם המסייע. שגיאת התקשרות: %1. "
-"הודעת שגיאה: %2"
+"שגיאת מנגנון DBus: לא ניתן ליצור קשר עם המסייע. שגיאת חיבור: %1. שגיאת "
+"הודעה: %2"
 
 #: executejob.cpp:86
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
-msgstr ""
+msgstr "התבצע ניסיון להרצת פעולה שגויה"
 
 #: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
-msgstr ""
+msgstr "נבחר מצב הפעלה לא ידוע"
 
 #: executejob.cpp:149
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
-msgstr ""
+msgstr "מצב לא ידוע של מהלך אימות"
 
 #: executejob.cpp:161
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
-msgstr ""
+msgstr "המנגנון הנוכחי רק מאפשר את אימות המסייע, אך לפעולה הזאת אין מסייע."
 
 #: executejob.cpp:169 executejob.cpp:193
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
-msgstr ""
+msgstr "המנגנון לא מציין איך לבצע אימות"
