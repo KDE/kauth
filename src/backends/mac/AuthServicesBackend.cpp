@@ -65,7 +65,7 @@ static OSStatus GetActionRights(const QString &action, AuthorizationFlags flags,
 AuthServicesBackend::AuthServicesBackend()
     : AuthBackend()
 {
-    setCapabilities(AuthorizeFromClientCapability | CheckActionExistenceCapability);
+    setCapabilities(AuthorizeFromClientCapability);
 }
 
 AuthServicesBackend::~AuthServicesBackend()

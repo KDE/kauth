@@ -83,7 +83,7 @@ if(KAUTH_BACKEND_NAME STREQUAL "OSX")
         backends/mac/AuthServicesBackend.cpp
     )
 
-    set(KAUTH_BACKEND_LIBS ${SECURITY_LIBRARY} Qt6::Core)
+    set(KAUTH_BACKEND_LIBS ${SECURITY_LIBRARY} Qt6::Core KF6::AuthCore)
 elseif(KAUTH_BACKEND_NAME STREQUAL "POLKITQT6-1")
     message(STATUS "Building PolkitQt6-1 KAuth backend")
 
