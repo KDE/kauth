@@ -101,7 +101,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
 
     auto watcher = new QDBusPendingCallWatcher(pendingCall, this);
 
-    connect(watcher, &QDBusPendingCallWatcher::finished, this, [=]() mutable {
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, [this, action, args, message, watcher, timeout]() mutable {
         watcher->deleteLater();
 
         QDBusMessage reply = watcher->reply();
