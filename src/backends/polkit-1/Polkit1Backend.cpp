@@ -47,13 +47,14 @@ void Polkit1Backend::preAuthAction(const QString &action, QWindow *parent)
         return;
     }
 
+    // Check if we actually are entitled to use GUI capabilities
+    if (!qGuiApp) {
+        qCDebug(KAUTH) << "Not streaming parent as we are on a TTY application";
+        return;
+    }
+
     // Are we running our KDE auth agent?
     if (QDBusConnection::sessionBus().interface()->isServiceRegistered(QLatin1String("org.kde.polkit-kde-authentication-agent-1"))) {
-        // Check if we actually are entitled to use GUI capabilities
-        if (!qGuiApp) {
-            qCDebug(KAUTH) << "Not streaming parent as we are on a TTY application";
-        }
-
         // Retrieve the dialog root window Id
         qulonglong wId = parent->winId();
 
