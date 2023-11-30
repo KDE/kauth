@@ -2,6 +2,7 @@
     SPDX-FileCopyrightText: 2008 Nicola Gigante <nicola.gigante@gmail.com>
     SPDX-FileCopyrightText: 2009 Radek Novacek <rnovacek@redhat.com>
     SPDX-FileCopyrightText: 2009-2010 Dario Freddi <drf@kde.org>
+    SPDX-FileCopyrightText: 2023 Kai Uwe Broulik <kde@broulik.de>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
@@ -16,6 +17,8 @@
 #include <QStringList>
 
 #include <PolkitQt1/Authority>
+
+#include <memory>
 
 class QByteArray;
 
@@ -43,6 +46,8 @@ private Q_SLOTS:
     void checkForResultChanged();
 
 private:
+    void sendWindowHandle(const QString &action, const QString &handle);
+
     QHash<QString, Action::AuthStatus> m_cachedResults;
 };
 

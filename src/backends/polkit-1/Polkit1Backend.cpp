@@ -3,12 +3,16 @@
     SPDX-FileCopyrightText: 2009 Radek Novacek <rnovacek@redhat.com>
     SPDX-FileCopyrightText: 2009-2010 Dario Freddi <drf@kde.org>
     SPDX-FileCopyrightText: 2020 David Edmundson <davidedmundson@kde.org>
+    SPDX-FileCopyrightText: 2023 Kai Uwe Broulik <kde@broulik.de>
 
     SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include "Polkit1Backend.h"
 #include "kauthdebug.h"
+
+#include <KWaylandExtras>
+#include <KWindowSystem>
 
 #include <QCoreApplication>
 #include <QTimer>
@@ -19,12 +23,19 @@
 
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
+#include <QDBusPendingCallWatcher>
+#include <QDBusPendingReply>
 
 #include <PolkitQt1/Subject>
 #include <polkitqt1-version.h>
 
+constexpr QLatin1String c_kdeAgentService{"org.kde.polkit-kde-authentication-agent-1"};
+constexpr QLatin1String c_kdeAgentPath{"/org/kde/Polkit1AuthAgent"};
+constexpr QLatin1String c_kdeAgentInterface{"org.kde.Polkit1AuthAgent"};
+
 namespace KAuth
 {
+
 Polkit1Backend::Polkit1Backend()
     : AuthBackend()
 {
@@ -39,10 +50,10 @@ Polkit1Backend::~Polkit1Backend()
 {
 }
 
-void Polkit1Backend::preAuthAction(const QString &action, QWindow *parent)
+void Polkit1Backend::preAuthAction(const QString &action, QWindow *parentWindow)
 {
     // If a parent was not specified, skip this
-    if (!parent) {
+    if (!parentWindow) {
         qCDebug(KAUTH) << "Parent widget does not exist, skipping";
         return;
     }
@@ -55,27 +66,57 @@ void Polkit1Backend::preAuthAction(const QString &action, QWindow *parent)
 
     // Are we running our KDE auth agent?
     if (QDBusConnection::sessionBus().interface()->isServiceRegistered(QLatin1String("org.kde.polkit-kde-authentication-agent-1"))) {
-        // Retrieve the dialog root window Id
-        qulonglong wId = parent->winId();
+        if (KWindowSystem::isPlatformWayland()) {
+            KWaylandExtras::exportWindow(parentWindow);
+            connect(
+                KWaylandExtras::self(),
+                &KWaylandExtras::windowExported,
+                this,
+                [this, action, parentWindow](QWindow *window, const QString &handle) {
+                    if (window == parentWindow) {
+                        sendWindowHandle(action, handle);
+                    }
+                },
+                Qt::SingleShotConnection);
+        } else {
+            // Retrieve the dialog root window Id
+            const qulonglong wId = parentWindow->winId();
 
-        // Send it over the bus to our agent
-        QDBusMessage methodCall = QDBusMessage::createMethodCall(QLatin1String("org.kde.polkit-kde-authentication-agent-1"),
-                                                                 QLatin1String("/org/kde/Polkit1AuthAgent"),
-                                                                 QLatin1String("org.kde.Polkit1AuthAgent"),
-                                                                 QLatin1String("setWIdForAction"));
+            sendWindowHandle(action, QString::number(wId));
 
-        methodCall << action;
-        methodCall << wId;
+            // Call the old method for compatibility.
+            QDBusMessage methodCall = QDBusMessage::createMethodCall(c_kdeAgentService, c_kdeAgentPath, c_kdeAgentInterface, QLatin1String("setWIdForAction"));
+            methodCall << action;
+            methodCall << wId;
 
-        QDBusPendingCall call = QDBusConnection::sessionBus().asyncCall(methodCall);
-        call.waitForFinished();
-
-        if (call.isError()) {
-            qCWarning(KAUTH) << "ERROR while streaming the parent!!" << call.error();
+            // Legacy call has to be blocking, old agent doesn't handle it coming in delayed.
+            const auto reply = QDBusConnection::sessionBus().call(methodCall);
+            if (reply.type() != QDBusMessage::ReplyMessage) {
+                qWarning() << "Failed to set window id" << wId << "for" << action << reply.errorMessage();
+            }
         }
     } else {
         qCDebug(KAUTH) << "KDE polkit agent appears too old or not registered on the bus";
     }
+}
+
+void Polkit1Backend::sendWindowHandle(const QString &action, const QString &handle)
+{
+    // Send it over the bus to our agent
+    QDBusMessage methodCall = QDBusMessage::createMethodCall(c_kdeAgentService, c_kdeAgentPath, c_kdeAgentInterface, QLatin1String("setWindowHandleForAction"));
+    methodCall << action;
+    methodCall << handle;
+
+    const auto reply = QDBusConnection::sessionBus().asyncCall(methodCall);
+    auto *watcher = new QDBusPendingCallWatcher(reply, this);
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, [this, watcher, handle, action] {
+        watcher->deleteLater();
+
+        QDBusPendingReply<> reply = *watcher;
+        if (reply.isError()) {
+            qCWarning(KAUTH) << "Failed to set window handle" << handle << "for" << action << reply.error().message();
+        }
+    });
 }
 
 Action::AuthStatus Polkit1Backend::authorizeAction(const QString &action)
@@ -189,4 +230,4 @@ QVariantMap Polkit1Backend::backendDetails(const DetailsMap &details)
 
 } // namespace Auth
 
-#include "moc_Polkit1Backend.cpp"
+#include "Polkit1Backend.moc"
