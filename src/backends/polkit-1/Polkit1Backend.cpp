@@ -193,11 +193,6 @@ QByteArray Polkit1Backend::callerID() const
     return QDBusConnection::systemBus().baseService().toUtf8();
 }
 
-AuthBackend::ExtraCallerIDVerificationMethod Polkit1Backend::extraCallerIDVerificationMethod() const
-{
-    return VerifyAgainstDBusServiceName;
-}
-
 bool Polkit1Backend::isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details)
 {
     PolkitQt1::SystemBusNameSubject subject(QString::fromUtf8(callerID));

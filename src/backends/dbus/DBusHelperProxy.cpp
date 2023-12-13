@@ -199,25 +199,8 @@ bool DBusHelperProxy::hasToStopAction()
 
 bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details)
 {
-    // Check the caller is really who it says it is
-    switch (BackendsManager::authBackend()->extraCallerIDVerificationMethod()) {
-    case AuthBackend::NoExtraCallerIDVerificationMethod:
-        break;
-
-    case AuthBackend::VerifyAgainstDBusServiceName:
-        if (message().service().toUtf8() != callerID) {
-            return false;
-        }
-        break;
-
-    case AuthBackend::VerifyAgainstDBusServicePid:
-        if (connection().interface()->servicePid(message().service()).value() != callerID.toUInt()) {
-            return false;
-        }
-        break;
-    }
-
-    return BackendsManager::authBackend()->isCallerAuthorized(action, callerID, details);
+    Q_UNUSED(callerID); // this only exists for the benefit of the mac backend. We obtain our callerID from dbus!
+    return BackendsManager::authBackend()->isCallerAuthorized(action, message().service().toUtf8(), details);
 }
 
 QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArray &callerID, const QVariantMap &details, QByteArray arguments)

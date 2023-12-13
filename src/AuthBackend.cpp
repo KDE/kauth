@@ -43,11 +43,6 @@ void AuthBackend::setCapabilities(AuthBackend::Capabilities capabilities)
     d->capabilities = capabilities;
 }
 
-AuthBackend::ExtraCallerIDVerificationMethod AuthBackend::extraCallerIDVerificationMethod() const
-{
-    return NoExtraCallerIDVerificationMethod;
-}
-
 void AuthBackend::preAuthAction(const QString &action, QWindow *parent)
 {
     Q_UNUSED(action)

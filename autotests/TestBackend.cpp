@@ -56,7 +56,7 @@ Action::AuthStatus TestBackend::actionStatus(const QString &action)
 
 QByteArray TestBackend::callerID() const
 {
-    return QByteArray("a random caller Id");
+    return qgetenv("KAUTH_TEST_CALLER_ID");
 }
 
 bool TestBackend::isCallerAuthorized(const QString &action, const QByteArray &callerId, const QVariantMap &details)
@@ -76,7 +76,7 @@ bool TestBackend::isCallerAuthorized(const QString &action, const QByteArray &ca
     } else if (action == QLatin1String("always.authorized")) {
         return true;
     } else if (action.startsWith(QLatin1String("org.kde.kf6auth.autotest"))) {
-        qDebug() << "Caller ID:" << callerId;
+        qDebug() << "Caller ID:" << callerId << callerID();
         if (callerId == callerID()) {
             m_actionStatuses.insert(action, Action::AuthorizedStatus);
             Q_EMIT actionStatusChanged(action, Action::AuthorizedStatus);

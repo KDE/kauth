@@ -99,6 +99,7 @@ HelperHandler::HelperHandler()
 void HelperHandler::init()
 {
     qDebug() << "Initializing helper handler";
+    qputenv("KAUTH_TEST_CALLER_ID", QDBusConnection::sessionBus().baseService().toUtf8());
     // Set up our Helper - of course, it is not in a separate process here so we need to copy what
     // HelperProxy::helperMain() does
     m_helperProxy = new DBusHelperProxy(QDBusConnection::sessionBus());
