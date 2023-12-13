@@ -341,6 +341,6 @@ int DBusHelperProxy::callerUid() const
     return iface->serviceUid(message().service());
 }
 
-} // namespace Auth
+} // namespace KAuth
 
 #include "moc_DBusHelperProxy.cpp"
