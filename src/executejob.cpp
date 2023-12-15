@@ -40,8 +40,6 @@ public:
     void statusChangedSlot(const QString &action, KAuth::Action::AuthStatus status);
 };
 
-static QHash<QString, ExecuteJob *> s_watchers;
-
 ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject *parent)
     : KJob(parent)
     , d(new ExecuteJobPrivate(this))
