@@ -48,22 +48,22 @@ msgstr ""
 "Хатои дохилии DBus: алоқа бо ёридиҳанда имконнопазир аст. Хатои пайвастшавӣ: "
 "%1. Паёми хато: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Кӯшиши оғози амали нодуруст"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Иҷрокунии реҷаи номаълум интихоб шудааст"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Вазъияти номаълум барои раванди санҷиши ҳаққоният"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -72,7 +72,7 @@ msgstr ""
 "Коркардкунандаи ҷорӣ танҳо барои санҷиши ҳаққонияти ёридиҳанда иҷозат "
 "медиҳад, аммо ин амал дорои ёридиҳанда намебошад."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Ин коркардкунанда роҳи санҷиши ҳаққониятро муайян намекунад"

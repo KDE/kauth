@@ -49,22 +49,22 @@ msgstr ""
 "DBus bizkarraldekoan errorea: ezin izan da laguntzailea kontaktatu: %1. "
 "Konexio errorea: %1. Mezu errorea: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Ekintza baliogabe bat abiatzen saiatu da"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Exekuzio modu ezezaguna hautatu da"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Egoera ezezaguna autentifikazio prozeduran"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -73,7 +73,7 @@ msgstr ""
 "Uneko bizkarraldekoak laguntzaile baimen-ematea onartzen du, baino ekintza "
 "honek ez du laguntzailerik."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Bizkarraldekoak ez du zehazten baimena nola eman"

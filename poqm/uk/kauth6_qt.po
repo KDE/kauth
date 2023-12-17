@@ -52,22 +52,22 @@ msgstr ""
 "Помилка модуля DBus: не вдалося зв’язатися з допоміжною програмою. Помилка "
 "з’єднання: %1. Повідомлення про помилку: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Спроба виконати некоректну дію"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Вибрано невідомий режим виконання"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Невідомий стан для процедури розпізнавання"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -76,7 +76,7 @@ msgstr ""
 "У поточному модулі обробки передбачено лише уповноваження допоміжної "
 "програми, але у цієї дії немає допоміжної програми."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "У модулі обробки не визначено способу уповноваження"

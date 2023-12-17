@@ -56,22 +56,22 @@ msgstr ""
 "Памылка рухавіка DBus: не ўдалося звязацца з дапаможнай праграмай. Памылка "
 "злучэння: %1. Паведамленне памылкі: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Спроба запуску хібнага дзеяння"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Абраны невядомы рэжым выканання"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Невядомы стан працэдуры аўтэнтыфікацыі"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -80,7 +80,7 @@ msgstr ""
 "Бягучы рухавік дазваляе толькі аўтарызацыю дапаможнай праграмы, але для "
 "гэтага дзеянне няма дапаможнай праграмы."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Рухавік не вызначае спосаб аўтарызацыі"

@@ -48,22 +48,22 @@ msgstr ""
 "Грешка д‑бус позадине: помоћник не може да се контактира. Грешка повезивања: "
 "%1. Порука грешке: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Покушано покретање лоше радње"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Изабран непознат режим извршавања"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Непознато стање за поступак аутентификације"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -72,7 +72,7 @@ msgstr ""
 "Тренутна позадина дозвољава само овлашћивање помоћником, али ова радња нема "
 "помоћник."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Позадина не наводи како се овлашћује"

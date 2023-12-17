@@ -59,29 +59,29 @@ msgstr ""
 "שגיאת מנגנון DBus: לא ניתן ליצור קשר עם המסייע. שגיאת חיבור: %1. שגיאת "
 "הודעה: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "התבצע ניסיון להרצת פעולה שגויה"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "נבחר מצב הפעלה לא ידוע"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "מצב לא ידוע של מהלך אימות"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr "המנגנון הנוכחי רק מאפשר את אימות המסייע, אך לפעולה הזאת אין מסייע."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "המנגנון לא מציין איך לבצע אימות"

@@ -134,22 +134,22 @@ msgstr ""
 "Erro da infra-estrutura D-Bus: não foi possível contactar o utilitário. Erro "
 "de ligação: %1. Mensagem de erro: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Tentou-se iniciar uma acção inválida"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "O modo de execução é desconhecido"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "O estado do procedimento de autenticação é desconhecido"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -158,7 +158,7 @@ msgstr ""
 "A infra-estrutura actual só permite a autorização do utilitário, mas esta "
 "acção não tem nenhum."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "A infra-estrutura não define como autorizar"

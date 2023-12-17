@@ -47,22 +47,22 @@ msgstr ""
 "D-Busi taustaprogrammi viga: ühendus abiprogrammiga nurjus. Ühenduse viga: "
 "%1. Veateade: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Üritati käivitada vigast toimingut"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Valiti tundmatu täitmisviis"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Autentimisprotseduuri tundmatu olek"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -71,7 +71,7 @@ msgstr ""
 "Aktiivne taustaprogramm lubab ainult abiprogrammiga autentimist, aga sel "
 "toimingul ei ole abiprogrammi."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Taustaprogramm ei määratle, kuidas autentida"

@@ -55,22 +55,22 @@ msgstr ""
 "Błąd silnika DBus: nie można porozumie się z pomocnikiem. Błąd połączenia: "
 "%1. Wiadomość błędu: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Próbowano uruchomić nieprawidłowe działanie"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Wybrano nieznany tryb wykonywania"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Nieznany stan dla postępowania uwierzytelniającego"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -79,7 +79,7 @@ msgstr ""
 "Bieżący silnik umożliwia jedynie pomocnicze uwierzytelnienie, lecz to "
 "działanie nie ma pomocnika."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Silnik nie określił sposobu uwierzytelnienia"

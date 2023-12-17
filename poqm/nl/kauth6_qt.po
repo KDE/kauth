@@ -58,22 +58,22 @@ msgstr ""
 "DBus-backendfout: kon geen contact krijgen met de helper. Verbindingsfout: "
 "%1 Foutmelding: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Probeerde een ongeldige actie te starten"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Onbekende uitvoeringsmodus gekozen"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Onbekend status voor de authenticatieprocedure"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -82,7 +82,7 @@ msgstr ""
 "De huidige backend staat alleen autorisatie van de helper toe, maar deze "
 "actie heeft geen helper."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "De backend specificeert niet hoe de autorisatie te doen"

@@ -53,22 +53,22 @@ msgstr ""
 "Error del motor DBus: no se puede conectar con el programa auxiliar. Error "
 "de conexión: %1. Mensaje de error: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Se ha intentado iniciar una acción no válida"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Se ha escogido un modo de ejecución desconocido"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Estado desconocido para el procedimiento de autenticación"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -77,7 +77,7 @@ msgstr ""
 "El motor actual solo permite autorización auxiliar, pero esta acción no "
 "tiene un programa auxiliar."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "El motor no especifica cómo autorizar"

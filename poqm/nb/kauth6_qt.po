@@ -48,22 +48,22 @@ msgid ""
 "Message error: %2"
 msgstr ""
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Forsøkte å starte en ugyldig handling "
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Ukjent kjøremodus valgt"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Ukjent status for autentiseringsprosedyren"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -72,7 +72,7 @@ msgstr ""
 "Den gjeldende bakgrunnsmotoren tillater bare hjelper-autorisering, men denne "
 "handlingen har ingen hjelper."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Bakgrunnsmotoren oppgir ikke hvordan det skal autoriseres"

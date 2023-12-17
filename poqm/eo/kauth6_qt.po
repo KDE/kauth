@@ -53,22 +53,22 @@ msgstr ""
 "DBus-Backend eraro: ne povis kontakti la helpilon. Konekt-eraro: %1. Mesaĝ-"
 "eraro: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Provis lanĉi nevalidan agon"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Elektis nekonatan rulreĝimon"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Nekonata statuso por la aŭtentiga proceduro"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -77,7 +77,7 @@ msgstr ""
 "La aktuala backend permesas nur helpilan aŭtentigon, sed ĉi tiu ago ne havas "
 "helpilon."
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "La backend ne specifas kiel aŭtentigi"

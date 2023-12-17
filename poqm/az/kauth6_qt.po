@@ -38,22 +38,22 @@ msgid ""
 msgstr ""
 "Dbus daxili xətası: köməkçiyə qoşulmadı. Əlaqə xətası: %1.Xəta bildirişi: %2"
 
-#: executejob.cpp:86
+#: executejob.cpp:84
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Etibarsız tapşırığı başlatmağa cəhd edildi"
 
-#: executejob.cpp:104
+#: executejob.cpp:102
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Naməlum icra etmə rejimi seçildi"
 
-#: executejob.cpp:149
+#: executejob.cpp:147
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Autentifikasiya prosedurunun naməlum vəziyyəti"
 
-#: executejob.cpp:161
+#: executejob.cpp:159
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -62,7 +62,7 @@ msgstr ""
 "Cari icraata icazə vermək yalnız köməkçinin köməyi ilə mümkündür, ancaq bu "
 "həmin fəaliyyət üçün mövcud deyil"
 
-#: executejob.cpp:169 executejob.cpp:193
+#: executejob.cpp:167 executejob.cpp:191
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Bu icraat necə icazə verilməsini göstərmir"
