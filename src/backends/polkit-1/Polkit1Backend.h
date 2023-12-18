@@ -47,6 +47,7 @@ private Q_SLOTS:
 
 private:
     void sendWindowHandle(const QString &action, const QString &handle);
+    void sendActivationToken(const QString &action, QWindow *window);
 
     QHash<QString, Action::AuthStatus> m_cachedResults;
 };
