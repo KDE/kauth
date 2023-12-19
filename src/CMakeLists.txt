@@ -52,7 +52,7 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         DEPRECATION_VERSIONS
         EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
     )
-    target_link_libraries(KF6AuthCore PUBLIC Qt6::Core KF6::CoreAddons)  # for KJob
+    target_link_libraries(KF6AuthCore PUBLIC Qt6::Core Qt6::Gui KF6::CoreAddons)  # for KJob
     target_link_libraries(KF6AuthCore PRIVATE Qt6::DBus)
 
     target_include_directories(KF6AuthCore INTERFACE

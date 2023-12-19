@@ -6,7 +6,9 @@
 
 #include "action.h"
 
+#include <QPointer>
 #include <QRegularExpression>
+#include <QWindow>
 #include <QtGlobal>
 
 #include "executejob.h"
@@ -41,7 +43,7 @@ public:
     QString helperId;
     Action::DetailsMap details;
     QVariantMap args;
-    QWindow *parent = nullptr;
+    QPointer<QWindow> parent;
     int timeout;
 };
 
@@ -167,7 +169,7 @@ void Action::setParentWindow(QWindow *parent)
 
 QWindow *Action::parentWindow() const
 {
-    return d->parent;
+    return d->parent.data();
 }
 
 Action::AuthStatus Action::status() const
