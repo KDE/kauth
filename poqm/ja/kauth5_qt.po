@@ -1,4 +1,5 @@
 # Translation of kdelibs4 into Japanese.
+# SPDX-FileCopyrightText: 2024 Tarot Osuji <tarot@sdf.org>
 # This file is distributed under the same license as the kdelibs package.
 # Taiki Komoda <kom@kde.gr.jp>, 2002, 2004, 2006, 2010.
 # Noboru Sinohara <shinobo@leo.bekkoame.ne.jp>, 2004.
@@ -14,8 +15,8 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-03-23 01:50+0000\n"
-"PO-Revision-Date: 2015-04-18 22:59-0700\n"
-"Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
+"PO-Revision-Date: 2024-02-10 23:05+0900\n"
+"Last-Translator: Tarot Osuji <tarot@sdf.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -24,52 +25,49 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
-"X-Generator: Lokalize 1.1\n"
+"X-Generator: Lokalize 23.08.4\n"
 "X-Qt-Contexts: true\n"
 
 #: backends/dbus/DBusHelperProxy.cpp:74
-#, fuzzy, qt-format
-#| msgctxt "KAuth::DBusHelperProxy|"
-#| msgid "DBus Backend error: connection to helper failed. "
+#, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
-msgstr "D-Bus バックエンドのエラー: ヘルパーへの接続に失敗しました。"
+msgstr "D-Bus バックエンドエラー: サービス開始 %1 が失敗しました: %2"
 
 #: backends/dbus/DBusHelperProxy.cpp:89
-#, fuzzy, qt-format
-#| msgctxt "KAuth::DBusHelperProxy|"
-#| msgid "DBus Backend error: connection to helper failed. "
+#, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
 "DBus Backend error: connection to helper failed. %1\n"
 "(application: %2 helper: %3)"
-msgstr "D-Bus バックエンドのエラー: ヘルパーへの接続に失敗しました。"
+msgstr ""
+"D-Bus バックエンドエラー: ヘルパーへの接続が失敗しました。%1\n"
+"(アプリケーション: %2 ヘルパー: %3)"
 
 #: backends/dbus/DBusHelperProxy.cpp:124
-#, fuzzy, qt-format
-#| msgctxt "KAuth::DBusHelperProxy|"
-#| msgid "DBus Backend error: could not contact the helper. Connection error: "
+#, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
 "DBus Backend error: could not contact the helper. Connection error: %1. "
 "Message error: %2"
 msgstr ""
-"D-Bus バックエンドのエラー: ヘルパーと交信できませんでした。接続エラー: "
+"D-Bus バックエンドエラー: ヘルパーと交信できませんでした。接続エラー: %1. "
+"メッセージエラー: %2"
 
 #: executejob.cpp:86
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
-msgstr ""
+msgstr "無効なアクションを開始しようとしました"
 
 #: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
-msgstr ""
+msgstr "不明な実行モードが指定されました"
 
 #: executejob.cpp:149
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
-msgstr ""
+msgstr "認証プロシージャの不明なステータスです"
 
 #: executejob.cpp:161
 msgctxt "KAuth::ExecuteJob|"
@@ -77,8 +75,10 @@ msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr ""
+"現在のバックエンドはヘルパー認証のみ許可しますが、このアクションにはヘルパー"
+"がありません。"
 
 #: executejob.cpp:169 executejob.cpp:193
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
-msgstr ""
+msgstr "​バックエンドは認証方法を指定していません"
