@@ -9,7 +9,7 @@
   </policy>
 
   <policy context="default">
-    <allow send_destination="*"/>
+    <allow send_destination="@HELPER_ID@"/>
   </policy>
 
 </busconfig>
