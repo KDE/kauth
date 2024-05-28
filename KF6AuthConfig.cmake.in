@@ -13,18 +13,18 @@ include(CMakeFindDependencyMacro)
 find_dependency(KF6CoreAddons "@KF_DEP_VERSION@")
 
 if(NOT @BUILD_SHARED_LIBS@)
-    find_dependency(Qt6DBus "@REQUIRED_QT_VERSION@")
-
     if(NOT @KAUTH_BUILD_CODEGENERATOR_ONLY@)
         find_dependency(Qt6Gui "@REQUIRED_QT_VERSION@")
     endif()
 
     if(NOT KAUTH_BACKEND_NAME AND @UNIX@ AND NOT @APPLE@)
         find_dependency(PolkitQt6-1 "@POLKITQT_MIN_VERSION@")
+        find_dependency(Qt6DBus "@REQUIRED_QT_VERSION@")
     endif()
 
     if(KAUTH_BACKEND_NAME AND NOT @KAUTH_BUILD_CODEGENERATOR_ONLY@ AND "${KAUTH_BACKEND_NAME}" STREQUAL "POLKITQT6-1")
         find_dependency(PolkitQt6-1 "@POLKITQT_MIN_VERSION@")
+        find_dependency(Qt6DBus "@REQUIRED_QT_VERSION@")
     endif()
 endif()
 

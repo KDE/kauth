@@ -6,6 +6,13 @@ if(NOT TARGET Qt6::Test)
     return()
 endif()
 
+find_package(Qt6DBus ${REQUIRED_QT_VERSION} CONFIG QUIET)
+
+if(NOT TARGET Qt6::DBus)
+    message(STATUS "Qt6DBus not found, autotests will not be built.")
+    return()
+endif()
+
 qt_add_dbus_adaptor(kauth_dbus_adaptor_tests_SRCS
                      ../src/backends/dbus/org.kde.kf6auth.xml
                      ../src/backends/dbus/DBusHelperProxy.h
