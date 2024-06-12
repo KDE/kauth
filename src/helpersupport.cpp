@@ -10,6 +10,8 @@
 
 #include <cstdlib>
 
+#include <QCommandLineParser>
+
 #ifndef Q_OS_WIN
 #include <pwd.h>
 #include <sys/types.h>
@@ -92,11 +94,19 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
 
     BackendsManager::helperProxy()->setHelperResponder(responder);
 
+    QCommandLineParser cliOptions;
+    QCommandLineOption persistentOption(QStringList{QStringLiteral("p"), QStringLiteral("persistent")},
+                                        QStringLiteral("Don't automatically quit after a certain period"));
+    cliOptions.addOption(persistentOption);
+    cliOptions.process(app);
+
     // Attach the timer
     QTimer *timer = new QTimer(nullptr);
     responder->setProperty("__KAuth_Helper_Shutdown_Timer", QVariant::fromValue(timer));
     timer->setInterval(10000);
-    timer->start();
+    if (!cliOptions.isSet(persistentOption)) {
+        timer->start();
+    }
     QObject::connect(timer, &QTimer::timeout, &app, &QCoreApplication::quit);
     app.exec(); // krazy:exclude=crashy
 
