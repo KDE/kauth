@@ -125,7 +125,7 @@ void HelperSupport::helperDebugHandler(QtMsgType type, const QMessageLogContext 
             break;
         }
         syslog(level, "%s", msg.constData());
-    } else {
+    } else if (!QCoreApplication::closingDown()) {
         BackendsManager::helperProxy()->sendDebugMessage(type, msg.constData());
     }
 
