@@ -32,6 +32,8 @@ set(REQUIRED_QT_VERSION 6.5.0)
 option(KAUTH_BUILD_CODEGENERATOR_ONLY "Only build the kauth-policy-gen code generator." OFF)
 if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
+elseif(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
+    find_package(Qt6DBus ${REQUIRED_QT_VERSION} CONFIG REQUIRED)
 endif()
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
