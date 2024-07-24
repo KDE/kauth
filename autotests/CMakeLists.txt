@@ -82,6 +82,17 @@ ecm_add_test(HelperTest.cpp TestHelper.cpp
     LINK_LIBRARIES Qt6::Test kauth_tests_static
 )
 
+########### next target ###############
+
+add_executable(FdHelper FdHelper.cpp)
+target_link_libraries(FdHelper PUBLIC kauth_tests_static)
+
+ecm_add_test(FdTester.cpp
+    TEST_NAME KAuthFdTest
+    LINK_LIBRARIES Qt6::Test kauth_tests_static
+)
+target_compile_definitions(KAuthFdTest PRIVATE -DFDHELPEREXE=\"$<TARGET_FILE:FdHelper>\")
+
 ########### test kauth-policy-gen ###############
 if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
     add_test(NAME KAuthPolicyGenTest

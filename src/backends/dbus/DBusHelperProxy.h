@@ -14,6 +14,7 @@
 
 #include <QDBusConnection>
 #include <QDBusContext>
+#include <QDBusUnixFileDescriptor>
 #include <QVariant>
 
 namespace KAuth
@@ -60,7 +61,11 @@ public:
 
 public Q_SLOTS:
     void stopAction(const QString &action);
-    QByteArray performAction(const QString &action, const QByteArray &callerID, const QVariantMap &details, QByteArray arguments);
+    QByteArray performAction(const QString &action,
+                             const QByteArray &callerID,
+                             const QVariantMap &details,
+                             QByteArray arguments,
+                             const QMap<QString, QDBusUnixFileDescriptor> &fdArguments);
 
 Q_SIGNALS:
     void remoteSignal(int type, const QString &action, const QByteArray &blob); // This signal is sent from the helper to the app

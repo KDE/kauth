@@ -6,8 +6,10 @@
             <arg name="callerID" type="ay" direction="in" />
             <arg name="details" type="a{sv}" direction="in" />
             <arg name="arguments" type="ay" direction="in" />
+            <arg name="fdArguments" type="a{sh}" direction="in" />
             <arg name="r" type="ay" direction="out" />
             <annotation name="org.qtproject.QtDBus.QtTypeName.In2" value="QVariantMap"/>
+            <annotation name="org.qtproject.QtDBus.QtTypeName.In4" value="QMap&lt;QString,QDBusUnixFileDescriptor&gt;"/>
         </method>
         <method name="stopAction" >
             <arg name="action" type="s" direction="in" />

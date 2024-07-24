@@ -13,6 +13,8 @@
 
 #include <QDBusConnectionInterface>
 #include <QDBusMessage>
+#include <QDBusMetaType>
+#include <QDBusUnixFileDescriptor>
 #include <QMap>
 #include <QMetaMethod>
 #include <QObject>
@@ -30,6 +32,7 @@ DBusHelperProxy::DBusHelperProxy()
     , m_stopRequest(false)
     , m_busConnection(QDBusConnection::systemBus())
 {
+    qDBusRegisterMetaType<QMap<QString, QDBusUnixFileDescriptor>>();
 }
 
 DBusHelperProxy::DBusHelperProxy(const QDBusConnection &busConnection)
@@ -37,6 +40,7 @@ DBusHelperProxy::DBusHelperProxy(const QDBusConnection &busConnection)
     , m_stopRequest(false)
     , m_busConnection(busConnection)
 {
+    qDBusRegisterMetaType<QMap<QString, QDBusUnixFileDescriptor>>();
 }
 
 DBusHelperProxy::~DBusHelperProxy()
@@ -57,10 +61,20 @@ void DBusHelperProxy::stopAction(const QString &action, const QString &helperID)
 
 void DBusHelperProxy::executeAction(const QString &action, const QString &helperID, const DetailsMap &details, const QVariantMap &arguments, int timeout)
 {
+    QMap<QString, QDBusUnixFileDescriptor> fds;
+    QVariantMap nonFds;
+    for (auto [key, value] : arguments.asKeyValueRange()) {
+        if (value.metaType() == QMetaType::fromType<QDBusUnixFileDescriptor>()) {
+            fds.insert(key, value.value<QDBusUnixFileDescriptor>());
+        } else {
+            nonFds.insert(key, value);
+        }
+    }
+
     QByteArray blob;
     {
         QDataStream stream(&blob, QIODevice::WriteOnly);
-        stream << arguments;
+        stream << nonFds;
     }
 
     // on unit tests we won't have a service, but the service will already be running
@@ -92,7 +106,7 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf6auth"), QLatin1String("performAction"));
 
     QList<QVariant> args;
-    args << action << BackendsManager::authBackend()->callerID() << BackendsManager::authBackend()->backendDetails(details) << blob;
+    args << action << BackendsManager::authBackend()->callerID() << BackendsManager::authBackend()->backendDetails(details) << blob << QVariant::fromValue(fds);
     message.setArguments(args);
 
     m_actionsInProgress.push_back(action);
@@ -203,7 +217,11 @@ bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray
     return BackendsManager::authBackend()->isCallerAuthorized(action, message().service().toUtf8(), details);
 }
 
-QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArray &callerID, const QVariantMap &details, QByteArray arguments)
+QByteArray DBusHelperProxy::performAction(const QString &action,
+                                          const QByteArray &callerID,
+                                          const QVariantMap &details,
+                                          QByteArray arguments,
+                                          const QMap<QString, QDBusUnixFileDescriptor> &fdArguments)
 {
     if (!responder) {
         return ActionReply::NoResponderReply().serialized();
@@ -221,6 +239,10 @@ QByteArray DBusHelperProxy::performAction(const QString &action, const QByteArra
     QVariantMap args;
     QDataStream s(&arguments, QIODevice::ReadOnly);
     s >> args;
+
+    for (auto [key, value] : fdArguments.asKeyValueRange()) {
+        args.insert(key, QVariant::fromValue(value));
+    }
 
     qMetaTypeGuiHelper = origMetaTypeGuiHelper;
 
