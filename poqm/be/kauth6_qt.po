@@ -30,13 +30,13 @@ msgstr ""
 "X-Crowdin-File: /[antikruk.KDE] main/KDE6/be/messages/kauth/kauth6_qt.po\n"
 "X-Crowdin-File-ID: 9896\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "Памылка рухавіка DBus: не ўдалося запусціць службу %1: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -46,7 +46,7 @@ msgstr ""
 "Памылка рухавіка DBus: не ўдалося злучыцца з дапаможнай праграмай. %1\n"
 "(праграма: %2 дапаможная праграма: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

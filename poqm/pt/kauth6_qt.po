@@ -107,14 +107,14 @@ msgstr ""
 "X-POFile-IgnoreConsistency: Update\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr ""
 "Erro da infra-estrutura D-Bus: não foi possível iniciar o serviço %1: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -124,7 +124,7 @@ msgstr ""
 "Erro da infra-estrutura D-Bus: a ligação ao utilitário falhou. %1\n"
 "(aplicação: %2 utilitário: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

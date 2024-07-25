@@ -34,13 +34,13 @@ msgstr ""
 "X-Generator: Lokalize 24.07.70\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "DBus arka uç hatası: %1 hizmetinin başlatılması başarısız: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -50,7 +50,7 @@ msgstr ""
 "DBus arka uç hatası: Yardımcıya bağlanılamadı. %1\n"
 "(uygulama: %2 yardımcı: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

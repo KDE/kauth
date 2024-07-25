@@ -25,13 +25,13 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "Chyba backendu DBus: spustenie služby %1 zlyhalo: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -41,7 +41,7 @@ msgstr ""
 "Chyba DBus Backendu: pripojenie na pomocníka zlyhalo. %1\n"
 "(aplikácia: %2 pomocník: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

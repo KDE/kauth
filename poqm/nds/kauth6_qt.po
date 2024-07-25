@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: connection to helper failed. "
@@ -28,7 +28,7 @@ msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "D-Bus-Hülpprogramm-Fehler: Tokoppeln na Hülpprogramm fehlslaan. "
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: connection to helper failed. "
@@ -38,7 +38,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr "D-Bus-Hülpprogramm-Fehler: Tokoppeln na Hülpprogramm fehlslaan. "
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: could not contact the helper. Connection error: "

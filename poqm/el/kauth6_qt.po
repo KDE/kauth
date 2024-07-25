@@ -32,14 +32,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr ""
 "Σφάλμα συστήματος υποστήριξης DBus: η εκκίνηση της υπηρεσίας %1 απέτυχε: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -49,7 +49,7 @@ msgstr ""
 "Σφάλμα συστήματος υποστήριξης DBus: η σύνδεση με τον βοηθό απέτυχε. "
 "%1(εφαρμογή: %2 βοηθός: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

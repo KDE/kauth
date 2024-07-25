@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Walloon\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, fuzzy, qt-format
 #| msgid "DBus Backend error: connection to helper failed. %1"
 msgctxt "KAuth::DBusHelperProxy|"
@@ -32,7 +32,7 @@ msgstr ""
 "Åk n' a nén stî avou l' bouye di fond DBus: li raloyaedje å programe aidant "
 "a fwait berwete. %1"
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, fuzzy, qt-format
 #| msgid "DBus Backend error: connection to helper failed. %1"
 msgctxt "KAuth::DBusHelperProxy|"
@@ -43,7 +43,7 @@ msgstr ""
 "Åk n' a nén stî avou l' bouye di fond DBus: li raloyaedje å programe aidant "
 "a fwait berwete. %1"
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, fuzzy, qt-format
 #| msgid ""
 #| "DBus Backend error: could not contact the helper. Connection error: %1. "

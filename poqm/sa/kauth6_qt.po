@@ -13,13 +13,13 @@ msgstr ""
 "X-Generator: Poedit 3.3.2\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:70
+#: backends/dbus/DBusHelperProxy.cpp:84
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "DBus पृष्ठभागः त्रुटिः: सेवा आरम्भः %1 विफलः: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:85
+#: backends/dbus/DBusHelperProxy.cpp:99
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -29,7 +29,7 @@ msgstr ""
 "DBus पृष्ठभागः त्रुटिः: सहायकं प्रति संयोजनं विफलम्। %1\n"
 "(अनुप्रयोगः: %2 सहायकः: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:120
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
