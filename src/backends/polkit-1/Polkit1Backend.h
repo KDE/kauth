@@ -38,7 +38,7 @@ public:
     Action::AuthStatus authorizeAction(const QString &) override;
     Action::AuthStatus actionStatus(const QString &) override;
     QByteArray callerID() const override;
-    virtual bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) override;
+    bool isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details) override;
     QVariantMap backendDetails(const DetailsMap &details) override;
 
 private Q_SLOTS:
