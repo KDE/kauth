@@ -56,21 +56,18 @@ int main(int argc, char **argv)
 
 QList<Action> parse(QSettings &ini)
 {
-    QList<Action> actions;
-
+    // clazy:excludeall=use-static-qregularexpression
     // example: [org.kde.kcontrol.kcmfoo.save]
     const QRegularExpression actionExp(QRegularExpression::anchoredPattern(QStringLiteral("[0-9a-z]+(\\.[0-9a-z]+)*")));
-
     // example: Description[ca]=Mòdul de control del Foo.
     const QRegularExpression descriptionExp(QRegularExpression::anchoredPattern(QStringLiteral("description(?:\\[(\\w+)\\])?")),
                                             QRegularExpression::CaseInsensitiveOption);
-
     // example: Name[ca]=Mòdul de control del Foo
     const QRegularExpression nameExp(QRegularExpression::anchoredPattern(QStringLiteral("name(?:\\[(\\w+)\\])?")), QRegularExpression::CaseInsensitiveOption);
-
     // example: Policy=auth_admin
     const QRegularExpression policyExp(QRegularExpression::anchoredPattern(QStringLiteral("(?:yes|no|auth_self|auth_admin)")));
 
+    QList<Action> actions;
     const auto listChilds = ini.childGroups();
     for (const QString &name : listChilds) {
         Action action;
@@ -87,7 +84,7 @@ QList<Action> parse(QSettings &ini)
         action.name = name;
         ini.beginGroup(name);
 
-        const auto listChildKeys = ini.childKeys();
+        const QStringList listChildKeys = ini.childKeys();
         for (const QString &key : listChildKeys) {
             QRegularExpressionMatch match;
             if ((match = descriptionExp.match(key)).hasMatch()) {
