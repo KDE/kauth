@@ -20,10 +20,10 @@ include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(KDEGitCommitHooks)
+include(ECMGenerateQDoc)
 
 include(ECMDeprecationSettings)
 include(ECMPoQmTools)
-include(ECMAddQch)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -37,9 +37,6 @@ elseif(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")
 endif()
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
-
-option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
-add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
 set(kauth_version_header "${CMAKE_CURRENT_BINARY_DIR}/src/kauth_version.h")
 ecm_setup_version(PROJECT VARIABLE_PREFIX KAUTH
@@ -75,16 +72,6 @@ endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Auth")
-
-if (BUILD_QCH)
-    ecm_install_qch_export(
-        TARGETS KF6Auth_QCH
-        FILE KF6AuthQchTargets.cmake
-        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        COMPONENT Devel
-    )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6AuthQchTargets.cmake\")")
-endif()
 
 include(CMakePackageConfigHelpers)
 

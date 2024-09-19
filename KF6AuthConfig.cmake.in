@@ -29,7 +29,6 @@ if(NOT @BUILD_SHARED_LIBS@)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/KF6AuthTargets.cmake")
-@PACKAGE_INCLUDE_QCHTARGETS@
 include("${CMAKE_CURRENT_LIST_DIR}/KF6AuthMacros.cmake")
 
 if(NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE")

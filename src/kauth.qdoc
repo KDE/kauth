@@ -1,0 +1,10 @@
+/*!
+    \module KAuth
+    \title KAuth C++ Classes
+    \ingroup modules
+    \cmakepackage KF6
+    \cmakecomponent Auth
+    \cmaketargetitem KF6::AuthCore
+
+    \brief Execute actions as privileged user.
+*/

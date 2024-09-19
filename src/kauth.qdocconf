@@ -1,0 +1,35 @@
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
+
+project = KAuth
+description = Execute actions as privileged user
+
+documentationinheaders = true
+
+headerdirs += .
+sourcedirs += .
+
+excludedirs += backends policy-gen
+
+exampledirs += ../examples
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore \
+    qtgui \
+    kcoreaddons
+
+qhp.projects            = KAuth
+
+qhp.KAuth.file                = kauth.qhp
+qhp.KAuth.namespace           = org.kde.kauth.$QT_VERSION_TAG
+qhp.KAuth.virtualFolder       = kauth
+qhp.KAuth.indexTitle          = KAuth
+qhp.KAuth.indexRoot           =
+
+qhp.KAuth.subprojects         = classes
+qhp.KAuth.subprojects.classes.title = C++ Classes
+qhp.KAuth.subprojects.classes.indexTitle = KAuth C++ Classes
+qhp.KAuth.subprojects.classes.selectors = class fake:headerfile
+qhp.KAuth.subprojects.classes.sortPages = true
