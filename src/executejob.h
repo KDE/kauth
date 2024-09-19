@@ -18,10 +18,12 @@ namespace KAuth
 {
 class ExecuteJobPrivate;
 
-/**
- * @class ExecuteJob executejob.h <KAuth/ExecuteJob>
+/*!
+ * \class KAuth::ExecuteJob
+ * \inmodule KAuth
+ * \inheaderfile KAuth/ExecuteJob
  *
- * @brief Job for executing an Action
+ * \brief Job for executing an Action.
  *
  * To run the action synchonously use KJob::exec() and check the return code for
  * success.
@@ -34,7 +36,7 @@ class ExecuteJobPrivate;
  *
  * Use data() to get the return result of the action.
  *
- * @since 5.0
+ * \since 5.0
  */
 class KAUTHCORE_EXPORT ExecuteJob : public KJob
 {
@@ -55,23 +57,24 @@ private:
     Q_PRIVATE_SLOT(d, void statusChangedSlot(const QString &action, KAuth::Action::AuthStatus status))
 
 public:
-    /// Virtual destructor
     ~ExecuteJob() override;
 
-    /**
+    /*!
+     * \reimp
+     *
      * Starts the job asynchronously.
-     * @see KJob::result
-     * @see newData
-     * @see statusChanged
+     * \sa KJob::result
+     * \sa newData
+     * \sa statusChanged
      */
     void start() override;
 
-    /**
-     * @returns the action associated with this job
+    /*!
+     * Returns the action associated with this job
      */
     Action action() const;
 
-    /**
+    /*!
      * Use this to get the data set in the action by
      * HelperSupport::progressStep(QVariant) or returned at the end of the
      * action.
@@ -79,29 +82,29 @@ public:
      * This function is particularly useful once the job has completed. During
      * execution, simply read the data in the newData() signal.
      *
-     * @returns the data set by the helper
+     * Returns the data set by the helper
      *
-     * @see ExecuteJob::newData
+     * \sa ExecuteJob::newData
      */
     QVariantMap data() const;
 
 public Q_SLOTS:
-    /**
+    /*!
      * Attempts to halt the execution of the action associated with this job.
      * You should listen to the finished and result signals to work out whether
      * halting was successful (as long running operations can also take time
      * to shut down cleanly).
-     * @return Always returns @c true
+     * Always returns \c true
      *
-     * @see HelperSupport::isStopped()
-     * @see KJob::result
-     * @see KJob::finished
+     * \sa HelperSupport::isStopped()
+     * \sa KJob::result
+     * \sa KJob::finished
      */
     bool kill(KillVerbosity verbosity = Quietly);
 
 Q_SIGNALS:
-    /**
-     * @brief Signal emitted by the helper to notify the action's progress
+    /*!
+     * \brief Signal emitted by the helper to notify the action's progress
      *
      * This signal is emitted every time the helper's code calls the
      * HelperSupport::progressStep(QVariantMap) method. This is useful to let the
@@ -111,13 +114,13 @@ Q_SIGNALS:
      * If you only need to pass some percentage, you can use the other signal that
      * pass an int.
      *
-     * @param data The progress data from the helper
+     * \a data The progress data from the helper
      */
     void newData(const QVariantMap &data);
 
-    /**
-     * @brief Signal emitted when the authentication status changes
-     * @param status the new authentication status
+    /*!
+     * \brief Signal emitted when the authentication status changes
+     * \a status the new authentication status
      */
     void statusChanged(KAuth::Action::AuthStatus status);
 
