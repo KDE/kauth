@@ -9,8 +9,8 @@ portingAid: false
 deprecated: false
 release: true
 libraries:
- - cmake: "KF6::AuthCore"
- - cmake: "KF6::Auth"
+    - cmake: "KF6::AuthCore"
+    - cmake: "KF6::Auth"
 cmakename: KF6Auth
 
 public_lib: true
