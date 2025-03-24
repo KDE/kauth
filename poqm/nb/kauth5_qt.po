@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kdelibs4\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-02-28 03:44+0000\n"
-"PO-Revision-Date: 2014-11-05 13:40+0100\n"
-"Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
+"PO-Revision-Date: 2025-03-23 19:36+0100\n"
+"Last-Translator: Martin Hansen <mh306602@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 24.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
@@ -30,7 +30,7 @@ msgstr ""
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
-msgstr ""
+msgstr "DBus-feil: klarte ikke starte tjenesten %1: %2"
 
 #: backends/dbus/DBusHelperProxy.cpp:89
 #, qt-format
@@ -39,6 +39,8 @@ msgid ""
 "DBus Backend error: connection to helper failed. %1\n"
 "(application: %2 helper: %3)"
 msgstr ""
+"D-Bus-feil: Klarte ikke koble til hjelperen. %1\n"
+"(program: %2; hjelper: %3)"
 
 #: backends/dbus/DBusHelperProxy.cpp:124
 #, qt-format
@@ -47,11 +49,13 @@ msgid ""
 "DBus Backend error: could not contact the helper. Connection error: %1. "
 "Message error: %2"
 msgstr ""
+"D-Bus-feil: Klarte ikke kontakte hjelperen. Tilkoblingsfeil: %1. "
+"Meldingsfeil: %2"
 
 #: executejob.cpp:86
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
-msgstr "Forsøkte å starte en ugyldig handling "
+msgstr "Forsøkte å starte en ugyldig handling"
 
 #: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
