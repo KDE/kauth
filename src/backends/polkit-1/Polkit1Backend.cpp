@@ -260,3 +260,5 @@ QVariantMap Polkit1Backend::backendDetails(const DetailsMap &details)
 } // namespace Auth
 
 #include "Polkit1Backend.moc"
+
+#include "moc_Polkit1Backend.cpp"
