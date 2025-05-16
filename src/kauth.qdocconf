@@ -14,6 +14,8 @@ exampledirs += ../examples
 
 outputformats = HTML
 
+navigation.landingpage  = "KAuth"
+
 depends += \
     kde \
     qtcore \
