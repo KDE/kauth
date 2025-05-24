@@ -35,3 +35,5 @@ qhp.KAuth.subprojects.classes.title = C++ Classes
 qhp.KAuth.subprojects.classes.indexTitle = KAuth C++ Classes
 qhp.KAuth.subprojects.classes.selectors = class fake:headerfile
 qhp.KAuth.subprojects.classes.sortPages = true
+
+tagfile = kauth.tags
