@@ -66,7 +66,7 @@ target_include_directories(kauth_tests_static
     ${CMAKE_CURRENT_SOURCE_DIR}/../src
 )
 
-target_link_libraries(kauth_tests_static PUBLIC Qt6::DBus KF6::CoreAddons)
+target_link_libraries(kauth_tests_static PUBLIC Qt6::DBus Qt6::Gui KF6::CoreAddons)
 
 ########### next target ###############
 

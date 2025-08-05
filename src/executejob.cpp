@@ -11,8 +11,10 @@
 
 #include <QCoreApplication>
 #include <QEventLoop>
+#include <QGuiApplication>
 #include <QHash>
 #include <QTimer>
+#include <QWindow>
 
 namespace KAuth
 {
@@ -39,6 +41,21 @@ public:
     void progressStepSlot(const QString &action, const QVariantMap &data);
     void statusChangedSlot(const QString &action, KAuth::Action::AuthStatus status);
 };
+
+static QWindow *parentWindow(const Action &action)
+{
+    QWindow *window = action.parentWindow();
+    if (!window && qGuiApp) {
+        window = qGuiApp->focusWindow();
+        if (!window) {
+            if (const auto windows = qGuiApp->topLevelWindows(); !windows.isEmpty()) {
+                window = windows.first();
+            }
+        }
+        qCWarning(KAUTH) << "Action" << action.name() << "has no parentWindow, assuming" << window;
+    }
+    return window;
+}
 
 ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject *parent)
     : KJob(parent)
@@ -118,7 +135,7 @@ void ExecuteJobPrivate::doExecuteAction()
     // If this action authorizes from the client, let's do it now
     if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
         if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-            BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWindow());
+            BackendsManager::authBackend()->preAuthAction(action.name(), parentWindow(action));
         }
 
         Action::AuthStatus s = BackendsManager::authBackend()->authorizeAction(action.name());
@@ -152,7 +169,7 @@ void ExecuteJobPrivate::doExecuteAction()
         }
     } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
         if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-            BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWindow());
+            BackendsManager::authBackend()->preAuthAction(action.name(), parentWindow(action));
         }
         if (!action.hasHelper()) {
             ActionReply r(ActionReply::InvalidActionReply());
@@ -178,7 +195,7 @@ void ExecuteJobPrivate::doAuthorizeAction()
         if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
             // In this case we can actually try an authorization
             if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-                BackendsManager::authBackend()->preAuthAction(action.name(), action.parentWindow());
+                BackendsManager::authBackend()->preAuthAction(action.name(), parentWindow(action));
             }
 
             s = BackendsManager::authBackend()->authorizeAction(action.name());
