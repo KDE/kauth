@@ -39,29 +39,29 @@ msgid ""
 "Message error: %2"
 msgstr "DBus 后端错误：无法连接辅助服务。连接错误：%1。错误消息：%2"
 
-#: executejob.cpp:84
+#: executejob.cpp:101
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "尝试进行无效操作"
 
-#: executejob.cpp:102
+#: executejob.cpp:119
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "选择了未知执行模式"
 
-#: executejob.cpp:147
+#: executejob.cpp:164
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "未知的认证程序状态"
 
-#: executejob.cpp:159
+#: executejob.cpp:176
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr "当前后端仅允许通过辅助服务授权，但此操作并不具备辅助服务。"
 
-#: executejob.cpp:167 executejob.cpp:191
+#: executejob.cpp:184 executejob.cpp:208
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "后端未指定授权方式"

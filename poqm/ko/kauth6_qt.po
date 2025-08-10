@@ -44,29 +44,29 @@ msgid ""
 msgstr ""
 "DBus 백엔드 오류: 도우미에 연결할 수 없습니다. 연결 오류: %1. 메시지 오류: %2"
 
-#: executejob.cpp:84
+#: executejob.cpp:101
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "잘못된 동작을 실행하려고 시도함"
 
-#: executejob.cpp:102
+#: executejob.cpp:119
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "알 수 없는 실행 모드 선택됨"
 
-#: executejob.cpp:147
+#: executejob.cpp:164
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "인증 과정 중 알 수 없는 상태"
 
-#: executejob.cpp:159
+#: executejob.cpp:176
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr "현재 백엔드는 도우미 인증만 허용하지만 이 동작에는 도우미가 없습니다."
 
-#: executejob.cpp:167 executejob.cpp:191
+#: executejob.cpp:184 executejob.cpp:208
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "백엔드에서 인증 방식을 지정하지 않았음"

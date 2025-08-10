@@ -53,22 +53,22 @@ msgstr ""
 "Error en el dorsal del DBus: no s'ha pogut contactar amb l'auxiliar. Error "
 "de connexió: %1. Missatge d'error: %2"
 
-#: executejob.cpp:84
+#: executejob.cpp:101
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "S'ha intentat iniciar una acció no vàlida"
 
-#: executejob.cpp:102
+#: executejob.cpp:119
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "S'ha triat un mode d'execució desconegut"
 
-#: executejob.cpp:147
+#: executejob.cpp:164
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Estat desconegut per al procediment d'autenticació"
 
-#: executejob.cpp:159
+#: executejob.cpp:176
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -77,7 +77,7 @@ msgstr ""
 "El dorsal actual només permet autorització d'auxiliar, però aquesta acció no "
 "té cap auxiliar."
 
-#: executejob.cpp:167 executejob.cpp:191
+#: executejob.cpp:184 executejob.cpp:208
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "El dorsal no especifica com autoritzar"

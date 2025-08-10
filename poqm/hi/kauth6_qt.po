@@ -47,22 +47,22 @@ msgid ""
 msgstr ""
 "डीबस पृष्ठभाग त्रुटि: सहायक के साथ सम्पर्क नहीं बना सके. संपर्क त्रुटि: %1. सन्देश त्रुटि: %2"
 
-#: executejob.cpp:84
+#: executejob.cpp:101
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "अवैध क्रिया चालू करने का प्रयास"
 
-#: executejob.cpp:102
+#: executejob.cpp:119
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "अज्ञात चालन मोड चुना गया"
 
-#: executejob.cpp:147
+#: executejob.cpp:164
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "प्रमाणीकरण विधि के लिए अज्ञात स्थिति"
 
-#: executejob.cpp:159
+#: executejob.cpp:176
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -71,7 +71,7 @@ msgstr ""
 "वर्तमान पृष्ठभाग केवल सहायक प्रमाणीकरण की अनुमति देता है, परन्तु इस क्रिया केपास कोई "
 "सहायक नहीं."
 
-#: executejob.cpp:167 executejob.cpp:191
+#: executejob.cpp:184 executejob.cpp:208
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "यह पृष्ठभाग, प्रमाणीकरण की विधि स्पष्ट नहीं करता"

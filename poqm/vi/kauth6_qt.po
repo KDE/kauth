@@ -47,22 +47,22 @@ msgstr ""
 "Lỗi hậu phương D-Bus: không liên hệ được với trình trợ giúp. Lỗi kết nối: "
 "%1. Lỗi thông điệp: %2"
 
-#: executejob.cpp:84
+#: executejob.cpp:101
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Đã thử khởi động một hành động không hợp lệ"
 
-#: executejob.cpp:102
+#: executejob.cpp:119
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Đã chọn một chế độ thực thi không rõ."
 
-#: executejob.cpp:147
+#: executejob.cpp:164
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Thủ tục xác thực có trạng thái không rõ"
 
-#: executejob.cpp:159
+#: executejob.cpp:176
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -71,7 +71,7 @@ msgstr ""
 "Hậu phương hiện tại chỉ cho phép xác thực với trình trợ giúp, nhưng hành "
 "động này không có trình trợ giúp nào."
 
-#: executejob.cpp:167 executejob.cpp:191
+#: executejob.cpp:184 executejob.cpp:208
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Hậu phương này không chỉ định cách xác thực"

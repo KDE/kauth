@@ -46,22 +46,22 @@ msgstr ""
 "Eroare de platformă DBus: nu s-a putut contacta ajutătorul. Eroare de "
 "conexiune: %1. Mesaj de eroare: %2"
 
-#: executejob.cpp:84
+#: executejob.cpp:101
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "S-a încercat pornirea unei acțiuni nevalide"
 
-#: executejob.cpp:102
+#: executejob.cpp:119
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Regimul de execuție ales e necunoscut"
 
-#: executejob.cpp:147
+#: executejob.cpp:164
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Stare necunoscută pentru procedura de autentificare"
 
-#: executejob.cpp:159
+#: executejob.cpp:176
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -70,7 +70,7 @@ msgstr ""
 "Platforma actuală permite doar autentificarea cu ajutător, dar această "
 "acțiune nu are un ajutător."
 
-#: executejob.cpp:167 executejob.cpp:191
+#: executejob.cpp:184 executejob.cpp:208
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Platforma nu specifică metoda de autorizare"
