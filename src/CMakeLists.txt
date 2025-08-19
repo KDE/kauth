@@ -137,4 +137,6 @@ ecm_qt_install_logging_categories(
     DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
 
-ecm_generate_qdoc(KF6AuthCore kauth.qdocconf)
+if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
+    ecm_generate_qdoc(KF6AuthCore kauth.qdocconf)
+endif ()
