@@ -52,7 +52,10 @@ static QWindow *parentWindow(const Action &action)
                 window = windows.first();
             }
         }
-        qCWarning(KAUTH) << "Action" << action.name() << "has no parentWindow, assuming" << window;
+        if (window) {
+            // Don't warn for background services with no windows.
+            qCWarning(KAUTH) << "Action" << action.name() << "has no parentWindow, assuming" << window;
+        }
     }
     return window;
 }
