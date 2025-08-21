@@ -52,29 +52,29 @@ msgid ""
 "Message error: %2"
 msgstr "DBus 後端介面錯誤：無法連線到協助程式。連線錯誤：%1。訊息錯誤：%2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "已嘗試開始一個不正確的動作"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "已選擇了未知的執行模式"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "認證程序中未知的狀態"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr "目前的後端介面只允許協助程式認證，但此動作沒有協助程式。"
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "此後端介面未指定如何認證"

@@ -52,22 +52,22 @@ msgstr ""
 "Fehler im D-Bus-Hintergrundprogramm: Hilfsanwendung kann nicht kontaktiert "
 "werden. Verbindungsfehler: %1. Nachrichten-Fehler: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Es wurde versucht, eine ungültige Aktion zu starten"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Unbekannter Ausführungsmodus ausgewählt"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Unbekannter Status de Authentifizierungsprozedur"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -76,7 +76,7 @@ msgstr ""
 "Das aktuelle Hintergrundprogramm erlaubt nur die Authentifizierung durch ein "
 "Hilfsprogramm, aber für diese Aktion gibt es kein Hilfsprogramm."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr ""

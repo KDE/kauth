@@ -46,22 +46,22 @@ msgstr ""
 "Грешка на DBus Backend: не можа да се свърже с помощника. Грешка при "
 "свързване: %1. Грешка в съобщението: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Опит за стартиране на невалидно действие"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Избран е неизвестен режим на изпълнение"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Неизвестен статус за процедурата за удостоверяване"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -70,7 +70,7 @@ msgstr ""
 "Текущият бекенд позволява само удостоверяване с помощник, но това действие "
 "няма помощник."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Бекенд програмата не посочва метод за  упълномощаване"

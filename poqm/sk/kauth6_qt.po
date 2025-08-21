@@ -51,22 +51,22 @@ msgstr ""
 "Chyba DBus: nepodarilo sa kontaktovať pomocníka. Chyba pripojenia: %1. "
 "Chybová správa: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Snaha o spustenie neplatnej akcie"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Bol vybraný neznámy režim spustenia"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Neznámy stav pre procedúru overenia"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -75,7 +75,7 @@ msgstr ""
 "Aktuálny backend umožní iba overenie pomocníka, ale táto akcia nemá "
 "pomocníka."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Backend neurčuje, ako sa overiť"

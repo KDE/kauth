@@ -54,22 +54,22 @@ msgstr ""
 "D-Bus バックエンドエラー: ヘルパーと交信できませんでした。接続エラー: %1. "
 "メッセージエラー: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "無効なアクションを開始しようとしました"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "不明な実行モードが指定されました"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "認証プロシージャの不明なステータスです"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -78,7 +78,7 @@ msgstr ""
 "現在のバックエンドはヘルパー認証のみ許可しますが、このアクションにはヘルパー"
 "がありません。"
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "​バックエンドは認証方法を指定していません"

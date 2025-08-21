@@ -50,22 +50,22 @@ msgstr ""
 "D-Bus-Hülpprogramm-Fehler: Hülpprogramm lett sik nich ansnacken. "
 "Tokoppelfehler: "
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Leeg Akschoon versöcht"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Nich begäng Utföhrmetood utsöcht"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Nich begäng Status binnen den Identiteetprööv-Vörgang"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -74,7 +74,7 @@ msgstr ""
 "Dat aktuelle Hülpprogramm lett Identiteetpröven bloots över Hülpprogrammen "
 "to, man disse Akschoon hett keen Hülpprogramm."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr ""

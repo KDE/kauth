@@ -61,22 +61,22 @@ msgstr ""
 "Внутренняя ошибка DBus: не удалось подключиться к обработчику. Ошибка "
 "подключения: %1. Сообщение об ошибке: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Попытка запустить некорректную задачу."
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Выбран неизвестный режим запуска."
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Неизвестное состояние процедуры аутентификации."
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -85,7 +85,7 @@ msgstr ""
 "Текущая реализация процедур авторизации может работать только через "
 "обработчик, но он отсутствует для данного действия."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Для обработчика не задано ни одного способа авторизации."

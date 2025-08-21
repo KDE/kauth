@@ -64,22 +64,22 @@ msgstr ""
 "Erreur du moteur D-Bus : impossible de contacter l'assistant. Erreur de "
 "connexion : %1. Message d'erreur : %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Action non valable"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Mode d'exécution inconnu"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "État inconnu pour la procédure d'authentification"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -88,7 +88,7 @@ msgstr ""
 "Le moteur actuel nécessite l'assistant d'authentification, mais cette action "
 "n'en possède pas."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Ce moteur ne précise pas comment s'authentifier"

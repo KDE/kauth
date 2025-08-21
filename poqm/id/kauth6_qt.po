@@ -45,22 +45,22 @@ msgstr ""
 "Galat Backend DBus: tidak dapat menghubungi penunjang. Galat koneksi: %1. "
 "Galat pesan: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Mencoba menjalankan aksi tidak absah"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Mode pengeksekusian tak diketahui dipilih"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Status tak diketahui untuk prosedur otentikasi"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -69,7 +69,7 @@ msgstr ""
 "Backend saat ini hanya memungkinkan otorisasi penunjang, tapi aksi ini tidak "
 "mempunyai penunjang."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Backend tidak menentukan cara otorisasi"

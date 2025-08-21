@@ -48,22 +48,22 @@ msgstr ""
 "Chyba vrstvy DBus: nelze se spojit s pomocným procesem. Chyba spojení: %1. "
 "Chybová zpráva: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Pokus o spuštění neplatné akce"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Zvolen neznámý režim spuštění"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Neznámý stav autentizační procedury"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -72,7 +72,7 @@ msgstr ""
 "Aktuální modul podporuje pouze autorizaci přes pomocný program, ale tato "
 "akce neobsahuje žádný."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Tento modul nespecifikuje, jak se autorizovat"

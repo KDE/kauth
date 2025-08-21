@@ -59,22 +59,22 @@ msgstr ""
 "Σφάλμα συστήματος υποστήριξης DBus: δεν επετεύχθη επικοινωνία με τον βοηθό."
 "Σφάλμα σύνδεσης: %1. Μήνυμα σφάλματος: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Επιχειρήθηκε η εκκίνηση μιας μη έγκυρης ενέργειας"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Επιλέχθηκε άγνωστη λειτουργία εκτέλεσης"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Άγνωστη κατάσταση για τη διαδικασία ταυτοποίησης"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -83,7 +83,7 @@ msgstr ""
 "Το τρέχον σύστημα υποστήριξης επιτρέπει μόνο εξουσιοδότηση με βοηθό, αλλά η "
 "ενέργεια αυτή δεν έχει βοηθό."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Το σύστημα υποστήριξης δεν καθορίζει τον τρόπο εξουσιοδότησης"

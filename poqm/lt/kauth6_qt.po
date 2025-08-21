@@ -50,22 +50,22 @@ msgstr ""
 "DBus vidinės pusės klaida: nepavyko susisiekti su pagelbikliu. Ryšio klaida: "
 "%1. Pranešimo klaida: %2"
 
-#: executejob.cpp:101
+#: executejob.cpp:104
 msgctxt "KAuth::ExecuteJob|"
 msgid "Tried to start an invalid action"
 msgstr "Bandyta pradėti neteisingą veiksmą"
 
-#: executejob.cpp:119
+#: executejob.cpp:122
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Pasirinkta nežinoma vykdymo veiksena"
 
-#: executejob.cpp:164
+#: executejob.cpp:167
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Nežinoma tapatybės nustatymo procedūros būsena"
 
-#: executejob.cpp:176
+#: executejob.cpp:179
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -74,7 +74,7 @@ msgstr ""
 "Dabartinė vidinė pusė leidžia suteikti įgaliojimus tik pagelbikliams, tačiau "
 "šis veiksmas neturi pagelbiklio."
 
-#: executejob.cpp:184 executejob.cpp:208
+#: executejob.cpp:187 executejob.cpp:211
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Vidinė pusė nenurodo kaip suteikti įgaliojimus"
