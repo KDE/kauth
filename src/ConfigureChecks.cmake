@@ -5,9 +5,7 @@ set(KAUTH_BACKEND_NAME "" CACHE STRING "Specifies the KAuth backend to build. Cu
                                    appropriate backend for your system")
 
 # Case-insensitive
-string(TOUPPER "${KAUTH_BACKEND_NAME}" KAUTH_BACKEND_NAME)
-
-set(KAUTH_BACKEND ${KAUTH_BACKEND_NAME})
+string(TOUPPER "${KAUTH_BACKEND_NAME}" KAUTH_BACKEND)
 
 set(POLKITQT_MIN_VERSION 0.112.0 PARENT_SCOPE)
 
