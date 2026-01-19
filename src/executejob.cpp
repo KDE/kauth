@@ -49,7 +49,9 @@ static QWindow *parentWindow(const Action &action)
         window = qGuiApp->focusWindow();
         if (!window) {
             if (const auto windows = qGuiApp->topLevelWindows(); !windows.isEmpty()) {
-                window = windows.first();
+                if (window && window->objectName() != u"QQuickWidgetOffscreenWindow") {
+                    window = windows.first();
+                }
             }
         }
         if (window) {
