@@ -105,8 +105,7 @@ endif ()
 
 if (NOT "${KAUTH_BACKEND_NAME}" STREQUAL "FAKE" AND NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
     # KAUTH_BACKEND_SRCS has been set from ConfigureChecks.cmake
-    # KAuth::AuthBackend is not exported
-    add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} AuthBackend.cpp ${kauthdebug_SRCS})
+    add_library(kauth_backend_plugin MODULE ${KAUTH_BACKEND_SRCS} ${kauthdebug_SRCS})
     target_link_libraries(kauth_backend_plugin PRIVATE ${KAUTH_BACKEND_LIBS})
     set_target_properties(kauth_backend_plugin PROPERTIES PREFIX "")
 

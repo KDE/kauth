@@ -11,12 +11,13 @@
 #include <QObject>
 
 #include "action.h"
+#include "kauthcore_export.h"
 
 namespace KAuth
 {
 typedef Action::DetailsMap DetailsMap;
 
-class AuthBackend : public QObject
+class KAUTHCORE_EXPORT AuthBackend : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(AuthBackend)
