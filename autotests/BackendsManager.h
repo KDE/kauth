@@ -14,18 +14,19 @@ namespace KAuth
 {
 class BackendsManager
 {
-    static AuthBackend *auth;
-    static HelperProxy *helper;
-
-    BackendsManager();
-
 public:
-    static AuthBackend *authBackend();
-    static HelperProxy *helperProxy();
-    static void setProxyForThread(QThread *thread, HelperProxy *proxy);
+    ~BackendsManager();
+
+    static BackendsManager &self();
+
+    AuthBackend *authBackend();
+    HelperProxy *helperProxy();
+    void setProxyForThread(QThread *thread, HelperProxy *proxy);
 
 private:
-    static void init();
+    void init();
+    AuthBackend *auth = nullptr;
+    QHash<QThread *, HelperProxy *> proxiesForThreads;
 };
 
 } // namespace Auth

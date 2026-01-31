@@ -16,19 +16,19 @@ namespace KAuth
 {
 class KAUTHCORE_EXPORT BackendsManager
 {
-private:
-    static AuthBackend *auth;
-    static HelperProxy *helper;
-
-    KAUTHCORE_NO_EXPORT BackendsManager();
-
 public:
-    static AuthBackend *authBackend();
-    static HelperProxy *helperProxy();
+    ~BackendsManager();
+
+    static BackendsManager &self();
+
+    AuthBackend *authBackend();
+    HelperProxy *helperProxy();
 
 private:
-    KAUTHCORE_NO_EXPORT static void init();
-    KAUTHCORE_NO_EXPORT static QList<QObject *> retrieveInstancesIn(const QString &path);
+    KAUTHCORE_NO_EXPORT void init();
+    KAUTHCORE_NO_EXPORT QList<QObject *> retrieveInstancesIn(const QString &path);
+    AuthBackend *auth = nullptr;
+    HelperProxy *helper = nullptr;
 };
 
 } // namespace Auth

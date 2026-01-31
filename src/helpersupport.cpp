@@ -82,7 +82,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     //       before using dbus.
     QCoreApplication app(argc, argv);
 
-    if (!BackendsManager::helperProxy()->initHelper(QString::fromLatin1(id))) {
+    if (!BackendsManager::self().helperProxy()->initHelper(QString::fromLatin1(id))) {
         syslog(logLevel, "Helper initialization failed");
         return -1;
     }
@@ -90,7 +90,7 @@ int HelperSupport::helperMain(int argc, char **argv, const char *id, QObject *re
     // closelog();
     remote_dbg = true;
 
-    BackendsManager::helperProxy()->setHelperResponder(responder);
+    BackendsManager::self().helperProxy()->setHelperResponder(responder);
 
     // Attach the timer
     QTimer *timer = new QTimer(nullptr);
@@ -126,7 +126,7 @@ void HelperSupport::helperDebugHandler(QtMsgType type, const QMessageLogContext 
         }
         syslog(level, "%s", msg.constData());
     } else if (!QCoreApplication::closingDown()) {
-        BackendsManager::helperProxy()->sendDebugMessage(type, msg.constData());
+        BackendsManager::self().helperProxy()->sendDebugMessage(type, msg.constData());
     }
 
     // Anyway I should follow the rule:
@@ -137,22 +137,22 @@ void HelperSupport::helperDebugHandler(QtMsgType type, const QMessageLogContext 
 
 void HelperSupport::progressStep(int step)
 {
-    BackendsManager::helperProxy()->sendProgressStep(step);
+    BackendsManager::self().helperProxy()->sendProgressStep(step);
 }
 
 void HelperSupport::progressStep(const QVariantMap &data)
 {
-    BackendsManager::helperProxy()->sendProgressStepData(data);
+    BackendsManager::self().helperProxy()->sendProgressStepData(data);
 }
 
 bool HelperSupport::isStopped()
 {
-    return BackendsManager::helperProxy()->hasToStopAction();
+    return BackendsManager::self().helperProxy()->hasToStopAction();
 }
 
 int HelperSupport::callerUid()
 {
-    return BackendsManager::helperProxy()->callerUid();
+    return BackendsManager::self().helperProxy()->callerUid();
 }
 
 } // namespace Auth

@@ -19,11 +19,17 @@
 
 namespace KAuth
 {
-AuthBackend *BackendsManager::auth = nullptr;
-QHash<QThread *, HelperProxy *> proxiesForThreads = QHash<QThread *, HelperProxy *>();
 
-BackendsManager::BackendsManager()
+BackendsManager::~BackendsManager()
 {
+    delete auth;
+    qDeleteAll(proxiesForThreads);
+}
+
+BackendsManager &BackendsManager::self()
+{
+    static BackendsManager instance;
+    return instance;
 }
 
 void BackendsManager::init()

@@ -67,7 +67,7 @@ ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject
     d->action = action;
     d->mode = mode;
 
-    HelperProxy *helper = BackendsManager::helperProxy();
+    HelperProxy *helper = BackendsManager::self().helperProxy();
 
     connect(helper, &KAuth::HelperProxy::actionPerformed, this, [this](const QString &action, const ActionReply &reply) {
         d->actionPerformedSlot(action, reply);
@@ -79,7 +79,7 @@ ExecuteJob::ExecuteJob(const Action &action, Action::ExecutionMode mode, QObject
         d->progressStepSlot(action, data);
     });
 
-    connect(BackendsManager::authBackend(), &KAuth::AuthBackend::actionStatusChanged, this, [this](const QString &action, Action::AuthStatus status) {
+    connect(BackendsManager::self().authBackend(), &KAuth::AuthBackend::actionStatusChanged, this, [this](const QString &action, Action::AuthStatus status) {
         d->statusChangedSlot(action, status);
     });
 }
@@ -128,7 +128,7 @@ void ExecuteJob::start()
 
 bool ExecuteJob::kill(KillVerbosity verbosity)
 {
-    BackendsManager::helperProxy()->stopAction(d->action.name(), d->action.helperId());
+    BackendsManager::self().helperProxy()->stopAction(d->action.name(), d->action.helperId());
     KJob::kill(verbosity);
     return true;
 }
@@ -136,16 +136,20 @@ bool ExecuteJob::kill(KillVerbosity verbosity)
 void ExecuteJobPrivate::doExecuteAction()
 {
     // If this action authorizes from the client, let's do it now
-    if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
-        if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-            BackendsManager::authBackend()->preAuthAction(action.name(), parentWindow(action));
+    if (BackendsManager::self().authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
+        if (BackendsManager::self().authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
+            BackendsManager::self().authBackend()->preAuthAction(action.name(), parentWindow(action));
         }
 
-        Action::AuthStatus s = BackendsManager::authBackend()->authorizeAction(action.name());
+        Action::AuthStatus s = BackendsManager::self().authBackend()->authorizeAction(action.name());
 
         if (s == Action::AuthorizedStatus) {
             if (action.hasHelper()) {
-                BackendsManager::helperProxy()->executeAction(action.name(), action.helperId(), action.detailsV2(), action.arguments(), action.timeout());
+                BackendsManager::self().helperProxy()->executeAction(action.name(),
+                                                                     action.helperId(),
+                                                                     action.detailsV2(),
+                                                                     action.arguments(),
+                                                                     action.timeout());
             } else {
                 // Done
                 actionPerformedSlot(action.name(), ActionReply::SuccessReply());
@@ -170,9 +174,9 @@ void ExecuteJobPrivate::doExecuteAction()
             }
             }
         }
-    } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
-        if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-            BackendsManager::authBackend()->preAuthAction(action.name(), parentWindow(action));
+    } else if (BackendsManager::self().authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
+        if (BackendsManager::self().authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
+            BackendsManager::self().authBackend()->preAuthAction(action.name(), parentWindow(action));
         }
         if (!action.hasHelper()) {
             ActionReply r(ActionReply::InvalidActionReply());
@@ -180,7 +184,7 @@ void ExecuteJobPrivate::doExecuteAction()
             actionPerformedSlot(action.name(), r);
             return;
         }
-        BackendsManager::helperProxy()->executeAction(action.name(), action.helperId(), action.detailsV2(), action.arguments(), action.timeout());
+        BackendsManager::self().helperProxy()->executeAction(action.name(), action.helperId(), action.detailsV2(), action.arguments(), action.timeout());
     } else {
         // There's something totally wrong here
         ActionReply r(ActionReply::BackendError);
@@ -195,14 +199,14 @@ void ExecuteJobPrivate::doAuthorizeAction()
     Action::AuthStatus s = action.status();
     if (s == Action::AuthRequiredStatus) {
         // Let's check what to do
-        if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
+        if (BackendsManager::self().authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromClientCapability) {
             // In this case we can actually try an authorization
-            if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
-                BackendsManager::authBackend()->preAuthAction(action.name(), parentWindow(action));
+            if (BackendsManager::self().authBackend()->capabilities() & KAuth::AuthBackend::PreAuthActionCapability) {
+                BackendsManager::self().authBackend()->preAuthAction(action.name(), parentWindow(action));
             }
 
-            s = BackendsManager::authBackend()->authorizeAction(action.name());
-        } else if (BackendsManager::authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
+            s = BackendsManager::self().authBackend()->authorizeAction(action.name());
+        } else if (BackendsManager::self().authBackend()->capabilities() & KAuth::AuthBackend::AuthorizeFromHelperCapability) {
             // In this case, just throw out success, as the auth will take place later
             s = Action::AuthorizedStatus;
         } else {

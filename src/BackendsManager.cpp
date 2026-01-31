@@ -19,11 +19,24 @@
 
 namespace KAuth
 {
-AuthBackend *BackendsManager::auth = nullptr;
-HelperProxy *BackendsManager::helper = nullptr;
 
-BackendsManager::BackendsManager()
+BackendsManager::~BackendsManager()
 {
+    // auth and helper are loaded from plugins and should not be deleted by us
+    // except if the are the fake ones, those are manually allocated
+    if (qobject_cast<FakeBackend *>(auth)) {
+        delete auth;
+    }
+
+    if (qobject_cast<FakeHelperProxy *>(helper)) {
+        delete helper;
+    }
+}
+
+BackendsManager &BackendsManager::self()
+{
+    static BackendsManager instance;
+    return instance;
 }
 
 QList<QObject *> BackendsManager::retrieveInstancesIn(const QString &path)
