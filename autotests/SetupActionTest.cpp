@@ -46,7 +46,7 @@ void SetupActionTest::initTestCase()
 {
     connect(this,
             SIGNAL(changeCapabilities(KAuth::AuthBackend::Capabilities)),
-            KAuth::BackendsManager::authBackend(),
+            KAuth::BackendsManager::self().authBackend(),
             SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
 }
 

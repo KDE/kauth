@@ -62,7 +62,7 @@ Action::Action(const QString &name)
     : d(new ActionData())
 {
     setName(name);
-    BackendsManager::authBackend()->setupAction(d->name);
+    BackendsManager::self().authBackend()->setupAction(d->name);
 }
 
 Action::Action(const QString &name, const DetailsMap &details)
@@ -70,7 +70,7 @@ Action::Action(const QString &name, const DetailsMap &details)
 {
     setName(name);
     setDetailsV2(details);
-    BackendsManager::authBackend()->setupAction(d->name);
+    BackendsManager::self().authBackend()->setupAction(d->name);
 }
 
 Action::~Action()
@@ -178,7 +178,7 @@ Action::AuthStatus Action::status() const
         return Action::InvalidStatus;
     }
 
-    return BackendsManager::authBackend()->actionStatus(d->name);
+    return BackendsManager::self().authBackend()->actionStatus(d->name);
 }
 
 ExecuteJob *Action::execute(ExecutionMode mode)

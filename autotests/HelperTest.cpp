@@ -116,7 +116,7 @@ void HelperHandler::init()
     timer->start();
 
     // Make BackendsManager aware
-    BackendsManager::setProxyForThread(m_thread, m_helperProxy);
+    BackendsManager::self().setProxyForThread(m_thread, m_helperProxy);
 
     Q_EMIT ready();
 }
@@ -125,7 +125,7 @@ void HelperTest::initTestCase()
 {
     connect(this,
             SIGNAL(changeCapabilities(KAuth::AuthBackend::Capabilities)),
-            KAuth::BackendsManager::authBackend(),
+            KAuth::BackendsManager::self().authBackend(),
             SLOT(setNewCapabilities(KAuth::AuthBackend::Capabilities)));
 
     qRegisterMetaType<KAuth::Action::AuthStatus>();

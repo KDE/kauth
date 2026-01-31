@@ -106,7 +106,8 @@ void DBusHelperProxy::executeAction(const QString &action, const QString &helper
     message = QDBusMessage::createMethodCall(helperID, QLatin1String("/"), QLatin1String("org.kde.kf6auth"), QLatin1String("performAction"));
 
     QList<QVariant> args;
-    args << action << BackendsManager::authBackend()->callerID() << BackendsManager::authBackend()->backendDetails(details) << blob << QVariant::fromValue(fds);
+    args << action << BackendsManager::self().authBackend()->callerID() << BackendsManager::self().authBackend()->backendDetails(details) << blob
+         << QVariant::fromValue(fds);
     message.setArguments(args);
 
     m_actionsInProgress.push_back(action);
@@ -214,7 +215,7 @@ bool DBusHelperProxy::hasToStopAction()
 bool DBusHelperProxy::isCallerAuthorized(const QString &action, const QByteArray &callerID, const QVariantMap &details)
 {
     Q_UNUSED(callerID); // this only exists for the benefit of the mac backend. We obtain our callerID from dbus!
-    return BackendsManager::authBackend()->isCallerAuthorized(action, message().service().toUtf8(), details);
+    return BackendsManager::self().authBackend()->isCallerAuthorized(action, message().service().toUtf8(), details);
 }
 
 QByteArray DBusHelperProxy::performAction(const QString &action,
