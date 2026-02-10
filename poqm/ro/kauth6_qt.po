@@ -36,7 +36,7 @@ msgstr ""
 "Eroare de platformă DBus: conexiunea la ajutător a eșuat. %1\n"
 "(aplicație: %2 ajutător: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -56,12 +56,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Regimul de execuție ales e necunoscut"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Stare necunoscută pentru procedura de autentificare"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -70,7 +70,7 @@ msgstr ""
 "Platforma actuală permite doar autentificarea cu ajutător, dar această "
 "acțiune nu are un ajutător."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Platforma nu specifică metoda de autorizare"

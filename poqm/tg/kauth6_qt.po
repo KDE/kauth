@@ -38,7 +38,7 @@ msgstr ""
 "Хатои дохилии DBus:: пайвастшавӣ ба ёридиҳанда қатъ шуд. %1\n"
 "(барнома: %2 ёридиҳанда: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -58,12 +58,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Иҷрокунии реҷаи номаълум интихоб шудааст"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Вазъияти номаълум барои раванди санҷиши ҳаққоният"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -72,7 +72,7 @@ msgstr ""
 "Коркардкунандаи ҷорӣ танҳо барои санҷиши ҳаққонияти ёридиҳанда иҷозат "
 "медиҳад, аммо ин амал дорои ёридиҳанда намебошад."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Ин коркардкунанда роҳи санҷиши ҳаққониятро муайян намекунад"

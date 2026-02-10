@@ -29,7 +29,7 @@ msgstr ""
 "უკანაბოლო DBus-ის შეცდომა: დამხმარესთან დაკავშირების სეცდომა. %1\n"
 "(აპლიკაცია: %2, დამხმარე: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -49,12 +49,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "არჩეულია შესრულების უცნობი რეჟიმი"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "ავთენტიკაციის პროცედურის უცნობი სტატუსი"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -63,7 +63,7 @@ msgstr ""
 "მიმდინარე უკანაბოლო ავთენტიკაციას მხოლოდ დამხმარეების საშუალებით ახდენს, "
 "მაგრამ ამ ქმედებას დამხმარე არ გააჩნია."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "უკანაბოლოს ავტორიზაციის მექანიზმი არ მოუწოდებია"

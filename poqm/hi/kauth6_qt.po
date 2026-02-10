@@ -38,7 +38,7 @@ msgstr ""
 "डीबस पृष्ठभाग त्रुटि: सहायक के साथ संपर्क असफल. %1\n"
 "(अनुप्रयोग: %2 सहायक: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -57,12 +57,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "अज्ञात चालन मोड चुना गया"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "प्रमाणीकरण विधि के लिए अज्ञात स्थिति"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -71,7 +71,7 @@ msgstr ""
 "वर्तमान पृष्ठभाग केवल सहायक प्रमाणीकरण की अनुमति देता है, परन्तु इस क्रिया केपास कोई "
 "सहायक नहीं."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "यह पृष्ठभाग, प्रमाणीकरण की विधि स्पष्ट नहीं करता"

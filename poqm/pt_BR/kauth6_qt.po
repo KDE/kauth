@@ -45,7 +45,7 @@ msgstr ""
 "Erro da infraestrutura D-Bus: A conexão ao utilitário falhou. %1\n"
 "(aplicativo: %2 utilitário: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -65,12 +65,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "O modo de execução é desconhecido"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "O status do procedimento de autenticação é desconhecido"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -79,7 +79,7 @@ msgstr ""
 "A infraestrutura atual só permite a autorização do utilitário, mas esta ação "
 "não tem um utilitário."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "A infraestrutura não indica como autorizar"

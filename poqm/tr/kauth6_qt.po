@@ -50,7 +50,7 @@ msgstr ""
 "DBus arka uç hatası: Yardımcıya bağlanılamadı. %1\n"
 "(uygulama: %2 yardımcı: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -70,12 +70,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Bilinmeyen yürütme kipi seçili"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Kimlik doğrulama süreci için bilinmeyen durum"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -84,7 +84,7 @@ msgstr ""
 "Geçerli arka uç yalnızca yardımcı kimlik doğrulamasına izin veriyor; ancak "
 "bu uygulama böyle bir yardımcıya sahip görünmüyor."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Arka uç nasıl yetkilendirme yapılacağını belirtmiyor"

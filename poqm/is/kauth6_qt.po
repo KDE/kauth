@@ -40,7 +40,7 @@ msgstr ""
 "Villa í DBus-bakenda: tenging við hjálparforrit mistókst. %1\n"
 "(forrit: %2 hjálparforrit: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -60,12 +60,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Óþekkt keyrslusnið valið"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Óþekkt staða fyrir auðkenningaraðferðina"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -74,7 +74,7 @@ msgstr ""
 "Núverandi bakendi leyfir aðeins auðkenningu hjálparforrita, en þessi aðgerð "
 "felur ekki í sér hjálparforrit."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Bakendinn tekur ekki fram hvernig auðkenning fer fram"

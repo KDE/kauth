@@ -43,7 +43,7 @@ msgstr ""
 "Errore del motore DBus: connessione all'assistente non riuscita. %1\n"
 "(applicazione: %2 assistente: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -63,12 +63,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "La modalità di esecuzione scelta è sconosciuta"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Stato sconosciuto per la procedura di autenticazione"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -77,7 +77,7 @@ msgstr ""
 "Il motore attuale consente solo l'autorizzazione dell'assistente, ma questa "
 "azione non ha un assistente."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Il motore non specifica come autorizzare"

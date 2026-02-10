@@ -37,7 +37,7 @@ msgstr ""
 "Lỗi hậu phương D-Bus: kết nối với trình trợ giúp thất bại: %1\n"
 "(ứng dụng: %2 trình trợ giúp: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -57,12 +57,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Đã chọn một chế độ thực thi không rõ."
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Thủ tục xác thực có trạng thái không rõ"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -71,7 +71,7 @@ msgstr ""
 "Hậu phương hiện tại chỉ cho phép xác thực với trình trợ giúp, nhưng hành "
 "động này không có trình trợ giúp nào."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Hậu phương này không chỉ định cách xác thực"

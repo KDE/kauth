@@ -38,7 +38,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr "D-Bus-Hülpprogramm-Fehler: Tokoppeln na Hülpprogramm fehlslaan. "
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: could not contact the helper. Connection error: "
@@ -60,12 +60,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Nich begäng Utföhrmetood utsöcht"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Nich begäng Status binnen den Identiteetprööv-Vörgang"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -74,7 +74,7 @@ msgstr ""
 "Dat aktuelle Hülpprogramm lett Identiteetpröven bloots över Hülpprogrammen "
 "to, man disse Akschoon hett keen Hülpprogramm."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr ""

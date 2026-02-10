@@ -38,7 +38,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr "แบ็กเอนด์ DBus มีข้อผิดพลาด: การเชื่อมต่อไปยังโปรแกรมช่วยล้มเหลว %1"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, fuzzy, qt-format
 #| msgid ""
 #| "DBus Backend error: could not contact the helper. Connection error: %1. "
@@ -61,19 +61,19 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr ""
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr ""
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr ""
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr ""

@@ -34,7 +34,7 @@ msgstr ""
 "D-Bus-hiba: nem sikerült csatlakozni a kapcsolófelülethez. %1\n"
 "(alkalmazás: %2, kapcsolófelület: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -54,12 +54,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Ismeretlen végrehajtási mód"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "A hitelesítési folyamat állapota ismeretlen"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -68,7 +68,7 @@ msgstr ""
 "A jelenlegi háttérprogram csak a kapcsolófelületnek teszi lehetővé a "
 "hitelesítést, de ennek a műveletnek nincs kapcsolófelülete."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "A háttérprogram nem adta meg, hogyan hitelesít"

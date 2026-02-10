@@ -33,7 +33,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr "Mearachd a' backend DBus: dh'fhàillig le ceangal ris an inneal-taic. "
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, fuzzy, qt-format
 #| msgctxt "KAuth::DBusHelperProxy|"
 #| msgid "DBus Backend error: could not contact the helper. Connection error: "
@@ -55,12 +55,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Chan aithne dhuinn modh a' ghnìomhaidh a chaidh a thaghadh"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Chan aithne duinn an staid airson an dearbhaidh"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -69,7 +69,7 @@ msgstr ""
 "Cha cheadaich am backend làithreach ach dearbhadh inneal-taice ach chan eil "
 "inneal-taice aig a' ghnìomh seo."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "Cha do shònraich am backend dòigh an dearbhaidh"

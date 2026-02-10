@@ -48,7 +48,7 @@ msgstr ""
 "DBus-backendfout: verbinding naar helper is mislukt. %1\n"
 "(toepassing: %2 helper: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -68,12 +68,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "Onbekende uitvoeringsmodus gekozen"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "Onbekend status voor de authenticatieprocedure"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -82,7 +82,7 @@ msgstr ""
 "De huidige backend staat alleen autorisatie van de helper toe, maar deze "
 "actie heeft geen helper."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "De backend specificeert niet hoe de autorisatie te doen"

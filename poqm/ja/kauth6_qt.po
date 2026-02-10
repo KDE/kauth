@@ -44,7 +44,7 @@ msgstr ""
 "D-Bus バックエンドエラー: ヘルパーへの接続が失敗しました。%1\n"
 "(アプリケーション: %2 ヘルパー: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -64,12 +64,12 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "不明な実行モードが指定されました"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "認証プロシージャの不明なステータスです"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
@@ -78,7 +78,7 @@ msgstr ""
 "現在のバックエンドはヘルパー認証のみ許可しますが、このアクションにはヘルパー"
 "がありません。"
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "​バックエンドは認証方法を指定していません"

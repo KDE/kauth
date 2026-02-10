@@ -49,7 +49,7 @@ msgstr ""
 "שגיאת מנגנון DBus: החיבור למסייע נכשל. %1\n"
 "(יישום: %2 מסייע: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:134
+#: backends/dbus/DBusHelperProxy.cpp:135
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -69,19 +69,19 @@ msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown execution mode chosen"
 msgstr "נבחר מצב הפעלה לא ידוע"
 
-#: executejob.cpp:167
+#: executejob.cpp:171
 msgctxt "KAuth::ExecuteJob|"
 msgid "Unknown status for the authentication procedure"
 msgstr "מצב לא ידוע של מהלך אימות"
 
-#: executejob.cpp:179
+#: executejob.cpp:183
 msgctxt "KAuth::ExecuteJob|"
 msgid ""
 "The current backend only allows helper authorization, but this action does "
 "not have a helper."
 msgstr "המנגנון הנוכחי רק מאפשר את אימות המסייע, אך לפעולה הזאת אין מסייע."
 
-#: executejob.cpp:187 executejob.cpp:211
+#: executejob.cpp:191 executejob.cpp:215
 msgctxt "KAuth::ExecuteJob|"
 msgid "The backend does not specify how to authorize"
 msgstr "המנגנון לא מציין איך לבצע אימות"
