@@ -56,7 +56,7 @@ endif()
 
 ecm_set_disabled_deprecation_versions(
     QT 6.11.0
-    KF 6.18.0
+    KF 6.26.0
 )
 
 ecm_install_po_files_as_qm(poqm)
