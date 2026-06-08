@@ -67,17 +67,9 @@ void Polkit1Backend::preAuthAction(const QString &action, QWindow *parentWindow)
     // Are we running our KDE auth agent?
     if (QDBusConnection::sessionBus().interface()->isServiceRegistered(QLatin1String("org.kde.polkit-kde-authentication-agent-1"))) {
         if (KWindowSystem::isPlatformWayland()) {
-            KWaylandExtras::exportWindow(parentWindow);
-            connect(
-                KWaylandExtras::self(),
-                &KWaylandExtras::windowExported,
-                this,
-                [this, action, parentWindow](QWindow *window, const QString &handle) {
-                    if (window == parentWindow) {
-                        sendWindowHandle(action, handle);
-                    }
-                },
-                Qt::SingleShotConnection);
+            KWaylandExtras::exportToplevel(parentWindow).then(this, [this, action](const QString &handle) {
+                sendWindowHandle(action, handle);
+            });
 
             // Generate and send an XDG Activation token.
             sendActivationToken(action, parentWindow);
