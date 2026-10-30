@@ -13,7 +13,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QThread>
-#include <qplatformdefs.h>
 
 ActionReply TestHelper::echoaction(QVariantMap args)
 {

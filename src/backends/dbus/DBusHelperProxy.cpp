@@ -19,7 +19,6 @@
 #include <QMetaMethod>
 #include <QObject>
 #include <QTimer>
-#include <qplugin.h>
 
 extern Q_CORE_EXPORT const QtPrivate::QMetaTypeInterface *qMetaTypeGuiHelper;
 

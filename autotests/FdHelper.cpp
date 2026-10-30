@@ -8,8 +8,6 @@
 #include <QFile>
 #include <QTimer>
 
-#include <unistd.h>
-
 ActionReply FdHelper::standardaction(QVariantMap args)
 {
     QDBusUnixFileDescriptor tempFileFd = args[QStringLiteral("tempFileDescriptor")].value<QDBusUnixFileDescriptor>();

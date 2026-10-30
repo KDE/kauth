@@ -12,9 +12,6 @@
 #include <QTemporaryFile>
 #include <QTest>
 
-#include <fcntl.h>
-#include <unistd.h>
-
 class FdTester : public QObject
 {
     Q_OBJECT
