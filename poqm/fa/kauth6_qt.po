@@ -22,14 +22,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:84
+#: backends/dbus/DBusHelperProxy.cpp:83
 #, fuzzy, qt-format
 #| msgid "DBus Backend error: connection to helper failed. %1"
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "DBus Backend error: connection to helper failed. %1"
 
-#: backends/dbus/DBusHelperProxy.cpp:99
+#: backends/dbus/DBusHelperProxy.cpp:98
 #, fuzzy, qt-format
 #| msgid "DBus Backend error: connection to helper failed. %1"
 msgctxt "KAuth::DBusHelperProxy|"
@@ -38,7 +38,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr "DBus Backend error: connection to helper failed. %1"
 
-#: backends/dbus/DBusHelperProxy.cpp:135
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, fuzzy, qt-format
 #| msgid "DBus Backend error: connection to helper failed. %1"
 msgctxt "KAuth::DBusHelperProxy|"

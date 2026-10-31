@@ -27,13 +27,13 @@ msgstr ""
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:84
+#: backends/dbus/DBusHelperProxy.cpp:83
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "DBus-feil: klarte ikke starte tjenesten %1: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:99
+#: backends/dbus/DBusHelperProxy.cpp:98
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -43,7 +43,7 @@ msgstr ""
 "D-Bus-feil: Klarte ikke koble til hjelperen. %1\n"
 "(program: %2; hjelper: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:135
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

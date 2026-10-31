@@ -20,13 +20,13 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:84
+#: backends/dbus/DBusHelperProxy.cpp:83
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr ""
 
-#: backends/dbus/DBusHelperProxy.cpp:99
+#: backends/dbus/DBusHelperProxy.cpp:98
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -34,7 +34,7 @@ msgid ""
 "(application: %2 helper: %3)"
 msgstr ""
 
-#: backends/dbus/DBusHelperProxy.cpp:135
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

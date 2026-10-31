@@ -22,13 +22,13 @@ msgstr ""
 "X-Source-Language: en_US\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:84
+#: backends/dbus/DBusHelperProxy.cpp:83
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "Chyba vrstvy DBus: spuštění služby %1 selhalo: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:99
+#: backends/dbus/DBusHelperProxy.cpp:98
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -38,7 +38,7 @@ msgstr ""
 "Chyba vrstvy DBus: spojení s pomocným procesem selhalo. %1\n"
 "(aplikace: %2 pomocný proces: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:135
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""

@@ -22,13 +22,13 @@ msgstr ""
 "X-Generator: Lokalize 21.04.1\n"
 "X-Qt-Contexts: true\n"
 
-#: backends/dbus/DBusHelperProxy.cpp:84
+#: backends/dbus/DBusHelperProxy.cpp:83
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid "DBus Backend error: service start %1 failed: %2"
 msgstr "डीबस पृष्ठभाग त्रुटि: %1 सेवा प्रारम्भ असफल: %2"
 
-#: backends/dbus/DBusHelperProxy.cpp:99
+#: backends/dbus/DBusHelperProxy.cpp:98
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
@@ -38,7 +38,7 @@ msgstr ""
 "डीबस पृष्ठभाग त्रुटि: सहायक के साथ संपर्क असफल. %1\n"
 "(अनुप्रयोग: %2 सहायक: %3)"
 
-#: backends/dbus/DBusHelperProxy.cpp:135
+#: backends/dbus/DBusHelperProxy.cpp:134
 #, qt-format
 msgctxt "KAuth::DBusHelperProxy|"
 msgid ""
